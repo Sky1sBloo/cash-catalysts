@@ -21,8 +21,4 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    public void toRemoveFunction() {
-        System.out.println("Hello world!");
-    }
 }
