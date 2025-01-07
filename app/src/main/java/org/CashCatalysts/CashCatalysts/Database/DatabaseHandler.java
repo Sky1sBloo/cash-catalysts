@@ -21,8 +21,6 @@ public class DatabaseHandler {
 
     /**
      * Performs a generic non returnable query
-     * @param query
-     * @throws SQLException
      */
     public void performQuery(String query) throws SQLException {
         connection.createStatement().execute(query);
