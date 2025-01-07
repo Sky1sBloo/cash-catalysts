@@ -9,6 +9,7 @@ import java.sql.SQLException;
  */
 public class DatabaseHandler {
     private final Connection connection;
+    private final TransactionsTable transactionsTable;
 
     /**
      * Path to database file
@@ -17,6 +18,7 @@ public class DatabaseHandler {
     public DatabaseHandler(String pathToDb) throws SQLException {
         String url = "jdbc:sqlite:" + pathToDb;
         connection = DriverManager.getConnection(url);
+        this.transactionsTable = new TransactionsTable(connection);
     }
 
     /**
