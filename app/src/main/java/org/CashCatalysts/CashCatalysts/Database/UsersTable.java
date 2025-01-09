@@ -1,6 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.UserProfile.User;
+import org.CashCatalysts.CashCatalysts.UserProfile.UserProfileHandler;
 
 import java.sql.*;
 
@@ -38,5 +39,22 @@ public class UsersTable extends DbTable {
         }
 
         throw new SQLException("Register get last user id ResultSet doesn't return anything");
+    }
+
+    public User getUser(int id) throws SQLException {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        PreparedStatement getUserStatement = connection.prepareStatement(sql);
+
+        getUserStatement.setInt(1, id);
+
+        ResultSet rs = getUserStatement.executeQuery();
+        if (rs.next()) {
+            return new User(
+                    rs.getInt("user_id"),
+                    rs.getString("username"),
+                    rs.getInt("rank")
+            );
+        }
+        throw new SQLException("Cannot find user or user id returns more than 1");
     }
 }
