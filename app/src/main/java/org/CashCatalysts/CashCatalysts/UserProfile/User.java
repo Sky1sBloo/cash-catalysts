@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  *
  */
-public record User(int id, String username, int rank) {
+public record User(Integer id, String username, int rank) {
     /**
      * @param id unique identifier of user
      * @param username username of user
