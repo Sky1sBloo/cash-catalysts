@@ -2,9 +2,9 @@ package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -46,5 +46,29 @@ public class TransactionsTable extends DbTable {
 
         addStatement.executeUpdate();
         return getLastRowId();
+    }
+
+    public Transaction getTransaction(int id) throws SQLException {
+        String sql = "SELECT * FROM transactions WHERE transaction_id = ?";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setInt(1, id);
+        ResultSet rs = getStatement.executeQuery();
+
+        if (rs.next()) {
+            int amountCents = rs.getInt("amountCents");
+            int amount = amountCents / 100;
+            int cents = amountCents % 100;
+
+            return new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date"),
+                    amount,
+                    cents
+            );
+        }
+        throw new SQLException("Cannot find transaction with id = " + id);
     }
 }
