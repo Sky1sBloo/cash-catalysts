@@ -9,11 +9,7 @@ public class UserProfileHandler {
      * @param rank rank of user; can't be < 1
      * @return a {@code User} object representing the created user
      */
-    public User createUser(String userID, String username, int rank){
-        if(userID == null || userID.isBlank()){
-            throw new IllegalArgumentException("Fill in User ID.");
-        }
-
+    public User createUser(int userID, String username, int rank){
         if(username == null || username.isBlank()){
             throw new IllegalArgumentException("Fill in username.");
         }
