@@ -1,7 +1,6 @@
 package org.CashCatalysts.CashCatalysts.Transactions;
 
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
 public record Transaction(Integer transactionId, String name, String type, Date date, int amount, int amountCents) {
