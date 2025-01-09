@@ -1,7 +1,6 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.UserProfile.User;
-import org.CashCatalysts.CashCatalysts.UserProfile.UserProfileHandler;
 
 import java.sql.*;
 
@@ -30,15 +29,7 @@ public class UsersTable extends DbTable {
         insertStatement.setString(1, user.username());
         insertStatement.setInt(2, user.rank());
         insertStatement.executeUpdate();
-
-        Statement lastIdStatement = connection.createStatement();
-
-        ResultSet rs = lastIdStatement.executeQuery("select last_insert_rowid();");
-        if (rs.next()) {
-            return rs.getInt(1);
-        }
-
-        throw new SQLException("Register get last user id ResultSet doesn't return anything");
+        return getLastRowId();
     }
 
     /**

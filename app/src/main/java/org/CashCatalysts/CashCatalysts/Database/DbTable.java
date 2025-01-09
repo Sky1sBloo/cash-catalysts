@@ -1,6 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class DbTable {
@@ -26,6 +27,21 @@ public abstract class DbTable {
      */
     public void createTable(String tableName, DbField[] fields) throws SQLException {
         connection.createStatement().execute(tableSchema(tableName, fields));
+    }
+
+    /**
+     * Gets the last row id of added insert
+     * Generally used after registering a new primary key
+     *
+     * @return The last row id inserted
+     */
+    protected int getLastRowId() throws SQLException {
+        ResultSet rs = connection.createStatement().executeQuery("select last_insert_rowid();");
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+        throw new SQLException("Get last user id ResultSet doesn't return anything");
     }
 
     /**
