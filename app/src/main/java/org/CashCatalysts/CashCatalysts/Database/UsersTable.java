@@ -34,6 +34,7 @@ public class UsersTable extends DbTable {
 
     /**
      * Gets the user from the database
+     * Note: Ignores other users if database returns more than 1 user
      */
     public User getUser(int id) throws SQLException {
         String sql = "SELECT * FROM users WHERE user_id = ?";
@@ -49,7 +50,7 @@ public class UsersTable extends DbTable {
                     rs.getInt("rank")
             );
         }
-        throw new SQLException("Cannot find user or user id returns more than 1");
+        throw new SQLException("Cannot find user by id = " + id);
     }
 
     /**

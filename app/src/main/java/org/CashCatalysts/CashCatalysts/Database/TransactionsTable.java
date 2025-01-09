@@ -48,6 +48,10 @@ public class TransactionsTable extends DbTable {
         return getLastRowId();
     }
 
+    /**
+     * Gets the transaction by id
+     * Note: Ignores the following transactions if more than 1 returned from db
+     */
     public Transaction getTransaction(int id) throws SQLException {
         String sql = "SELECT * FROM transactions WHERE transaction_id = ?";
         PreparedStatement getStatement = connection.prepareStatement(sql);
