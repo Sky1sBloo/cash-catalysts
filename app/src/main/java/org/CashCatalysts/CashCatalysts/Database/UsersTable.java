@@ -41,6 +41,9 @@ public class UsersTable extends DbTable {
         throw new SQLException("Register get last user id ResultSet doesn't return anything");
     }
 
+    /**
+     * Gets the user from the database
+     */
     public User getUser(int id) throws SQLException {
         String sql = "SELECT * FROM users WHERE user_id = ?";
         PreparedStatement getUserStatement = connection.prepareStatement(sql);
@@ -56,5 +59,18 @@ public class UsersTable extends DbTable {
             );
         }
         throw new SQLException("Cannot find user or user id returns more than 1");
+    }
+
+    /**
+     * Updates the user in the database based on id
+     */
+    public void updateUser(int id, User user) throws SQLException {
+        String sql = "UPDATE users SET username = ?, rank = ? WHERE user_id = ?";
+        PreparedStatement updateStatement = connection.prepareStatement(sql);
+
+        updateStatement.setString(1, user.username());
+        updateStatement.setInt(2, user.rank());
+        updateStatement.setInt(3, id);
+        updateStatement.executeUpdate();
     }
 }
