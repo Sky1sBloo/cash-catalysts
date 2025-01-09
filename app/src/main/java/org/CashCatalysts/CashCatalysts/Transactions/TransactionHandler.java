@@ -9,8 +9,11 @@ public class TransactionHandler {
     private List<Transaction> transactions = new ArrayList<>();
     private int currentId = 1; // To generate unique transaction IDs
 
-    public void addTransaction(String expenseOrIncome, String name, String type, Date date, BigDecimal amount) {
-        Transaction transaction = new Transaction(currentId++, expenseOrIncome, name, type, date, amount);
+    public void addTransaction(String name, String type, Date date, int amount, int amountCents) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name is missing");
+        }
+        Transaction transaction = new Transaction(currentId++, name, type, date, amount, amountCents);
         transactions.add(transaction);
     }
 
