@@ -10,7 +10,7 @@ public class UsersTable extends DbTable {
         super(connection);
 
         DbField[] fields = {
-                new DbField("user_id", "INT", "PRIMARY KEY AUTO INCREMENT"),
+                new DbField("user_id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
                 new DbField("username", "VARCHAR(255)", "NOT NULL"),
                 new DbField("rank", "INT", "NOT NULL")
         };
