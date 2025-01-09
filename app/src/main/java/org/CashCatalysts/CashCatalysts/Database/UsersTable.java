@@ -22,7 +22,7 @@ public class UsersTable extends DbTable {
      * @param user Only requires the username and the rank
      * @return The id of the user
      */
-    public void registerUser(User user) throws SQLException {
+    public int registerUser(User user) throws SQLException {
         String sql = "INSERT INTO users (username, rank) VALUES(?, ?);";
         PreparedStatement insertStatement = connection.prepareStatement(sql);
 
@@ -33,5 +33,10 @@ public class UsersTable extends DbTable {
         Statement lastIdStatement = connection.createStatement();
 
         ResultSet rs = lastIdStatement.executeQuery("select last_insert_rowid();");
+        if (rs.next()) {
+            return rs.getInt(1);
+        }
+
+        throw new SQLException("Register get last user id ResultSet doesn't return anything");
     }
 }
