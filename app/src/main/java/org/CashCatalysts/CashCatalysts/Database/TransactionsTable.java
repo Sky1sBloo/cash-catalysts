@@ -2,10 +2,9 @@ package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for managing the transactions table
@@ -74,5 +73,47 @@ public class TransactionsTable extends DbTable {
             );
         }
         throw new SQLException("Cannot find transaction with id = " + id);
+    }
+
+    /**
+     * Returns the transactions between dates
+     */
+    public List<Transaction> getAllTransactionsBetween(Date start, Date end) throws SQLException {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE date BETWEEN ? and ?";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setDate(1, start);
+        getStatement.setDate(2, end);
+
+        ResultSet rs = getStatement.executeQuery();
+        while (rs.next()) {
+            int amountCents = rs.getInt("amountCents");
+            int amount = amountCents / 100;
+            int cents = amountCents % 100;
+            transactions.add(new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date"),
+                    amount,
+                    cents
+            ));
+        }
+        return transactions;
+    }
+
+    /**
+     * Updates the transaction by id
+     */
+    public void updateTransaction(int id, Transaction toUpdate) throws SQLException {
+        String sql = "UPDATE transactions SET name = ?, type = ?, date = ?, amount_cents = ?";
+        PreparedStatement updateStatement = connection.prepareStatement(sql);
+
+        updateStatement.setString(1, toUpdate.name());
+        updateStatement.setString(2, toUpdate.type());
+        updateStatement.setDate(3, toUpdate.date());
+        updateStatement.setInt(4, toUpdate.amount() * 100 + toUpdate.amountCents());
+        updateStatement.executeUpdate();
     }
 }
