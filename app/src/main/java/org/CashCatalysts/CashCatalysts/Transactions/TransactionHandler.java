@@ -1,9 +1,9 @@
-package org.CashCatalysts.CashCatalysts.Expenses;
+package org.CashCatalysts.CashCatalysts.Transactions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpenseHandler {
+public class TransactionHandler {
     private List<Transaction> transactions = new ArrayList<>();
     private int currentId = 1; // To generate unique transaction IDs
 

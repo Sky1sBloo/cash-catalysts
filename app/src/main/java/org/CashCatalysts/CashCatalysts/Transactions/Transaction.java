@@ -1,4 +1,4 @@
-package org.CashCatalysts.CashCatalysts.Expenses;
+package org.CashCatalysts.CashCatalysts.Transactions;
 
 public record Transaction(int transactionId, String expenseOrIncome, String name, String type, String date, double amount) {
 
