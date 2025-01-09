@@ -33,7 +33,7 @@ public class TransactionsTable extends DbTable {
      * Adds a new transaction to database
      * Note: Converts the transaction amount to cents
      */
-    public void addTransaction(Transaction transaction) throws SQLException {
+    public int addTransaction(Transaction transaction) throws SQLException {
         String sql = "INSERT INTO transactions (name, type, date, amount_cents) VALUES(?, ?, ?, ?);";
         PreparedStatement addStatement = connection.prepareStatement(sql);
 
@@ -45,5 +45,6 @@ public class TransactionsTable extends DbTable {
         addStatement.setInt(4, amountCents);
 
         addStatement.executeUpdate();
+        return getLastRowId();
     }
 }
