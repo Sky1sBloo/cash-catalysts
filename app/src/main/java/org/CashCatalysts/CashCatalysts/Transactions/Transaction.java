@@ -1,6 +1,9 @@
 package org.CashCatalysts.CashCatalysts.Transactions;
 
-public record Transaction(int transactionId, String expenseOrIncome, String name, String type, String date, double amount) {
+
+import java.sql.Date;
+
+public record Transaction(int transactionId, String expenseOrIncome, String name, String type, Date date, double amount) {
 
     @Override
     public String toString() {
