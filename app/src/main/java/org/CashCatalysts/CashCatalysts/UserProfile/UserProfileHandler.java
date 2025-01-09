@@ -18,4 +18,15 @@ public class UserProfileHandler {
         }
         return new User(userID, username, rank);
     }
+
+    /**
+     * Creates a new user with default rank
+     * Note: Generally used for registering new users
+     */
+    public User createUser(String username){
+        if(username == null || username.isBlank()){
+            throw new IllegalArgumentException("Fill in username.");
+        }
+        return new User(null, username, 1);
+    }
 }
