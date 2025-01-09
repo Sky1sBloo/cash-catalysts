@@ -1,9 +1,10 @@
 package org.CashCatalysts.CashCatalysts.Transactions;
 
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
-public record Transaction(int transactionId, String expenseOrIncome, String name, String type, Date date, double amount) {
+public record Transaction(int transactionId, String expenseOrIncome, String name, String type, Date date, BigDecimal amount) {
 
     @Override
     public String toString() {
