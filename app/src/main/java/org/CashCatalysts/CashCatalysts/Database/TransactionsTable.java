@@ -59,7 +59,7 @@ public class TransactionsTable extends DbTable {
         ResultSet rs = getStatement.executeQuery();
 
         if (rs.next()) {
-            int amountCents = rs.getInt("amountCents");
+            int amountCents = rs.getInt("amount_cents");
             int amount = amountCents / 100;
             int cents = amountCents % 100;
 
@@ -88,7 +88,7 @@ public class TransactionsTable extends DbTable {
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
-            int amountCents = rs.getInt("amountCents");
+            int amountCents = rs.getInt("amount_cents");
             int amount = amountCents / 100;
             int cents = amountCents % 100;
             transactions.add(new Transaction(
