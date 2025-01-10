@@ -27,5 +27,16 @@ public class TransactionsTableTests {
         Assertions.assertEquals(expectedTransaction, getTransaction);
     }
 
-    // TODO: Add insertion when user expenses record is added
+    @Test
+    public void testUpdateTransaction() throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
+        TransactionsTable transactionsTable = new TransactionsTable(connection);
+
+        Transaction addTransaction = TransactionHandler.createTransaction("testTransaction", "testType", Date.valueOf("2023-01-01"), 100, 0);
+        int transactionId = transactionsTable.addTransaction(addTransaction);
+
+        Transaction updateTransaction = new Transaction(transactionId, "updatedTransaction", "updatedType", Date.valueOf("2023-01-01"), 200, 0);
+        transactionsTable.updateTransaction(transactionId, updateTransaction);
+        Assertions.assertEquals(updateTransaction, transactionsTable.getTransaction(transactionId));
+    }
 }
