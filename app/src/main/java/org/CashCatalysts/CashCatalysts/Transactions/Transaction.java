@@ -8,6 +8,6 @@ public record Transaction(Integer transactionId, String name, String type, Date 
     @Override
     public String toString() {
         return "TransactionID: " + transactionId +
-                ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount;
+                ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount + "." + amountCents;
     }
 }
