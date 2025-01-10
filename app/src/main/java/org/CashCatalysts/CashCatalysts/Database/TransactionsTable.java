@@ -50,6 +50,8 @@ public class TransactionsTable extends DbTable {
     /**
      * Gets the transaction by id
      * Note: Ignores the following transactions if more than 1 returned from db
+     *
+     * @return null if not found
      */
     public Transaction getTransaction(int id) throws SQLException {
         String sql = "SELECT * FROM transactions WHERE transaction_id = ?";
