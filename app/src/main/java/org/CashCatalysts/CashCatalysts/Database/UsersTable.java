@@ -65,4 +65,15 @@ public class UsersTable extends DbTable {
         updateStatement.setInt(3, id);
         updateStatement.executeUpdate();
     }
+
+    /**
+     * Deletes the user from the database
+     */
+    public void deleteUser(int id) throws SQLException {
+        String sql = "DELETE FROM users WHERE user_id = ?";
+        PreparedStatement deleteStatement = connection.prepareStatement(sql);
+
+        deleteStatement.setInt(1, id);
+        deleteStatement.executeUpdate();
+    }
 }

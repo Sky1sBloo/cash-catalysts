@@ -116,4 +116,15 @@ public class TransactionsTable extends DbTable {
         updateStatement.setInt(4, toUpdate.amount() * 100 + toUpdate.amountCents());
         updateStatement.executeUpdate();
     }
+
+    /**
+     * Deletes the transaction by id
+     */
+    public void deleteTransaction(int id) throws SQLException {
+        String sql = "DELETE FROM transactions WHERE transaction_id = ?";
+        PreparedStatement deleteStatement = connection.prepareStatement(sql);
+
+        deleteStatement.setInt(1, id);
+        deleteStatement.executeUpdate();
+    }
 }
