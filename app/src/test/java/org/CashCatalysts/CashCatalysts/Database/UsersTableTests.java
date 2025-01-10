@@ -36,4 +36,16 @@ public class UsersTableTests {
 
         Assertions.assertEquals(newUser, usersTable.getUser(userId));
     }
+
+    @Test
+    public void deleteUserTest() throws SQLException {
+        Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
+        UsersTable usersTable = new UsersTable(connection);
+
+        User testUser = UserProfileHandler.createUser("testUser");
+        int userId = usersTable.registerUser(testUser);
+
+        usersTable.deleteUser(userId);
+        Assertions.assertNull(usersTable.getUser(userId));
+    }
 }
