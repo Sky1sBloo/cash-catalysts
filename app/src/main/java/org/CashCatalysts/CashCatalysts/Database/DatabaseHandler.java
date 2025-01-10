@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class DatabaseHandler {
     private final Connection connection;
     private final TransactionsTable transactionsTable;
+    private final UsersTable usersTable;
 
     /**
      * Path to database file
@@ -19,6 +20,7 @@ public class DatabaseHandler {
         String url = "jdbc:sqlite:" + pathToDb;
         connection = DriverManager.getConnection(url);
         this.transactionsTable = new TransactionsTable(connection);
+        this.usersTable = new UsersTable(connection);
     }
 
     /**
@@ -26,5 +28,19 @@ public class DatabaseHandler {
      */
     public void performQuery(String query) throws SQLException {
         connection.createStatement().execute(query);
+    }
+
+    /**
+     * Returns the transactions table functions
+     */
+    public TransactionsTable getTransactionsTable() {
+        return transactionsTable;
+    }
+
+    /**
+     * Returns Users table functions
+     */
+    public UsersTable getUsersTable() {
+        return usersTable;
     }
 }
