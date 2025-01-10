@@ -107,13 +107,14 @@ public class TransactionsTable extends DbTable {
      * Updates the transaction by id
      */
     public void updateTransaction(int id, Transaction toUpdate) throws SQLException {
-        String sql = "UPDATE transactions SET name = ?, type = ?, date = ?, amount_cents = ?";
+        String sql = "UPDATE transactions SET name = ?, type = ?, date = ?, amount_cents = ? WHERE transaction_id = ?";
         PreparedStatement updateStatement = connection.prepareStatement(sql);
 
         updateStatement.setString(1, toUpdate.name());
         updateStatement.setString(2, toUpdate.type());
         updateStatement.setDate(3, toUpdate.date());
         updateStatement.setInt(4, toUpdate.amount() * 100 + toUpdate.amountCents());
+        updateStatement.setInt(5, id);
         updateStatement.executeUpdate();
     }
 
