@@ -81,6 +81,6 @@ public class TransactionsTableTests {
 
         transactionsTable.deleteTransaction(2);
 
-        Assertions.assertThrows(SQLException.class, () -> transactionsTable.getTransaction(transaction2Id));
+        Assertions.assertNull(transactionsTable.getTransaction(transaction2Id));
     }
 }
