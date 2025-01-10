@@ -51,16 +51,15 @@ public class TransactionsTableTests {
         Transaction transaction3 = TransactionHandler.createTransaction("newDate", "testType", Date.valueOf("2023-06-01"), 300, 50);
         Transaction transaction4 = TransactionHandler.createTransaction("futureDate", "testType", Date.valueOf("2023-12-31"), 400, 75);
 
-        Transaction[] expectedTransactions = {
-                new Transaction(2, "slightDate", "type2", Date.valueOf("2023-05-13"), 200, 25),
-                new Transaction(3, "newDate", "testType", Date.valueOf("2023-06-01"), 300, 50)
-        };
-
         transactionsTable.addTransaction(transaction1);
-        transactionsTable.addTransaction(transaction2);
-        transactionsTable.addTransaction(transaction3);
+        int transaction2Id = transactionsTable.addTransaction(transaction2);
+        int transaction3Id = transactionsTable.addTransaction(transaction3);
         transactionsTable.addTransaction(transaction4);
 
+        Transaction[] expectedTransactions = {
+                new Transaction(transaction2Id, "slightDate", "type2", Date.valueOf("2023-05-13"), 200, 25),
+                new Transaction(transaction3Id, "newDate", "testType", Date.valueOf("2023-06-01"), 300, 50)
+        };
         List<Transaction> actualTransactions = transactionsTable.getAllTransactionsBetween(Date.valueOf("2023-05-01"), Date.valueOf("2023-06-01"));
         Assertions.assertArrayEquals(expectedTransactions, actualTransactions.toArray());
     }
