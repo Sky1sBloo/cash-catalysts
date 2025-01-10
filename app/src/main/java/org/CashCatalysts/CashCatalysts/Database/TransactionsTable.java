@@ -72,7 +72,7 @@ public class TransactionsTable extends DbTable {
                     cents
             );
         }
-        throw new SQLException("Cannot find transaction with id = " + id);
+        return null;
     }
 
     /**
