@@ -5,9 +5,9 @@ import java.util.Objects;
 /**
  *
  */
-public record User(String userID, String username, int rank) {
+public record User(Integer id, String username, int rank) {
     /**
-     * @param userID   unique identifier of user
+     * @param id unique identifier of user
      * @param username username of user
      * @param rank     rank of user
      */
@@ -20,7 +20,7 @@ public record User(String userID, String username, int rank) {
     @Override
     public String toString() {
         return "User[" +
-                "User ID: " + userID + ", " +
+                "User ID: " + id + ", " +
                 "Username: " + username + ", " +
                 "Rank: " + rank + ']';
     }

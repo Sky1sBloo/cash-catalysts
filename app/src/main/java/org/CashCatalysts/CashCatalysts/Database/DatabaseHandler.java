@@ -4,14 +4,43 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Class to handle database connections and tables
+ */
 public class DatabaseHandler {
-    private Connection connection;
+    private final Connection connection;
+    private final TransactionsTable transactionsTable;
+    private final UsersTable usersTable;
 
     /**
-     * Path to database
+     * Path to database file
+     * Note: Automatically adds the jdbc prefix
      */
     public DatabaseHandler(String pathToDb) throws SQLException {
-        String url = "jdbc:sqlite:pathToDb" + pathToDb;
+        String url = "jdbc:sqlite:" + pathToDb;
         connection = DriverManager.getConnection(url);
+        this.transactionsTable = new TransactionsTable(connection);
+        this.usersTable = new UsersTable(connection);
+    }
+
+    /**
+     * Performs a generic non returnable query
+     */
+    public void performQuery(String query) throws SQLException {
+        connection.createStatement().execute(query);
+    }
+
+    /**
+     * Returns the transactions table functions
+     */
+    public TransactionsTable getTransactionsTable() {
+        return transactionsTable;
+    }
+
+    /**
+     * Returns Users table functions
+     */
+    public UsersTable getUsersTable() {
+        return usersTable;
     }
 }
