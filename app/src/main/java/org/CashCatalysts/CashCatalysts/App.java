@@ -15,7 +15,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("forms/Dashboard.fxml")));
         Scene scene = new Scene(root);
         stage.setTitle("Cash Catalysts");
         stage.setScene(scene);
