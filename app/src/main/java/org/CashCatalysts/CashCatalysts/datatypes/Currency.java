@@ -10,7 +10,7 @@ public class Currency {
      * Constructor for separated amount and cents
      */
     public Currency(int amount, int cents) {
-        this.amountCents = amount * 100;
+        this.amountCents = amount * 100 + cents;
     }
 
     /**
