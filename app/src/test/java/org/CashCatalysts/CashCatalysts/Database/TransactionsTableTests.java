@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,8 +21,8 @@ public class TransactionsTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         TransactionsTable transactionsTable = new TransactionsTable(connection);
 
-        Transaction addTransaction = TransactionHandler.createTransaction("testTransaction", "testType", Date.valueOf("2023-01-01"), 100, 0);
-        Transaction expectedTransaction = new Transaction(1, "testTransaction", "testType", Date.valueOf("2023-01-01"), 100, 0);
+        Transaction addTransaction = TransactionHandler.createTransaction("testTransaction", "testType", Date.valueOf("2023-01-01"), new Currency(100, 0));
+        Transaction expectedTransaction = new Transaction(1, "testTransaction", "testType", Date.valueOf("2023-01-01"), new Currency(100, 0));
         int transactionId = transactionsTable.addTransaction(addTransaction);
 
         Transaction getTransaction = transactionsTable.getTransaction(transactionId);
@@ -33,10 +34,10 @@ public class TransactionsTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         TransactionsTable transactionsTable = new TransactionsTable(connection);
 
-        Transaction addTransaction = TransactionHandler.createTransaction("testTransaction", "testType", Date.valueOf("2023-01-01"), 100, 0);
+        Transaction addTransaction = TransactionHandler.createTransaction("testTransaction", "testType", Date.valueOf("2023-01-01"), new Currency(100, 0));
         int transactionId = transactionsTable.addTransaction(addTransaction);
 
-        Transaction updateTransaction = new Transaction(transactionId, "updatedTransaction", "updatedType", Date.valueOf("2023-01-01"), 200, 0);
+        Transaction updateTransaction = new Transaction(transactionId, "updatedTransaction", "updatedType", Date.valueOf("2023-01-01"), new Currency(100, 0));
         transactionsTable.updateTransaction(transactionId, updateTransaction);
         Assertions.assertEquals(updateTransaction, transactionsTable.getTransaction(transactionId));
     }
@@ -46,10 +47,10 @@ public class TransactionsTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         TransactionsTable transactionsTable = new TransactionsTable(connection);
 
-        Transaction transaction1 = TransactionHandler.createTransaction("oldDate", "type1", Date.valueOf("2023-01-01"), 100, 0);
-        Transaction transaction2 = TransactionHandler.createTransaction("slightDate", "type2", Date.valueOf("2023-05-13"), 200, 25);
-        Transaction transaction3 = TransactionHandler.createTransaction("newDate", "testType", Date.valueOf("2023-06-01"), 300, 50);
-        Transaction transaction4 = TransactionHandler.createTransaction("futureDate", "testType", Date.valueOf("2023-12-31"), 400, 75);
+        Transaction transaction1 = TransactionHandler.createTransaction("oldDate", "type1", Date.valueOf("2023-01-01"), new Currency(100, 0));
+        Transaction transaction2 = TransactionHandler.createTransaction("slightDate", "type2", Date.valueOf("2023-05-13"), new Currency(200, 25));
+        Transaction transaction3 = TransactionHandler.createTransaction("newDate", "testType", Date.valueOf("2023-06-01"), new Currency(300, 50));
+        Transaction transaction4 = TransactionHandler.createTransaction("futureDate", "testType", Date.valueOf("2023-12-31"), new Currency(400, 75));
 
         transactionsTable.addTransaction(transaction1);
         int transaction2Id = transactionsTable.addTransaction(transaction2);
@@ -57,8 +58,8 @@ public class TransactionsTableTests {
         transactionsTable.addTransaction(transaction4);
 
         Transaction[] expectedTransactions = {
-                new Transaction(transaction2Id, "slightDate", "type2", Date.valueOf("2023-05-13"), 200, 25),
-                new Transaction(transaction3Id, "newDate", "testType", Date.valueOf("2023-06-01"), 300, 50)
+                new Transaction(transaction2Id, "slightDate", "type2", Date.valueOf("2023-05-13"), new Currency(200, 25)),
+                new Transaction(transaction3Id, "newDate", "testType", Date.valueOf("2023-06-01"), new Currency(300, 50))
         };
         List<Transaction> actualTransactions = transactionsTable.getAllTransactionsBetween(Date.valueOf("2023-05-01"), Date.valueOf("2023-06-01"));
         Assertions.assertArrayEquals(expectedTransactions, actualTransactions.toArray());
@@ -69,10 +70,10 @@ public class TransactionsTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         TransactionsTable transactionsTable = new TransactionsTable(connection);
 
-        Transaction transaction1 = TransactionHandler.createTransaction("oldDate", "type1", Date.valueOf("2023-01-01"), 100, 0);
-        Transaction transaction2 = TransactionHandler.createTransaction("slightDate", "type2", Date.valueOf("2023-05-13"), 200, 25);
-        Transaction transaction3 = TransactionHandler.createTransaction("newDate", "testType", Date.valueOf("2023-06-01"), 300, 50);
-        Transaction transaction4 = TransactionHandler.createTransaction("futureDate", "testType", Date.valueOf("2023-12-31"), 400, 75);
+        Transaction transaction1 = TransactionHandler.createTransaction("oldDate", "type1", Date.valueOf("2023-01-01"), new Currency(100, 0));
+        Transaction transaction2 = TransactionHandler.createTransaction("slightDate", "type2", Date.valueOf("2023-05-13"), new Currency(200, 25));
+        Transaction transaction3 = TransactionHandler.createTransaction("newDate", "testType", Date.valueOf("2023-06-01"), new Currency(300, 50));
+        Transaction transaction4 = TransactionHandler.createTransaction("futureDate", "testType", Date.valueOf("2023-12-31"), new Currency(400, 75));
 
         transactionsTable.addTransaction(transaction1);
         int transaction2Id = transactionsTable.addTransaction(transaction2);
