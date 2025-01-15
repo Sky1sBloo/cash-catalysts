@@ -5,13 +5,16 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <right>
-      <VBox prefHeight="400.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="720.0" prefWidth="232.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Transaction List" />
          </children>
@@ -20,15 +23,14 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="44.0" prefWidth="434.0">
+            <HBox fx:id="account_balance_container" prefHeight="44.0" prefWidth="434.0">
                <children>
                   <Label text="Account Balance: " />
                   <Label id="balance_lbl" text="0" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="dashboard_charts" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <PieChart prefHeight="150.0" prefWidth="215.0" title="Monthly Expense Breakdown" />
                   <LineChart prefHeight="150.0" prefWidth="224.0" title="Yearly Activity (Toal monthly Expenses)">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
@@ -37,9 +39,45 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
+                  <PieChart prefHeight="150.0" prefWidth="287.0" title="Monthly Expense Breakdown" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox fx:id="expense_guide_icons" prefHeight="100.0" prefWidth="1104.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="47.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/income.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="28.0" layoutY="67.0" text="Monthly/Daily Income" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="47.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/expense.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="33.0" layoutY="61.0" text="Total Daily Expense:" />
+                        <Label layoutX="22.0" layoutY="78.0" text="Spent Less than Budget" textFill="#42a142" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="47.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/expense.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="33.0" layoutY="61.0" text="Total Daily Expense:" />
+                        <Label layoutX="22.0" layoutY="78.0" text="Spent More than Budget" textFill="#a14242" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>
