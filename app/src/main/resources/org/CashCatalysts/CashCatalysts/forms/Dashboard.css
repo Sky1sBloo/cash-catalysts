@@ -1,0 +1,15 @@
+#account_balance_container {
+    -fx-background-color: #D9D9D9;
+    -fx-background-insets: 5px;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+    -fx-alignment: center-left;
+}
+
+#dashboard_charts {
+    -fx-alignment: top-center;
+}
+
+#expense_guide_icons {
+    -fx-alignment: top-center;
+}
