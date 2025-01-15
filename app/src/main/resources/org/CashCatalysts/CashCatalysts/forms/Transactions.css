@@ -7,7 +7,9 @@
     -fx-spacing: 5;
     -fx-alignment: center;
 }
-
+#info_tab {
+    -fx-alignment: center;
+}
 #daily_budget_border {
     -fx-background-color: #E26262;
     -fx-background-radius: 10px;
@@ -38,4 +40,8 @@
 #transactions_bar {
     -fx-background-color: #D9D9D9;
     -fx-alignment: center;
+}
+
+#transactions_bar {
+
 }
