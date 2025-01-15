@@ -1,0 +1,36 @@
+#goals_root {
+    -fx-background-color: #D2D2D2;
+}
+
+.budget_card {
+    -fx-padding: 20px;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 10 10 10 10;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 2, 2);
+}
+.budget_card VBox {
+    -fx-spacing: 5;
+    -fx-alignment: center-left;
+}
+
+.budget_card Label {
+    -fx-text-fill: white;
+}
+
+#budget_so_far_card {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: black;
+}
+
+#budget_so_far_card Label {
+    -fx-text-fill: black;
+}
+
+#month_expense_card {
+    -fx-background-color: #30437A;
+}
+
+#month_income_card {
+    -fx-background-color: #4DC9A9;
+}
