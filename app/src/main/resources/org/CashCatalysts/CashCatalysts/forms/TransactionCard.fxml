@@ -10,7 +10,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="919.0" styleClass="transaction_card" stylesheets="@TransactionCard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" styleClass="transaction_icon">
          <image>
             <Image url="@../icons/category.png" />
          </image>
@@ -64,7 +64,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button mnemonicParsing="false">
+      <Button mnemonicParsing="false" onAction="#deleteTransaction">
          <graphic>
             <ImageView fitHeight="34.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
