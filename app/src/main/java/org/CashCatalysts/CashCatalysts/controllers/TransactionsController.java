@@ -34,9 +34,13 @@ public class TransactionsController {
     private void loadTransactions(List<Transaction> transactions) throws IOException {
         for (Transaction transaction : transactions) {
             FXMLLoader transactionCardLoader = new FXMLLoader(getClass().getResource("../forms/TransactionCard.fxml"));
-            transactionCardLoader.setController(new TransactionCardController(transaction));
+            transactionCardLoader.setController(new TransactionCardController(transaction, this::deleteTransaction));
 
             transactionCards.getChildren().add(transactionCardLoader.load());
         }
+    }
+
+    public void deleteTransaction(Transaction transaction) {
+        System.out.println(transaction);
     }
 }

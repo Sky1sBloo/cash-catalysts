@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 
+import java.util.function.Consumer;
+
 
 public class TransactionCardController {
     @FXML
@@ -15,9 +17,11 @@ public class TransactionCardController {
     @FXML
     private Label amount;
     private final Transaction transaction;
+    private final Consumer<Transaction> deleteCallback;
 
-    public TransactionCardController(Transaction transaction) {
+    public TransactionCardController(Transaction transaction, Consumer<Transaction> deleteCallback) {
         this.transaction = transaction;
+        this.deleteCallback = deleteCallback;
     }
 
     public void initialize() {
@@ -25,5 +29,9 @@ public class TransactionCardController {
         name.setText(transaction.name());
         date.setText(transaction.date().toString());
         amount.setText(transaction.amount() + "." + transaction.amountCents());
+    }
+
+    public void deleteTransaction() {
+        deleteCallback.accept(transaction);
     }
 }
