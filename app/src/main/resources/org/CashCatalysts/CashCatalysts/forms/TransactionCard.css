@@ -1,0 +1,7 @@
+.transaction_card {
+    -fx-alignment: center-left;
+}
+
+.transaction_card Label {
+    -fx-padding: 0 20 0 10;
+}

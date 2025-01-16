@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="600.0" styleClass="transaction_card" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/category.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="type" text="Type">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/card.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="name" text="Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/date.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="date" text="Date">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../icons/bank.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="amount" text="Amount">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</HBox>
