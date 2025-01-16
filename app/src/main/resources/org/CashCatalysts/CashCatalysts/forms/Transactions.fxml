@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -14,13 +16,34 @@
    <right>
       <VBox fx:id="status_bar" prefHeight="400.0" prefWidth="166.0" BorderPane.alignment="CENTER">
          <children>
+            <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/bank.png" />
+               </image>
+            </ImageView>
             <Label text="Savings" />
             <Label text="0" />
+            <ImageView fitHeight="61.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/coin.png" />
+               </image>
+            </ImageView>
             <Label text="Daily Budget" />
             <Label text="0" />
+            <ImageView fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/money.png" />
+               </image>
+            </ImageView>
             <Label text="Monthly Budget" />
             <Label text="0" />
+            <ImageView fitHeight="91.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/moneymany.png" />
+               </image>
+            </ImageView>
             <Label text="Yearly Budget" />
+            <Label text="0" />
          </children>
       </VBox>
    </right>
@@ -46,7 +69,7 @@
             </HBox>
             <VBox prefHeight="621.0" prefWidth="1114.0">
                <children>
-                  <VBox prefHeight="349.0" prefWidth="1114.0">
+                  <VBox prefHeight="596.0" prefWidth="1114.0">
                      <children>
                         <HBox fx:id="transactions_bar" prefHeight="27.0" prefWidth="434.0">
                            <children>
@@ -61,7 +84,7 @@
                               <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="42.0" text="se" />
                            </children>
                         </HBox>
-                        <VBox fx:id="transactionCards" prefHeight="200.0" prefWidth="100.0" />
+                        <VBox fx:id="transactionCards" prefHeight="559.0" prefWidth="1114.0" />
                      </children>
                   </VBox>
                </children></VBox>
