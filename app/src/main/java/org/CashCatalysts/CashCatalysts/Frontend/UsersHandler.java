@@ -4,7 +4,9 @@ import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.Database.UsersTable;
 import org.CashCatalysts.CashCatalysts.UserProfile.User;
 
-import java.sql.SQLException; /**
+import java.sql.SQLException;
+
+/**
  * Handles user-related operations: registration, retrieval, updating, and deletion of users
  */
 public class UsersHandler {
