@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="600.0" styleClass="transaction_card" stylesheets="@TransactionCard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="919.0" styleClass="transaction_card" stylesheets="@TransactionCard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icons/category.png" />
          </image>
       </ImageView>
-      <Label fx:id="type" text="Type">
+      <Label fx:id="type" prefHeight="18.0" prefWidth="151.0" text="Type">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -22,7 +22,7 @@
             <Image url="@../icons/card.png" />
          </image>
       </ImageView>
-      <Label fx:id="name" text="Name">
+      <Label fx:id="name" prefHeight="18.0" prefWidth="162.0" text="Name">
          <font>
             <Font size="14.0" />
          </font>
@@ -32,7 +32,7 @@
             <Image url="@../icons/date.png" />
          </image>
       </ImageView>
-      <Label fx:id="date" text="Date">
+      <Label fx:id="date" prefHeight="18.0" prefWidth="159.0" text="Date">
          <font>
             <Font size="14.0" />
          </font>
@@ -42,7 +42,7 @@
             <Image url="@../icons/bank.png" />
          </image>
       </ImageView>
-      <Label fx:id="amount" text="Amount">
+      <Label fx:id="amount" prefHeight="18.0" prefWidth="181.0" text="Amount">
          <font>
             <Font size="14.0" />
          </font>
