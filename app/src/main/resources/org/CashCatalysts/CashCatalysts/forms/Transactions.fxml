@@ -61,7 +61,7 @@
                               <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="42.0" text="se" />
                            </children>
                         </HBox>
-                        <ListView prefHeight="520.0" prefWidth="1114.0" />
+                        <ListView fx:id="transactions_list" prefHeight="520.0" prefWidth="1114.0" />
                      </children>
                   </VBox>
                </children></VBox>
