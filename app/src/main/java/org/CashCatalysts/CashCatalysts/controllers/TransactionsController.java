@@ -16,14 +16,13 @@ import java.util.List;
 public class TransactionsController {
     @FXML
     private VBox transactionCards;
-    private FXMLLoader transactionCardLoader;
 
 
     public void initialize() {
         List<Transaction> transactionsTest = new ArrayList<>();
         transactionsTest.add(TransactionHandler.createTransaction("Test1", "potato", Date.valueOf("2025-01-16"), 100, 10));
+        transactionsTest.add(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-01-15"), 200, 0));
 
-        transactionCardLoader = new FXMLLoader(getClass().getResource("../forms/TransactionCard.fxml"));
 
         try {
             loadTransactions(transactionsTest);
@@ -34,6 +33,7 @@ public class TransactionsController {
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {
         for (Transaction transaction : transactions) {
+            FXMLLoader transactionCardLoader = new FXMLLoader(getClass().getResource("../forms/TransactionCard.fxml"));
             transactionCardLoader.setController(new TransactionCardController(transaction));
 
             transactionCards.getChildren().add(transactionCardLoader.load());
