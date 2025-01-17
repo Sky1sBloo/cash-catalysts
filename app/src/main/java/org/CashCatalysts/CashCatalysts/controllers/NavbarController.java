@@ -1,9 +1,9 @@
 package org.CashCatalysts.CashCatalysts.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 
-import java.awt.event.ActionEvent;
 
 public class NavbarController {
     @FXML

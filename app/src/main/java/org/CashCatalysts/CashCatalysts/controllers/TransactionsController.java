@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
@@ -16,9 +17,12 @@ import java.util.List;
 public class TransactionsController {
     @FXML
     private VBox transactionCards;
+    @FXML
+    private BorderPane transactions_root;
 
+    public void initialize() throws IOException {
+        loadNavbar();
 
-    public void initialize() {
         List<Transaction> transactionsTest = new ArrayList<>();
         transactionsTest.add(TransactionHandler.createTransaction("Test1", "potato", Date.valueOf("2025-01-16"), 100, 10));
         transactionsTest.add(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-01-15"), 200, 0));
@@ -29,6 +33,13 @@ public class TransactionsController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void loadNavbar() throws IOException {
+        FXMLLoader navbarLoader = new FXMLLoader(getClass().getResource("../forms/Navbar.fxml"));
+        NavbarController navbarController = new NavbarController();
+        navbarLoader.setController(navbarController);
+        transactions_root.setLeft(navbarLoader.load());
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {
