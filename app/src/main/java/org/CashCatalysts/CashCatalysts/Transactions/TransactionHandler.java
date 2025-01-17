@@ -5,6 +5,8 @@ import org.CashCatalysts.CashCatalysts.Database.TransactionsTable;
 
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -109,5 +111,6 @@ public class TransactionHandler {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return new Transaction(null, name, type, date, amount);
     }
 }
