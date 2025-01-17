@@ -1,6 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -40,8 +41,7 @@ public class TransactionsTable extends DbTable {
         addStatement.setString(2, transaction.type());
         addStatement.setDate(3, transaction.date());
         // Get decimal part
-        int amountCents = transaction.amount() * 100 + transaction.amountCents();
-        addStatement.setInt(4, amountCents);
+        addStatement.setInt(4, transaction.amount().getAmountCents());
 
         addStatement.executeUpdate();
         return getLastRowId();
@@ -61,17 +61,12 @@ public class TransactionsTable extends DbTable {
         ResultSet rs = getStatement.executeQuery();
 
         if (rs.next()) {
-            int amountCents = rs.getInt("amount_cents");
-            int amount = amountCents / 100;
-            int cents = amountCents % 100;
-
             return new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date"),
-                    amount,
-                    cents
+                    new Currency(rs.getInt("amount_cents"))
             );
         }
         return null;
@@ -90,16 +85,12 @@ public class TransactionsTable extends DbTable {
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
-            int amountCents = rs.getInt("amount_cents");
-            int amount = amountCents / 100;
-            int cents = amountCents % 100;
             transactions.add(new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date"),
-                    amount,
-                    cents
+                    new Currency(rs.getInt("amount_cents"))
             ));
         }
         return transactions;
@@ -115,7 +106,7 @@ public class TransactionsTable extends DbTable {
         updateStatement.setString(1, toUpdate.name());
         updateStatement.setString(2, toUpdate.type());
         updateStatement.setDate(3, toUpdate.date());
-        updateStatement.setInt(4, toUpdate.amount() * 100 + toUpdate.amountCents());
+        updateStatement.setInt(4, toUpdate.amount().getAmountCents());
         updateStatement.setInt(5, id);
         updateStatement.executeUpdate();
     }
