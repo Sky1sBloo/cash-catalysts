@@ -17,7 +17,7 @@ public class MainWindowController {
 
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
-        loadTransactions();
+        loadPage("../forms/Dashboard.fxml");
     }
 
     public void toggleMenu(ActionEvent ignore) {
@@ -25,8 +25,34 @@ public class MainWindowController {
     }
 
     private void loadTransactions() throws IOException {
+        main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Transactions.fxml"));
         loader.setController(new TransactionsController());
         main_pane.getChildren().add(loader.load());
+    }
+
+    private void loadPage(String path) throws IOException {
+        main_pane.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        main_pane.getChildren().add(loader.load());
+    }
+
+    private void loadPage(String path, Object controller) throws IOException {
+        main_pane.getChildren().clear();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        loader.setController(controller);
+        main_pane.getChildren().add(loader.load());
+    }
+
+    public void onTransactionsClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Transactions.fxml", new TransactionsController());
+    }
+
+    public void onDashboardClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Dashboard.fxml");
+    }
+
+    public void onAccountsClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/AccountManagement.fxml");
     }
 }
