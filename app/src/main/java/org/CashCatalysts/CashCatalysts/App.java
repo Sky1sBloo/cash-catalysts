@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
+import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.controllers.MainWindowController;
 
 import java.util.Objects;
@@ -16,8 +18,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        DatabaseHandler databaseHandler = new DatabaseHandler(":memory:");
+        TransactionHandler transactionHandler = new TransactionHandler(databaseHandler);
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
-        MainWindowController controller = new MainWindowController();
+        MainWindowController controller = new MainWindowController(transactionHandler);
         loader.setController(controller);
 
         Parent root = loader.load();

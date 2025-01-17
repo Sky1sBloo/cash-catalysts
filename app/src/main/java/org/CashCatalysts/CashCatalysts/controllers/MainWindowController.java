@@ -4,16 +4,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 
 import java.io.IOException;
 
 public class MainWindowController {
+    private final TransactionHandler transactionHandler;
+
     @FXML
     private Pane main_root;
     @FXML
     private Pane main_pane;
     @FXML
     private Pane nav_menu;
+
+    public MainWindowController(TransactionHandler transactionHandler) {
+        this.transactionHandler = transactionHandler;
+    }
 
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
@@ -27,7 +34,7 @@ public class MainWindowController {
     private void loadTransactions() throws IOException {
         main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Transactions.fxml"));
-        loader.setController(new TransactionsController());
+        loader.setController(new TransactionsController(transactionHandler));
         main_pane.getChildren().add(loader.load());
     }
 
@@ -47,7 +54,7 @@ public class MainWindowController {
     }
 
     public void onTransactionsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Transactions.fxml", new TransactionsController());
+        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler));
     }
 
     public void onDashboardClick(ActionEvent ignore) throws IOException {
