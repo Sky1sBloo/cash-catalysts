@@ -32,12 +32,14 @@ public class MainWindowController {
     }
 
     private void loadPage(String path) throws IOException {
+        nav_menu.setVisible(false);
         main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         main_pane.getChildren().add(loader.load());
     }
 
     private void loadPage(String path, Object controller) throws IOException {
+        nav_menu.setVisible(false);
         main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         loader.setController(controller);
