@@ -55,4 +55,8 @@ public class MainWindowController {
     public void onAccountsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/AccountManagement.fxml");
     }
+
+    public void onSubscriptionsClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Subscriptions.fxml");
+    }
 }
