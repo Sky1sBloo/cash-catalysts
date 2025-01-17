@@ -1,7 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.UserProfile.User;
-import org.CashCatalysts.CashCatalysts.UserProfile.UserProfileHandler;
+import org.CashCatalysts.CashCatalysts.UserProfile.UsersHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class UsersTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         UsersTable usersTable = new UsersTable(connection);
 
-        User testUser = UserProfileHandler.createUser("testUser");
+        User testUser = UsersHandler.createUser("testUser");
         User expectedUser = new User(1, "testUser", 1);
 
         int userId = usersTable.registerUser(testUser);
@@ -28,7 +28,7 @@ public class UsersTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         UsersTable usersTable = new UsersTable(connection);
 
-        User testUser = UserProfileHandler.createUser("testUser");
+        User testUser = UsersHandler.createUser("testUser");
         User newUser = new User(1, "testUser", 4);
 
         int userId = usersTable.registerUser(testUser);
@@ -42,7 +42,7 @@ public class UsersTableTests {
         Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
         UsersTable usersTable = new UsersTable(connection);
 
-        User testUser = UserProfileHandler.createUser("testUser");
+        User testUser = UsersHandler.createUser("testUser");
         int userId = usersTable.registerUser(testUser);
 
         usersTable.deleteUser(userId);
