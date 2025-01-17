@@ -78,13 +78,13 @@
                               <Button mnemonicParsing="false" text="+" />
                               <Button mnemonicParsing="false" text="-" />
                               <Pane prefHeight="24.0" prefWidth="38.0" />
-                              <ComboBox prefWidth="150.0" promptText="Filter" />
+                              <ComboBox fx:id="filter_selection" prefWidth="150.0" promptText="Filter" />
                               <Pane prefHeight="24.0" prefWidth="42.0" />
                               <TextField />
                               <Button mnemonicParsing="false" prefHeight="24.0" prefWidth="42.0" text="se" />
                            </children>
                         </HBox>
-                        <VBox fx:id="transactionCards" prefHeight="559.0" prefWidth="1114.0" />
+                        <VBox fx:id="transaction_cards" prefHeight="559.0" prefWidth="1114.0" />
                      </children>
                   </VBox>
                </children></VBox>

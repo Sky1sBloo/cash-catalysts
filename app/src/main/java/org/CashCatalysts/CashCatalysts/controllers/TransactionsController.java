@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
@@ -14,7 +15,7 @@ import java.util.List;
 public class TransactionsController {
     private final TransactionHandler transactionHandler;
     @FXML
-    private VBox transactionCards;
+    private VBox transaction_cards;
 
     public TransactionsController(TransactionHandler transactionHandler) {
         this.transactionHandler = transactionHandler;
@@ -35,12 +36,12 @@ public class TransactionsController {
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {
-        transactionCards.getChildren().clear();
+        transaction_cards.getChildren().clear();
         for (Transaction transaction : transactions) {
             FXMLLoader transactionCardLoader = new FXMLLoader(getClass().getResource("../forms/TransactionCard.fxml"));
             transactionCardLoader.setController(new TransactionCardController(transaction, this::deleteTransaction));
 
-            transactionCards.getChildren().add(transactionCardLoader.load());
+            transaction_cards.getChildren().add(transactionCardLoader.load());
         }
     }
 
