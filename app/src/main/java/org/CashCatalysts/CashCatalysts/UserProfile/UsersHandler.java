@@ -23,49 +23,6 @@ public class UsersHandler {
     }
 
     /**
-     * reates a new user with a specified userID, username, and rank.
-     *
-     * @param userID identifier of the user
-     * @param username name of the user
-     * @param rank rank of the user
-     * @return a new user object
-     */
-    public static User createUser(int userID, String username, int rank) {
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Fill in username.");
-        }
-        if (rank < 1) {
-            throw new IllegalArgumentException("Rank can't be negative.");
-        }
-        return new User(userID, username, rank);
-    }
-
-    /**
-     * Creates a new user with a default rank of 1
-     * Note: Generally used for registering new users
-     */
-    public static User createUser(String username) {
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Fill in username.");
-        }
-        return new User(null, username, 1);
-    }
-
-    /**
-     * Creates a new user with a specified username and rank.
-     * Note: Typically used when updating a user's details.
-     */
-    public static User createUser(String username, int rank) {
-        if (username == null || username.isBlank()) {
-            throw new IllegalArgumentException("Fill in username.");
-        }
-        if (rank < 1) {
-            throw new IllegalArgumentException("Rank can't be negative.");
-        }
-        return new User(null, username, rank);
-    }
-
-    /**
      * Registers a new user
      *
      * @param user the user to be registered

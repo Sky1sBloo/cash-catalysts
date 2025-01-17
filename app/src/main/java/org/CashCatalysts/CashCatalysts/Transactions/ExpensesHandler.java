@@ -23,26 +23,6 @@ public class ExpensesHandler {
     }
 
     /**
-     * Creates a new transaction excluding the transaction id
-     *
-     * @param name the name of the transaction
-     * @param type the kind of transaction
-     * @param date the date of the transaction
-     * @param amount the amount of transaction
-     * @param amountCents the fractional amount in cents of the transaction
-     * @return a new transaction with a null id
-     */
-    public static Transaction createTransaction(String name, String type, Date date, int amount, int amountCents) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Transaction name cannot be null or blank.");
-        }
-        if (date == null) {
-            throw new IllegalArgumentException("Transaction date cannot be null.");
-        }
-        return new Transaction(null, name, type, date, amount, amountCents);
-    }
-
-    /**
      * Adds a new transaction
      *
      * @param transaction the transaction to add
