@@ -17,12 +17,8 @@ import java.util.List;
 public class TransactionsController {
     @FXML
     private VBox transactionCards;
-    @FXML
-    private BorderPane transactions_root;
 
     public void initialize() throws IOException {
-        loadNavbar();
-
         List<Transaction> transactionsTest = new ArrayList<>();
         transactionsTest.add(TransactionHandler.createTransaction("Test1", "potato", Date.valueOf("2025-01-16"), 100, 10));
         transactionsTest.add(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-01-15"), 200, 0));
@@ -33,13 +29,6 @@ public class TransactionsController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void loadNavbar() throws IOException {
-        FXMLLoader navbarLoader = new FXMLLoader(getClass().getResource("../forms/Navbar.fxml"));
-        NavbarController navbarController = new NavbarController();
-        navbarLoader.setController(navbarController);
-        transactions_root.setLeft(navbarLoader.load());
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {
