@@ -17,14 +17,14 @@
 }
 
 #nav_menu {
-    -fx-background-color: #1E208F59;
+    -fx-background-color: #9f79b8;
     -fx-border-color: black;
     -fx-border-width: 2 2 2 0;
 }
 
 #profile_navbar {
     -fx-alignment: center-left;
-    -fx-background-color: #D9D9D9E5;
+    -fx-background-color: #D9D9D9;
     -fx-border-color: black;
     -fx-border-width: 0 0 2 0;
 }
