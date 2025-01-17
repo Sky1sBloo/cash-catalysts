@@ -21,17 +21,27 @@ public class TransactionFormController {
     @FXML
     private TextField amount_txtbx;
 
+    private final Transaction transaction;
+
 
     public TransactionFormController() {
         transactionId = null;
+        transaction = null;
     }
 
     public TransactionFormController(Transaction transaction) {
         transactionId = transaction.transactionId();
+        this.transaction = transaction;
     }
 
     public void initialize() {
         type_selector.getItems().addAll(TransactionType.values());
+        if (transaction != null) {
+            name_txtbx.setText(transaction.name());
+            //type_selector.setValue(TransactionType.valueOf(transaction.type()));
+            date_selector.setValue(transaction.date().toLocalDate());
+            amount_txtbx.setText(transaction.amount() + "." + transaction.amountCents());
+        }
     }
 
     public Transaction getTransaction() {
@@ -62,6 +72,4 @@ public class TransactionFormController {
     public Integer getTransactionId() {
         return transactionId;
     }
-
-
 }

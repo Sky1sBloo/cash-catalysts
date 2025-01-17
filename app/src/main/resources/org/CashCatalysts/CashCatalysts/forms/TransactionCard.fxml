@@ -55,7 +55,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false">
+      <Button mnemonicParsing="false" onAction="#editTransaction">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>

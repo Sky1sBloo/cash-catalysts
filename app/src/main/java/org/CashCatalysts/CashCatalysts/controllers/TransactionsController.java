@@ -52,7 +52,7 @@ public class TransactionsController {
         transaction_cards.getChildren().clear();
         for (Transaction transaction : transactions) {
             FXMLLoader transactionCardLoader = new FXMLLoader(getClass().getResource("../forms/TransactionCard.fxml"));
-            transactionCardLoader.setController(new TransactionCardController(transaction, this::deleteTransaction));
+            transactionCardLoader.setController(new TransactionCardController(transaction, this::deleteTransaction, this::addTransaction));
 
             transaction_cards.getChildren().add(transactionCardLoader.load());
         }
@@ -98,7 +98,6 @@ public class TransactionsController {
 
         dialog.initStyle(StageStyle.UTILITY);
         dialog.showAndWait().ifPresent((buttonType) -> {
-            System.out.println(buttonType == ButtonType.OK);
             if (buttonType == ButtonType.OK) {
                 try {
                     Transaction newTransaction = transactionFormController.getTransaction();

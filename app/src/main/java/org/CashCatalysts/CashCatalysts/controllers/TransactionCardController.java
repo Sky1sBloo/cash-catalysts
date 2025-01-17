@@ -18,10 +18,12 @@ public class TransactionCardController {
     private Label amount;
     private final Transaction transaction;
     private final Consumer<Transaction> deleteCallback;
+    private final Consumer<Transaction> editCallback;
 
-    public TransactionCardController(Transaction transaction, Consumer<Transaction> deleteCallback) {
+    public TransactionCardController(Transaction transaction, Consumer<Transaction> deleteCallback, Consumer<Transaction> editCallback) {
         this.transaction = transaction;
         this.deleteCallback = deleteCallback;
+        this.editCallback = editCallback;
     }
 
     public void initialize() {
@@ -33,5 +35,9 @@ public class TransactionCardController {
 
     public void deleteTransaction() {
         deleteCallback.accept(transaction);
+    }
+
+    public void editTransaction() {
+        editCallback.accept(transaction);
     }
 }
