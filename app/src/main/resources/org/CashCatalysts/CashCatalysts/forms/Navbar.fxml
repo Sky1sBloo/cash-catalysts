@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="450.0" stylesheets="@Navbar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="62.0" stylesheets="@Navbar.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane fx:id="navbar" prefHeight="720.0" prefWidth="65.0">
+      <GridPane fx:id="navbar" minWidth="-Infinity" prefHeight="720.0" prefWidth="65.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -26,7 +26,7 @@
          <children>
             <VBox fx:id="top_navbar" prefHeight="720.0" prefWidth="62.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="45.0">
+                  <Button mnemonicParsing="false" onAction="#toggleMenu" prefHeight="36.0" prefWidth="45.0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -45,7 +45,7 @@
             </VBox>
          </children>
       </GridPane>
-      <GridPane fx:id="nav_menu" prefHeight="722.0" prefWidth="385.0">
+      <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
