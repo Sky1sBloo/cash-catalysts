@@ -75,8 +75,7 @@
                            <children>
                               <Label text="Recent Transactions" />
                               <Pane prefHeight="24.0" prefWidth="40.0" />
-                              <Button mnemonicParsing="false" text="+" />
-                              <Button mnemonicParsing="false" text="-" />
+                              <Button fx:id="add_transaction_btn" mnemonicParsing="false" text="+" />
                               <Pane prefHeight="24.0" prefWidth="38.0" />
                               <ComboBox fx:id="filter_selection" prefWidth="150.0" promptText="Filter" />
                               <Pane prefHeight="24.0" prefWidth="42.0" />
