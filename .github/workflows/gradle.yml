@@ -16,4 +16,4 @@ jobs:
         distribution: 'zulu'
         cache: gradle
     - name: Build with Gradle
-      run: ./gradlew clean build
+      run: ./gradlew build
