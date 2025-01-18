@@ -61,7 +61,12 @@
                   </VBox>
                   <VBox fx:id="daily_budget_border" prefHeight="100.0" prefWidth="333.0">
                      <children>
-                        <Label text="Daily Budget" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Budget" />
+                              <Button mnemonicParsing="false" text="+" />
+                           </children>
+                        </HBox>
                         <ListView prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
