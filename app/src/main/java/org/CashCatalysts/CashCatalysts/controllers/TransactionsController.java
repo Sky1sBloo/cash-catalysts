@@ -34,15 +34,6 @@ public class TransactionsController {
 
         add_transaction_btn.setOnAction((event) -> addTransaction());
 
-        // TODO: Remove this in prod
-        /*
-        transactionHandler.addTransaction(TransactionHandler.createTransaction("Test1", "potato", Date.valueOf("2025-01-17"), 100, 10));
-        transactionHandler.addTransaction(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-01-17"), 200, 0));
-        transactionHandler.addTransaction(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-01-19"), 200, 0));
-        transactionHandler.addTransaction(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-01-29"), 200, 0));
-        transactionHandler.addTransaction(TransactionHandler.createTransaction("TestPop", "banana", Date.valueOf("2025-05-29"), 200, 0));
-        */
-
         try {
             loadTransactions(transactionHandler.getAllTransactionsOn(filter_selection.getSelectionModel().getSelectedItem()));
         } catch (IOException e) {
