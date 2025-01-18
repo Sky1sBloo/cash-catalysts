@@ -20,6 +20,8 @@ public class TransactionsController {
     private final BudgetHandler budgetHandler;
 
     @FXML
+    private Label daily_budget_lbl;
+    @FXML
     private VBox transaction_cards;
     @FXML
     private ListView<Budget> budget_list;
@@ -44,12 +46,16 @@ public class TransactionsController {
         add_transaction_btn.setOnAction((event) -> addTransaction());
         add_budget_btn.setOnAction((event -> addBudget()));
 
+        refresh();
+    }
+
+    private void refresh() {
         try {
             loadTransactions(transactionHandler.getAllTransactionsOn(filter_selection.getSelectionModel().getSelectedItem()));
-            loadBudgets();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        loadBudgets();
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {
@@ -72,16 +78,12 @@ public class TransactionsController {
     }
 
     private void setFilter(FilterType filter) {
-        try {
-            loadTransactions(transactionHandler.getAllTransactionsOn(filter));
-            loadBudgets();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        refresh();
     }
 
     /**
      * Adds a new transaction
+     *
      * @param toEdit Set null for new transactions
      */
     private void addTransaction(Transaction toEdit) {
@@ -104,22 +106,18 @@ public class TransactionsController {
         dialog.initStyle(StageStyle.UTILITY);
         dialog.showAndWait().ifPresent((buttonType) -> {
             if (buttonType == ButtonType.OK) {
-                try {
-                    Transaction newTransaction = transactionFormController.getTransaction();
-                    if (newTransaction == null) {
-                        new Alert(Alert.AlertType.ERROR, "Invalid input").showAndWait();
-                        addTransaction(toEdit);
-                        return;
-                    }
-                    if (transactionFormController.getTransactionId() != null) {
-                        transactionHandler.updateTransaction(transactionFormController.getTransactionId(), newTransaction);
-                    } else {
-                        transactionHandler.addTransaction(newTransaction);
-                    }
-                    loadTransactions(transactionHandler.getAllTransactionsOn(filter_selection.getSelectionModel().getSelectedItem()));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                Transaction newTransaction = transactionFormController.getTransaction();
+                if (newTransaction == null) {
+                    new Alert(Alert.AlertType.ERROR, "Invalid input").showAndWait();
+                    addTransaction(toEdit);
+                    return;
                 }
+                if (transactionFormController.getTransactionId() != null) {
+                    transactionHandler.updateTransaction(transactionFormController.getTransactionId(), newTransaction);
+                } else {
+                    transactionHandler.addTransaction(newTransaction);
+                }
+                refresh();
             }
         });
     }
@@ -166,7 +164,7 @@ public class TransactionsController {
                 } else {
                     budgetHandler.addBudget(newBudget);
                 }
-                loadBudgets();
+                refresh();
             }
         }));
     }
