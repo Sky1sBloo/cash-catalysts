@@ -5,11 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 
 import java.io.IOException;
 
 public class MainWindowController {
     private final TransactionHandler transactionHandler;
+    private final BudgetHandler budgetHandler;
 
     @FXML
     private Pane main_root;
@@ -18,8 +20,9 @@ public class MainWindowController {
     @FXML
     private Pane nav_menu;
 
-    public MainWindowController(TransactionHandler transactionHandler) {
+    public MainWindowController(TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
         this.transactionHandler = transactionHandler;
+        this.budgetHandler = budgetHandler;
     }
 
     public void initialize() throws IOException {
@@ -34,7 +37,7 @@ public class MainWindowController {
     private void loadTransactions() throws IOException {
         main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Transactions.fxml"));
-        loader.setController(new TransactionsController(transactionHandler));
+        loader.setController(new TransactionsController(transactionHandler, budgetHandler));
         main_pane.getChildren().add(loader.load());
     }
 
@@ -54,7 +57,7 @@ public class MainWindowController {
     }
 
     public void onTransactionsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler));
+        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler));
     }
 
     public void onDashboardClick(ActionEvent ignore) throws IOException {

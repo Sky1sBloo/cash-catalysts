@@ -69,7 +69,7 @@ public class BudgetsTable extends DbTable {
      */
     public List<Budget> getAllTransactionsBetween(Date start, Date end) throws SQLException {
         List<Budget> budgets= new ArrayList<>();
-        String sql = "SELECT * FROM transactions WHERE date BETWEEN ? and ?";
+        String sql = "SELECT * FROM budgets WHERE date BETWEEN ? and ?";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
         getStatement.setDate(1, start);
