@@ -1,10 +1,19 @@
 package org.CashCatalysts.CashCatalysts.budgets;
 
+import org.CashCatalysts.CashCatalysts.Database.BudgetsTable;
+import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 public class BudgetHandler {
+    private final BudgetsTable budgetsTable;
+
+    public BudgetHandler(DatabaseHandler databaseHandler) {
+        this.budgetsTable = databaseHandler.getBudgetsTable();
+    }
+
     /**
      * Creates a new budget excluding the budget id
      */
@@ -16,5 +25,37 @@ public class BudgetHandler {
             throw new IllegalArgumentException("Amount is null");
         }
         return new Budget(null, date, amount);
+    }
+
+    public int addBudget(Budget newBudget) {
+        try {
+            return budgetsTable.addBudget(newBudget);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Budget getBudget(int id) {
+        try {
+            return budgetsTable.getBudget(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Budget getBudget(Date date) {
+        try {
+            return budgetsTable.getBudget(date);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateBudget(Date date, Currency amount) {
+        try {
+            budgetsTable.updateBudget(date, amount);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

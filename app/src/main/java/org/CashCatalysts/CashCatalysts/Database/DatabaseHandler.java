@@ -11,6 +11,7 @@ public class DatabaseHandler {
     private final Connection connection;
     private final TransactionsTable transactionsTable;
     private final UsersTable usersTable;
+    private final BudgetsTable budgetsTable;
 
     /**
      * Path to database file
@@ -21,6 +22,7 @@ public class DatabaseHandler {
         connection = DriverManager.getConnection(url);
         this.transactionsTable = new TransactionsTable(connection);
         this.usersTable = new UsersTable(connection);
+        this.budgetsTable = new BudgetsTable(connection);
     }
 
     /**
@@ -42,5 +44,12 @@ public class DatabaseHandler {
      */
     public UsersTable getUsersTable() {
         return usersTable;
+    }
+
+    /**
+     * Returns the budgets table functions
+     */
+    public BudgetsTable getBudgetsTable() {
+        return budgetsTable;
     }
 }
