@@ -135,27 +135,12 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" text="Button" />
-                              <Label text="Reports" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <children>
-                              <Button mnemonicParsing="false" text="Button" />
                               <Label text="Analytics" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2">
-                           <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Label text="Inbox" />
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Label text="Share" />
-                           </children>
-                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <VBox fx:id="daily_challenges_details" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
