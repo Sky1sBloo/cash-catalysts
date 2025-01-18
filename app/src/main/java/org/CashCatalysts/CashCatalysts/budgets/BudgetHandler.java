@@ -6,6 +6,7 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class BudgetHandler {
     private final BudgetsTable budgetsTable;
@@ -46,6 +47,22 @@ public class BudgetHandler {
     public Budget getBudget(Date date) {
         try {
             return budgetsTable.getBudget(date);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Budget> getAllTransactionsBetween(Date start, Date end) {
+        try {
+            return budgetsTable.getAllTransactionsBetween(start, end);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public List<Budget> getAllBudgets() {
+        try {
+            return budgetsTable.getAllBudgets();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

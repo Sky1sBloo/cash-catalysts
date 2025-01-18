@@ -4,6 +4,8 @@ import org.CashCatalysts.CashCatalysts.budgets.Budget;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BudgetsTable extends DbTable {
     public BudgetsTable(Connection connection) throws SQLException {
@@ -61,6 +63,43 @@ public class BudgetsTable extends DbTable {
             );
         }
         return null;
+    }
+    /**
+     * Returns the transactions between dates
+     */
+    public List<Budget> getAllTransactionsBetween(Date start, Date end) throws SQLException {
+        List<Budget> budgets= new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE date BETWEEN ? and ?";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setDate(1, start);
+        getStatement.setDate(2, end);
+
+        ResultSet rs = getStatement.executeQuery();
+        while (rs.next()) {
+            budgets.add(new Budget(
+                    rs.getInt("budget_id"),
+                    rs.getDate("date"),
+                    new Currency(rs.getInt("amount_cents"))
+            ));
+        }
+        return budgets;
+    }
+
+    public List<Budget> getAllBudgets() throws SQLException {
+        List<Budget> budgets = new ArrayList<>();
+        String sql = "SELECT * FROM budgets;";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        ResultSet rs = getStatement.executeQuery();
+        while (rs.next()) {
+            budgets.add(new Budget(
+                    rs.getInt("budget_id"),
+                    rs.getDate("date"),
+                    new Currency(rs.getInt("amount_cents"))
+            ));
+        }
+        return budgets;
     }
 
     /**
