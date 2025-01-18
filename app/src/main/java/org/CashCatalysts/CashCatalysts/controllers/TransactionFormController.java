@@ -55,6 +55,9 @@ public class TransactionFormController {
         if (type_selector.getSelectionModel().isEmpty()) {
             return null;
         }
+        if (date_selector.getValue() == null) {
+            return null;
+        }
 
         int amountCents = (int) (Double.parseDouble(amount_txtbx.getText()) * 100);
         return TransactionHandler.createTransaction(
