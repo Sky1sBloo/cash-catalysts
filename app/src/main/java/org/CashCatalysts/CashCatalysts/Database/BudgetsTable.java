@@ -11,7 +11,7 @@ public class BudgetsTable extends DbTable {
 
         DbField[] fields = {
                 new DbField("budget_id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
-                new DbField("date", "DATE", "UPDATE NOT NULL"),
+                new DbField("date", "DATE", "UNIQUE NOT NULL"),
                 new DbField("amount_cents", "INTEGER", "NOT NULL")
         };
         super.createTable("budgets", fields);
