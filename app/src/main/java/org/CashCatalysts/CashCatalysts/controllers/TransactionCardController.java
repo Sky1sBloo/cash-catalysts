@@ -30,7 +30,7 @@ public class TransactionCardController {
         type.setText(transaction.type());
         name.setText(transaction.name());
         date.setText(transaction.date().toString());
-        amount.setText(transaction.amount() + "." + transaction.amountCents());
+        amount.setText(transaction.amount().getAmount() + "." + transaction.amount().getCents());
     }
 
     public void deleteTransaction() {

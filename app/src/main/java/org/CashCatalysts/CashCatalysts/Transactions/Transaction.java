@@ -1,13 +1,15 @@
 package org.CashCatalysts.CashCatalysts.Transactions;
 
 
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+
 import java.sql.Date;
 
-public record Transaction(Integer transactionId, String name, String type, Date date, int amount, int amountCents) {
+public record Transaction(Integer transactionId, String name, String type, Date date, Currency amount) {
 
     @Override
     public String toString() {
         return "TransactionID: " + transactionId +
-                ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount + "." + amountCents;
+                ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount.getAmount() + "." + amount.getCents();
     }
 }

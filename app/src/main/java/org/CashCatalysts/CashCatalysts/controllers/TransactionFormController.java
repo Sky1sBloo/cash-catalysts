@@ -1,11 +1,11 @@
 package org.CashCatalysts.CashCatalysts.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 
@@ -40,7 +40,7 @@ public class TransactionFormController {
             name_txtbx.setText(transaction.name());
             //type_selector.setValue(TransactionType.valueOf(transaction.type()));
             date_selector.setValue(transaction.date().toLocalDate());
-            amount_txtbx.setText(transaction.amount() + "." + transaction.amountCents());
+            amount_txtbx.setText(transaction.amount().getAmount() + "." + transaction.amount().getCents());
         }
     }
 
@@ -55,13 +55,13 @@ public class TransactionFormController {
         if (type_selector.getSelectionModel().isEmpty()) {
             return null;
         }
-        int amount = (int)Double.parseDouble(amount_txtbx.getText());
+
         int amountCents = (int) (Double.parseDouble(amount_txtbx.getText()) * 100);
         return TransactionHandler.createTransaction(
                 name_txtbx.getText(),
                 type_selector.getSelectionModel().getSelectedItem().toString(),
                 Date.valueOf(date_selector.getValue()),
-                amount, amountCents
+                new Currency(amountCents)
         );
     }
 
