@@ -43,5 +43,10 @@ public class BudgetsTableTests {
                 Date.valueOf(LocalDate.now()), new Currency(500, 20));
 
         Assertions.assertEquals(budgetsTable.getBudget(testBudgetId), expectedBudget);
+        budgetsTable.updateBudget(testBudgetId, new Currency(200, 20));
+        Budget expectedBudget2 = new Budget(
+                testBudgetId,
+                Date.valueOf(LocalDate.now()), new Currency(200, 20));
+        Assertions.assertEquals(budgetsTable.getBudget(testBudgetId), expectedBudget2);
     }
 }

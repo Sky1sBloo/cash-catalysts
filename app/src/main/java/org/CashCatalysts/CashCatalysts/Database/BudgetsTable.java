@@ -5,14 +5,14 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
 
-public class BudgetsTable extends DbTable{
+public class BudgetsTable extends DbTable {
     public BudgetsTable(Connection connection) throws SQLException {
         super(connection);
 
         DbField[] fields = {
-            new DbField("budget_id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
-            new DbField("date", "DATE", "NOT NULL"),
-            new DbField("amount_cents", "INTEGER", "UNIQUE NOT NULL")
+                new DbField("budget_id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
+                new DbField("date", "DATE", "NOT NULL"),
+                new DbField("amount_cents", "INTEGER", "UNIQUE NOT NULL")
         };
         super.createTable("budgets", fields);
     }
@@ -36,9 +36,9 @@ public class BudgetsTable extends DbTable{
         ResultSet budgetSet = getStatement.executeQuery();
         if (budgetSet.next()) {
             return new Budget(
-                budgetSet.getInt("budget_id"),
-                budgetSet.getDate("date"),
-                new Currency(budgetSet.getInt("amount_cents"))
+                    budgetSet.getInt("budget_id"),
+                    budgetSet.getDate("date"),
+                    new Currency(budgetSet.getInt("amount_cents"))
             );
         }
         return null;
@@ -55,9 +55,9 @@ public class BudgetsTable extends DbTable{
         ResultSet budgetSet = getStatement.executeQuery();
         if (budgetSet.next()) {
             return new Budget(
-                budgetSet.getInt("budget_id"),
-                budgetSet.getDate("date"),
-                new Currency(budgetSet.getInt("amount_cents"))
+                    budgetSet.getInt("budget_id"),
+                    budgetSet.getDate("date"),
+                    new Currency(budgetSet.getInt("amount_cents"))
             );
         }
         return null;
@@ -72,6 +72,18 @@ public class BudgetsTable extends DbTable{
 
         updateStatement.setInt(1, amount.getAmountCents());
         updateStatement.setDate(2, date);
+        updateStatement.executeUpdate();
+    }
+
+    /**
+     * Updates the budget
+     */
+    public void updateBudget(int id, Currency amount) throws SQLException {
+        String sql = "UPDATE budgets SET amount_cents = ? WHERE budget_id = ?;";
+        PreparedStatement updateStatement = connection.prepareStatement(sql);
+
+        updateStatement.setInt(1, amount.getAmountCents());
+        updateStatement.setInt(2, id);
         updateStatement.executeUpdate();
     }
 }
