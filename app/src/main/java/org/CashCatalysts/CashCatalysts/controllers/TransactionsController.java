@@ -13,6 +13,7 @@ import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class TransactionsController {
@@ -56,6 +57,12 @@ public class TransactionsController {
             throw new RuntimeException(e);
         }
         loadBudgets();
+        Budget dailyBudget = budgetHandler.getBudget(Date.valueOf(LocalDate.now()));
+        if (dailyBudget != null) {
+            daily_budget_lbl.setText(dailyBudget.amount().toString());
+        } else {
+            daily_budget_lbl.setText("None");
+        }
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {

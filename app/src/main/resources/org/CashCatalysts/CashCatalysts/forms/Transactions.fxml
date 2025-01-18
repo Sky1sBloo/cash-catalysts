@@ -29,7 +29,7 @@
                </image>
             </ImageView>
             <Label text="Daily Budget" />
-            <Label text="0" />
+            <Label fx:id="daily_budget_lbl" text="0" />
             <ImageView fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/money.png" />
