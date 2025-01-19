@@ -9,8 +9,6 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
-import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsType;
-import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -49,11 +47,6 @@ public class GoalsController {
 
     public GoalsController(GoalsHandler goalsHandler) {
         this.goalsHandler = goalsHandler;
-        // Add some test goals
-        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 1", new Currency(1000, 20), Date.valueOf("2025-01-19"), GoalsType.CHARITY));
-        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 2", new Currency(2000, 0), Date.valueOf("2025-01-23"), GoalsType.SAVINGS));
-        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 3", new Currency(3000, 0), Date.valueOf("2025-02-20"), GoalsType.INVESTMENT));
-
     }
 
     @SuppressWarnings("unused")
