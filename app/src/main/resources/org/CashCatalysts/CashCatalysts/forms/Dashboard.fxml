@@ -79,10 +79,10 @@
    <right>
       <ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="349.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox prefHeight="216.0" prefWidth="346.0">
+            <VBox prefHeight="720.0" prefWidth="331.0">
                <children>
                   <Label text="Transactions List:" />
-                  <ListView fx:id="transactions_list" prefHeight="200.0" prefWidth="241.0" />
+                  <ListView fx:id="transactions_list" prefHeight="704.0" />
                </children>
             </VBox>
          </content>
