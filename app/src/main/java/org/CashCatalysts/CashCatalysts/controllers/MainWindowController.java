@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
 public class MainWindowController {
     private final TransactionHandler transactionHandler;
     private final BudgetHandler budgetHandler;
+    private final GoalsHandler goalsHandler;
 
     @FXML
     private Pane main_root;
@@ -20,9 +22,10 @@ public class MainWindowController {
     @FXML
     private Pane nav_menu;
 
-    public MainWindowController(TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
+    public MainWindowController(TransactionHandler transactionHandler, BudgetHandler budgetHandler, GoalsHandler goalsHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
+        this.goalsHandler = goalsHandler;
     }
 
     @SuppressWarnings("unused")
@@ -74,5 +77,10 @@ public class MainWindowController {
     @SuppressWarnings("unused")
     public void onAnalyticsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Analytics.fxml");
+    }
+
+    @SuppressWarnings("unused")
+    public void onGoalsClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler));
     }
 }
