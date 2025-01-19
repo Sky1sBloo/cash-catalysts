@@ -30,6 +30,24 @@ public class GoalsTable extends DbTable {
         super.createTable("goals", fields);
     }
 
+    public Goal getGoal(int id) throws SQLException {
+        // Create code for this
+        String sql = "SELECT * FROM goals WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        ResultSet rs = statement.executeQuery();
+        if (rs.next()) {
+            return new Goal(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    new Currency(rs.getInt("targetAmountCents")),
+                    rs.getDate("deadline"),
+                    GoalsType.valueOf(rs.getString("type"))
+            );
+        }
+        return null;
+    }
+
     /**
      * Retrieves all goals from the goals table
      */

@@ -34,6 +34,14 @@ public class GoalsHandler {
         this.transactionsTable = databaseHandler.getTransactionsTable();
     }
 
+    public Goal getGoal(int id) {
+        try {
+            return goalsTable.getGoal(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Retrieves all goals from the database
      */
