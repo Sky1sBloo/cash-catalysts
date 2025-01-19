@@ -33,6 +33,8 @@ public class TransactionsController {
     private Button add_transaction_btn;
     @FXML
     private Button add_budget_btn;
+    @FXML
+    private Label number_of_transactions;
 
 
     public TransactionsController(TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
@@ -66,6 +68,7 @@ public class TransactionsController {
         } else {
             daily_budget_lbl.setText("None");
         }
+        number_of_transactions.setText(String.valueOf(transactionHandler.getAllTransactionsOn(filterType).size()));
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {
