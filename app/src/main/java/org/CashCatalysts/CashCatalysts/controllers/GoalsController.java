@@ -11,12 +11,15 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class GoalsController {
     private final GoalsHandler goalsHandler;
 
     @FXML
     private ListView<Goal> goals_list;
+    @FXML
+    private ListView<Goal> goals_upcoming;
     @FXML
     private Button add_goal_btn;
     @FXML
@@ -27,9 +30,9 @@ public class GoalsController {
     public GoalsController(GoalsHandler goalsHandler) {
         this.goalsHandler = goalsHandler;
         // Add some test goals
-        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 1", new Currency(1000, 20), Date.valueOf("2021-10-21"), GoalsType.CHARITY));
-        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 2", new Currency(2000, 0), Date.valueOf("2021-12-21"), GoalsType.SAVINGS));
-        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 3", new Currency(3000, 0), Date.valueOf("2021-11-21"), GoalsType.INVESTMENT));
+        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 1", new Currency(1000, 20), Date.valueOf("2025-01-19"), GoalsType.CHARITY));
+        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 2", new Currency(2000, 0), Date.valueOf("2025-01-23"), GoalsType.SAVINGS));
+        goalsHandler.addGoal(GoalsHandler.createGoal("Test goal 3", new Currency(3000, 0), Date.valueOf("2025-02-20"), GoalsType.INVESTMENT));
 
     }
 
@@ -58,11 +61,17 @@ public class GoalsController {
 
     public void refresh() {
         loadGoals();
+        loadUpcomingGoals();
     }
 
     private void loadGoals() {
         goals_list.getItems().clear();
         goals_list.getItems().addAll(goalsHandler.getAllGoals());
+    }
+
+    private void loadUpcomingGoals() {
+        goals_upcoming.getItems().clear();
+        goals_upcoming.getItems().addAll(goalsHandler.getGoalsByDeadline(Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now().plusDays(7))));
     }
 
 
