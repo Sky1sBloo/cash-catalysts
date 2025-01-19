@@ -6,5 +6,7 @@ public enum GoalsType {
     INVESTMENT,
     MILESTONE,
     CHARITY,
+    SCHOOL,
+    MEDICAL,
     OTHERS
 }
