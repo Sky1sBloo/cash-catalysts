@@ -15,8 +15,8 @@ public class DashboardController {
 
     private final TransactionHandler transactionHandler;
 
-    public DashboardController(TransactionHandler transactionHandler1) {
-        this.transactionHandler = transactionHandler1;
+    public DashboardController(TransactionHandler transactionHandler) {
+        this.transactionHandler = transactionHandler;
     }
 
     @SuppressWarnings("unused")
