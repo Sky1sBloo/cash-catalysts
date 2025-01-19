@@ -5,6 +5,8 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,15 +15,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <right>
-      <VBox prefHeight="720.0" prefWidth="232.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Transaction List" />
-         </children>
-      </VBox>
-   </right>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="720.0" prefWidth="976.0" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="account_balance_container" prefHeight="44.0" prefWidth="434.0">
                <children>
@@ -81,4 +76,16 @@
          </children>
       </VBox>
    </center>
+   <right>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="349.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="216.0" prefWidth="346.0">
+               <children>
+                  <Label text="Transactions List:" />
+                  <ListView fx:id="transactions_list" prefHeight="200.0" prefWidth="241.0" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </right>
 </BorderPane>

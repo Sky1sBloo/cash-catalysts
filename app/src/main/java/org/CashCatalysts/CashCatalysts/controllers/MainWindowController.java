@@ -58,7 +58,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Dashboard.fxml");
+        loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
     }
 
     @SuppressWarnings("unused")
