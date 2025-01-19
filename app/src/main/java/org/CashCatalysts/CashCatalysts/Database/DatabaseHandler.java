@@ -12,6 +12,7 @@ public class DatabaseHandler {
     private final TransactionsTable transactionsTable;
     private final UsersTable usersTable;
     private final BudgetsTable budgetsTable;
+    private final GoalsTable goalsTable;
 
     /**
      * Path to database file
@@ -23,6 +24,7 @@ public class DatabaseHandler {
         this.transactionsTable = new TransactionsTable(connection);
         this.usersTable = new UsersTable(connection);
         this.budgetsTable = new BudgetsTable(connection);
+        this.goalsTable = new GoalsTable(connection);
     }
 
     /**
@@ -51,5 +53,12 @@ public class DatabaseHandler {
      */
     public BudgetsTable getBudgetsTable() {
         return budgetsTable;
+    }
+
+    /**
+     * Returns Goals table functions
+     */
+    public GoalsTable getGoalsTable() {
+        return goalsTable;
     }
 }
