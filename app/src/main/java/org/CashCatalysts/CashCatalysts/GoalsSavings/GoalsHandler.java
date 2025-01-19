@@ -22,7 +22,7 @@ public class GoalsHandler {
      * Method for creating goal without id
      * Generally used for registration
      */
-    public static Goal createGoal(String name, Currency currency, Date deadline, String type) {
+    public static Goal createGoal(String name, Currency currency, Date deadline, GoalsType type) {
         return new Goal(null, name, currency, deadline, type);
     }
 

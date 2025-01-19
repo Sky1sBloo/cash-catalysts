@@ -1,6 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
+import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
@@ -44,7 +45,7 @@ public class GoalsTable extends DbTable {
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
                     rs.getDate("deadline"),
-                    rs.getString("type")
+                    GoalsType.valueOf(rs.getString("type"))
             ));
         }
         return goals;
@@ -66,7 +67,7 @@ public class GoalsTable extends DbTable {
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
                     rs.getDate("deadline"),
-                    rs.getString("type")
+                    GoalsType.valueOf(rs.getString("type"))
             ));
         }
         return goals;
@@ -89,7 +90,7 @@ public class GoalsTable extends DbTable {
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
                     rs.getDate("deadline"),
-                    rs.getString("type")
+                    GoalsType.valueOf(rs.getString("type"))
             ));
         }
         return goals;
@@ -104,7 +105,7 @@ public class GoalsTable extends DbTable {
         statement.setString(1, goal.name());
         statement.setInt(2, goal.amount().getAmountCents());
         statement.setDate(3, goal.deadline());
-        statement.setString(4, goal.type());
+        statement.setString(4, goal.type().toString());
         statement.executeUpdate();
         return getLastRowId();
     }
@@ -118,7 +119,7 @@ public class GoalsTable extends DbTable {
         statement.setString(1, goal.name());
         statement.setInt(2, goal.amount().getAmountCents());
         statement.setDate(3, goal.deadline());
-        statement.setString(4, goal.type());
+        statement.setString(4, goal.type().toString());
         statement.setInt(5, id);
         statement.executeUpdate();
     }

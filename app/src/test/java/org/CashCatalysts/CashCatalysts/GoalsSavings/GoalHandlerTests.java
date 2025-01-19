@@ -17,9 +17,9 @@ public class GoalHandlerTests {
         List<Goal> goals = goalsHandler.getAllGoals();
         Assertions.assertEquals(0, goals.size());
 
-        Goal goal = GoalsHandler.createGoal("Test Goal", new Currency(100, 10), Date.valueOf("2021-12-31"), "Type");
+        Goal goal = GoalsHandler.createGoal("Test Goal", new Currency(100, 10), Date.valueOf("2021-12-31"), GoalsType.DEBT);
         int newId = goalsHandler.addGoal(goal);
-        Goal expectedGoal = new Goal(newId, "Test Goal", new Currency(100, 10), Date.valueOf("2021-12-31"), "Type");
+        Goal expectedGoal = new Goal(newId, "Test Goal", new Currency(100, 10), Date.valueOf("2021-12-31"), GoalsType.DEBT);
         goals = goalsHandler.getAllGoals();
         Assertions.assertEquals(1, goals.size());
         Assertions.assertEquals(expectedGoal, goals.getFirst());
@@ -32,11 +32,11 @@ public class GoalHandlerTests {
         List<Goal> goals = goalsHandler.getAllGoals();
         Assertions.assertEquals(0, goals.size());
 
-        Goal goal = GoalsHandler.createGoal("Test Goal", new Currency(100, 10), Date.valueOf("2021-12-31"), "Type");
-        Goal updatedGoal = GoalsHandler.createGoal("Test gallsllsls", new Currency(200, 10), Date.valueOf("2021-05-01"), "Type2");
+        Goal goal = GoalsHandler.createGoal("Test Goal", new Currency(100, 10), Date.valueOf("2021-12-31"), GoalsType.CHARITY);
+        Goal updatedGoal = GoalsHandler.createGoal("Test gallsllsls", new Currency(200, 10), Date.valueOf("2021-05-01"), GoalsType.SAVINGS);
         int newId = goalsHandler.addGoal(goal);
         goalsHandler.updateGoal(newId, updatedGoal);
-        Goal expectedGoal = new Goal(newId, "Test gallsllsls", new Currency(200, 10), Date.valueOf("2021-05-01"), "Type2");
+        Goal expectedGoal = new Goal(newId, "Test gallsllsls", new Currency(200, 10), Date.valueOf("2021-05-01"), GoalsType.SAVINGS);
         goals = goalsHandler.getAllGoals();
         Assertions.assertEquals(1, goals.size());
         Assertions.assertEquals(expectedGoal, goals.getFirst());
