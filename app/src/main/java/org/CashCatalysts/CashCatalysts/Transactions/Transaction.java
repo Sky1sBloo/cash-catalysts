@@ -12,4 +12,12 @@ public record Transaction(Integer transactionId, String name, String type, Date 
         return "TransactionID: " + transactionId +
                 ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount.getAmount() + "." + amount.getCents();
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public int getAmountCents() {
+        return amountCents;
+    }
 }
