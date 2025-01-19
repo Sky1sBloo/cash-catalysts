@@ -99,12 +99,12 @@ public class GoalsTable extends DbTable {
      * Adds a goal
      */
     public void addGoal(Goals goal) throws SQLException {
-        String sql = "INSERT INTO goals (name, targetAmount, targetAmountCents, deadline, type) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO goals (name, targetAmountCents, deadline, type) VALUES(?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
         statement.setInt(2, goal.amount().getAmountCents());
-        statement.setDate(4, goal.deadline());
-        statement.setString(5, goal.type());
+        statement.setDate(3, goal.deadline());
+        statement.setString(4, goal.type());
         statement.executeUpdate();
     }
 
@@ -112,13 +112,13 @@ public class GoalsTable extends DbTable {
      * Updates an existing goal
      */
     public void updateGoal(int id, Goals goal) throws SQLException {
-        String sql = "UPDATE goals SET name = ?, targetAmount = ?, targetAmountCents = ?, deadline = ?, type = ? WHERE id = ?";
+        String sql = "UPDATE goals SET name = ?, targetAmountCents = ?, deadline = ?, type = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
         statement.setInt(2, goal.amount().getAmountCents());
-        statement.setDate(4, goal.deadline());
-        statement.setString(5, goal.type());
-        statement.setInt(6, id);
+        statement.setDate(3, goal.deadline());
+        statement.setString(4, goal.type());
+        statement.setInt(5, id);
         statement.executeUpdate();
     }
 
