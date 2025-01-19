@@ -19,6 +19,7 @@ import java.util.List;
 public class TransactionsController {
     private final TransactionHandler transactionHandler;
     private final BudgetHandler budgetHandler;
+    private FilterType filterType;
 
     @FXML
     private Label daily_budget_lbl;
@@ -43,6 +44,7 @@ public class TransactionsController {
         filter_selection.setOnAction((event) -> setFilter(filter_selection.getSelectionModel().getSelectedItem()));
         filter_selection.getItems().addAll(new FilterType[]{FilterType.DAY, FilterType.WEEK, FilterType.MONTH, FilterType.YEAR});
         filter_selection.getSelectionModel().selectFirst();
+        filterType = filter_selection.getSelectionModel().getSelectedItem();
 
         add_transaction_btn.setOnAction((event) -> addTransaction());
         add_budget_btn.setOnAction((event -> addBudget()));
@@ -52,7 +54,7 @@ public class TransactionsController {
 
     private void refresh() {
         try {
-            loadTransactions(transactionHandler.getAllTransactionsOn(filter_selection.getSelectionModel().getSelectedItem()));
+            loadTransactions(transactionHandler.getAllTransactionsOn(filterType));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -78,13 +80,14 @@ public class TransactionsController {
     private void deleteTransaction(Transaction transaction) {
         transactionHandler.deleteTransaction(transaction.transactionId());
         try {
-            loadTransactions(transactionHandler.getAllTransactionsOn(filter_selection.getSelectionModel().getSelectedItem()));
+            loadTransactions(transactionHandler.getAllTransactionsOn(filterType));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void setFilter(FilterType filter) {
+        filterType = filter;
         refresh();
     }
 
@@ -138,7 +141,7 @@ public class TransactionsController {
         budget_list.getItems().clear();
 
         //budget_list.getItems().addAll(budgetHandler.getAllBudgets());
-        budget_list.getItems().addAll(budgetHandler.getAllBudgetsOn(filter_selection.getSelectionModel().getSelectedItem()));
+        budget_list.getItems().addAll(budgetHandler.getAllBudgetsOn(filterType));
     }
 
     private void addBudget(Budget toEdit) {
