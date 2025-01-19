@@ -1,5 +1,8 @@
 package org.CashCatalysts.CashCatalysts.controllers;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -11,6 +14,7 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class GoalsController {
@@ -26,6 +30,22 @@ public class GoalsController {
     private Button delete_goal_btn;
     @FXML
     private Button edit_goal_btn;
+    @FXML
+    private TableView<LocalDate> calendar_week;
+    @FXML
+    private TableColumn<LocalDate, String> sundayColumn;
+    @FXML
+    private TableColumn<LocalDate, String> mondayColumn;
+    @FXML
+    private TableColumn<LocalDate, String> tuesdayColumn;
+    @FXML
+    private TableColumn<LocalDate, String> wednesdayColumn;
+    @FXML
+    private TableColumn<LocalDate, String> thursdayColumn;
+    @FXML
+    private TableColumn<LocalDate, String> fridayColumn;
+    @FXML
+    private TableColumn<LocalDate, String> saturdayColumn;
 
     public GoalsController(GoalsHandler goalsHandler) {
         this.goalsHandler = goalsHandler;
@@ -62,6 +82,7 @@ public class GoalsController {
     public void refresh() {
         loadGoals();
         loadUpcomingGoals();
+        loadCalendar();
     }
 
     private void loadGoals() {
@@ -74,6 +95,20 @@ public class GoalsController {
         goals_upcoming.getItems().addAll(goalsHandler.getGoalsByDeadline(Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now().plusDays(7))));
     }
 
+    private void loadCalendar() {
+        LocalDate now = LocalDate.now();
+        LocalDate sunday = now.with(DayOfWeek.SUNDAY);
+        ObservableList<LocalDate> days = FXCollections.observableArrayList(sunday);
+
+        for (int i = 0; i < 7; i++) {
+            @SuppressWarnings("unchecked")
+            TableColumn<LocalDate, String> column = (TableColumn<LocalDate, String>) calendar_week.getColumns().get(i);
+            int day = i;
+            column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().plusDays(day).getDayOfMonth() + ""));
+        }
+
+        calendar_week.setItems(days);
+    }
 
     private void addGoal(Goal toEdit) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/GoalForm.fxml"));
