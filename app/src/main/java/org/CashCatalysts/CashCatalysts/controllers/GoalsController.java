@@ -11,8 +11,6 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
 
 public class GoalsController {
     private final GoalsHandler goalsHandler;
@@ -46,12 +44,13 @@ public class GoalsController {
             Goal toEdit = goalsHandler.getAllGoals().get(selectedIndex);
             addGoal(toEdit);
         });
+
         delete_goal_btn.setOnAction((ignore) -> {
-            int selectedIndex = goals_list.getSelectionModel().getSelectedIndex();
-            if (selectedIndex == -1) {
+            Goal selectedGoal = goals_list.getSelectionModel().getSelectedItem();
+            if (selectedGoal == null) {
                 return;
             }
-            goalsHandler.deleteGoal(goalsHandler.getAllGoals().get(selectedIndex).id());
+            goalsHandler.deleteGoal(selectedGoal.id());
             refresh();
         });
         refresh();
