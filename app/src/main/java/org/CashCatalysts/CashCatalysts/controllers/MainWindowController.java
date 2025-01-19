@@ -56,6 +56,7 @@ public class MainWindowController {
         main_pane.getChildren().add(loader.load());
     }
 
+
     public void onTransactionsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler));
     }
@@ -70,5 +71,9 @@ public class MainWindowController {
 
     public void onSubscriptionsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Subscriptions.fxml");
+    }
+
+    public void onAnalyticsClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Analytics.fxml");
     }
 }

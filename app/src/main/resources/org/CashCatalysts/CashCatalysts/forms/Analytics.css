@@ -1,0 +1,11 @@
+.analytics_box {
+    -fx-background-color: #F5F1E3;
+    -fx-background-insets: 10;
+    -fx-background-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-radius: 20;
+    -fx-border-color: black;
+    -fx-border-insets: 10;
+    -fx-padding: 20;
+    -fx-alignment: center;
+}
