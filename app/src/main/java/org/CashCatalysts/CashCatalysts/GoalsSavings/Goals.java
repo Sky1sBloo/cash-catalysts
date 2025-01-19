@@ -1,29 +1,19 @@
 package org.CashCatalysts.CashCatalysts.GoalsSavings;
 
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+
 import java.sql.Date;
 
-public record Goals(int id, String name, int targetAmount, int targetAmountCents, Date deadline, String type) {
+public record Goals(int id, String name, Currency amount, Date deadline, String type) {
 
     @Override
     public String toString() {
         return "Goals[" +
                 "ID: " + id + ", " +
                 "Name: " + name + ", " +
-                "TargetAmount: " + targetAmount + ", " +
-                "TargetAmountCents: " + targetAmountCents + ", " +
+                "TargetAmount: " + amount.getAmount() + ", " +
+                "TargetAmountCents: " + amount.getAmountCents() + ", " +
                 "Deadline: " + deadline + ", " +
                 "Type: " + type + ']';
-    }
-
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public int getTargetAmount() {
-        return targetAmount;
-    }
-
-    public int getTargetAmountCents() {
-        return targetAmountCents;
     }
 }

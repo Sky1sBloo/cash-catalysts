@@ -1,6 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.GoalsSavings.Goals;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ public class GoalsTable extends DbTable {
         DbField[] fields = {
                 new DbField("id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
                 new DbField("name", "VARCHAR(255)", "NOT NULL"),
-                new DbField("targetAmount", "INTEGER", "NOT NULL"),
                 new DbField("targetAmountCents", "INTEGER", "NOT NULL"),
                 new DbField("deadline", "DATE", "NOT NULL"),
                 new DbField("type", "VARCHAR(255)", "NOT NULL")
@@ -42,8 +42,7 @@ public class GoalsTable extends DbTable {
             goals.add(new Goals(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getInt("targetAmount"),
-                    rs.getInt("targetAmountCents"),
+                    new Currency(rs.getInt("targetAmountCents")),
                     rs.getDate("deadline"),
                     rs.getString("type")
             ));
@@ -65,8 +64,7 @@ public class GoalsTable extends DbTable {
             goals.add(new Goals(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getInt("targetAmount"),
-                    rs.getInt("targetAmountCents"),
+                    new Currency(rs.getInt("targetAmountCents")),
                     rs.getDate("deadline"),
                     rs.getString("type")
             ));
@@ -89,8 +87,7 @@ public class GoalsTable extends DbTable {
             goals.add(new Goals(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getInt("targetAmount"),
-                    rs.getInt("targetAmountCents"),
+                    new Currency(rs.getInt("targetAmountCents")),
                     rs.getDate("deadline"),
                     rs.getString("type")
             ));
@@ -105,8 +102,7 @@ public class GoalsTable extends DbTable {
         String sql = "INSERT INTO goals (name, targetAmount, targetAmountCents, deadline, type) VALUES(?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
-        statement.setInt(2, goal.targetAmount());
-        statement.setInt(3, goal.targetAmountCents());
+        statement.setInt(2, goal.amount().getAmountCents());
         statement.setDate(4, goal.deadline());
         statement.setString(5, goal.type());
         statement.executeUpdate();
@@ -119,8 +115,7 @@ public class GoalsTable extends DbTable {
         String sql = "UPDATE goals SET name = ?, targetAmount = ?, targetAmountCents = ?, deadline = ?, type = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
-        statement.setInt(2, goal.targetAmount());
-        statement.setInt(3, goal.targetAmountCents());
+        statement.setInt(2, goal.amount().getAmountCents());
         statement.setDate(4, goal.deadline());
         statement.setString(5, goal.type());
         statement.setInt(6, id);

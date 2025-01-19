@@ -50,8 +50,7 @@ public class GoalsHandler {
      */
     public boolean isGoalReached(Goals goal, int depositAmount, int depositAmountCents) {
         int totalAmountInCents = depositAmount * 100 + depositAmountCents;
-        int targetAmountInCents = goal.targetAmount() * 100 + goal.targetAmountCents();
-        return totalAmountInCents >= targetAmountInCents;
+        return totalAmountInCents >= goal.amount().getAmountCents();
     }
 
     /**
@@ -60,14 +59,14 @@ public class GoalsHandler {
     public boolean isGoalReachedOnDate(Goals goal, Date goalDate) throws SQLException {
         // Fetch all deposits before the goal's deadline
         List<Transaction> transactions = databaseHandler.getTransactionsTable()
-                .getAllTransactionsBetween(goal.getDeadline(), goalDate);
+                .getAllTransactionsBetween(goal.deadline(), goalDate);
 
         int totalDepositCents = 0;
         for (Transaction transaction : transactions) {
-            totalDepositCents += transaction.getAmount() * 100 + transaction.getAmountCents();
+            totalDepositCents += transaction.amount().getAmountCents();
         }
 
-        int targetAmountInCents = goal.getTargetAmount() * 100 + goal.getTargetAmountCents();
+        int targetAmountInCents = goal.amount().getAmountCents();
         return totalDepositCents >= targetAmountInCents;
     }
 
