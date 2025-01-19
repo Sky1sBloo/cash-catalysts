@@ -34,6 +34,7 @@ public class TransactionFormController {
         this.transaction = transaction;
     }
 
+    @SuppressWarnings("unused")
     public void initialize() {
         type_selector.getItems().addAll(TransactionType.values());
         if (transaction != null) {

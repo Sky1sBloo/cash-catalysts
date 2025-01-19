@@ -40,14 +40,15 @@ public class TransactionsController {
         this.budgetHandler = budgetHandler;
     }
 
-    public void initialize() throws IOException {
-        filter_selection.setOnAction((event) -> setFilter(filter_selection.getSelectionModel().getSelectedItem()));
-        filter_selection.getItems().addAll(new FilterType[]{FilterType.DAY, FilterType.WEEK, FilterType.MONTH, FilterType.YEAR});
+    @SuppressWarnings("unused")
+    public void initialize() {
+        filter_selection.setOnAction((ignore) -> setFilter(filter_selection.getSelectionModel().getSelectedItem()));
+        filter_selection.getItems().addAll(FilterType.DAY, FilterType.WEEK, FilterType.MONTH, FilterType.YEAR);
         filter_selection.getSelectionModel().selectFirst();
         filterType = filter_selection.getSelectionModel().getSelectedItem();
 
-        add_transaction_btn.setOnAction((event) -> addTransaction());
-        add_budget_btn.setOnAction((event -> addBudget()));
+        add_transaction_btn.setOnAction((ignore) -> addTransaction());
+        add_budget_btn.setOnAction((ignore) -> addBudget());
 
         refresh();
     }

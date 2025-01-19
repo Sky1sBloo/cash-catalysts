@@ -26,6 +26,7 @@ public class TransactionCardController {
         this.editCallback = editCallback;
     }
 
+    @SuppressWarnings("unused")
     public void initialize() {
         type.setText(transaction.type());
         name.setText(transaction.name());
@@ -33,10 +34,12 @@ public class TransactionCardController {
         amount.setText(transaction.amount().getAmount() + "." + transaction.amount().getCents());
     }
 
+    @SuppressWarnings("unused")
     public void deleteTransaction() {
         deleteCallback.accept(transaction);
     }
 
+    @SuppressWarnings("unused")
     public void editTransaction() {
         editCallback.accept(transaction);
     }

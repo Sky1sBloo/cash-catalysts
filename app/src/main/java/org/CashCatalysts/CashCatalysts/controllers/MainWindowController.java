@@ -25,20 +25,15 @@ public class MainWindowController {
         this.budgetHandler = budgetHandler;
     }
 
+    @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
         loadPage("../forms/Dashboard.fxml");
     }
 
+    @SuppressWarnings("unused")
     public void toggleMenu(ActionEvent ignore) {
         nav_menu.setVisible(!nav_menu.isVisible());
-    }
-
-    private void loadTransactions() throws IOException {
-        main_pane.getChildren().clear();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Transactions.fxml"));
-        loader.setController(new TransactionsController(transactionHandler, budgetHandler));
-        main_pane.getChildren().add(loader.load());
     }
 
     private void loadPage(String path) throws IOException {
@@ -56,23 +51,27 @@ public class MainWindowController {
         main_pane.getChildren().add(loader.load());
     }
 
-
+    @SuppressWarnings("unused")
     public void onTransactionsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler));
     }
 
+    @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Dashboard.fxml");
     }
 
+    @SuppressWarnings("unused")
     public void onAccountsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/AccountManagement.fxml");
     }
 
+    @SuppressWarnings("unused")
     public void onSubscriptionsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Subscriptions.fxml");
     }
 
+    @SuppressWarnings("unused")
     public void onAnalyticsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Analytics.fxml");
     }
