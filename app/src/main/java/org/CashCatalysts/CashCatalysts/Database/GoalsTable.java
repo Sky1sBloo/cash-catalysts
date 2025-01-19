@@ -1,6 +1,6 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
-import org.CashCatalysts.CashCatalysts.GoalsSavings.Goals;
+import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
@@ -32,14 +32,14 @@ public class GoalsTable extends DbTable {
     /**
      * Retrieves all goals from the goals table
      */
-    public List<Goals> getAllGoals() throws SQLException {
-        List<Goals> goals = new ArrayList<>();
+    public List<Goal> getAllGoals() throws SQLException {
+        List<Goal> goals = new ArrayList<>();
         String sql = "SELECT * FROM goals";
         PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet rs = statement.executeQuery();
 
         while (rs.next()) {
-            goals.add(new Goals(
+            goals.add(new Goal(
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
@@ -53,15 +53,15 @@ public class GoalsTable extends DbTable {
     /**
      * Retrieves goals of a specific type from the goals table
      */
-    public List<Goals> getGoalsByType(String type) throws SQLException {
-        List<Goals> goals = new ArrayList<>();
+    public List<Goal> getGoalsByType(String type) throws SQLException {
+        List<Goal> goals = new ArrayList<>();
         String sql = "SELECT * FROM goals WHERE type = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, type);
         ResultSet rs = statement.executeQuery();
 
         while (rs.next()) {
-            goals.add(new Goals(
+            goals.add(new Goal(
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
@@ -75,8 +75,8 @@ public class GoalsTable extends DbTable {
     /**
      * Retrieves goals that are within a specific deadline range from the goals table
      */
-    public List<Goals> getGoalsByDeadline(Date startDate, Date endDate) throws SQLException {
-        List<Goals> goals = new ArrayList<>();
+    public List<Goal> getGoalsByDeadline(Date startDate, Date endDate) throws SQLException {
+        List<Goal> goals = new ArrayList<>();
         String sql = "SELECT * FROM goals WHERE deadline BETWEEN ? AND ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setDate(1, startDate);
@@ -84,7 +84,7 @@ public class GoalsTable extends DbTable {
         ResultSet rs = statement.executeQuery();
 
         while (rs.next()) {
-            goals.add(new Goals(
+            goals.add(new Goal(
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
@@ -98,7 +98,7 @@ public class GoalsTable extends DbTable {
     /**
      * Adds a goal
      */
-    public void addGoal(Goals goal) throws SQLException {
+    public int addGoal(Goal goal) throws SQLException {
         String sql = "INSERT INTO goals (name, targetAmountCents, deadline, type) VALUES(?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
@@ -106,12 +106,13 @@ public class GoalsTable extends DbTable {
         statement.setDate(3, goal.deadline());
         statement.setString(4, goal.type());
         statement.executeUpdate();
+        return getLastRowId();
     }
 
     /**
      * Updates an existing goal
      */
-    public void updateGoal(int id, Goals goal) throws SQLException {
+    public void updateGoal(int id, Goal goal) throws SQLException {
         String sql = "UPDATE goals SET name = ?, targetAmountCents = ?, deadline = ?, type = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
