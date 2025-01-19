@@ -11,13 +11,14 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class GoalsController {
     private final GoalsHandler goalsHandler;
 
     @FXML
-    private ListView<String> goals_list;
+    private ListView<Goal> goals_list;
     @FXML
     private Button add_goal_btn;
     @FXML
@@ -62,15 +63,9 @@ public class GoalsController {
 
     private void loadGoals() {
         goals_list.getItems().clear();
-        List<Goal> goals = goalsHandler.getAllGoals();
-        for (Goal goal : goals) {
-            goals_list.getItems().add(formatGoal(goal));
-        }
+        goals_list.getItems().addAll(goalsHandler.getAllGoals());
     }
 
-    private String formatGoal(Goal goal) {
-        return goal.type() + "  -  " + goal.name() + "  -  " + goal.amount().getAmount() + "  -  " + goal.deadline();
-    }
 
     private void addGoal(Goal toEdit) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/GoalForm.fxml"));

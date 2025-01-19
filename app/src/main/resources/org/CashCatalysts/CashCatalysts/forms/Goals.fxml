@@ -27,7 +27,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="goals_upcoming" prefHeight="200.0" prefWidth="200.0" />
          </children></VBox>
    </right>
    <center>
