@@ -7,6 +7,9 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,7 +35,7 @@ public class TransactionHandler {
     }
 
     /**
-     * Constructs an ExpensesHandler with the DatabaseHandler
+     * Constructs a TransactionHandler with the DatabaseHandler
      *
      * @param dbHandler the DatabaseHandler to interact with the database
      */
@@ -51,81 +54,4 @@ public class TransactionHandler {
             return transactionsTable.addTransaction(transaction);
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
-        }
-    }
-
-    /**
-     * Retrieves a transaction by id
-     *
-     * @param id the id of the transaction to be retrieved
-     * @return the transaction with the given id
-     */
-    public Transaction getTransaction(int id) {
-        try {
-            return transactionsTable.getTransaction(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves all transactions between the specified dates
-     *
-     * @param start start date of the transaction range
-     * @param end end date of the transaction range
-     * @return the list of transactions within the specified date range
-     */
-    public List<Transaction> getAllTransactionsBetween(Date start, Date end) {
-        try {
-            return transactionsTable.getAllTransactionsBetween(start, end);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves all transactions sorted by amount from highest to lowest
-     *
-     * @return the list of transactions sorted in descending order by amount
-     */
-    public List<Transaction> getAllTransactionsSortedByAmountDesc() {
-        try {
-            return transactionsTable.getAllTransactions().stream()
-                    .sorted(Comparator.comparing(Transaction::getAmount).reversed())
-                    .collect(Collectors.toList());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    /**
-     * Updates the details of an existing transaction
-     *
-     * @param id the id of the transaction to be updates
-     * @param transaction the updated transaction information
-     */
-    public void updateTransaction(int id, Transaction transaction) {
-        try {
-            transactionsTable.updateTransaction(id, transaction);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Deletes a transaction by id
-     */
-    public void deleteTransaction(int id) {
-        try {
-            transactionsTable.deleteTransaction(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-
+        
