@@ -52,11 +52,15 @@ public class UsersHandler {
     }
 
     /**
-     * Create a new user with for updating
+     * Creates a new user with a specified username and rank.
+     * Note: Typically used when updating a user's details.
      */
     public static User createUser(String username, int rank) {
         if (username == null || username.isBlank()) {
             throw new IllegalArgumentException("Fill in username.");
+        }
+        if (rank < 1) {
+            throw new IllegalArgumentException("Rank can't be negative.");
         }
         return new User(null, username, rank);
     }

@@ -44,4 +44,9 @@ public class Currency {
         }
         return ((Currency) currency).amountCents == amountCents;
     }
+
+    @Override
+    public String toString() {
+        return String.format("$%d.%02d", getAmount(), getCents());
+    }
 }
