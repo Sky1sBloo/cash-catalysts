@@ -22,7 +22,7 @@ public class GoalsHandler {
      * Method for creating goal without id
      * Generally used for registration
      */
-    public static Goal createGoal(String name, Currency currency, Date deadline, String type) {
+    public static Goal createGoal(String name, Currency currency, Date deadline, GoalsType type) {
         return new Goal(null, name, currency, deadline, type);
     }
 
@@ -34,25 +34,45 @@ public class GoalsHandler {
         this.transactionsTable = databaseHandler.getTransactionsTable();
     }
 
+    public Goal getGoal(int id) {
+        try {
+            return goalsTable.getGoal(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Retrieves all goals from the database
      */
-    public List<Goal> getAllGoals() throws SQLException {
-        return goalsTable.getAllGoals();
+    public List<Goal> getAllGoals() {
+        try {
+            return goalsTable.getAllGoals();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Retrieves goals of a specific type
      */
-    public List<Goal> getGoalsByType(String type) throws SQLException {
-        return goalsTable.getGoalsByType(type);
+    public List<Goal> getGoalsByType(String type) {
+        try {
+            return goalsTable.getGoalsByType(type);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Retrieves goals within a specific deadline range
      */
-    public List<Goal> getGoalsByDeadline(Date startDate, Date endDate) throws SQLException {
-        return goalsTable.getGoalsByDeadline(startDate, endDate);
+    public List<Goal> getGoalsByDeadline(Date startDate, Date endDate) {
+        try {
+            return goalsTable.getGoalsByDeadline(startDate, endDate);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -65,9 +85,14 @@ public class GoalsHandler {
     /**
      * Checks if a goal has been reached by a specific date
      */
-    public boolean isGoalReachedOnDate(Goal goal, Date goalDate) throws SQLException {
+    public boolean isGoalReachedOnDate(Goal goal, Date goalDate) {
         // Fetch all deposits before the goal's deadline
-        List<Transaction> transactions = transactionsTable.getAllTransactionsBetween(goal.deadline(), goalDate);
+        List<Transaction> transactions = null;
+        try {
+            transactions = transactionsTable.getAllTransactionsBetween(goal.deadline(), goalDate);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         int totalDepositCents = 0;
         for (Transaction transaction : transactions) {
@@ -81,21 +106,33 @@ public class GoalsHandler {
     /**
      * Adds a new goal
      */
-    public int addGoal(Goal goal) throws SQLException {
-        return goalsTable.addGoal(goal);
+    public int addGoal(Goal goal) {
+        try {
+            return goalsTable.addGoal(goal);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Updates an existing goal
      */
-    public void updateGoal(int id, Goal goal) throws SQLException {
-        goalsTable.updateGoal(id, goal);
+    public void updateGoal(int id, Goal goal) {
+        try {
+            goalsTable.updateGoal(id, goal);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Deletes a goal
      */
-    public void deleteGoal(int id) throws SQLException {
-        goalsTable.deleteGoal(id);
+    public void deleteGoal(int id) {
+        try {
+            goalsTable.deleteGoal(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

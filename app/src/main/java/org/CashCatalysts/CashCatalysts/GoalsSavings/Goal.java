@@ -4,16 +4,10 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 
-public record Goal(Integer id, String name, Currency amount, Date deadline, String type) {
+public record Goal(Integer id, String name, Currency amount, Date deadline, GoalsType type) {
 
     @Override
     public String toString() {
-        return "Goals[" +
-                "ID: " + id + ", " +
-                "Name: " + name + ", " +
-                "TargetAmount: " + amount.getAmount() + ", " +
-                "TargetAmountCents: " + amount.getAmountCents() + ", " +
-                "Deadline: " + deadline + ", " +
-                "Type: " + type + ']';
+        return type + "  -  " + name + "  -  " + amount.getAmount() + "." + amount.getAmountCents() + "  -  " + deadline;
     }
 }

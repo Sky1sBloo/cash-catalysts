@@ -7,6 +7,9 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 /**
@@ -82,6 +85,30 @@ public class TransactionHandler {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<Transaction> getAllTransactionsOn(FilterType filter) {
+        LocalDate begin;
+        LocalDate end;
+        switch (filter) {
+            case FilterType.DAY:
+                begin = LocalDate.from(LocalDate.now().atStartOfDay());
+                end = LocalDate.from(LocalDate.now().atTime(23, 59, 59));
+                return getAllTransactionsBetween(Date.valueOf(begin), Date.valueOf(end));
+            case FilterType.WEEK:
+                begin = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                end = LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+                return getAllTransactionsBetween(Date.valueOf(begin), Date.valueOf(end));
+            case FilterType.MONTH:
+                begin = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+                end = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
+                return getAllTransactionsBetween(Date.valueOf(begin), Date.valueOf(end));
+            case FilterType.YEAR:
+                begin = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
+                end = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
+                return getAllTransactionsBetween(Date.valueOf(begin), Date.valueOf(end));
+        }
+        return List.of();
     }
 
     /**

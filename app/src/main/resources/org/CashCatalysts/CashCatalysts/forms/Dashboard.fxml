@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox prefHeight="720.0" prefWidth="976.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="account_balance_container" prefHeight="44.0" prefWidth="434.0">
+               <children>
+                  <Label text="Account Balance: " />
+                  <Label id="balance_lbl" text="0" />
+               </children>
+            </HBox>
+            <HBox fx:id="dashboard_charts" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <LineChart prefHeight="150.0" prefWidth="224.0" title="Yearly Activity (Toal monthly Expenses)">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <PieChart prefHeight="150.0" prefWidth="287.0" title="Monthly Expense Breakdown" />
+               </children>
+            </HBox>
+            <HBox fx:id="expense_guide_icons" prefHeight="100.0" prefWidth="1104.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="47.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/income.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="28.0" layoutY="67.0" text="Monthly/Daily Income" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="47.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/expense.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="33.0" layoutY="61.0" text="Total Daily Expense:" />
+                        <Label layoutX="22.0" layoutY="78.0" text="Spent Less than Budget" textFill="#42a142" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="47.0" layoutX="77.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/expense.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="33.0" layoutY="61.0" text="Total Daily Expense:" />
+                        <Label layoutX="22.0" layoutY="78.0" text="Spent More than Budget" textFill="#a14242" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <ScrollPane hbarPolicy="NEVER" prefHeight="720.0" prefWidth="349.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefHeight="720.0" prefWidth="331.0">
+               <children>
+                  <Label text="Transactions List:" />
+                  <ListView fx:id="transactions_list" prefHeight="704.0" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </right>
+</BorderPane>

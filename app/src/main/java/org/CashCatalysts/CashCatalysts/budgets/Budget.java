@@ -13,4 +13,9 @@ public record Budget(Integer id, Date date, Currency amount) {
             throw new IllegalArgumentException("Amount is null");
         }
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s  |  %s", date, amount);
+    }
 }

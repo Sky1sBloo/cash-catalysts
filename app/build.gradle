@@ -24,8 +24,6 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
-    // https://mvnrepository.com/artifact/org.openjfx/javafx-fxml
-    implementation 'org.openjfx:javafx-fxml:23.0.1'
     // https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
     implementation 'org.xerial:sqlite-jdbc:3.47.1.0'
 }
@@ -33,7 +31,7 @@ dependencies {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(23)
     }
 }
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="goals_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Goals.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <VBox prefHeight="720.0" prefWidth="547.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="January 2025">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TableView fx:id="calendar_week" prefHeight="85.0" prefWidth="547.0">
+              <columns>
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Sun" />
+                <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Mon" />
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Tues" />
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Wed" />
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Thurs" />
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Fri" />
+                  <TableColumn editable="false" prefWidth="75.0" sortable="false" text="Sat" />
+              </columns>
+            </TableView>
+            <Label text="Upcoming Deadlines">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ListView fx:id="goals_upcoming" prefHeight="200.0" prefWidth="200.0" />
+         </children></VBox>
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="My Goals">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox prefWidth="200.0">
+               <children>
+                  <Button fx:id="add_goal_btn" mnemonicParsing="false" text="Add" />
+                  <Button fx:id="edit_goal_btn" mnemonicParsing="false" text="Edit" />
+                  <Button fx:id="delete_goal_btn" mnemonicParsing="false" text="Delete" />
+               </children>
+            </HBox>
+            <ListView fx:id="goals_list" prefHeight="251.0" prefWidth="668.0" />
+            <Label text="Budget Overview">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <GridPane prefHeight="84.0" prefWidth="733.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox fx:id="month_expense_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card">
+                     <children>
+                        <VBox prefHeight="61.0" prefWidth="194.0">
+                           <children>
+                              <Label text="Spent" />
+                              <Label text="Php 0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="This Month's Expense">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/spent.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="month_income_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card" GridPane.columnIndex="1">
+                     <children>
+                        <VBox prefHeight="61.0" prefWidth="194.0">
+                           <children>
+                              <Label text="Earned" />
+                              <Label text="Php 0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="This Month's Income">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/spent.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+            <HBox fx:id="budget_so_far_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card">
+               <children>
+                  <Label text="Budget So Far:" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

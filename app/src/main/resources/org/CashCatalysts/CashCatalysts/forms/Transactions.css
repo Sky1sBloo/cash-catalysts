@@ -1,0 +1,43 @@
+#status_bar {
+    -fx-background-color: #F5F1E3;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 5px;
+    -fx-min-height: 100px;
+    -fx-padding: 5;
+    -fx-spacing: 5;
+    -fx-alignment: center;
+}
+#info_tab {
+    -fx-alignment: center;
+}
+#daily_budget_border {
+    -fx-background-color: #E26262;
+    -fx-background-radius: 10px;
+    -fx-background-insets: 5px;
+    -fx-padding: 10;
+    -fx-alignment: center;
+}
+
+#daily_budget_border Label {
+    -fx-text-fill: white;
+}
+
+#daily_budget_border ListView {
+    -fx-background-radius: 10px;
+}
+
+#transactions_stat_container {
+    -fx-alignment: center;
+}
+
+#number_of_transactions {
+    -fx-background-color: #80ED96;
+    -fx-background-radius: 10px;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+}
+
+#transactions_bar {
+    -fx-background-color: #D9D9D9;
+    -fx-alignment: center;
+}

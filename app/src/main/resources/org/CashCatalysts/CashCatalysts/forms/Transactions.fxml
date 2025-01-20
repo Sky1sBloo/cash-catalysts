@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="transactions_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Transactions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <VBox fx:id="status_bar" prefHeight="400.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/bank.png" />
+               </image>
+            </ImageView>
+            <Label text="Savings" />
+            <Label text="0" />
+            <ImageView fitHeight="61.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/coin.png" />
+               </image>
+            </ImageView>
+            <Label text="Daily Budget" />
+            <Label fx:id="daily_budget_lbl" text="0" />
+            <ImageView fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/money.png" />
+               </image>
+            </ImageView>
+            <Label text="Monthly Budget" />
+            <Label text="0" />
+            <ImageView fitHeight="91.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/moneymany.png" />
+               </image>
+            </ImageView>
+            <Label text="Yearly Budget" />
+            <Label text="0" />
+         </children>
+      </VBox>
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="info_tab" prefHeight="155.0" prefWidth="1114.0">
+               <children>
+                  <VBox fx:id="transactions_stat_container" prefHeight="100.0" prefWidth="243.0">
+                     <children>
+                        <Label text="Monthy Savings Goal" />
+                        <Label fx:id="number_of_transactions" prefHeight="16.0" prefWidth="121.0" text="0" />
+                        <Label text="Total # of Transactions" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="daily_budget_border" prefHeight="100.0" prefWidth="333.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Budget" />
+                              <Button fx:id="add_budget_btn" mnemonicParsing="false" text="+" />
+                           </children>
+                        </HBox>
+                        <ListView fx:id="budget_list" prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox prefHeight="621.0" prefWidth="1114.0">
+               <children>
+                  <VBox prefHeight="596.0" prefWidth="1114.0">
+                     <children>
+                        <HBox fx:id="transactions_bar" prefHeight="27.0" prefWidth="434.0">
+                           <children>
+                              <Label text="Recent Transactions" />
+                              <Pane prefHeight="24.0" prefWidth="40.0" />
+                              <Button fx:id="add_transaction_btn" mnemonicParsing="false" text="+" />
+                              <Pane prefHeight="24.0" prefWidth="38.0" />
+                              <ComboBox fx:id="filter_selection" prefWidth="150.0" promptText="Filter" />
+                              <Pane prefHeight="24.0" prefWidth="42.0" />
+                           </children>
+                        </HBox>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="557.0" prefWidth="1049.0">
+                           <content>
+                              <VBox fx:id="transaction_cards" prefHeight="559.0" prefWidth="1036.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children></VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
