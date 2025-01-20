@@ -7,7 +7,9 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Handles transaction-related operations: adding, retrieving, updating, and deleting transactions
@@ -85,6 +87,22 @@ public class TransactionHandler {
     }
 
     /**
+     * Retrieves all transactions sorted by amount from highest to lowest
+     *
+     * @return the list of transactions sorted in descending order by amount
+     */
+    public List<Transaction> getAllTransactionsSortedByAmountDesc() {
+        try {
+            return transactionsTable.getAllTransactions().stream()
+                    .sorted(Comparator.comparing(Transaction::getAmount).reversed())
+                    .collect(Collectors.toList());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Updates the details of an existing transaction
      *
      * @param id the id of the transaction to be updates
@@ -109,3 +127,5 @@ public class TransactionHandler {
         }
     }
 }
+
+
