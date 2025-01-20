@@ -30,20 +30,6 @@ public class GoalsController {
     private Button edit_goal_btn;
     @FXML
     private TableView<LocalDate> calendar_week;
-    @FXML
-    private TableColumn<LocalDate, String> sundayColumn;
-    @FXML
-    private TableColumn<LocalDate, String> mondayColumn;
-    @FXML
-    private TableColumn<LocalDate, String> tuesdayColumn;
-    @FXML
-    private TableColumn<LocalDate, String> wednesdayColumn;
-    @FXML
-    private TableColumn<LocalDate, String> thursdayColumn;
-    @FXML
-    private TableColumn<LocalDate, String> fridayColumn;
-    @FXML
-    private TableColumn<LocalDate, String> saturdayColumn;
 
     public GoalsController(GoalsHandler goalsHandler) {
         this.goalsHandler = goalsHandler;
