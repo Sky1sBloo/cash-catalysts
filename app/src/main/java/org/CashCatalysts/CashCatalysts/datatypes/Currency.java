@@ -3,7 +3,7 @@ package org.CashCatalysts.CashCatalysts.datatypes;
 /**
  * Class for managing the currency
  */
-public class Currency {
+public class Currency implements Comparable<Currency> {
     private final int amountCents;
 
     /**
@@ -43,6 +43,11 @@ public class Currency {
             return false;
         }
         return ((Currency) currency).amountCents == amountCents;
+    }
+
+    @Override
+    public int compareTo(Currency other) {
+        return Integer.compare(this.amountCents, other.amountCents);
     }
 
     @Override

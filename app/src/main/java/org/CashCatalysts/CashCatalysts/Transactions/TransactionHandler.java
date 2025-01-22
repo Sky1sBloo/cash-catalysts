@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Handles transaction-related operations: adding, retrieving, updating, and deleting transactions
@@ -81,6 +83,22 @@ public class TransactionHandler {
     public List<Transaction> getAllTransactionsBetween(Date start, Date end) {
         try {
             return transactionsTable.getAllTransactionsBetween(start, end);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves all transactions sorted by amount from highest to lowest
+     *
+     * @return the list of transactions sorted in descending order by amount
+     */
+    public List<Transaction> getAllTransactionsSortedByAmountDesc() {
+        try {
+            return transactionsTable.getAllTransactions().stream()
+                    .sorted(Comparator.comparing(Transaction::amount).reversed())
+                    .collect(Collectors.toList());
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

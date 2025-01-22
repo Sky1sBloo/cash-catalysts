@@ -96,6 +96,24 @@ public class TransactionsTable extends DbTable {
         return transactions;
     }
 
+    public List<Transaction> getAllTransactions() throws SQLException {
+         List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions;";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        ResultSet rs = getStatement.executeQuery();
+        while (rs.next()) {
+            transactions.add(new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date"),
+                    new Currency(rs.getInt("amount_cents"))
+            ));
+        }
+        return transactions;
+    }
+
     /**
      * Updates the transaction by id
      */
