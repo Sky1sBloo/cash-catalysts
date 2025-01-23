@@ -17,6 +17,8 @@ public class AnalysisController {
     @FXML
     private Label highest_category_monthly_lbl;
     @FXML
+    private Label highest_category_yearly_lbl;
+    @FXML
     private Label comparison_to_last_month_lbl;
     @FXML
     private LineChart<String, Integer> yearly_activity_linechart;
@@ -51,6 +53,19 @@ public class AnalysisController {
             highest_category_monthly_lbl.setText(highestExpenseCategory.getKey());
         } else {
             highest_category_monthly_lbl.setText("No expense found");
+        }
+
+        LocalDate startOfYear = now.withDayOfYear(1);
+        LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+
+        highestExpenseCategory = userStatsSystem.getHighestExpenseCategory(
+                startOfYear,
+                endOfYear
+        );
+        if (highestExpenseCategory != null) {
+            highest_category_yearly_lbl.setText(highestExpenseCategory.getKey());
+        } else {
+            highest_category_yearly_lbl.setText("No expense found");
         }
     }
 

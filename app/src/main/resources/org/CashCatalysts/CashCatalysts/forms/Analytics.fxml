@@ -141,6 +141,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="highest_category_yearly_lbl" text="None" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="1">
