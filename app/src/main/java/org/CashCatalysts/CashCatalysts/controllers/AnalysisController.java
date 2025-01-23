@@ -5,6 +5,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -50,7 +51,7 @@ public class AnalysisController {
     private void loadComparisonToLastMonth() {
         LocalDate now = LocalDate.now();
         LocalDate startOfMonth = now.withDayOfMonth(1);
-        double lastMonthComparison = userStatsSystem.compareToLastMonth(Date.valueOf(startOfMonth));
+        Currency lastMonthComparison = userStatsSystem.compareToLastMonth(Date.valueOf(startOfMonth));
         comparison_to_last_month_lbl.setText(String.valueOf(lastMonthComparison));
     }
 
@@ -67,8 +68,8 @@ public class AnalysisController {
 
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         series.setName("Yearly Expenses");
-        for (Map.Entry<String, Integer> entry : yearlyExpenseBreakdown.entrySet()) {
-            series.getData().add(new XYChart.Data<>(String.valueOf(entry.getKey()), entry.getValue()));
+        for (Map.Entry<String, Currency> entry : yearlyExpenseBreakdown.entrySet()) {
+            series.getData().add(new XYChart.Data<>(String.valueOf(entry.getKey()), entry.getValue().getAmount()));
         }
         yearly_activity_linechart.getData().add(series);
     }

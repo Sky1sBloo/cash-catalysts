@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 public class UserStatsSystem {
 
@@ -23,27 +24,35 @@ public class UserStatsSystem {
         int year = localDate.getYear();
         int month = localDate.getMonthValue();
         int day = localDate.getDayOfMonth();
-
+        
         return String.format("Year: %d, Month: %d, Day: %d", year, month, day);
     }
 
     // Get yearly expense breakdown
-    public Map<Integer, Integer> getYearlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
+    public Map<Integer, Currency> getYearlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
-                    return t.date().getYear(); // Group by year
-                }, Collectors.summingInt((t) -> t.amount().getAmountCents())));
+                    LocalDate localDate = t.date();
+                    return localDate.getYear(); // Group by year
+                }, Collectors.collectingAndThen(
+                        Collectors.summingInt((t) -> t.amount().getAmountCents()),
+                        Currency::new
+                )));
     }
 
     // Get monthly expense breakdown
-    public Map<String, Integer> getMonthlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
+    public Map<String, Currency> getMonthlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
-                    int month = t.date().getMonthValue();
-                    return String.format("%d-%02d", t.date().getYear(), month); // Return as "YYYY-MM"
-                }, Collectors.summingInt((t) -> t.amount().getAmountCents())));
+                            int month = t.date().getMonthValue();
+                            return String.format("%d-%02d", t.date().getYear(), month); // Return as "YYYY-MM"
+                        },
+                        Collectors.collectingAndThen(
+                                Collectors.summingInt((t) -> t.amount().getAmountCents()),
+                                Currency::new
+                        )));
     }
 
     // Get the highest expense category for the month and year
@@ -57,33 +66,32 @@ public class UserStatsSystem {
     }
 
     // Compare expenses for the current month to the previous month
-    public double compareToLastMonth(LocalDate currentMonthDate) {
+    public Currency compareToLastMonth(LocalDate currentMonthDate) {
         int currentYear = currentMonthDate.getYear();
         int currentMonth = currentMonthDate.getMonthValue();
 
         // Get current month expenses
-        double currentMonthExpenses = getTotalForMonth(currentYear, currentMonth);
+        Currency currentMonthExpenses = getTotalForMonth(currentYear, currentMonth);
 
         // Get previous month expenses
-        currentMonthDate = currentMonthDate.minusMonths(1); // Go back 1 month
-        double lastMonthExpenses = getTotalForMonth(currentMonthDate.getYear(), currentMonthDate.getMonthValue());
+        LocalDate prevMonth = currentMonthDate.minusMonths(1); // Go back 1 month
+        Currency lastMonthExpenses = getTotalForMonth(prevMonth.getYear(), prevMonth.getMonthValue());
 
-        return currentMonthExpenses - lastMonthExpenses;
+        return new Currency(currentMonthExpenses.getAmountCents() - lastMonthExpenses.getAmountCents());
     }
 
     // Helper method to get total expenses for a specific month
-    private double getTotalForMonth(int year, int month) {
+    private Currency getTotalForMonth(int year, int month) {
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
-
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
-        return transactions.stream()
-                .mapToInt(t -> t.amount().getAmountCents())
-                .sum();
+        return new Currency(transactions.stream()
+                .mapToInt((t) -> t.amount().getAmountCents())
+                .sum());
     }
 
     // Get recurring expenses
-    public List<String> getRecurringExpenses(LocalDate startDate, LocalDate endDate) {
+    public List<String> getRecurringExpenses(Date startDate, Date endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::name, Collectors.counting()))

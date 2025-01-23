@@ -19,8 +19,8 @@ public class TransactionExamples {
         transactions.add(new Transaction(6, "Movie Theater", "Entertainment", Date.valueOf("2025-01-06"), new Currency(25, 0)));
         transactions.add(new Transaction(7, "Supermarket", "Groceries", Date.valueOf("2025-01-07"), new Currency(60, 0)));
         transactions.add(new Transaction(8, "Landlord", "Rent", Date.valueOf("2025-01-08"), new Currency(1500, 0)));
-        transactions.add(new Transaction(9, "Water Company", "Utilities", Date.valueOf("2025-01-09"), new Currency(18, 0)));
-        transactions.add(new Transaction(10, "Cafe", "Dining", Date.valueOf("2025-01-01"), new Currency(22, 0)));
+        transactions.add(new Transaction(9, "Water Company", "Utilities", Date.valueOf("2025-03-09"), new Currency(200, 0)));
+        transactions.add(new Transaction(10, "Cafe", "Dining", Date.valueOf("2025-02-01"), new Currency(22, 0)));
 
         return transactions;
     }
