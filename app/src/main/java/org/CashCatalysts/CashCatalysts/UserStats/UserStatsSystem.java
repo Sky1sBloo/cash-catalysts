@@ -1,9 +1,11 @@
-
 package org.CashCatalysts.CashCatalysts.UserStats;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 
 public class UserStatsSystem {
@@ -26,31 +28,31 @@ public class UserStatsSystem {
     }
 
     // Get yearly expense breakdown
-    public Map<Integer, Double> getYearlyExpenseBreakdown(Date startDate, Date endDate) {
-        List<Transaction> transactions = transactionHandler.getSortedExpenses(startDate, endDate);
+    public Map<Integer, Integer> getYearlyExpenseBreakdown(Date startDate, Date endDate) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
-                    LocalDate localDate = t.getDate().toLocalDate();
+                    LocalDate localDate = t.date().toLocalDate();
                     return localDate.getYear(); // Group by year
-                }, Collectors.summingDouble(Transaction::getAmount)));
+                }, Collectors.summingInt((t) -> t.amount().getAmountCents())));
     }
 
     // Get monthly expense breakdown
-    public Map<String, Double> getMonthlyExpenseBreakdown(Date startDate, Date endDate) {
-        List<Transaction> transactions = transactionHandler.getSortedExpenses(startDate, endDate);
+    public Map<String, Integer> getMonthlyExpenseBreakdown(Date startDate, Date endDate) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
-                    LocalDate localDate = t.getDate().toLocalDate();
+                    LocalDate localDate = t.date().toLocalDate();
                     int month = localDate.getMonthValue();
                     return String.format("%d-%02d", localDate.getYear(), month); // Return as "YYYY-MM"
-                }, Collectors.summingDouble(Transaction::getAmount)));
+                }, Collectors.summingInt((t) -> t.amount().getAmountCents())));
     }
 
     // Get the highest expense category for the month and year
-    public Map.Entry<String, Double> getHighestExpenseCategory(Date startDate, Date endDate) {
-        List<Transaction> transactions = transactionHandler.getSortedExpenses(startDate, endDate);
+    public Map.Entry<String, Integer> getHighestExpenseCategory(Date startDate, Date endDate) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
-                .collect(Collectors.groupingBy(Transaction::getCategory, Collectors.summingDouble(Transaction::getAmount)))
+                .collect(Collectors.groupingBy(Transaction::type, Collectors.summingInt((t) -> t.amount().getAmountCents())))
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .orElse(null); // Return null if no expense found
@@ -74,20 +76,20 @@ public class UserStatsSystem {
 
     // Helper method to get total expenses for a specific month
     private double getTotalForMonth(int year, int month) {
-        List<Transaction> transactions = transactionHandler.getSortedExpenses(
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(
                 Date.valueOf(String.format("%d-%02d-01", year, month)),
                 Date.valueOf(String.format("%d-%02d-31", year, month))
         );
         return transactions.stream()
-                .mapToDouble(Transaction::getAmount)
+                .mapToInt((t) -> t.amount().getAmountCents())
                 .sum();
     }
 
     // Get recurring expenses
     public List<String> getRecurringExpenses(Date startDate, Date endDate) {
-        List<Transaction> transactions = transactionHandler.getSortedExpenses(startDate, endDate);
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
-                .collect(Collectors.groupingBy(Transaction::getName, Collectors.counting()))
+                .collect(Collectors.groupingBy(Transaction::name, Collectors.counting()))
                 .entrySet().stream()
                 .filter(e -> e.getValue() > 1) // Expenses occurring more than once
                 .map(Map.Entry::getKey)
