@@ -44,7 +44,7 @@ public class UserStatsSystem {
     // Get monthly expense breakdown
     public Map<String, Currency> getMonthlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
-        return transactions.stream()
+        Map<String, Currency> unsortedMap = transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
                             int month = t.date().getMonthValue();
                             return String.format("%d-%02d", t.date().getYear(), month); // Return as "YYYY-MM"
@@ -53,6 +53,9 @@ public class UserStatsSystem {
                                 Collectors.summingInt((t) -> t.amount().getAmountCents()),
                                 Currency::new
                         )));
+        return unsortedMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
     // Get the highest expense category for the month and year
