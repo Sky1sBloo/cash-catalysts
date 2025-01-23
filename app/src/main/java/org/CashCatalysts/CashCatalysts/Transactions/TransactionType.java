@@ -6,6 +6,5 @@ public enum TransactionType {
     FUEL,
     MAINTENANCE,
     ENTERTAINMENT,
-    SALARY,
-    BUDGET
+    OTHER
 }
