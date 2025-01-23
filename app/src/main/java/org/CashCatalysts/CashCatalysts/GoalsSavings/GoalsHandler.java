@@ -6,7 +6,6 @@ import org.CashCatalysts.CashCatalysts.Database.TransactionsTable;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;

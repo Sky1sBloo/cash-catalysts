@@ -5,7 +5,6 @@ import org.CashCatalysts.CashCatalysts.Database.TransactionsTable;
 
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;

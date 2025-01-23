@@ -7,8 +7,6 @@ import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
-
 public class TransactionFormController {
     private final Integer transactionId;  // For editing transactions. set null for new transactions
 

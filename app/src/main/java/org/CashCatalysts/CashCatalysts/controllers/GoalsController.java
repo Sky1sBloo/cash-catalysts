@@ -11,7 +11,6 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 

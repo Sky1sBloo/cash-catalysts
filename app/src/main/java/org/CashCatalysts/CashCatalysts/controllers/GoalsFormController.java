@@ -8,8 +8,6 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
-
 public class GoalsFormController {
     @FXML
     private TextField goal_name;
