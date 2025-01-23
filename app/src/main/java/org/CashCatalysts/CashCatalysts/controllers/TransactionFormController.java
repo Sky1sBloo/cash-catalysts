@@ -40,7 +40,7 @@ public class TransactionFormController {
         if (transaction != null) {
             name_txtbx.setText(transaction.name());
             //type_selector.setValue(TransactionType.valueOf(transaction.type()));
-            date_selector.setValue(transaction.date().toLocalDate());
+            date_selector.setValue(transaction.date());
             amount_txtbx.setText(transaction.amount().getAmount() + "." + transaction.amount().getCents());
         }
     }
@@ -64,7 +64,7 @@ public class TransactionFormController {
         return TransactionHandler.createTransaction(
                 name_txtbx.getText(),
                 type_selector.getSelectionModel().getSelectedItem().toString(),
-                Date.valueOf(date_selector.getValue()),
+                date_selector.getValue(),
                 new Currency(amountCents)
         );
     }

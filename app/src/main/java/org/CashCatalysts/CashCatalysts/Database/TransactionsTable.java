@@ -4,6 +4,7 @@ import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class TransactionsTable extends DbTable {
 
         addStatement.setString(1, transaction.name());
         addStatement.setString(2, transaction.type());
-        addStatement.setDate(3, transaction.date());
+        addStatement.setDate(3, Date.valueOf(transaction.date()));
         // Get decimal part
         addStatement.setInt(4, transaction.amount().getAmountCents());
 
@@ -65,7 +66,7 @@ public class TransactionsTable extends DbTable {
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
-                    rs.getDate("date"),
+                    rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents"))
             );
         }
@@ -75,13 +76,13 @@ public class TransactionsTable extends DbTable {
     /**
      * Returns the transactions between dates
      */
-    public List<Transaction> getAllTransactionsBetween(Date start, Date end) throws SQLException {
+    public List<Transaction> getAllTransactionsBetween(LocalDate start, LocalDate end) throws SQLException {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE date BETWEEN ? and ?";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
-        getStatement.setDate(1, start);
-        getStatement.setDate(2, end);
+        getStatement.setDate(1, Date.valueOf(start));
+        getStatement.setDate(2, Date.valueOf(end));
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
@@ -89,7 +90,7 @@ public class TransactionsTable extends DbTable {
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
-                    rs.getDate("date"),
+                    rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents"))
             ));
         }
@@ -107,7 +108,7 @@ public class TransactionsTable extends DbTable {
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
-                    rs.getDate("date"),
+                    rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents"))
             ));
         }
@@ -123,7 +124,7 @@ public class TransactionsTable extends DbTable {
 
         updateStatement.setString(1, toUpdate.name());
         updateStatement.setString(2, toUpdate.type());
-        updateStatement.setDate(3, toUpdate.date());
+        updateStatement.setDate(3, Date.valueOf(toUpdate.date()));
         updateStatement.setInt(4, toUpdate.amount().getAmountCents());
         updateStatement.setInt(5, id);
         updateStatement.executeUpdate();

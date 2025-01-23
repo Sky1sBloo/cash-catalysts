@@ -3,9 +3,9 @@ package org.CashCatalysts.CashCatalysts.Transactions;
 
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-public record Transaction(Integer transactionId, String name, String type, Date date, Currency amount) {
+public record Transaction(Integer transactionId, String name, String type, LocalDate date, Currency amount) {
 
     @Override
     public String toString() {

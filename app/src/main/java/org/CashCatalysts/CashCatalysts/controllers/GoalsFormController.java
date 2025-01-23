@@ -40,7 +40,7 @@ public class GoalsFormController {
             goal_name.setText(goal.name());
             type_selection.setValue(goal.type());
             target_amount.setText(goal.amount().getAmount() + "." + goal.amount().getCents());
-            deadline.setValue(goal.deadline().toLocalDate());
+            deadline.setValue(goal.deadline());
         }
     }
 
@@ -54,7 +54,7 @@ public class GoalsFormController {
             return null;
         }
         int amountCents = (int) (Double.parseDouble(target_amount.getText()) * 100);
-        return new Goal(goalId, goal_name.getText(), new Currency(amountCents), Date.valueOf(deadline.getValue()), type_selection.getValue());
+        return new Goal(goalId, goal_name.getText(), new Currency(amountCents), deadline.getValue(), type_selection.getValue());
     }
 
     public Integer getGoalId() {

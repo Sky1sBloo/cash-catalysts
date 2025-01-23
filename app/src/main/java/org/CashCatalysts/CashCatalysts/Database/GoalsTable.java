@@ -5,6 +5,7 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class GoalsTable extends DbTable {
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
-                    rs.getDate("deadline"),
+                    rs.getDate("deadline").toLocalDate(),
                     GoalsType.valueOf(rs.getString("type"))
             );
         }
@@ -62,7 +63,7 @@ public class GoalsTable extends DbTable {
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
-                    rs.getDate("deadline"),
+                    rs.getDate("deadline").toLocalDate(),
                     GoalsType.valueOf(rs.getString("type"))
             ));
         }
@@ -84,7 +85,7 @@ public class GoalsTable extends DbTable {
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
-                    rs.getDate("deadline"),
+                    rs.getDate("deadline").toLocalDate(),
                     GoalsType.valueOf(rs.getString("type"))
             ));
         }
@@ -94,12 +95,12 @@ public class GoalsTable extends DbTable {
     /**
      * Retrieves goals that are within a specific deadline range from the goals table
      */
-    public List<Goal> getGoalsByDeadline(Date startDate, Date endDate) throws SQLException {
+    public List<Goal> getGoalsByDeadline(LocalDate startDate, LocalDate endDate) throws SQLException {
         List<Goal> goals = new ArrayList<>();
         String sql = "SELECT * FROM goals WHERE deadline BETWEEN ? AND ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setDate(1, startDate);
-        statement.setDate(2, endDate);
+        statement.setDate(1, Date.valueOf(startDate));
+        statement.setDate(2, Date.valueOf(endDate));
         ResultSet rs = statement.executeQuery();
 
         while (rs.next()) {
@@ -107,7 +108,7 @@ public class GoalsTable extends DbTable {
                     rs.getInt("id"),
                     rs.getString("name"),
                     new Currency(rs.getInt("targetAmountCents")),
-                    rs.getDate("deadline"),
+                    rs.getDate("deadline").toLocalDate(),
                     GoalsType.valueOf(rs.getString("type"))
             ));
         }
@@ -122,7 +123,7 @@ public class GoalsTable extends DbTable {
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
         statement.setInt(2, goal.amount().getAmountCents());
-        statement.setDate(3, goal.deadline());
+        statement.setDate(3, Date.valueOf(goal.deadline()));
         statement.setString(4, goal.type().toString());
         statement.executeUpdate();
         return getLastRowId();
@@ -136,7 +137,7 @@ public class GoalsTable extends DbTable {
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, goal.name());
         statement.setInt(2, goal.amount().getAmountCents());
-        statement.setDate(3, goal.deadline());
+        statement.setDate(3, Date.valueOf(goal.deadline()));
         statement.setString(4, goal.type().toString());
         statement.setInt(5, id);
         statement.executeUpdate();

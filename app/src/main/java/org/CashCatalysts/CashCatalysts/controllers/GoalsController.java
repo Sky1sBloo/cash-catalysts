@@ -71,7 +71,7 @@ public class GoalsController {
 
     private void loadUpcomingGoals() {
         goals_upcoming.getItems().clear();
-        goals_upcoming.getItems().addAll(goalsHandler.getGoalsByDeadline(Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now().plusDays(7))));
+        goals_upcoming.getItems().addAll(goalsHandler.getGoalsByDeadline(LocalDate.now(), LocalDate.now().plusDays(7)));
     }
 
     private void loadCalendar() {

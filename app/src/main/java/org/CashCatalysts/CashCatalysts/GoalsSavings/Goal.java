@@ -2,9 +2,9 @@ package org.CashCatalysts.CashCatalysts.GoalsSavings;
 
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-public record Goal(Integer id, String name, Currency amount, Date deadline, GoalsType type) {
+public record Goal(Integer id, String name, Currency amount, LocalDate deadline, GoalsType type) {
 
     @Override
     public String toString() {
