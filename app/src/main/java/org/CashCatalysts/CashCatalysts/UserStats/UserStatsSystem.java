@@ -58,6 +58,12 @@ public class UserStatsSystem {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
+    public Map<String, Integer> getCategoryExpenses(Date startDate, Date endDate) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+        return transactions.stream()
+                .collect(Collectors.groupingBy(Transaction::type, Collectors.summingInt((t) -> t.amount().getAmountCents())));
+    }
+
     // Get the highest expense category for the month and year
     public Map.Entry<String, Integer> getHighestExpenseCategory(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
