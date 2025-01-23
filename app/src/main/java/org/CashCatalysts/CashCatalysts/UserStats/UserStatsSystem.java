@@ -58,7 +58,7 @@ public class UserStatsSystem {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
-    public Map<String, Integer> getCategoryExpenses(Date startDate, Date endDate) {
+    public Map<String, Integer> getCategoryExpenses(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::type, Collectors.summingInt((t) -> t.amount().getAmountCents())));
@@ -100,7 +100,7 @@ public class UserStatsSystem {
     }
 
     // Get recurring expenses
-    public List<String> getRecurringExpenses(Date startDate, Date endDate) {
+    public List<String> getRecurringExpenses(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::name, Collectors.counting()))

@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -45,8 +44,8 @@ public class AnalysisController {
         LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
 
         var highestExpenseCategory = userStatsSystem.getHighestExpenseCategory(
-                Date.valueOf(startOfMonth),
-                Date.valueOf(endOfMonth)
+                startOfMonth,
+                endOfMonth
         );
         if (highestExpenseCategory != null) {
             highest_category_monthly_lbl.setText(highestExpenseCategory.getKey());
@@ -58,7 +57,7 @@ public class AnalysisController {
     private void loadComparisonToLastMonth() {
         LocalDate now = LocalDate.now();
         LocalDate startOfMonth = now.withDayOfMonth(1);
-        Currency lastMonthComparison = userStatsSystem.compareToLastMonth(Date.valueOf(startOfMonth));
+        Currency lastMonthComparison = userStatsSystem.compareToLastMonth(startOfMonth);
         comparison_to_last_month_lbl.setText(String.valueOf(lastMonthComparison));
     }
 
@@ -67,10 +66,7 @@ public class AnalysisController {
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
 
-        var yearlyExpenseBreakdown = userStatsSystem.getMonthlyExpenseBreakdown(
-                Date.valueOf(startOfYear),
-                Date.valueOf(endOfYear)
-        );
+        var yearlyExpenseBreakdown = userStatsSystem.getMonthlyExpenseBreakdown(startOfYear, endOfYear);
         yearly_activity_linechart.getData().clear();
 
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
@@ -86,10 +82,7 @@ public class AnalysisController {
         LocalDate startOfMonth = now.withDayOfMonth(1);
         LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
 
-        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(
-                Date.valueOf(startOfMonth),
-                Date.valueOf(endOfMonth)
-        );
+        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(startOfMonth, endOfMonth);
         monthly_expense_breakdown_pie.getData().clear();
         for (Map.Entry<String, Integer> entry : categoryExpenses.entrySet()) {
             PieChart.Data slice = new PieChart.Data(entry.getKey(), entry.getValue());
@@ -102,10 +95,7 @@ public class AnalysisController {
         LocalDate startOfMonth = now.withDayOfYear(1);
         LocalDate endOfMonth = now.withDayOfYear(now.lengthOfYear());
 
-        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(
-                Date.valueOf(startOfMonth),
-                Date.valueOf(endOfMonth)
-        );
+        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(startOfMonth, endOfMonth);
         yearly_expense_breakdown_pie.getData().clear();
         for (Map.Entry<String, Integer> entry : categoryExpenses.entrySet()) {
             PieChart.Data slice = new PieChart.Data(entry.getKey(), entry.getValue());
