@@ -7,8 +7,6 @@ import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
-
 public class TransactionFormController {
     private final Integer transactionId;  // For editing transactions. set null for new transactions
 
@@ -40,7 +38,7 @@ public class TransactionFormController {
         if (transaction != null) {
             name_txtbx.setText(transaction.name());
             //type_selector.setValue(TransactionType.valueOf(transaction.type()));
-            date_selector.setValue(transaction.date().toLocalDate());
+            date_selector.setValue(transaction.date());
             amount_txtbx.setText(transaction.amount().getAmount() + "." + transaction.amount().getCents());
         }
     }
@@ -64,7 +62,7 @@ public class TransactionFormController {
         return TransactionHandler.createTransaction(
                 name_txtbx.getText(),
                 type_selector.getSelectionModel().getSelectedItem().toString(),
-                Date.valueOf(date_selector.getValue()),
+                date_selector.getValue(),
                 new Currency(amountCents)
         );
     }

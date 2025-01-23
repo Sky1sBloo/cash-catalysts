@@ -6,8 +6,8 @@ import org.CashCatalysts.CashCatalysts.Database.TransactionsTable;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public class GoalsHandler {
      * Method for creating goal without id
      * Generally used for registration
      */
-    public static Goal createGoal(String name, Currency currency, Date deadline, GoalsType type) {
+    public static Goal createGoal(String name, Currency currency, LocalDate deadline, GoalsType type) {
         return new Goal(null, name, currency, deadline, type);
     }
 
@@ -67,7 +67,7 @@ public class GoalsHandler {
     /**
      * Retrieves goals within a specific deadline range
      */
-    public List<Goal> getGoalsByDeadline(Date startDate, Date endDate) {
+    public List<Goal> getGoalsByDeadline(LocalDate startDate, LocalDate endDate) {
         try {
             return goalsTable.getGoalsByDeadline(startDate, endDate);
         } catch (SQLException e) {
@@ -85,7 +85,7 @@ public class GoalsHandler {
     /**
      * Checks if a goal has been reached by a specific date
      */
-    public boolean isGoalReachedOnDate(Goal goal, Date goalDate) {
+    public boolean isGoalReachedOnDate(Goal goal, LocalDate goalDate) {
         // Fetch all deposits before the goal's deadline
         List<Transaction> transactions = null;
         try {
