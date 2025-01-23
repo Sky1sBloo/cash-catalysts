@@ -104,7 +104,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <LineChart>
+            <LineChart fx:id="yearly_activity_linechart">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
