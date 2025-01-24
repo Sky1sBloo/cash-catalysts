@@ -6,8 +6,6 @@ import javafx.scene.control.TextField;
 import org.CashCatalysts.CashCatalysts.budgets.Budget;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
-
 public class BudgetFormController {
     @FXML
     private DatePicker date_selector;
@@ -29,7 +27,7 @@ public class BudgetFormController {
 
     public void initialize() {
         if (budget != null) {
-            date_selector.setValue(budget.date().toLocalDate());
+            date_selector.setValue(budget.date());
             amount_txtbx.setText(budget.amount().getAmount() + "." + budget.amount().getCents());
         }
     }
@@ -43,7 +41,7 @@ public class BudgetFormController {
             return null;
         }
         int amountCents = (int) (Double.parseDouble(amount_txtbx.getText()) * 100);
-        return new Budget(transactionId, Date.valueOf(date_selector.getValue()), new Currency(amountCents));
+        return new Budget(transactionId, date_selector.getValue(), new Currency(amountCents));
     }
 
     public Integer getBudgetId() {

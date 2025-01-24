@@ -2,9 +2,9 @@ package org.CashCatalysts.CashCatalysts.budgets;
 
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
-public record Budget(Integer id, Date date, Currency amount) {
+public record Budget(Integer id, LocalDate date, Currency amount) {
     public Budget {
         if (date == null) {
             throw new IllegalArgumentException("Date is null");
