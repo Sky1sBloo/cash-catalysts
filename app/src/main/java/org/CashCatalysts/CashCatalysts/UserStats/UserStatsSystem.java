@@ -7,15 +7,18 @@ import java.util.stream.Collectors;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 public class UserStatsSystem {
 
     private final TransactionHandler transactionHandler;
+    private final BudgetHandler budgetHandler;
 
     // Constructor to initialize the TransactionHandler
-    public UserStatsSystem(TransactionHandler transactionHandler) {
+    public UserStatsSystem(TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
         this.transactionHandler = transactionHandler;
+        this.budgetHandler = budgetHandler;
     }
 
     // Helper method to extract year, month, and day from Date using LocalDate
@@ -137,5 +140,18 @@ public class UserStatsSystem {
                 .filter(e -> e.getValue() > 1) // Expenses occurring more than once
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+    }
+
+    public Map<LocalDate, Currency> loadBudgets(LocalDate startDate, LocalDate endDate) {
+        /*
+        List<Transaction> budgets = budgetHandler.getAllBudgetsBetween(startDate, endDate);
+        Map<LocalDate, Currency> budgetMap = new HashMap<>();
+        for (Transaction transaction : transactions) {
+            Currency budget = budgetHandler.getBudget(transaction.name());
+            if (budget != null) {
+                budgetMap.put(transaction.date(), budget);
+            }
+        }
+        return budgetMap; */
     }
 }
