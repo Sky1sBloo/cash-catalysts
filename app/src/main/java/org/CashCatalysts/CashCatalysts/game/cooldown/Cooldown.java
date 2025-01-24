@@ -8,4 +8,12 @@ public record Cooldown (Integer id, LocalDateTime cooldownEnd) {
             throw new IllegalArgumentException("cooldownEnd cannot be null");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Cooldown other) {
+            return cooldownEnd.equals(other.cooldownEnd);
+        }
+        return false;
+    }
 }
