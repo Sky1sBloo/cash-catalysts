@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.budgets.Budget;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
@@ -27,7 +28,7 @@ public class UserStatsSystem {
         int year = localDate.getYear();
         int month = localDate.getMonthValue();
         int day = localDate.getDayOfMonth();
-        
+
         return String.format("Year: %d, Month: %d, Day: %d", year, month, day);
     }
 
@@ -50,7 +51,7 @@ public class UserStatsSystem {
     /**
      * Returns a sorted map of monthly expenses between the given start and end dates.
      * The map contains the total expenses for each month in the format "YYYY-MM".
-      */
+     */
     public Map<String, Currency> getMonthlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         Map<String, Currency> unsortedMap = transactions.stream()
@@ -142,16 +143,22 @@ public class UserStatsSystem {
                 .collect(Collectors.toList());
     }
 
-    public Map<LocalDate, Currency> loadBudgets(LocalDate startDate, LocalDate endDate) {
-        /*
-        List<Transaction> budgets = budgetHandler.getAllBudgetsBetween(startDate, endDate);
-        Map<LocalDate, Currency> budgetMap = new HashMap<>();
-        for (Transaction transaction : transactions) {
-            Currency budget = budgetHandler.getBudget(transaction.name());
-            if (budget != null) {
-                budgetMap.put(transaction.date(), budget);
-            }
-        }
-        return budgetMap; */
+    /**
+     * Returns a sorted map of monthly budgets between the given start and end dates.
+     */
+    public Map<String, Currency> getMonthlyBudgetsBreakdown(LocalDate startDate, LocalDate endDate) {
+        List<Budget> budgets = budgetHandler.getAllBudgetsBetween(startDate, endDate);
+        Map<String, Currency> unsortedMap = budgets.stream()
+                .collect(Collectors.groupingBy(b -> {
+                            int month = b.date().getMonthValue();
+                            return String.format("%d-%02d", b.date().getYear(), month); // Return as "YYYY-MM"
+                        },
+                        Collectors.collectingAndThen(
+                                Collectors.summingInt((b) -> b.amount().getAmountCents()),
+                                Currency::new
+                        )));
+        return unsortedMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 }

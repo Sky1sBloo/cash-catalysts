@@ -57,12 +57,12 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
                      <children>
-                        <Label text="Savings Growth (%)">
+                        <Label text="Savings">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <LineChart prefHeight="150.0" prefWidth="185.0">
+                        <LineChart fx:id="savings_linechart" prefHeight="150.0" prefWidth="185.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -79,7 +79,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <LineChart prefHeight="150.0" prefWidth="185.0">
+                        <LineChart fx:id="income_and_expenses_linechart" prefHeight="150.0" prefWidth="185.0">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
