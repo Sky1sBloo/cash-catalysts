@@ -96,6 +96,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
+                        <Label fx:id="total_yearly_expense_lbl" text="0" />
                      </children>
                   </HBox>
                </children>
@@ -187,6 +188,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="avg_monthly_expenses_lbl" text="0" />
                   <Label>
                      <font>
                         <Font name="System Bold" size="14.0" />

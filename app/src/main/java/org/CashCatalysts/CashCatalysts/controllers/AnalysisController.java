@@ -21,6 +21,10 @@ public class AnalysisController {
     @FXML
     private Label comparison_to_last_month_lbl;
     @FXML
+    private Label avg_monthly_expenses_lbl;
+    @FXML
+    private Label total_yearly_expense_lbl;
+    @FXML
     private LineChart<String, Integer> yearly_activity_linechart;
     @FXML
     private PieChart monthly_expense_breakdown_pie;
@@ -38,6 +42,8 @@ public class AnalysisController {
         loadYearlyActivity();
         loadMonthlyExpenseBreakdown();
         loadYearlyExpenseBreakdown();
+        loadAverageMonthlyExpenses();
+        loadTotalYearlyExpenses();
     }
 
     private void loadHighestCategory() {
@@ -116,5 +122,23 @@ public class AnalysisController {
             PieChart.Data slice = new PieChart.Data(entry.getKey(), entry.getValue());
             yearly_expense_breakdown_pie.getData().add(slice);
         }
+    }
+
+    private void loadAverageMonthlyExpenses() {
+        LocalDate now = LocalDate.now();
+        LocalDate startOfYear = now.withDayOfYear(1);
+        LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+
+        Currency averageMonthlyExpenses = userStatsSystem.getAverageMonthlyExpenses(startOfYear, endOfYear);
+        avg_monthly_expenses_lbl.setText(String.valueOf(averageMonthlyExpenses));
+    }
+
+    private void loadTotalYearlyExpenses() {
+        LocalDate now = LocalDate.now();
+        LocalDate startOfYear = now.withDayOfYear(1);
+        LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+
+        Currency totalYearlyExpenses = userStatsSystem.getTotalYearlyExpenses(startOfYear, endOfYear);
+        total_yearly_expense_lbl.setText(String.valueOf(totalYearlyExpenses));
     }
 }

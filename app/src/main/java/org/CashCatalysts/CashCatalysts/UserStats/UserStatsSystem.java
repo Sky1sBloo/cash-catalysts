@@ -64,6 +64,29 @@ public class UserStatsSystem {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
 
+    public Currency getAverageMonthlyExpenses(LocalDate startDate, LocalDate endDate) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+        int totalAmount = transactions.stream()
+                .mapToInt((t) -> t.amount().getAmountCents())
+                .sum();
+        int totalMonths = (int) transactions.stream()
+                .collect(Collectors.groupingBy(t -> {
+                            int month = t.date().getMonthValue();
+                            return String.format("%d-%02d", t.date().getYear(), month); // Return as "YYYY-MM"
+                        },
+                        Collectors.counting()
+                )).size();
+        return new Currency(totalAmount / totalMonths);
+    }
+
+
+    public Currency getTotalYearlyExpenses(LocalDate startDate, LocalDate endDate) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+        return new Currency(transactions.stream()
+                .mapToInt((t) -> t.amount().getAmountCents())
+                .sum());
+    }
+
     public Map<String, Integer> getCategoryExpenses(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
