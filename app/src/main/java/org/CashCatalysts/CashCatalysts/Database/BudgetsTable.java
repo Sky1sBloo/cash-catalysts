@@ -4,6 +4,7 @@ import org.CashCatalysts.CashCatalysts.budgets.Budget;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class BudgetsTable extends DbTable {
         String sql = "INSERT INTO budgets (date, amount_cents) VALUES(?, ?);";
         PreparedStatement addStatement = connection.prepareStatement(sql);
 
-        addStatement.setDate(1, budget.date());
+        addStatement.setDate(1, Date.valueOf(budget.date()));
         addStatement.setInt(2, budget.amount().getAmountCents());
 
         addStatement.executeUpdate();
@@ -39,7 +40,7 @@ public class BudgetsTable extends DbTable {
         if (budgetSet.next()) {
             return new Budget(
                     budgetSet.getInt("budget_id"),
-                    budgetSet.getDate("date"),
+                    budgetSet.getDate("date").toLocalDate(),
                     new Currency(budgetSet.getInt("amount_cents"))
             );
         }
@@ -49,16 +50,16 @@ public class BudgetsTable extends DbTable {
     /**
      * Retrieves a budget by date
      */
-    public Budget getBudget(Date date) throws SQLException {
+    public Budget getBudget(LocalDate date) throws SQLException {
         String sql = "SELECT * FROM budgets WHERE date = ?;";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
-        getStatement.setDate(1, date);
+        getStatement.setDate(1, Date.valueOf(date));
         ResultSet budgetSet = getStatement.executeQuery();
         if (budgetSet.next()) {
             return new Budget(
                     budgetSet.getInt("budget_id"),
-                    budgetSet.getDate("date"),
+                    budgetSet.getDate("date").toLocalDate(),
                     new Currency(budgetSet.getInt("amount_cents"))
             );
         }
@@ -67,19 +68,19 @@ public class BudgetsTable extends DbTable {
     /**
      * Returns the transactions between dates
      */
-    public List<Budget> getAllTransactionsBetween(Date start, Date end) throws SQLException {
+    public List<Budget> getAllTransactionsBetween(LocalDate start, LocalDate end) throws SQLException {
         List<Budget> budgets= new ArrayList<>();
         String sql = "SELECT * FROM budgets WHERE date BETWEEN ? and ?";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
-        getStatement.setDate(1, start);
-        getStatement.setDate(2, end);
+        getStatement.setDate(1, Date.valueOf(start));
+        getStatement.setDate(2, Date.valueOf(end));
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
             budgets.add(new Budget(
                     rs.getInt("budget_id"),
-                    rs.getDate("date"),
+                    rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents"))
             ));
         }
@@ -95,7 +96,7 @@ public class BudgetsTable extends DbTable {
         while (rs.next()) {
             budgets.add(new Budget(
                     rs.getInt("budget_id"),
-                    rs.getDate("date"),
+                    rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents"))
             ));
         }
@@ -105,12 +106,12 @@ public class BudgetsTable extends DbTable {
     /**
      * Updates the budget
      */
-    public void updateBudget(Date date, Currency amount) throws SQLException {
+    public void updateBudget(LocalDate date, Currency amount) throws SQLException {
         String sql = "UPDATE budgets SET amount_cents = ? WHERE date = ?;";
         PreparedStatement updateStatement = connection.prepareStatement(sql);
 
         updateStatement.setInt(1, amount.getAmountCents());
-        updateStatement.setDate(2, date);
+        updateStatement.setDate(2, Date.valueOf(date));
         updateStatement.executeUpdate();
     }
 
