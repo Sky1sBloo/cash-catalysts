@@ -28,7 +28,10 @@ public class UserStatsSystem {
         return String.format("Year: %d, Month: %d, Day: %d", year, month, day);
     }
 
-    // Get yearly expense breakdown
+    /**
+     * Returns a sorted map of yearly expenses between the given start and end dates.
+     * The map contains the total expenses for each year.
+     */
     public Map<Integer, Currency> getYearlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         return transactions.stream()
@@ -41,7 +44,10 @@ public class UserStatsSystem {
                 )));
     }
 
-    // Get monthly expense breakdown
+    /**
+     * Returns a sorted map of monthly expenses between the given start and end dates.
+     * The map contains the total expenses for each month in the format "YYYY-MM".
+      */
     public Map<String, Currency> getMonthlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
         Map<String, Currency> unsortedMap = transactions.stream()
