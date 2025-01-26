@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <buttonTypes>
+      <ButtonType fx:constant="OK" />
+      <ButtonType fx:constant="CANCEL" />
+   </buttonTypes>
+   <content>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Add New Subscription">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label text="Subscription Name" />
+            <TextField fx:id="name_txtbx" />
+            <Label text="Category" />
+            <ComboBox fx:id="type_selector" prefWidth="150.0" />
+            <Label text="Frequency" />
+            <ComboBox fx:id="frequency_selector" prefWidth="150.0" />
+            <Label text="Amount" />
+            <TextField fx:id="amount_txtbx" />
+            <Label text="Start Date" />
+            <DatePicker fx:id="start_date_selector" />
+            <Label text="End Date" />
+            <DatePicker fx:id="end_date_selector" />
+         </children></VBox>
+   </content>
+</DialogPane>

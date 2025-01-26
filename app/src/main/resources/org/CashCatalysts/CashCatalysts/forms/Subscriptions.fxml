@@ -15,11 +15,11 @@
       </HBox>
       <VBox fx:id="subscriptions_pane" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="subscriptions_list" prefHeight="200.0" prefWidth="100.0">
                <children>
 
                </children></VBox>
-            <Button mnemonicParsing="false" text="Add Subscription" />
+            <Button fx:id="add_subscription_btn" mnemonicParsing="false" text="Add Subscription" />
          </children>
       </VBox>
    </children>

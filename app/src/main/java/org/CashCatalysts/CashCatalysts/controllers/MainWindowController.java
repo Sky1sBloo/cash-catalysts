@@ -8,6 +8,7 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ public class MainWindowController {
     private final BudgetHandler budgetHandler;
     private final GoalsHandler goalsHandler;
     private final UserStatsSystem userStatsSystem;
+    private final SubscriptionsHandler subscriptionsHandler;
 
     @FXML
     private Pane main_root;
@@ -24,11 +26,16 @@ public class MainWindowController {
     @FXML
     private Pane nav_menu;
 
-    public MainWindowController(TransactionHandler transactionHandler, BudgetHandler budgetHandler, GoalsHandler goalsHandler, UserStatsSystem userStatsSystem) {
+    public MainWindowController(TransactionHandler transactionHandler,
+                                BudgetHandler budgetHandler,
+                                GoalsHandler goalsHandler,
+                                UserStatsSystem userStatsSystem,
+                                SubscriptionsHandler subscriptionsHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
         this.userStatsSystem = userStatsSystem;
+        this.subscriptionsHandler = subscriptionsHandler;
     }
 
     @SuppressWarnings("unused")
@@ -74,7 +81,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onSubscriptionsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Subscriptions.fxml");
+        loadPage("../forms/Subscriptions.fxml", new SubscriptionsController(subscriptionsHandler));
     }
 
     @SuppressWarnings("unused")
