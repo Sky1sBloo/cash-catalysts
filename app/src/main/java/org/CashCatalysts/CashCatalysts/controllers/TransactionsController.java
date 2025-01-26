@@ -59,7 +59,7 @@ public class TransactionsController {
     @SuppressWarnings("unused")
     public void initialize() {
         filter_selection.setOnAction((ignore) -> setFilter(filter_selection.getSelectionModel().getSelectedItem()));
-        filter_selection.getItems().addAll(DateFilterType.DAY, DateFilterType.WEEK, DateFilterType.MONTH, DateFilterType.YEAR);
+        filter_selection.getItems().addAll(DateFilterType.values());
         filter_selection.getSelectionModel().selectFirst();
         dateFilterType = filter_selection.getSelectionModel().getSelectedItem();
 
