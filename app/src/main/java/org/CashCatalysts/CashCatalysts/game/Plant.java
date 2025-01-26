@@ -6,7 +6,6 @@ package org.CashCatalysts.CashCatalysts.game;
     PINEAPPLE("pinya"),
     STRAWBERRY("strawberry"),
     APPLE("apple"),
-    FLOWERS("flowers"),
     SAMPAGUITA("sampaguita"),
     ORCHIDS("orchids"),
     SUNFLOWER("sunflower"),
