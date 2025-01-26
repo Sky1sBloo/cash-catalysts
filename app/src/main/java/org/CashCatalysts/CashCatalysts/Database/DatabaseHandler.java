@@ -13,6 +13,7 @@ public class DatabaseHandler {
     private final UsersTable usersTable;
     private final BudgetsTable budgetsTable;
     private final GoalsTable goalsTable;
+    private final CooldownsTable cooldownsTable;
 
     /**
      * Path to database file
@@ -25,6 +26,7 @@ public class DatabaseHandler {
         this.usersTable = new UsersTable(connection);
         this.budgetsTable = new BudgetsTable(connection);
         this.goalsTable = new GoalsTable(connection);
+        this.cooldownsTable = new CooldownsTable(connection);
     }
 
     /**
@@ -60,5 +62,12 @@ public class DatabaseHandler {
      */
     public GoalsTable getGoalsTable() {
         return goalsTable;
+    }
+
+    /**
+     * Returns Cooldowns table functions
+     */
+    public CooldownsTable getCooldownsTable() {
+        return cooldownsTable;
     }
 }

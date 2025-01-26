@@ -2,7 +2,7 @@ package org.CashCatalysts.CashCatalysts.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import org.CashCatalysts.CashCatalysts.Transactions.FilterType;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 
@@ -25,7 +25,7 @@ public class DashboardController {
     }
 
     private List<String> getTransactionsFormatted() {
-        List<Transaction> transactions = transactionHandler.getAllTransactionsOn(FilterType.WEEK);
+        List<Transaction> transactions = transactionHandler.getAllTransactionsOn(DateFilterType.WEEK);
         List<String> formattedTransactions = new ArrayList<>();
 
         for (Transaction transaction : transactions) {
