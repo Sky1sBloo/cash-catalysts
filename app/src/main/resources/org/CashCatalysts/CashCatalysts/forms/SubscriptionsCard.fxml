@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="123.0" prefWidth="1175.0" styleClass="subscription_card" stylesheets="@SubscriptionsCard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="532.0" styleClass="info">
+            <children>
+                <Label fx:id="name_lbl" text="Subscription Name">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="type_lbl" text="Type" />
+                <Label fx:id="frequency_lbl" text="Frequency" />
+                <Label fx:id="amount_lbl" text="\$0.00" />
+            </children>
+        </VBox>
+        <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" styleClass="options" GridPane.columnIndex="1">
+            <children>
+                <Button mnemonicParsing="false" text="Edit" />
+                <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label fx:id="start_date_lbl" text="Start Date" />
+                        <Label text=" - " />
+                        <Label fx:id="end_date_lbl" text="End Date" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</GridPane>

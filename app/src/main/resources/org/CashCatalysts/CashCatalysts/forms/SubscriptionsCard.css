@@ -1,0 +1,13 @@
+.subscription_card {
+    -fx-background-color: #2BAD0B;
+    -fx-background-radius: 10;
+    -fx-background-insets: 10;
+}
+
+.subscription_card .info {
+    -fx-padding: 30;
+}
+
+.subscription_card .options {
+    -fx-padding: 30;
+}
