@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -110,6 +111,56 @@ public class TransactionsTable extends DbTable {
             ));
         }
         return transactions;
+    }
+
+    public List<Transaction> getAllTransactionsOnSubscription(Subscription subscription) throws SQLException {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE subscription_id = ? ORDER BY date ASC;";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setInt(1, subscription.id());
+
+        ResultSet rs = getStatement.executeQuery();
+        while (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
+            transactions.add(new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date").toLocalDate(),
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
+            ));
+        }
+        return transactions;
+    }
+
+    public Transaction getTransactionBySubscriptionWithDate(Subscription subscription, LocalDate date) throws SQLException {
+        String sql = "SELECT * FROM transactions WHERE subscription_id = ? AND date = ?;";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setInt(1, subscription.id());
+        getStatement.setDate(2, Date.valueOf(date));
+
+        ResultSet rs = getStatement.executeQuery();
+        if (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
+            return new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date").toLocalDate(),
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
+            );
+        }
+        return null;
     }
 
     public List<Transaction> getAllTransactions() throws SQLException {

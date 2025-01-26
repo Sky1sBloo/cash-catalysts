@@ -7,6 +7,7 @@ import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.datatypes.DateFilterHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
+import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -97,6 +98,22 @@ public class TransactionHandler {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public List<Transaction> getAllTransactionsOnSubscription(Subscription subscription) {
+        try {
+            return transactionsTable.getAllTransactionsOnSubscription(subscription);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Transaction getTransactionOnSubscriptionWithDate(Subscription subscription, LocalDate date) {
+        try {
+            return transactionsTable.getTransactionBySubscriptionWithDate(subscription, date);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

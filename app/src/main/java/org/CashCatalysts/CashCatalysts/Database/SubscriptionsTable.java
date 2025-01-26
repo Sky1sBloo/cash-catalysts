@@ -1,5 +1,6 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionFrequency;
 
@@ -69,45 +70,28 @@ public class SubscriptionsTable extends DbTable {
         return stmt.executeQuery();
     }
 
-    public void addTransactionsForSubscription(int subscriptionId, LocalDate startDate, LocalDate endDate, SubscriptionFrequency frequency) throws SQLException {
-        LocalDate currentDate = startDate;
-
-        while (!currentDate.isAfter(endDate)) {
-            String checkQuery = "SELECT COUNT(*) FROM transactions WHERE subscription_id = ? AND transaction_date = ?";
-            PreparedStatement checkStmt = connection.prepareStatement(checkQuery);
-            checkStmt.setInt(1, subscriptionId);
-            checkStmt.setDate(2, Date.valueOf(currentDate));
-            ResultSet rs = checkStmt.executeQuery();
-
-            if (rs.next() && rs.getInt(1) == 0) {
-                String insertQuery = "INSERT INTO transactions (subscription_id, transaction_date) VALUES (?, ?)";
-                try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
-                    insertStmt.setInt(1, subscriptionId);
-                    insertStmt.setDate(2, Date.valueOf(currentDate));
-                    insertStmt.executeUpdate();
-                }
-            }
-
-            currentDate = switch (frequency) {
-                case SubscriptionFrequency.DAILY -> {
-                    yield currentDate.plusDays(1);
-                }
-                case SubscriptionFrequency.WEEKLY -> {
-                    yield currentDate.plusWeeks(1);
-                }
-                case SubscriptionFrequency.MONTHLY -> {
-                    yield currentDate.plusMonths(1);
-                }
-                case SubscriptionFrequency.YEARLY -> {
-                    yield currentDate.plusYears(1);
-                }
-            };
-        }
-    }
-
     public ResultSet getAllSubscriptions() throws SQLException {
         String query = "SELECT * FROM subscriptions";
         Statement stmt = connection.createStatement();
         return stmt.executeQuery(query);
+    }
+
+    public Subscription getSubscription(int id) throws SQLException {
+        String query = "SELECT * FROM subscriptions WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new Subscription(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    SubscriptionFrequency.valueOf(rs.getString("frequency")),
+                    rs.getDate("startDate").toLocalDate(),
+                    rs.getDate("endDate").toLocalDate(),
+                    new Currency(rs.getInt("amountCents"))
+            );
+        }
+        return null;
     }
 }
