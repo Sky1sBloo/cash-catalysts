@@ -2,6 +2,9 @@ package org.CashCatalysts.CashCatalysts.game;
 
 import org.CashCatalysts.CashCatalysts.game.currency.GameCurrency;
 
+/**
+ * Class that represents the inventory of a user in the game.
+ */
 public class GameInventory {
     private final int userId;
     private final GameCurrency gold;

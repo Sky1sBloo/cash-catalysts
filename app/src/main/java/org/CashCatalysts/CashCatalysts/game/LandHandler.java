@@ -15,6 +15,9 @@ public class LandHandler {
         this.landsTable = databaseHandler.getLandsTable();
     }
 
+    /**
+     * Add a land to the user
+     */
     public void addLand() {
         try {
             Land newLand = new Land(userId, Plant.NONE, false, landsTable.getHighestLandId(userId) + 1);
@@ -24,6 +27,9 @@ public class LandHandler {
         }
     }
 
+    /**
+     * Gets land at a position
+     */
     public Land getLand(int position) {
         try {
             return landsTable.getLand(userId, position);
@@ -32,7 +38,9 @@ public class LandHandler {
         }
     }
 
-
+    /**
+     * Get all lands of the user
+     */
     public List<Land> getLands() {
         try {
             return landsTable.getLands(userId);
@@ -41,6 +49,9 @@ public class LandHandler {
         }
     }
 
+    /**
+     * Adds a pot to a land
+     */
     public void addPot(int position) {
         try {
             Land land = landsTable.getLand(userId, position);
@@ -51,6 +62,10 @@ public class LandHandler {
         }
     }
 
+    /**
+     * Remove a pot from a land
+     * Removes any plant on the land
+     */
     public void removePot(int position) {
         try {
             Land land = landsTable.getLand(userId, position);
@@ -62,6 +77,10 @@ public class LandHandler {
         }
     }
 
+    /**
+     * Plant a plant on a land
+     * Does nothing if the land does not have a pot
+     */
     public void plant(int position, Plant plant) {
         try {
             Land land = landsTable.getLand(userId, position);
@@ -75,6 +94,9 @@ public class LandHandler {
         }
     }
 
+    /**
+     * Remove a plant from a land
+     */
     public void removePlant(int position) {
         try {
             Land land = landsTable.getLand(userId, position);
