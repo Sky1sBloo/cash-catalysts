@@ -5,6 +5,7 @@ import org.CashCatalysts.CashCatalysts.Database.GoalsTable;
 import org.CashCatalysts.CashCatalysts.Database.TransactionsTable;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -65,11 +66,11 @@ public class GoalsHandler {
     }
 
     /**
-     * Retrieves goals within a specific deadline range
+     * Retrieves goals within a specific deadline
      */
-    public List<Goal> getGoalsByDeadline(LocalDate startDate, LocalDate endDate) {
+    public List<Goal> getGoalsByDeadline(DateRange dateRange) {
         try {
-            return goalsTable.getGoalsByDeadline(startDate, endDate);
+            return goalsTable.getGoalsByDeadline(dateRange.begin(), dateRange.end());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

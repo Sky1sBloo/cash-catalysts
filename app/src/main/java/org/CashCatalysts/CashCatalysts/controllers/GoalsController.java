@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -70,7 +71,11 @@ public class GoalsController {
 
     private void loadUpcomingGoals() {
         goals_upcoming.getItems().clear();
-        goals_upcoming.getItems().addAll(goalsHandler.getGoalsByDeadline(LocalDate.now(), LocalDate.now().plusDays(7)));
+        DateRange dateRangeThisWeek = new DateRange(
+                LocalDate.now(),
+                LocalDate.now().plusDays(7)
+        );
+        goals_upcoming.getItems().addAll(goalsHandler.getGoalsByDeadline(dateRangeThisWeek));
     }
 
     private void loadCalendar() {
