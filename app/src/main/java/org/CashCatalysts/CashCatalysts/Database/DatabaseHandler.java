@@ -14,6 +14,8 @@ public class DatabaseHandler {
     private final BudgetsTable budgetsTable;
     private final GoalsTable goalsTable;
     private final CooldownsTable cooldownsTable;
+    private final GameInventoryTable gameInventoryTable;
+    private final LandsTable landsTable;
 
     /**
      * Path to database file
@@ -27,6 +29,8 @@ public class DatabaseHandler {
         this.budgetsTable = new BudgetsTable(connection);
         this.goalsTable = new GoalsTable(connection);
         this.cooldownsTable = new CooldownsTable(connection);
+        this.gameInventoryTable = new GameInventoryTable(connection, usersTable);
+        this.landsTable = new LandsTable(connection);
     }
 
     /**
@@ -69,5 +73,19 @@ public class DatabaseHandler {
      */
     public CooldownsTable getCooldownsTable() {
         return cooldownsTable;
+    }
+
+    /**
+     * Returns GameInventory table functions
+     */
+    public GameInventoryTable getGameInventoryTable() {
+        return gameInventoryTable;
+    }
+
+    /**
+     * Returns Lands table functions
+     */
+    public LandsTable getLandsTable() {
+        return landsTable;
     }
 }

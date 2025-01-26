@@ -10,8 +10,7 @@ public class UsersTable extends DbTable {
 
         DbField[] fields = {
                 new DbField("user_id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
-                new DbField("username", "VARCHAR(255)", "NOT NULL"),
-                new DbField("rank", "INT", "NOT NULL")
+                new DbField("username", "VARCHAR(255)", "NOT NULL")
         };
         super.createTable("users", fields);
     }
@@ -23,11 +22,10 @@ public class UsersTable extends DbTable {
      * @return The id of the user
      */
     public int registerUser(User user) throws SQLException {
-        String sql = "INSERT INTO users (username, rank) VALUES(?, ?);";
+        String sql = "INSERT INTO users (username) VALUES(?);";
         PreparedStatement insertStatement = connection.prepareStatement(sql);
 
         insertStatement.setString(1, user.username());
-        insertStatement.setInt(2, user.rank());
         insertStatement.executeUpdate();
         return getLastRowId();
     }
@@ -48,8 +46,7 @@ public class UsersTable extends DbTable {
         if (rs.next()) {
             return new User(
                     rs.getInt("user_id"),
-                    rs.getString("username"),
-                    rs.getInt("rank")
+                    rs.getString("username")
             );
         }
         return null;
@@ -59,12 +56,11 @@ public class UsersTable extends DbTable {
      * Updates the user in the database based on id
      */
     public void updateUser(int id, User user) throws SQLException {
-        String sql = "UPDATE users SET username = ?, rank = ? WHERE user_id = ?";
+        String sql = "UPDATE users SET username = ? WHERE user_id = ?";
         PreparedStatement updateStatement = connection.prepareStatement(sql);
 
         updateStatement.setString(1, user.username());
-        updateStatement.setInt(2, user.rank());
-        updateStatement.setInt(3, id);
+        updateStatement.setInt(2, id);
         updateStatement.executeUpdate();
     }
 
