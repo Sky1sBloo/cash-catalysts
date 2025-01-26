@@ -37,7 +37,7 @@ public class TransactionHandler {
     /**
      * Creates a new transaction with subscription id
      */
-    public static Transaction createTransaction(String name, String type, LocalDate date, Currency amount, int subscriptionId) {
+    public static Transaction createTransaction(String name, String type, LocalDate date, Currency amount, Integer subscriptionId) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Name is missing");
         }

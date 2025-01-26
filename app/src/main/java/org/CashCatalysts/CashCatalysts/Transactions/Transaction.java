@@ -10,6 +10,6 @@ public record Transaction(Integer transactionId, String name, String type, Local
     @Override
     public String toString() {
         return "TransactionID: " + transactionId +
-                ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount.getAmount() + "." + amount.getCents() + " SubscriptionID: " + subscriptionId.toString();
+                ", Name: " + name + ", Type: " + type + ", Date: " + date + ", Amount: " + amount.getAmount() + "." + amount.getCents() + " SubscriptionID: " + subscriptionId;
     }
 }

@@ -26,13 +26,13 @@ public class TransactionsTable extends DbTable {
                 new DbField("type", "VARCHAR(255)", "NOT NULL"),
                 new DbField("date", "DATE", "NOT NULL"),
                 new DbField("amount_cents", "INTEGER", "NOT NULL"),
-                new DbField("subscription_id", "INTEGER", "NOT NULL ON DELETE SET NULL")
+                new DbField("subscription_id", "INTEGER")
         };
 
         String[] constraints = {
-                "FOREIGN KEY (subscription_id) REFERENCES subscriptions(id)"
+                "FOREIGN KEY (subscription_id) REFERENCES subscriptions(id) ON DELETE SET NULL"
         };
-        super.createTable("transactions", fields);
+        super.createTable("transactions", fields, constraints);
     }
 
     /**
@@ -67,13 +67,17 @@ public class TransactionsTable extends DbTable {
         ResultSet rs = getStatement.executeQuery();
 
         if (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
             return new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents")),
-                    rs.getInt("subscription_id")
+                    subscriptionId
             );
         }
         return null;
@@ -92,32 +96,40 @@ public class TransactionsTable extends DbTable {
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
             transactions.add(new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents")),
-                    rs.getInt("subscription_id")
+                    subscriptionId
             ));
         }
         return transactions;
     }
 
     public List<Transaction> getAllTransactions() throws SQLException {
-         List<Transaction> transactions = new ArrayList<>();
+        List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions ORDER BY date;";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
             transactions.add(new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
                     new Currency(rs.getInt("amount_cents")),
-                    rs.getInt("subscription_id")
+                    subscriptionId
             ));
         }
         return transactions;
