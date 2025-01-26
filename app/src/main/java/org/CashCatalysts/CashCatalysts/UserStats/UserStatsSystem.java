@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 public class UserStatsSystem {
 
@@ -28,8 +29,8 @@ public class UserStatsSystem {
     }
 
     // Get yearly expense breakdown
-    public Map<Integer, Integer> getYearlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
-        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+    public Map<Integer, Integer> getYearlyExpenseBreakdown(DateRange dateRange) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(dateRange);
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
                     return t.date().getYear(); // Group by year
@@ -37,8 +38,8 @@ public class UserStatsSystem {
     }
 
     // Get monthly expense breakdown
-    public Map<String, Integer> getMonthlyExpenseBreakdown(LocalDate startDate, LocalDate endDate) {
-        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+    public Map<String, Integer> getMonthlyExpenseBreakdown(DateRange dateRange) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(dateRange);
         return transactions.stream()
                 .collect(Collectors.groupingBy(t -> {
                     int month = t.date().getMonthValue();
@@ -47,8 +48,8 @@ public class UserStatsSystem {
     }
 
     // Get the highest expense category for the month and year
-    public Map.Entry<String, Integer> getHighestExpenseCategory(LocalDate startDate, LocalDate endDate) {
-        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+    public Map.Entry<String, Integer> getHighestExpenseCategory(DateRange dateRange) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(dateRange);
         return transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::type, Collectors.summingInt((t) -> t.amount().getAmountCents())))
                 .entrySet().stream()
@@ -76,15 +77,15 @@ public class UserStatsSystem {
         LocalDate startDate = LocalDate.of(year, month, 1);
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
 
-        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(new DateRange(startDate, endDate));
         return transactions.stream()
                 .mapToInt(t -> t.amount().getAmountCents())
                 .sum();
     }
 
     // Get recurring expenses
-    public List<String> getRecurringExpenses(LocalDate startDate, LocalDate endDate) {
-        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(startDate, endDate);
+    public List<String> getRecurringExpenses(DateRange dateRange) {
+        List<Transaction> transactions = transactionHandler.getAllTransactionsBetween(dateRange);
         return transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::name, Collectors.counting()))
                 .entrySet().stream()

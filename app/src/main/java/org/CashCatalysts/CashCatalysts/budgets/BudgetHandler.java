@@ -4,11 +4,11 @@ import org.CashCatalysts.CashCatalysts.Database.BudgetsTable;
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterTypeHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.sql.SQLException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 public class BudgetHandler {
@@ -55,9 +55,9 @@ public class BudgetHandler {
         }
     }
 
-    public List<Budget> getAllBudgetsBetween(LocalDate start, LocalDate end) {
+    public List<Budget> getAllBudgetsBetween(DateRange dateRange) {
         try {
-            return budgetsTable.getAllTransactionsBetween(start, end);
+            return budgetsTable.getAllTransactionsBetween(dateRange.begin(), dateRange.end());
         } catch (SQLException e) {
             return null;
         }
@@ -72,27 +72,7 @@ public class BudgetHandler {
     }
 
     public List<Budget> getAllBudgetsOn(DateFilterType filter) {
-        LocalDate begin;
-        LocalDate end;
-        switch (filter) {
-            case DateFilterType.DAY:
-                begin = LocalDate.from(LocalDate.now().atStartOfDay());
-                end = LocalDate.from(LocalDate.now().atTime(23, 59, 59));
-                return getAllBudgetsBetween(begin, end);
-            case DateFilterType.WEEK:
-                begin = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-                end = LocalDate.now().with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-                return getAllBudgetsBetween(begin, end);
-            case DateFilterType.MONTH:
-                begin = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
-                end = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
-                return getAllBudgetsBetween(begin, end);
-            case DateFilterType.YEAR:
-                begin = LocalDate.now().with(TemporalAdjusters.firstDayOfYear());
-                end = LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
-                return getAllBudgetsBetween(begin, end);
-        }
-        return List.of();
+        return getAllBudgetsBetween(DateFilterTypeHandler.getDateRangeFromFilterType(filter));
     }
 
     public void updateBudget(LocalDate date, Currency amount) {
