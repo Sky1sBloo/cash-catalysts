@@ -63,6 +63,14 @@ public class BudgetHandler {
         }
     }
 
+    public Currency getAmountOnBudgetsBetween(DateRange dateRange) {
+        int totalAmountCents = 0;
+        for (Budget budget : getAllBudgetsBetween(dateRange)) {
+            totalAmountCents += budget.amount().getAmountCents();
+        }
+        return new Currency(totalAmountCents);
+    }
+
     public List<Budget> getAllBudgets() {
         try {
             return budgetsTable.getAllBudgets();
