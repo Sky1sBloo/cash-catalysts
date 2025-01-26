@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.UserProfile;
 
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.Database.UsersTable;
+import org.CashCatalysts.CashCatalysts.game.GameInventory;
 
 import java.sql.SQLException;
 
@@ -10,16 +11,24 @@ import java.sql.SQLException;
  */
 public class UsersHandler {
     private final UsersTable usersTable;
+    private GameInventory gameInventory;
+    private User currentUser;
 
     /**
      * Constructs a UsersHandler with the DatabaseHandler
      *
      * @param dbHandler DatabaseHandler to interact with the database
      */
-
     public UsersHandler(DatabaseHandler dbHandler)
     {
         this.usersTable = dbHandler.getUsersTable();
+        try {
+            if (currentUser != null) {
+                this.gameInventory = dbHandler.getGameInventoryTable().getGameInventory(currentUser.id());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -37,7 +46,7 @@ public class UsersHandler {
         if (rank < 1) {
             throw new IllegalArgumentException("Rank can't be negative.");
         }
-        return new User(userID, username, rank);
+        return new User(userID, username);
     }
 
     /**
@@ -48,7 +57,7 @@ public class UsersHandler {
         if (username == null || username.isBlank()) {
             throw new IllegalArgumentException("Fill in username.");
         }
-        return new User(null, username, 1);
+        return new User(null, username);
     }
 
     /**
@@ -62,7 +71,7 @@ public class UsersHandler {
         if (rank < 1) {
             throw new IllegalArgumentException("Rank can't be negative.");
         }
-        return new User(null, username, rank);
+        return new User(null, username);
     }
 
     /**
@@ -76,8 +85,7 @@ public class UsersHandler {
         try {
             return usersTable.registerUser(user);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
+            throw new RuntimeException(e);
         }
     }
 
@@ -91,8 +99,7 @@ public class UsersHandler {
         try {
             return usersTable.getUser(id);
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
@@ -106,7 +113,7 @@ public class UsersHandler {
         try {
             usersTable.updateUser(id, user);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -119,7 +126,15 @@ public class UsersHandler {
         try {
             usersTable.deleteUser(id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+    }
+
+    public void login(User user) {
+        this.currentUser = user;
+    }
+
+    public GameInventory getCurrentUserGameInventory() {
+        return gameInventory;
     }
 }

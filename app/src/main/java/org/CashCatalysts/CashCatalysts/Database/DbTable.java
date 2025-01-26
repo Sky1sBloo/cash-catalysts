@@ -30,6 +30,17 @@ public abstract class DbTable {
     }
 
     /**
+     * Method to define the table schema
+     *
+     * @param tableName   Name of the table
+     * @param fields      All fields of the table, see DbField
+     * @param constraints All constraints of the table
+     */
+    public void createTable(String tableName, DbField[] fields, String[] constraints) throws SQLException {
+        connection.createStatement().execute(tableSchema(tableName, fields, constraints));
+    }
+
+    /**
      * Gets the last row id of added insert
      * Generally used after registering a new primary key
      *
@@ -55,6 +66,27 @@ public abstract class DbTable {
         StringBuilder schema = new StringBuilder("CREATE TABLE IF NOT EXISTS " + tableName + " (");
         for (DbField field : fields) {
             schema.append(field.toString()).append(", ");
+        }
+        schema.deleteCharAt(schema.length() - 2);
+        schema.append(");");
+        return schema.toString();
+    }
+
+
+    /**
+     * Method to define the table schema
+     *
+     * @param tableName Name of the table
+     * @param fields    All fields of the table, see DbField
+     * @return Schematic representation of the table
+     */
+    private String tableSchema(String tableName, DbField[] fields, String[] constraints) {
+        StringBuilder schema = new StringBuilder("CREATE TABLE IF NOT EXISTS " + tableName + " (");
+        for (DbField field : fields) {
+            schema.append(field.toString()).append(", ");
+        }
+        for (String constraint : constraints) {
+            schema.append(constraint).append(", ");
         }
         schema.deleteCharAt(schema.length() - 2);
         schema.append(");");
