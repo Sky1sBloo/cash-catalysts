@@ -1,5 +1,6 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
+import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SubscriptionsTable extends DbTable {
 
@@ -71,10 +74,23 @@ public class SubscriptionsTable extends DbTable {
         return stmt.executeQuery();
     }
 
-    public ResultSet getAllSubscriptions() throws SQLException {
+    public List<Subscription> getAllSubscriptions() throws SQLException {
+        List<Subscription> subscriptions = new ArrayList<>();
         String query = "SELECT * FROM subscriptions";
         Statement stmt = connection.createStatement();
-        return stmt.executeQuery(query);
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            subscriptions.add(new Subscription(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    TransactionType.valueOf(rs.getString("type")),
+                    SubscriptionFrequency.valueOf(rs.getString("frequency")),
+                    rs.getDate("startDate").toLocalDate(),
+                    rs.getDate("endDate").toLocalDate(),
+                    new Currency(rs.getInt("amountCents"))
+            ));
+        }
+        return subscriptions;
     }
 
     public Subscription getSubscription(int id) throws SQLException {

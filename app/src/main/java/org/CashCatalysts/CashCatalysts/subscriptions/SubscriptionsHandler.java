@@ -42,6 +42,14 @@ public class SubscriptionsHandler {
         }
     }
 
+    public List<Subscription> getAllSubscriptions() {
+        try {
+            return subscriptionsTable.getAllSubscriptions();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void editSubscription(Subscription subscription) {
         try {
             subscriptionsTable.editSubscription(subscription);
