@@ -26,13 +26,14 @@ public class SubscriptionsHandler {
         return new Subscription(null, name, type, frequency, startDate, endDate, amount);
     }
 
-    public void addSubscription(Subscription subscription) {
+    public int addSubscription(Subscription subscription) {
         try {
-            subscriptionsTable.insertSubscription(subscription);
+            int id = subscriptionsTable.insertSubscription(subscription);
+            addTransactionForSubscription(subscription);
+            return id;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        addTransactionForSubscription(subscription);
     }
 
     public Subscription getSubscription(int id) {
@@ -73,10 +74,6 @@ public class SubscriptionsHandler {
 
     private void addTransactionForSubscription(Subscription subscription) {
         LocalDate currentDate = subscription.startDate();
-    }
-
-    public void addTransactionsForSubscriptions(Subscription subscription) {
-        LocalDate currentDate = subscription.startDate();
 
         while (currentDate.isBefore(subscription.endDate())) {
             if (transactionHandler.getTransactionOnSubscriptionWithDate(subscription, currentDate) == null) {
@@ -93,7 +90,7 @@ public class SubscriptionsHandler {
         }
     }
 
-    public void deleteAllTransactionsOnSubscriptionAfterDate(Subscription subscription, LocalDate date) {
+    private void deleteAllTransactionsOnSubscriptionAfterDate(Subscription subscription, LocalDate date) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsOnSubscription(subscription);
         transactions.stream()
                 .filter(transaction -> transaction.date().isAfter(date))
