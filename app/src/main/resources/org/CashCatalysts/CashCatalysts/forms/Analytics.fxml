@@ -25,7 +25,7 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
          <children>
-            <PieChart />
+            <PieChart fx:id="yearly_expense_breakdown_pie" />
             <Label text="Yearly Expense Breakdown">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -35,7 +35,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="1">
          <children>
-            <PieChart />
+            <PieChart fx:id="monthly_expense_breakdown_pie" />
             <Label text="Monthly Expense Breakdown">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -57,12 +57,12 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
                      <children>
-                        <Label text="Savings Growth (%)">
+                        <Label text="Savings">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <LineChart prefHeight="150.0" prefWidth="185.0">
+                        <LineChart fx:id="savings_linechart" prefHeight="150.0" prefWidth="185.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -79,7 +79,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <LineChart prefHeight="150.0" prefWidth="185.0">
+                        <LineChart fx:id="income_and_expenses_linechart" prefHeight="150.0" prefWidth="185.0">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -96,6 +96,7 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
+                        <Label fx:id="total_yearly_expense_lbl" text="0" />
                      </children>
                   </HBox>
                </children>
@@ -104,7 +105,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <LineChart>
+            <LineChart fx:id="yearly_activity_linechart">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -141,6 +142,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="highest_category_yearly_lbl" text="None" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="1">
@@ -155,6 +157,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="highest_category_monthly_lbl" text="None" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="2">
@@ -164,6 +167,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="highest_transaction_lbl" text="None" />
                </children>
             </VBox>
          </children>
@@ -185,6 +189,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="avg_monthly_expenses_lbl" text="0" />
                   <Label>
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -199,6 +204,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="recurring_expenses_lbl" text="None" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="2">
@@ -208,6 +214,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
+                  <Label fx:id="comparison_to_last_month_lbl" text="0" />
                </children>
             </VBox>
          </children>

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class MainWindowController {
     private final TransactionHandler transactionHandler;
     private final BudgetHandler budgetHandler;
     private final GoalsHandler goalsHandler;
+    private final UserStatsSystem userStatsSystem;
 
     @FXML
     private Pane main_root;
@@ -22,10 +24,11 @@ public class MainWindowController {
     @FXML
     private Pane nav_menu;
 
-    public MainWindowController(TransactionHandler transactionHandler, BudgetHandler budgetHandler, GoalsHandler goalsHandler) {
+    public MainWindowController(TransactionHandler transactionHandler, BudgetHandler budgetHandler, GoalsHandler goalsHandler, UserStatsSystem userStatsSystem) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
+        this.userStatsSystem = userStatsSystem;
     }
 
     @SuppressWarnings("unused")
@@ -56,7 +59,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onTransactionsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler));
+        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler, userStatsSystem));
     }
 
     @SuppressWarnings("unused")
@@ -76,11 +79,11 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onAnalyticsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Analytics.fxml");
+        loadPage("../forms/Analytics.fxml", new AnalysisController(userStatsSystem, transactionHandler));
     }
 
     @SuppressWarnings("unused")
     public void onGoalsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler));
+        loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler, transactionHandler, budgetHandler));
     }
 }

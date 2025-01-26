@@ -5,11 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.Budget;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -21,6 +24,8 @@ import java.util.List;
 public class TransactionsController {
     private final TransactionHandler transactionHandler;
     private final BudgetHandler budgetHandler;
+    private final UserStatsSystem userStatsSystem;
+
     private DateFilterType dateFilterType;
 
     @FXML
@@ -37,17 +42,24 @@ public class TransactionsController {
     private Button add_budget_btn;
     @FXML
     private Label number_of_transactions;
+    @FXML
+    private Label savings_lbl;
+    @FXML
+    private Label monthly_budget_label;
+    @FXML
+    private Label yearly_budget_label;
 
 
-    public TransactionsController(TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
+    public TransactionsController(TransactionHandler transactionHandler, BudgetHandler budgetHandler, UserStatsSystem userStatsSystem) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
+        this.userStatsSystem = userStatsSystem;
     }
 
     @SuppressWarnings("unused")
     public void initialize() {
         filter_selection.setOnAction((ignore) -> setFilter(filter_selection.getSelectionModel().getSelectedItem()));
-        filter_selection.getItems().addAll(DateFilterType.DAY, DateFilterType.WEEK, DateFilterType.MONTH, DateFilterType.YEAR);
+        filter_selection.getItems().addAll(DateFilterType.values());
         filter_selection.getSelectionModel().selectFirst();
         dateFilterType = filter_selection.getSelectionModel().getSelectedItem();
 
@@ -58,6 +70,7 @@ public class TransactionsController {
     }
 
     private void refresh() {
+        DateRange dateRange = DateFilterHandler.getDateRangeFromFilterType(dateFilterType);
         try {
             loadTransactions(transactionHandler.getAllTransactionsOn(dateFilterType));
         } catch (IOException e) {
@@ -71,6 +84,13 @@ public class TransactionsController {
             daily_budget_lbl.setText("None");
         }
         number_of_transactions.setText(String.valueOf(transactionHandler.getAllTransactionsOn(dateFilterType).size()));
+        savings_lbl.setText(userStatsSystem.getSavings(dateRange).toString());
+        monthly_budget_label.setText(budgetHandler.getAmountOnBudgetsBetween(
+                DateFilterHandler.getDateRangeFromFilterType(DateFilterType.MONTH)
+        ).toString());
+        yearly_budget_label.setText(budgetHandler.getAmountOnBudgetsBetween(
+                DateFilterHandler.getDateRangeFromFilterType(DateFilterType.YEAR)
+        ).toString());
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {

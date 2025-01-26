@@ -78,7 +78,7 @@
                         <VBox prefHeight="61.0" prefWidth="194.0">
                            <children>
                               <Label text="Spent" />
-                              <Label text="Php 0">
+                              <Label fx:id="month_expense_lbl" text="Php 0">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -102,12 +102,12 @@
                         <VBox prefHeight="61.0" prefWidth="194.0">
                            <children>
                               <Label text="Earned" />
-                              <Label text="Php 0">
+                              <Label fx:id="month_budget_lbl" text="Php 0">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="This Month's Income">
+                              <Label text="This Month's Budget">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -126,6 +126,12 @@
             <HBox fx:id="budget_so_far_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card">
                <children>
                   <Label text="Budget So Far:" />
+                  <HBox prefHeight="60.0" prefWidth="12.0" />
+                  <Label fx:id="budget_remaining_lbl" text="Php 0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </HBox>
          </children>

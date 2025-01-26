@@ -78,7 +78,7 @@ public class TransactionsTable extends DbTable {
      */
     public List<Transaction> getAllTransactionsBetween(LocalDate start, LocalDate end) throws SQLException {
         List<Transaction> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM transactions WHERE date BETWEEN ? and ?";
+        String sql = "SELECT * FROM transactions WHERE date BETWEEN ? and ? ORDER BY date ASC;";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
         getStatement.setDate(1, Date.valueOf(start));
@@ -99,7 +99,7 @@ public class TransactionsTable extends DbTable {
 
     public List<Transaction> getAllTransactions() throws SQLException {
          List<Transaction> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM transactions;";
+        String sql = "SELECT * FROM transactions ORDER BY date;";
         PreparedStatement getStatement = connection.prepareStatement(sql);
 
         ResultSet rs = getStatement.executeQuery();
@@ -119,7 +119,7 @@ public class TransactionsTable extends DbTable {
      * Updates the transaction by id
      */
     public void updateTransaction(int id, Transaction toUpdate) throws SQLException {
-        String sql = "UPDATE transactions SET name = ?, type = ?, date = ?, amount_cents = ? WHERE transaction_id = ?";
+        String sql = "UPDATE transactions SET name = ?, type = ?, date = ?, amount_cents = ? WHERE transaction_id = ?;";
         PreparedStatement updateStatement = connection.prepareStatement(sql);
 
         updateStatement.setString(1, toUpdate.name());
