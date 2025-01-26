@@ -34,13 +34,13 @@ public class App extends Application {
         MainWindowController controller = new MainWindowController(transactionHandler, budgetHandler, goalsHandler, userStatsSystem);
         loader.setController(controller);
 
-        /*
         for (Transaction transaction : TransactionExamples.getExampleTransactions()) {
             transactionHandler.addTransaction(transaction);
         }
         for (Budget budget : BudgetTests.createTestBudgets()) {
             budgetHandler.addBudget(budget);
-        } */
+        }
+
         Parent root = loader.load();
 
         Scene scene = new Scene(root);

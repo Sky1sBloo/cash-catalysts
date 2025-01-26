@@ -59,7 +59,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onTransactionsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler));
+        loadPage("../forms/Transactions.fxml", new TransactionsController(transactionHandler, budgetHandler, userStatsSystem));
     }
 
     @SuppressWarnings("unused")

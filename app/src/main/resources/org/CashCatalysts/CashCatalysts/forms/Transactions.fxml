@@ -22,7 +22,7 @@
                </image>
             </ImageView>
             <Label text="Savings" />
-            <Label text="0" />
+            <Label fx:id="savings_lbl" text="0" />
             <ImageView fitHeight="61.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/coin.png" />

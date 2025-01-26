@@ -8,6 +8,7 @@ import javafx.stage.StageStyle;
 import org.CashCatalysts.CashCatalysts.Transactions.FilterType;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.Budget;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class TransactionsController {
     private final TransactionHandler transactionHandler;
     private final BudgetHandler budgetHandler;
+    private final UserStatsSystem userStatsSystem;
     private FilterType filterType;
 
     @FXML
@@ -37,11 +39,14 @@ public class TransactionsController {
     private Button add_budget_btn;
     @FXML
     private Label number_of_transactions;
+    @FXML
+    private Label savings_lbl;
 
 
-    public TransactionsController(TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
+    public TransactionsController(TransactionHandler transactionHandler, BudgetHandler budgetHandler, UserStatsSystem userStatsSystem) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
+        this.userStatsSystem = userStatsSystem;
     }
 
     @SuppressWarnings("unused")
@@ -71,6 +76,7 @@ public class TransactionsController {
             daily_budget_lbl.setText("None");
         }
         number_of_transactions.setText(String.valueOf(transactionHandler.getAllTransactionsOn(filterType).size()));
+        savings_lbl.setText(userStatsSystem.getSavings(LocalDate.now(), LocalDate.now()).toString());
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {

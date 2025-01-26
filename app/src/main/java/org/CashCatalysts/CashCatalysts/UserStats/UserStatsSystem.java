@@ -164,4 +164,18 @@ public class UserStatsSystem {
                 .sorted(Map.Entry.comparingByKey())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
     }
+
+    public Currency getSavings(LocalDate startDate, LocalDate endDate) {
+        int totalSavings = 0;
+
+        Map<String, Currency> budgets = getMonthlyBudgetsBreakdown(startDate, endDate);
+        Map<String, Currency> transactions = getMonthlyExpenseBreakdown(startDate, endDate);
+
+        for (Map.Entry<String, Currency> budgetEntry : budgets.entrySet()) {
+            String month = budgetEntry.getKey();
+            totalSavings += budgetEntry.getValue().getAmountCents() - transactions.getOrDefault(month, new Currency(0)).getAmountCents();
+        }
+
+        return new Currency(totalSavings);
+    }
 }
