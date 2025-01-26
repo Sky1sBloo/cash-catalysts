@@ -52,6 +52,14 @@ public class CooldownHandler {
     }
 
     /**
+     * Checks if specified cooldown id is finished
+     */
+    public boolean cooldownIsFinished(int id, LocalDateTime dateTime) {
+        Cooldown cooldown = getCooldown(id);
+        return dateTime.isAfter(cooldown.cooldownEnd());
+    }
+
+    /**
      * Retrieves all cooldowns that are finished
      */
     public List<Cooldown> getAllFinishedCooldowns(LocalDateTime dateTime) {
