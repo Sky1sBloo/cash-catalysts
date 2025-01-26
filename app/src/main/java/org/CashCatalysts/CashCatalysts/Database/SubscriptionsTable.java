@@ -1,5 +1,6 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
+import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionFrequency;
@@ -32,7 +33,7 @@ public class SubscriptionsTable extends DbTable {
         String query = "INSERT INTO subscriptions (name, type, frequency, startDate, endDate, amountCents) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, subscription.name());
-        stmt.setString(2, subscription.type());
+        stmt.setString(2, subscription.type().toString());
         stmt.setString(3, subscription.frequency().name());
         stmt.setDate(4, Date.valueOf(subscription.startDate()));
         stmt.setDate(5, Date.valueOf(subscription.endDate()));
@@ -45,7 +46,7 @@ public class SubscriptionsTable extends DbTable {
         String query = "UPDATE subscriptions SET name = ?, type = ?, frequency = ?, startDate = ?, endDate = ?, startAmount = ?, amountCents = ? WHERE id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, subscription.name());
-        stmt.setString(2, subscription.type());
+        stmt.setString(2, subscription.type().toString());
         stmt.setString(3, subscription.frequency().name());
         stmt.setDate(4, Date.valueOf(subscription.startDate()));
         stmt.setDate(5, Date.valueOf(subscription.endDate()));
@@ -85,7 +86,7 @@ public class SubscriptionsTable extends DbTable {
             return new Subscription(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getString("type"),
+                    TransactionType.valueOf(rs.getString("type")),
                     SubscriptionFrequency.valueOf(rs.getString("frequency")),
                     rs.getDate("startDate").toLocalDate(),
                     rs.getDate("endDate").toLocalDate(),

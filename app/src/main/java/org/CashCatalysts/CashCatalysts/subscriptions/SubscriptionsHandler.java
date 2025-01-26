@@ -4,6 +4,7 @@ import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.Database.SubscriptionsTable;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
@@ -21,7 +22,7 @@ public class SubscriptionsHandler {
         this.transactionHandler = transactionHandler;
     }
 
-    public static Subscription createSubscription(String name, String type, SubscriptionFrequency frequency, LocalDate startDate, LocalDate endDate, Currency amount) {
+    public static Subscription createSubscription(String name, TransactionType type, SubscriptionFrequency frequency, LocalDate startDate, LocalDate endDate, Currency amount) {
         return new Subscription(null, name, type, frequency, startDate, endDate, amount);
     }
 
@@ -61,7 +62,7 @@ public class SubscriptionsHandler {
             if (transactionHandler.getTransactionOnSubscriptionWithDate(subscription, currentDate) == null) {
                 continue;
             }
-            transactionHandler.addTransaction(TransactionHandler.createTransaction(subscription.name(), subscription.type(), currentDate, subscription.amount(), subscription.id()));
+            transactionHandler.addTransaction(TransactionHandler.createTransaction(subscription.name(), subscription.type().toString(), currentDate, subscription.amount(), subscription.id()));
             currentDate = switch (subscription.frequency()) {
                 case DAILY -> currentDate.plusDays(1);
                 case WEEKLY -> currentDate.plusWeeks(1);
