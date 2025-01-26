@@ -32,8 +32,8 @@ public class DateFilterHandler {
                 yield LocalDate.now().with(TemporalAdjusters.lastDayOfYear());
             }
             case DateFilterType.ALL -> {
-                begin = LocalDate.MIN;
-                yield LocalDate.MAX;
+                begin = LocalDate.of(1970, 1, 1);
+                yield LocalDate.of(9999, 12, 31);
             }
         };
 
