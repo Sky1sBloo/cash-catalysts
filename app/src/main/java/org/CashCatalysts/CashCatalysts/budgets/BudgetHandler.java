@@ -4,7 +4,7 @@ import org.CashCatalysts.CashCatalysts.Database.BudgetsTable;
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
-import org.CashCatalysts.CashCatalysts.datatypes.DateFilterTypeHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.sql.SQLException;
@@ -72,7 +72,7 @@ public class BudgetHandler {
     }
 
     public List<Budget> getAllBudgetsOn(DateFilterType filter) {
-        return getAllBudgetsBetween(DateFilterTypeHandler.getDateRangeFromFilterType(filter));
+        return getAllBudgetsBetween(DateFilterHandler.getDateRangeFromFilterType(filter));
     }
 
     public void updateBudget(LocalDate date, Currency amount) {

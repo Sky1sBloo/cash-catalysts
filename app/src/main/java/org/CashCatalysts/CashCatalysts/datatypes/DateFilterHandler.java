@@ -7,7 +7,7 @@ import java.time.temporal.TemporalAdjusters;
 /**
  * Handles date time filter
  */
-public class DateFilterTypeHandler {
+public class DateFilterHandler {
     /**
      * Returns a date range from a filter type
      * Returns the minimum and maximum range if invalid
