@@ -26,29 +26,49 @@ public class SubscriptionsHandler {
         return new Subscription(null, name, type, frequency, startDate, endDate, amount);
     }
 
-    public void addSubscription(Subscription subscription) throws SQLException {
-        subscriptionsTable.insertSubscription(subscription);
+    public void addSubscription(Subscription subscription) {
+        try {
+            subscriptionsTable.insertSubscription(subscription);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         addTransactionForSubscription(subscription);
     }
 
-    public Subscription getSubscription(int id) throws SQLException {
-        return subscriptionsTable.getSubscription(id);
+    public Subscription getSubscription(int id) {
+        try {
+            return subscriptionsTable.getSubscription(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public void editSubscription(Subscription subscription) throws SQLException {
-        subscriptionsTable.editSubscription(subscription);
+    public void editSubscription(Subscription subscription) {
+        try {
+            subscriptionsTable.editSubscription(subscription);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Deletes a subscription and all transactions after startDeletion associated with it
      */
-    public void deleteSubscription(int id, LocalDate startDeletion) throws SQLException {
-        subscriptionsTable.deleteSubscription(id);
+    public void deleteSubscription(int id, LocalDate startDeletion) {
+        try {
+            subscriptionsTable.deleteSubscription(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         deleteAllTransactionsOnSubscriptionAfterDate(getSubscription(id), startDeletion);
     }
 
-    public ResultSet filterSubscriptionsByDateAndType(String type, DateRange dateRange) throws SQLException {
-        return subscriptionsTable.filterSubscriptionsByDateAndType(type, dateRange.begin(), dateRange.end());
+    public ResultSet filterSubscriptionsByDateAndType(String type, DateRange dateRange) {
+        try {
+            return subscriptionsTable.filterSubscriptionsByDateAndType(type, dateRange.begin(), dateRange.end());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void addTransactionForSubscription(Subscription subscription) {
