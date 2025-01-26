@@ -36,14 +36,14 @@
                </image>
             </ImageView>
             <Label text="Monthly Budget" />
-            <Label text="0" />
+            <Label fx:id="monthly_budget_label" text="0" />
             <ImageView fitHeight="91.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/moneymany.png" />
                </image>
             </ImageView>
             <Label text="Yearly Budget" />
-            <Label text="0" />
+            <Label fx:id="yearly_budget_label" text="0" />
          </children>
       </VBox>
    </right>
