@@ -79,7 +79,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onAnalyticsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Analytics.fxml", new AnalysisController(userStatsSystem));
+        loadPage("../forms/Analytics.fxml", new AnalysisController(userStatsSystem, transactionHandler));
     }
 
     @SuppressWarnings("unused")

@@ -5,15 +5,22 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
+import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class AnalysisController {
     private final UserStatsSystem userStatsSystem;
+    private final TransactionHandler transactionHandler;
 
     @FXML
     private Label highest_category_monthly_lbl;
@@ -26,6 +33,10 @@ public class AnalysisController {
     @FXML
     private Label total_yearly_expense_lbl;
     @FXML
+    private Label highest_transaction_lbl;
+    @FXML
+    private Label recurring_expenses_lbl;
+    @FXML
     private LineChart<String, Integer> yearly_activity_linechart;
     @FXML
     private LineChart<String, Integer> income_and_expenses_linechart;
@@ -36,14 +47,16 @@ public class AnalysisController {
     @FXML
     private PieChart yearly_expense_breakdown_pie;
 
-    public AnalysisController(UserStatsSystem userStatsSystem) {
+    public AnalysisController(UserStatsSystem userStatsSystem, TransactionHandler transactionHandler) {
         this.userStatsSystem = userStatsSystem;
+        this.transactionHandler = transactionHandler;
     }
 
     @SuppressWarnings("unused")
     public void initialize() {
         loadHighestCategory();
         loadComparisonToLastMonth();
+        loadHighestExpenseThisMonth();
         loadYearlyActivity();
         loadMonthlyExpenseBreakdown();
         loadYearlyExpenseBreakdown();
@@ -51,6 +64,7 @@ public class AnalysisController {
         loadTotalYearlyExpenses();
         loadIncomeAndExpenseGraph();
         loadSavingsGraph();
+        loadRecurringExpenses();
     }
 
     private void loadHighestCategory() {
@@ -195,5 +209,26 @@ public class AnalysisController {
         }
 
         savings_linechart.getData().add(netSavingsSeries);
+    }
+
+    private void loadHighestExpenseThisMonth() {
+        List<Transaction> transactionList = transactionHandler.getAllTransactionsOn(DateFilterType.MONTH);
+
+        Transaction highestTransaction = null;
+        for (Transaction transaction : transactionList) {
+            if (highestTransaction == null || transaction.amount().getAmountCents() > highestTransaction.amount().getAmountCents()) {
+                highestTransaction = transaction;
+            }
+        }
+        highest_transaction_lbl.setText(transactionToAnalysisString(highestTransaction));
+    }
+
+    private void loadRecurringExpenses() {
+        String recurringExpenseName = userStatsSystem.getRecurringExpenses(DateFilterHandler.getDateRangeFromFilterType(DateFilterType.ALL)).getFirst();
+        recurring_expenses_lbl.setText(Objects.requireNonNullElse(recurringExpenseName, "None"));
+    }
+
+    private static String transactionToAnalysisString(Transaction transaction) {
+        return transaction != null ? transaction.type() + ": " + transaction.name() + " - " + transaction.amount() : null;
     }
 }
