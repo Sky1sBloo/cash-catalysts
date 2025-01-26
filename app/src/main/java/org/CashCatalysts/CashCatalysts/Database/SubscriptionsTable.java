@@ -1,6 +1,5 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
-import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionType;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
 import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;

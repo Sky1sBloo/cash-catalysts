@@ -113,8 +113,6 @@ public class SubscriptionsHandler {
         List<Transaction> transactions = transactionHandler.getAllTransactionsOnSubscription(subscription);
         transactions.stream()
                 .filter(transaction -> transaction.date().isAfter(date))
-                .forEach(transaction -> {
-                    transactionHandler.deleteTransaction(transaction.transactionId());
-                });
+                .forEach(transaction -> transactionHandler.deleteTransaction(transaction.transactionId()));
     }
 }
