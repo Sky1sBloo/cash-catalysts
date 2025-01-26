@@ -25,7 +25,12 @@ public class TransactionsTable extends DbTable {
                 new DbField("name", "VARCHAR(255)"),
                 new DbField("type", "VARCHAR(255)", "NOT NULL"),
                 new DbField("date", "DATE", "NOT NULL"),
-                new DbField("amount_cents", "INTEGER", "NOT NULL")
+                new DbField("amount_cents", "INTEGER", "NOT NULL"),
+                new DbField("subscription_id", "INTEGER", "NOT NULL ON DELETE SET NULL")
+        };
+
+        String[] constraints = {
+                "FOREIGN KEY (subscription_id) REFERENCES subscriptions(id)"
         };
         super.createTable("transactions", fields);
     }
@@ -67,7 +72,8 @@ public class TransactionsTable extends DbTable {
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
-                    new Currency(rs.getInt("amount_cents"))
+                    new Currency(rs.getInt("amount_cents")),
+                    rs.getInt("subscription_id")
             );
         }
         return null;
@@ -91,7 +97,8 @@ public class TransactionsTable extends DbTable {
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
-                    new Currency(rs.getInt("amount_cents"))
+                    new Currency(rs.getInt("amount_cents")),
+                    rs.getInt("subscription_id")
             ));
         }
         return transactions;
@@ -109,7 +116,8 @@ public class TransactionsTable extends DbTable {
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
-                    new Currency(rs.getInt("amount_cents"))
+                    new Currency(rs.getInt("amount_cents")),
+                    rs.getInt("subscription_id")
             ));
         }
         return transactions;

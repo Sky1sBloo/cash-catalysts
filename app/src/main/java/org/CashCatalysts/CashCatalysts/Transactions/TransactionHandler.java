@@ -31,7 +31,20 @@ public class TransactionHandler {
         if (date == null) {
             throw new IllegalArgumentException("Date is null");
         }
-        return new Transaction(null, name, type, date, amount);
+        return new Transaction(null, name, type, date, amount, null);
+    }
+
+    /**
+     * Creates a new transaction with subscription id
+     */
+    public static Transaction createTransaction(String name, String type, LocalDate date, Currency amount, int subscriptionId) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name is missing");
+        }
+        if (date == null) {
+            throw new IllegalArgumentException("Date is null");
+        }
+        return new Transaction(null, name, type, date, amount, subscriptionId);
     }
 
     /**
@@ -110,7 +123,7 @@ public class TransactionHandler {
     /**
      * Updates the details of an existing transaction
      *
-     * @param id the id of the transaction to be updates
+     * @param id          the id of the transaction to be updates
      * @param transaction the updated transaction information
      */
     public void updateTransaction(int id, Transaction transaction) {
