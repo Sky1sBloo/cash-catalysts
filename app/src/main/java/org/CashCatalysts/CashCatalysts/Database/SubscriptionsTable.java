@@ -43,7 +43,7 @@ public class SubscriptionsTable extends DbTable {
     }
 
     public void editSubscription(Subscription subscription) throws SQLException {
-        String query = "UPDATE subscriptions SET name = ?, type = ?, frequency = ?, startDate = ?, endDate = ?, startAmount = ?, amountCents = ? WHERE id = ?";
+        String query = "UPDATE subscriptions SET name = ?, type = ?, frequency = ?, startDate = ?, endDate = ?, amountCents = ? WHERE id = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, subscription.name());
         stmt.setString(2, subscription.type().toString());
@@ -51,7 +51,7 @@ public class SubscriptionsTable extends DbTable {
         stmt.setDate(4, Date.valueOf(subscription.startDate()));
         stmt.setDate(5, Date.valueOf(subscription.endDate()));
         stmt.setInt(6, subscription.amount().getAmountCents());
-        stmt.setInt(8, subscription.id());
+        stmt.setInt(7, subscription.id());
         stmt.executeUpdate();
     }
 

@@ -41,7 +41,7 @@ public class TransactionsTable extends DbTable {
      * Note: Converts the transaction amount to cents
      */
     public int addTransaction(Transaction transaction) throws SQLException {
-        String sql = "INSERT INTO transactions (name, type, date, amount_cents) VALUES(?, ?, ?, ?);";
+        String sql = "INSERT INTO transactions (name, type, date, amount_cents, subscription_id) VALUES(?, ?, ?, ?, ?);";
         PreparedStatement addStatement = connection.prepareStatement(sql);
 
         addStatement.setString(1, transaction.name());
@@ -49,6 +49,11 @@ public class TransactionsTable extends DbTable {
         addStatement.setDate(3, Date.valueOf(transaction.date()));
         // Get decimal part
         addStatement.setInt(4, transaction.amount().getAmountCents());
+        if (transaction.subscriptionId() == null) {
+            addStatement.setNull(5, Types.INTEGER);
+        } else {
+            addStatement.setInt(5, transaction.subscriptionId());
+        }
 
         addStatement.executeUpdate();
         return getLastRowId();

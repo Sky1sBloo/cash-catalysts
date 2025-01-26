@@ -28,9 +28,7 @@ public class SubscriptionsHandler {
 
     public int addSubscription(Subscription subscription) {
         try {
-            int id = subscriptionsTable.insertSubscription(subscription);
-            addTransactionForSubscription(subscription);
-            return id;
+            return subscriptionsTable.insertSubscription(subscription);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -56,12 +54,12 @@ public class SubscriptionsHandler {
      * Deletes a subscription and all transactions after startDeletion associated with it
      */
     public void deleteSubscription(int id, LocalDate startDeletion) {
+        deleteAllTransactionsOnSubscriptionAfterDate(getSubscription(id), startDeletion);
         try {
             subscriptionsTable.deleteSubscription(id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        deleteAllTransactionsOnSubscriptionAfterDate(getSubscription(id), startDeletion);
     }
 
     public ResultSet filterSubscriptionsByDateAndType(String type, DateRange dateRange) {
@@ -72,14 +70,17 @@ public class SubscriptionsHandler {
         }
     }
 
-    private void addTransactionForSubscription(Subscription subscription) {
-        LocalDate currentDate = subscription.startDate();
+    /**
+     * Automatically adds transactions for a subscription from the parameter start date to the last date
+     * Generally used after editing a subscription
+     */
+    public void addTransactionForSubscription(Subscription subscription, LocalDate startDate) {
+        LocalDate currentDate = startDate;
 
         while (currentDate.isBefore(subscription.endDate())) {
             if (transactionHandler.getTransactionOnSubscriptionWithDate(subscription, currentDate) == null) {
-                continue;
+                transactionHandler.addTransaction(TransactionHandler.createTransaction(subscription.name(), subscription.type().toString(), currentDate, subscription.amount(), subscription.id()));
             }
-            transactionHandler.addTransaction(TransactionHandler.createTransaction(subscription.name(), subscription.type().toString(), currentDate, subscription.amount(), subscription.id()));
             currentDate = switch (subscription.frequency()) {
                 case DAILY -> currentDate.plusDays(1);
                 case WEEKLY -> currentDate.plusWeeks(1);
@@ -90,7 +91,17 @@ public class SubscriptionsHandler {
         }
     }
 
-    private void deleteAllTransactionsOnSubscriptionAfterDate(Subscription subscription, LocalDate date) {
+    /**
+     * Automatically adds transactions for a subscription from the start date to the last date
+     */
+    public void addTransactionForSubscription(Subscription subscription) {
+        addTransactionForSubscription(subscription, subscription.startDate());
+    }
+
+    /**
+     * Deletes all transactions on a subscription after a certain date
+     */
+    public void deleteAllTransactionsOnSubscriptionAfterDate(Subscription subscription, LocalDate date) {
         List<Transaction> transactions = transactionHandler.getAllTransactionsOnSubscription(subscription);
         transactions.stream()
                 .filter(transaction -> transaction.date().isAfter(date))
