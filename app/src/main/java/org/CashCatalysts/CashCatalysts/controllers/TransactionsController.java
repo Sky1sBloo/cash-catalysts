@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterHandler;
 import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
@@ -76,7 +77,7 @@ public class TransactionsController {
             daily_budget_lbl.setText("None");
         }
         number_of_transactions.setText(String.valueOf(transactionHandler.getAllTransactionsOn(dateFilterType).size()));
-        //savings_lbl.setText(userStatsSystem.getSavings(LocalDate.now(), LocalDate.now()).toString());
+        savings_lbl.setText(userStatsSystem.getSavings(DateFilterHandler.getDateRangeFromFilterType(dateFilterType)).toString());
     }
 
     private void loadTransactions(List<Transaction> transactions) throws IOException {

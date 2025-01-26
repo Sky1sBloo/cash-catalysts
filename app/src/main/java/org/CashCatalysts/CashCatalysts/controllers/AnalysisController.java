@@ -7,6 +7,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -56,11 +57,9 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfMonth = now.withDayOfMonth(1);
         LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
+        DateRange dateRangeMonth = new DateRange(startOfMonth, endOfMonth);
 
-        var highestExpenseCategory = userStatsSystem.getHighestExpenseCategory(
-                startOfMonth,
-                endOfMonth
-        );
+        var highestExpenseCategory = userStatsSystem.getHighestExpenseCategory(dateRangeMonth);
         if (highestExpenseCategory != null) {
             highest_category_monthly_lbl.setText(highestExpenseCategory.getKey());
         } else {
@@ -69,11 +68,9 @@ public class AnalysisController {
 
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeYear = new DateRange(startOfYear, endOfYear);
 
-        highestExpenseCategory = userStatsSystem.getHighestExpenseCategory(
-                startOfYear,
-                endOfYear
-        );
+        highestExpenseCategory = userStatsSystem.getHighestExpenseCategory(dateRangeYear);
         if (highestExpenseCategory != null) {
             highest_category_yearly_lbl.setText(highestExpenseCategory.getKey());
         } else {
@@ -92,8 +89,9 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeYear = new DateRange(startOfYear, endOfYear);
 
-        var yearlyExpenseBreakdown = userStatsSystem.getMonthlyExpenseBreakdown(startOfYear, endOfYear);
+        var yearlyExpenseBreakdown = userStatsSystem.getMonthlyExpenseBreakdown(dateRangeYear);
         yearly_activity_linechart.getData().clear();
 
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
@@ -108,8 +106,9 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfMonth = now.withDayOfMonth(1);
         LocalDate endOfMonth = now.withDayOfMonth(now.lengthOfMonth());
+        DateRange dateRangeMonth = new DateRange(startOfMonth, endOfMonth);
 
-        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(startOfMonth, endOfMonth);
+        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(dateRangeMonth);
         monthly_expense_breakdown_pie.getData().clear();
         for (Map.Entry<String, Integer> entry : categoryExpenses.entrySet()) {
             PieChart.Data slice = new PieChart.Data(entry.getKey(), entry.getValue());
@@ -121,8 +120,9 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfMonth = now.withDayOfYear(1);
         LocalDate endOfMonth = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeMonth = new DateRange(startOfMonth, endOfMonth);
 
-        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(startOfMonth, endOfMonth);
+        Map<String, Integer> categoryExpenses = userStatsSystem.getCategoryExpenses(dateRangeMonth);
         yearly_expense_breakdown_pie.getData().clear();
         for (Map.Entry<String, Integer> entry : categoryExpenses.entrySet()) {
             PieChart.Data slice = new PieChart.Data(entry.getKey(), entry.getValue());
@@ -134,8 +134,9 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeYear = new DateRange(startOfYear, endOfYear);
 
-        Currency averageMonthlyExpenses = userStatsSystem.getAverageMonthlyExpenses(startOfYear, endOfYear);
+        Currency averageMonthlyExpenses = userStatsSystem.getAverageMonthlyExpenses(dateRangeYear);
         avg_monthly_expenses_lbl.setText(String.valueOf(averageMonthlyExpenses));
     }
 
@@ -143,8 +144,9 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeYear = new DateRange(startOfYear, endOfYear);
 
-        Currency totalYearlyExpenses = userStatsSystem.getTotalYearlyExpenses(startOfYear, endOfYear);
+        Currency totalYearlyExpenses = userStatsSystem.getTotalYearlyExpenses(dateRangeYear);
         total_yearly_expense_lbl.setText(String.valueOf(totalYearlyExpenses));
     }
 
@@ -152,9 +154,10 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeYear = new DateRange(startOfYear, endOfYear);
 
-        Map<String, Currency> totalYearlyIncome = userStatsSystem.getMonthlyBudgetsBreakdown(startOfYear, endOfYear);
-        Map<String, Currency> totalYearlyExpenses = userStatsSystem.getMonthlyExpenseBreakdown(startOfYear, endOfYear);
+        Map<String, Currency> totalYearlyIncome = userStatsSystem.getMonthlyBudgetsBreakdown(dateRangeYear);
+        Map<String, Currency> totalYearlyExpenses = userStatsSystem.getMonthlyExpenseBreakdown(dateRangeYear);
 
         income_and_expenses_linechart.getData().clear();
         XYChart.Series<String, Integer> incomeSeries = new XYChart.Series<>();
@@ -175,9 +178,10 @@ public class AnalysisController {
         LocalDate now = LocalDate.now();
         LocalDate startOfYear = now.withDayOfYear(1);
         LocalDate endOfYear = now.withDayOfYear(now.lengthOfYear());
+        DateRange dateRangeYear = new DateRange(startOfYear, endOfYear);
 
-        Map<String, Currency> totalYearlyIncome = userStatsSystem.getMonthlyBudgetsBreakdown(startOfYear, endOfYear);
-        Map<String, Currency> totalYearlyExpenses = userStatsSystem.getMonthlyExpenseBreakdown(startOfYear, endOfYear);
+        Map<String, Currency> totalYearlyIncome = userStatsSystem.getMonthlyBudgetsBreakdown(dateRangeYear);
+        Map<String, Currency> totalYearlyExpenses = userStatsSystem.getMonthlyExpenseBreakdown(dateRangeYear);
 
         savings_linechart.getData().clear();
         XYChart.Series<String, Integer> netSavingsSeries = new XYChart.Series<>();
