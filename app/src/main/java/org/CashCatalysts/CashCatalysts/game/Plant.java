@@ -9,7 +9,8 @@ package org.CashCatalysts.CashCatalysts.game;
     SAMPAGUITA("sampaguita"),
     ORCHIDS("orchids"),
     SUNFLOWER("sunflower"),
-    ROSE("rose");
+    ROSE("rose"),
+    NONE("none");
 
     private final String tag;
 
