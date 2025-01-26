@@ -80,6 +80,9 @@ public class UserStatsSystem {
                         },
                         Collectors.counting()
                 )).size();
+        if (totalMonths == 0) {
+            return new Currency(0);
+        }
         return new Currency(totalAmount / totalMonths);
     }
 
