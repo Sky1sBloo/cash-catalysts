@@ -84,6 +84,6 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onGoalsClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler));
+        loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler, transactionHandler, budgetHandler));
     }
 }

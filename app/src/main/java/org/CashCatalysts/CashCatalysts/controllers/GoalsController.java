@@ -9,6 +9,12 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.Goal;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
+import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
+import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
+import org.CashCatalysts.CashCatalysts.budgets.Budget;
+import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.datatypes.DateFilterType;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.io.IOException;
@@ -17,6 +23,8 @@ import java.time.LocalDate;
 
 public class GoalsController {
     private final GoalsHandler goalsHandler;
+    private final TransactionHandler transactionHandler;
+    private final BudgetHandler budgetHandler;
 
     @FXML
     private ListView<Goal> goals_list;
@@ -30,9 +38,17 @@ public class GoalsController {
     private Button edit_goal_btn;
     @FXML
     private TableView<LocalDate> calendar_week;
+    @FXML
+    private Label month_expense_lbl;
+    @FXML
+    private Label month_budget_lbl;
+    @FXML
+    private Label budget_remaining_lbl;
 
-    public GoalsController(GoalsHandler goalsHandler) {
+    public GoalsController(GoalsHandler goalsHandler, TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
         this.goalsHandler = goalsHandler;
+        this.transactionHandler = transactionHandler;
+        this.budgetHandler = budgetHandler;
     }
 
     @SuppressWarnings("unused")
@@ -62,6 +78,22 @@ public class GoalsController {
         loadGoals();
         loadUpcomingGoals();
         loadCalendar();
+        loadBudgetOverview();
+    }
+
+    private void loadBudgetOverview() {
+        int totalExpense = 0;
+        for (Transaction transaction : transactionHandler.getAllTransactionsOn(DateFilterType.MONTH)) {
+            totalExpense += transaction.amount().getAmountCents();
+        }
+
+        int totalBudget = 0;
+        for (Budget budget : budgetHandler.getAllBudgets()) {
+            totalBudget += budget.amount().getAmountCents();
+        }
+        month_expense_lbl.setText(new Currency(totalExpense).toString());
+        month_budget_lbl.setText(new Currency(totalBudget).toString());
+        budget_remaining_lbl.setText(new Currency(totalBudget - totalExpense).toString());
     }
 
     private void loadGoals() {
