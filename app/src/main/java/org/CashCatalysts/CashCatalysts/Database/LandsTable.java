@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LandsTable extends DbTable {
     public LandsTable(Connection connection) throws SQLException {
@@ -71,6 +73,24 @@ public class LandsTable extends DbTable {
             resultSet.getInt("hasPot") == 1,
             resultSet.getInt("position")
         );
+    }
+
+    public List<Land> getLands(int userId) throws SQLException {
+        String sql = "SELECT * FROM lands WHERE userId = ?;";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, userId);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Land> lands = new ArrayList<>();
+        while (resultSet.next()) {
+            lands.add(new Land(
+                resultSet.getInt("userId"),
+                Plant.valueOf(resultSet.getString("plantType")),
+                resultSet.getInt("hasPot") == 1,
+                resultSet.getInt("position")
+            ));
+        }
+        return lands;
     }
 
     public void updateLand(Land land) throws SQLException {
