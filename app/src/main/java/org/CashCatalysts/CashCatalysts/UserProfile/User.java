@@ -5,11 +5,10 @@ import java.util.Objects;
 /**
  *
  */
-public record User(Integer id, String username, int rank) {
+public record User(Integer id, String username) {
     /**
      * @param id unique identifier of user
      * @param username username of user
-     * @param rank     rank of user
      */
     public User {
     }
@@ -21,9 +20,6 @@ public record User(Integer id, String username, int rank) {
     public String toString() {
         return "User[" +
                 "User ID: " + id + ", " +
-                "Username: " + username + ", " +
-                "Rank: " + rank + ']';
+                "Username: " + username;
     }
-
-
 }

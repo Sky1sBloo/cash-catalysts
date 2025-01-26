@@ -37,7 +37,7 @@ public class UsersHandler {
         if (rank < 1) {
             throw new IllegalArgumentException("Rank can't be negative.");
         }
-        return new User(userID, username, rank);
+        return new User(userID, username);
     }
 
     /**
@@ -48,7 +48,7 @@ public class UsersHandler {
         if (username == null || username.isBlank()) {
             throw new IllegalArgumentException("Fill in username.");
         }
-        return new User(null, username, 1);
+        return new User(null, username);
     }
 
     /**
@@ -62,7 +62,7 @@ public class UsersHandler {
         if (rank < 1) {
             throw new IllegalArgumentException("Rank can't be negative.");
         }
-        return new User(null, username, rank);
+        return new User(null, username);
     }
 
     /**
