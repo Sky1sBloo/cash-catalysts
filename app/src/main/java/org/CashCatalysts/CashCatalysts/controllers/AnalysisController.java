@@ -224,7 +224,9 @@ public class AnalysisController {
     }
 
     private void loadRecurringExpenses() {
-        String recurringExpenseName = userStatsSystem.getRecurringExpenses(DateFilterHandler.getDateRangeFromFilterType(DateFilterType.ALL)).getFirst();
+        String recurringExpenseName = userStatsSystem.getRecurringExpenses(DateFilterHandler.getDateRangeFromFilterType(DateFilterType.ALL)).stream()
+                .findFirst()
+                .orElse(null);
         recurring_expenses_lbl.setText(Objects.requireNonNullElse(recurringExpenseName, "None"));
     }
 
