@@ -33,14 +33,23 @@ public class ChestHandler {
         Chest chest = null;
         switch (rarity) {
             case NORMAL -> {
+                if (normalChestsAmount <= 0) {
+                    return;
+                }
                 normalChestsAmount--;
                 chest = new Chest(ChestRarity.NORMAL);
             }
             case RARE -> {
+                if (rareChestsAmount <= 0) {
+                    return;
+                }
                 rareChestsAmount--;
                 chest = new Chest(ChestRarity.RARE);
             }
             case EPIC -> {
+                if (rareChestsAmount <= 0) {
+                    return;
+                }
                 epicChestsAmount--;
                 chest = new Chest(ChestRarity.EPIC);
             }
