@@ -1,41 +1,55 @@
 package org.CashCatalysts.CashCatalysts.game.chests;
-import java.util.*;
+
+import org.CashCatalysts.CashCatalysts.Database.ChestsInventoryTable;
+
+import java.sql.SQLException;
+import java.util.List;
 
 public class ChestHandler {
-    // @param chest should  be editable if the drop rates for chest rarities are done
-    ChestData chest = EpicType.EPIC;
-    int chestXp = chest.getXp();
-    int packSize = chest.getPackSize();
-    List<String> chestRewards = randomizeRewards(chest);
+    private final ChestsInventoryTable chestsInventoryTable;
+    private int normalChestsAmount;
+    private int rareChestsAmount;
+    private int epicChestsAmount;
+    private final int userId;
 
-
-    public static List<String> randomizeRewards(ChestData chest){
-        ArrayList<String> chestRewards = new ArrayList<>();
-        Map<String, Integer> dropRates = chest.getDropRates();
-        String randomReward;
-        int packSize = chest.getPackSize();
-
-        for(int loopIncrement = 0; loopIncrement < packSize; loopIncrement++){
-            randomReward = randomizationFunction(dropRates);
-            chestRewards.add(randomReward);
-        }
-        return chestRewards;
-
+    public ChestHandler(int userId, ChestsInventoryTable chestsInventoryTable) {
+        this.userId = userId;
+        this.chestsInventoryTable = chestsInventoryTable;
     }
 
-    public static String randomizationFunction(Map<String, Integer> dropRates){
-        Random random = new Random();
-        int randomNumber = random.nextInt(101);
-        int cumulativeWeight = 0;
-        String chosenReward = null;
+    public void addChestsInventory() {
+        try {
+            chestsInventoryTable.addChestsInventory(userId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        for (Map.Entry<String, Integer> dropRate : dropRates.entrySet()) {
-            cumulativeWeight += dropRate.getValue(); //prevents only the last iterated item if they have the same drop rate
-            if(randomNumber < cumulativeWeight){
-                chosenReward = dropRate.getKey();
-                break;
+    public void expendChest(ChestRarity rarity) {
+        switch (rarity) {
+            case NORMAL -> normalChestsAmount--;
+            case RARE -> rareChestsAmount--;
+            case EPIC -> epicChestsAmount--;
+        }
+        updateChestsAmount();
+    }
+
+    public void addChest(List<Chest> chests) {
+        for (Chest chest : chests) {
+            switch (chest.getRarity()) {
+                case NORMAL -> normalChestsAmount++;
+                case RARE -> rareChestsAmount++;
+                case EPIC -> epicChestsAmount++;
             }
         }
-        return chosenReward;
+        updateChestsAmount();
+    }
+
+    private void updateChestsAmount() {
+        try {
+            chestsInventoryTable.updateChestsAmount(userId, new UserChestsInventory(normalChestsAmount, rareChestsAmount, epicChestsAmount));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
