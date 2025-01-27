@@ -14,7 +14,7 @@ public class DatabaseHandler {
     private final BudgetsTable budgetsTable;
     private final GoalsTable goalsTable;
     private final CooldownsTable cooldownsTable;
-    private final GameInventoryTable gameInventoryTable;
+    private final UserGameStatsTable userGameStatsTable;
     private final LandsTable landsTable;
     private final SubscriptionsTable subscriptionsTable;
 
@@ -31,7 +31,7 @@ public class DatabaseHandler {
         this.goalsTable = new GoalsTable(connection);
         this.cooldownsTable = new CooldownsTable(connection);
         this.subscriptionsTable = new SubscriptionsTable(connection);
-        this.gameInventoryTable = new GameInventoryTable(connection, usersTable);
+        this.userGameStatsTable = new UserGameStatsTable(connection, usersTable);
         this.landsTable = new LandsTable(connection);
     }
 
@@ -87,8 +87,8 @@ public class DatabaseHandler {
     /**
      * Returns GameInventory table functions
      */
-    public GameInventoryTable getGameInventoryTable() {
-        return gameInventoryTable;
+    public UserGameStatsTable getGameInventoryTable() {
+        return userGameStatsTable;
     }
 
     /**

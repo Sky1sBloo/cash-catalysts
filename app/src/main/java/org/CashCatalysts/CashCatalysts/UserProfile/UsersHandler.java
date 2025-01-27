@@ -2,7 +2,7 @@ package org.CashCatalysts.CashCatalysts.UserProfile;
 
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.Database.UsersTable;
-import org.CashCatalysts.CashCatalysts.game.GameInventory;
+import org.CashCatalysts.CashCatalysts.game.UserGameStats;
 
 import java.sql.SQLException;
 
@@ -11,7 +11,7 @@ import java.sql.SQLException;
  */
 public class UsersHandler {
     private final UsersTable usersTable;
-    private GameInventory gameInventory;
+    private UserGameStats userGameStats;
     private User currentUser;
 
     /**
@@ -24,7 +24,7 @@ public class UsersHandler {
         this.usersTable = dbHandler.getUsersTable();
         try {
             if (currentUser != null) {
-                this.gameInventory = dbHandler.getGameInventoryTable().getGameInventory(currentUser.id());
+                this.userGameStats = dbHandler.getGameInventoryTable().getGameInventory(currentUser.id());
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -134,7 +134,7 @@ public class UsersHandler {
         this.currentUser = user;
     }
 
-    public GameInventory getCurrentUserGameInventory() {
-        return gameInventory;
+    public UserGameStats getCurrentUserGameInventory() {
+        return userGameStats;
     }
 }

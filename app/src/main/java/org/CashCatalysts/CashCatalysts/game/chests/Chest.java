@@ -1,11 +1,23 @@
 package org.CashCatalysts.CashCatalysts.game.chests;
+import org.CashCatalysts.CashCatalysts.game.chests.rewards.ChestDrop;
+import org.CashCatalysts.CashCatalysts.game.chests.rewards.ChestRewardsHandler;
+
 import java.util.*;
 
-public record Chest(ArrayList<String> chestRewards, Integer chestXp){
+public class Chest {
+    private final ChestRewardsHandler rewardsHandler;
+    private final ChestRarity rarity;
 
-    @Override
-    public String toString(){
-        String rewardsString = String.join(", ", chestRewards);
-        return "XP: " + chestXp + ", Rewards: " + rewardsString;
+    public Chest(ChestRarity rarity) {
+        rewardsHandler = new ChestRewardsHandler(rarity);
+        this.rarity = rarity;
+    }
+
+    public List<ChestDrop> openChest() {
+        return rewardsHandler.getRewards();
+    }
+
+    public ChestRarity getRarity() {
+        return rarity;
     }
 }
