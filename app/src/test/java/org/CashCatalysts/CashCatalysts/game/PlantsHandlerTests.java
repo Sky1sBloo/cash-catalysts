@@ -63,16 +63,12 @@ public class PlantsHandlerTests {
 
     @Test
     public void testRemovePlantWithNone() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            plantsHandler.removePlant(Plant.NONE);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> plantsHandler.removePlant(Plant.NONE));
     }
 
     @Test
     public void testAddPlantWithNone() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            plantsHandler.addPlant(Plant.NONE);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> plantsHandler.addPlant(Plant.NONE));
     }
 
     @Test
@@ -93,9 +89,7 @@ public class PlantsHandlerTests {
 
     @Test
     public void addSeedsTestWithNone() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            plantsHandler.addSeed(Plant.NONE);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> plantsHandler.addSeed(Plant.NONE));
     }
 
     @Test
