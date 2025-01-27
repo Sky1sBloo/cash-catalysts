@@ -47,7 +47,7 @@ public class ChestHandler {
 
     private void updateChestsAmount() {
         try {
-            chestsInventoryTable.updateChestsAmount(userId, new UserChestsInventory(normalChestsAmount, rareChestsAmount, epicChestsAmount));
+            chestsInventoryTable.updateChestsAmount(new UserChestsInventory(userId, normalChestsAmount, rareChestsAmount, epicChestsAmount));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

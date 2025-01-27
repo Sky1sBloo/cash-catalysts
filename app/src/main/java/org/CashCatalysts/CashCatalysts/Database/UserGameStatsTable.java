@@ -68,6 +68,4 @@ public class UserGameStatsTable extends DbTable {
                 resultSet.getInt("water")
         );
     }
-
-
 }
