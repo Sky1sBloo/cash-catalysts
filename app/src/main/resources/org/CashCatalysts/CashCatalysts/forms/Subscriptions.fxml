@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,12 +14,13 @@
             <Button mnemonicParsing="false" text="Search" />
          </children>
       </HBox>
-      <VBox fx:id="subscriptions_pane" prefHeight="200.0" prefWidth="100.0">
+      <VBox fx:id="subscriptions_pane" prefHeight="522.0" prefWidth="1215.0">
          <children>
-            <VBox fx:id="subscriptions_list" prefHeight="200.0" prefWidth="100.0">
-               <children>
-
-               </children></VBox>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="456.0" prefWidth="1175.0">
+               <content>
+                  <VBox fx:id="subscriptions_list" prefHeight="132.0" prefWidth="1161.0" />
+               </content>
+            </ScrollPane>
             <Button fx:id="add_subscription_btn" mnemonicParsing="false" text="Add Subscription" />
          </children>
       </VBox>

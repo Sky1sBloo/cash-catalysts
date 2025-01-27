@@ -45,6 +45,21 @@ public class GoalsController {
     @FXML
     private Label budget_remaining_lbl;
 
+    @FXML
+    private Label sun_lbl;
+    @FXML
+    private Label mon_lbl;
+    @FXML
+    private Label tues_lbl;
+    @FXML
+    private Label wed_lbl;
+    @FXML
+    private Label thurs_lbl;
+    @FXML
+    private Label fri_lbl;
+    @FXML
+    private Label sat_lbl;
+
     public GoalsController(GoalsHandler goalsHandler, TransactionHandler transactionHandler, BudgetHandler budgetHandler) {
         this.goalsHandler = goalsHandler;
         this.transactionHandler = transactionHandler;
@@ -113,16 +128,19 @@ public class GoalsController {
     private void loadCalendar() {
         LocalDate now = LocalDate.now();
         LocalDate sunday = now.with(DayOfWeek.SUNDAY);
-        ObservableList<LocalDate> days = FXCollections.observableArrayList(sunday);
-
+        sunday = sunday.minusWeeks(1);
+        Integer[] days = new Integer[7];
         for (int i = 0; i < 7; i++) {
-            @SuppressWarnings("unchecked")
-            TableColumn<LocalDate, String> column = (TableColumn<LocalDate, String>) calendar_week.getColumns().get(i);
-            int day = i;
-            column.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().plusDays(day).getDayOfMonth() + ""));
+            days[i] = sunday.plusDays(i).getDayOfMonth();
         }
 
-        calendar_week.setItems(days);
+        sun_lbl.setText(days[0].toString());
+        mon_lbl.setText(days[1].toString());
+        tues_lbl.setText(days[2].toString());
+        wed_lbl.setText(days[3].toString());
+        thurs_lbl.setText(days[4].toString());
+        fri_lbl.setText(days[5].toString());
+        sat_lbl.setText(days[6].toString());
     }
 
     private void addGoal(Goal toEdit) {
