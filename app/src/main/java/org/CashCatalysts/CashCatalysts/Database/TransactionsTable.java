@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.Transactions.Transaction;
 import org.CashCatalysts.CashCatalysts.datatypes.Currency;
+import org.CashCatalysts.CashCatalysts.subscriptions.Subscription;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -25,9 +26,14 @@ public class TransactionsTable extends DbTable {
                 new DbField("name", "VARCHAR(255)"),
                 new DbField("type", "VARCHAR(255)", "NOT NULL"),
                 new DbField("date", "DATE", "NOT NULL"),
-                new DbField("amount_cents", "INTEGER", "NOT NULL")
+                new DbField("amount_cents", "INTEGER", "NOT NULL"),
+                new DbField("subscription_id", "INTEGER")
         };
-        super.createTable("transactions", fields);
+
+        String[] constraints = {
+                "FOREIGN KEY (subscription_id) REFERENCES subscriptions(id) ON DELETE SET NULL"
+        };
+        super.createTable("transactions", fields, constraints);
     }
 
     /**
@@ -35,7 +41,7 @@ public class TransactionsTable extends DbTable {
      * Note: Converts the transaction amount to cents
      */
     public int addTransaction(Transaction transaction) throws SQLException {
-        String sql = "INSERT INTO transactions (name, type, date, amount_cents) VALUES(?, ?, ?, ?);";
+        String sql = "INSERT INTO transactions (name, type, date, amount_cents, subscription_id) VALUES(?, ?, ?, ?, ?);";
         PreparedStatement addStatement = connection.prepareStatement(sql);
 
         addStatement.setString(1, transaction.name());
@@ -43,6 +49,11 @@ public class TransactionsTable extends DbTable {
         addStatement.setDate(3, Date.valueOf(transaction.date()));
         // Get decimal part
         addStatement.setInt(4, transaction.amount().getAmountCents());
+        if (transaction.subscriptionId() == null) {
+            addStatement.setNull(5, Types.INTEGER);
+        } else {
+            addStatement.setInt(5, transaction.subscriptionId());
+        }
 
         addStatement.executeUpdate();
         return getLastRowId();
@@ -62,12 +73,17 @@ public class TransactionsTable extends DbTable {
         ResultSet rs = getStatement.executeQuery();
 
         if (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
             return new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
-                    new Currency(rs.getInt("amount_cents"))
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
             );
         }
         return null;
@@ -86,30 +102,90 @@ public class TransactionsTable extends DbTable {
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
             transactions.add(new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
-                    new Currency(rs.getInt("amount_cents"))
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
             ));
         }
         return transactions;
     }
 
-    public List<Transaction> getAllTransactions() throws SQLException {
-         List<Transaction> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM transactions ORDER BY date;";
+    public List<Transaction> getAllTransactionsOnSubscription(Subscription subscription) throws SQLException {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE subscription_id = ? ORDER BY date ASC;";
         PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setInt(1, subscription.id());
 
         ResultSet rs = getStatement.executeQuery();
         while (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
             transactions.add(new Transaction(
                     rs.getInt("transaction_id"),
                     rs.getString("name"),
                     rs.getString("type"),
                     rs.getDate("date").toLocalDate(),
-                    new Currency(rs.getInt("amount_cents"))
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
+            ));
+        }
+        return transactions;
+    }
+
+    public Transaction getTransactionBySubscriptionWithDate(Subscription subscription, LocalDate date) throws SQLException {
+        String sql = "SELECT * FROM transactions WHERE subscription_id = ? AND date = ?;";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        getStatement.setInt(1, subscription.id());
+        getStatement.setDate(2, Date.valueOf(date));
+
+        ResultSet rs = getStatement.executeQuery();
+        if (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
+            return new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date").toLocalDate(),
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
+            );
+        }
+        return null;
+    }
+
+    public List<Transaction> getAllTransactions() throws SQLException {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions ORDER BY date;";
+        PreparedStatement getStatement = connection.prepareStatement(sql);
+
+        ResultSet rs = getStatement.executeQuery();
+        while (rs.next()) {
+            Integer subscriptionId = rs.getInt("subscription_id");
+            if (rs.wasNull()) {
+                subscriptionId = null;
+            }
+            transactions.add(new Transaction(
+                    rs.getInt("transaction_id"),
+                    rs.getString("name"),
+                    rs.getString("type"),
+                    rs.getDate("date").toLocalDate(),
+                    new Currency(rs.getInt("amount_cents")),
+                    subscriptionId
             ));
         }
         return transactions;
