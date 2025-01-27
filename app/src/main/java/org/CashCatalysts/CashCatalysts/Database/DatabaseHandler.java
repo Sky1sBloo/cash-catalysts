@@ -14,9 +14,12 @@ public class DatabaseHandler {
     private final BudgetsTable budgetsTable;
     private final GoalsTable goalsTable;
     private final CooldownsTable cooldownsTable;
-    private final GameInventoryTable gameInventoryTable;
-    private final LandsTable landsTable;
+    private final UserGameStatsTable userGameStatsTable;
     private final SubscriptionsTable subscriptionsTable;
+    private final LandsTable landsTable;
+    private final PlantsInventoryTable plantsInventoryTable;
+    private final ChestsInventoryTable chestsInventoryTable;
+    private final SeedsInventoryTable seedsInventoryTable;
 
     /**
      * Path to database file
@@ -31,8 +34,11 @@ public class DatabaseHandler {
         this.goalsTable = new GoalsTable(connection);
         this.cooldownsTable = new CooldownsTable(connection);
         this.subscriptionsTable = new SubscriptionsTable(connection);
-        this.gameInventoryTable = new GameInventoryTable(connection, usersTable);
+        this.userGameStatsTable = new UserGameStatsTable(connection, usersTable);
         this.landsTable = new LandsTable(connection);
+        this.plantsInventoryTable = new PlantsInventoryTable(connection);
+        this.chestsInventoryTable = new ChestsInventoryTable(connection);
+        this.seedsInventoryTable = new SeedsInventoryTable(connection);
     }
 
     /**
@@ -87,8 +93,8 @@ public class DatabaseHandler {
     /**
      * Returns GameInventory table functions
      */
-    public GameInventoryTable getGameInventoryTable() {
-        return gameInventoryTable;
+    public UserGameStatsTable getGameInventoryTable() {
+        return userGameStatsTable;
     }
 
     /**
@@ -96,5 +102,26 @@ public class DatabaseHandler {
      */
     public LandsTable getLandsTable() {
         return landsTable;
+    }
+
+    /**
+     * Returns PlantsInventory table functions
+     */
+    public PlantsInventoryTable getPlantsInventoryTable() {
+        return plantsInventoryTable;
+    }
+
+    /**
+     * Returns ChestsInventory table functions
+     */
+    public ChestsInventoryTable getChestsInventoryTable() {
+        return chestsInventoryTable;
+    }
+
+    /**
+     * Returns SeedsInventory table functions
+     */
+    public SeedsInventoryTable getSeedsInventoryTable() {
+        return seedsInventoryTable;
     }
 }

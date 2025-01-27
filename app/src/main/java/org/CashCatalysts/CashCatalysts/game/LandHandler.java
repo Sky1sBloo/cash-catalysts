@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.game;
 
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.Database.LandsTable;
+import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 
 import java.sql.SQLException;
 import java.util.List;

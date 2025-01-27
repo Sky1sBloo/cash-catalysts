@@ -1,9 +1,9 @@
-package org.CashCatalysts.CashCatalysts.game;
+package org.CashCatalysts.CashCatalysts.game.plants;
 
  public enum Plant{
 
     BANANA("saging"),
-    PINEAPPLE("pinya"),
+    PINEAPPLE("pineapple"),
     STRAWBERRY("strawberry"),
     APPLE("apple"),
     SAMPAGUITA("sampaguita"),
