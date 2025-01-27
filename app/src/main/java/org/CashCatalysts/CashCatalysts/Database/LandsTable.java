@@ -1,7 +1,7 @@
 package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.game.Land;
-import org.CashCatalysts.CashCatalysts.game.Plant;
+import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,6 +2,7 @@ package org.CashCatalysts.CashCatalysts.game;
 
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.UserProfile.UsersHandler;
+import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

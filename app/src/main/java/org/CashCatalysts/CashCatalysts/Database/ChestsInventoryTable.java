@@ -30,19 +30,20 @@ public class ChestsInventoryTable extends DbTable {
         }
 
         return new UserChestsInventory(
+                userId,
                 resultSet.getInt("normal_chests_amount"),
                 resultSet.getInt("rare_chests_amount"),
                 resultSet.getInt("epic_chests_amount")
         );
     }
 
-    public void updateChestsAmount(int userId, UserChestsInventory userChestsInventory) throws SQLException {
+    public void updateChestsAmount(UserChestsInventory userChestsInventory) throws SQLException {
         String sql = "UPDATE game_inventory SET normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ? WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userChestsInventory.normalChestsAmount());
         preparedStatement.setInt(2, userChestsInventory.rareChestsAmount());
         preparedStatement.setInt(3, userChestsInventory.epicChestsAmount());
-        preparedStatement.setInt(4, userId);
+        preparedStatement.setInt(4, userChestsInventory.userId());
 
         preparedStatement.executeUpdate();
     }

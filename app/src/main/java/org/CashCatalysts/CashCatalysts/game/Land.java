@@ -1,5 +1,7 @@
 package org.CashCatalysts.CashCatalysts.game;
 
+import org.CashCatalysts.CashCatalysts.game.plants.Plant;
+
 public class Land {
     private Plant plantType;
     private boolean hasPot;

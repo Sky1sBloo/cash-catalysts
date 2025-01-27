@@ -2,7 +2,7 @@ package org.CashCatalysts.CashCatalysts.Database;
 
 import org.CashCatalysts.CashCatalysts.UserProfile.UsersHandler;
 import org.CashCatalysts.CashCatalysts.game.Land;
-import org.CashCatalysts.CashCatalysts.game.Plant;
+import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
