@@ -45,7 +45,7 @@ public class SubscriptionsController {
         subscriptions_list.getChildren().clear();
         for (Subscription subscription : subscriptions) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/SubscriptionsCard.fxml"));
-            loader.setController(new SubscriptionsCardController(subscription));
+            loader.setController(new SubscriptionsCardController(subscription, this::deleteSubscription, this::editSubscription));
             subscriptions_list.getChildren().add(loader.load());
         }
     }
@@ -100,5 +100,19 @@ public class SubscriptionsController {
                 refresh();
             }
         });
+    }
+
+    public void deleteSubscription(Subscription subscription) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this subscription?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait().ifPresent((buttonType) -> {
+            if (buttonType == ButtonType.YES) {
+                subscriptionsHandler.deleteSubscription(subscription.id(), LocalDate.now());
+                refresh();
+            }
+        });
+    }
+
+    public void editSubscription(Subscription subscription) {
+        addSubscription(subscription);
     }
 }
