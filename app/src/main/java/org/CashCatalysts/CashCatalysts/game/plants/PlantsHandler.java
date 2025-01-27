@@ -77,6 +77,10 @@ public class PlantsHandler {
         }
     }
 
+    /**
+     * Updates the plants inventory in the database
+     * Suggested to be called after adding or removing plants especially in bulk
+     */
     public void updatePlantsInventory() {
         try {
             plantsInventoryTable.updatePlantsInventory(new UserPlantsInventory(userId, banana, pineapple, apple, sampaguita, orchids, sunflower, rose));
@@ -110,7 +114,10 @@ public class PlantsHandler {
             case NONE -> throw new IllegalArgumentException("Cannot remove NONE seed");
         }
     }
-
+    /**
+     * Updates the seeds inventory in the database
+     * Suggested to be called after adding or removing seeds especially in bulk
+     */
     public void updateSeedsInventory() {
         try {
             seedsInventoryTable.updateSeedsInventory(new UserPlantsInventory(userId, bananaSeed, pineappleSeed, appleSeed, sampaguitaSeed, orchidsSeed, sunflowerSeed, roseSeed));
