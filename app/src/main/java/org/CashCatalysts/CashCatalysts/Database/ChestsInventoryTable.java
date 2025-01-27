@@ -8,8 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ChestsInventoryTable extends DbTable {
-    public ChestsInventoryTable(Connection connection) {
+    public ChestsInventoryTable(Connection connection) throws SQLException {
         super(connection);
+        DbField[] fields = {
+                new DbField("userId", "INTEGER"),
+                new DbField("normal_chests_amount", "INTEGER"),
+                new DbField("rare_chests_amount", "INTEGER"),
+                new DbField("epic_chests_amount", "INTEGER")
+        };
+
+        super.createTable("game_inventory", fields);
     }
 
     public void addChestsInventory(int userId) throws SQLException {
