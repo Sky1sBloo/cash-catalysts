@@ -11,14 +11,23 @@ public abstract class Challenge {
     protected final LocalDate deadline;
     protected final UserStatsSystem userStatsSystem;
     protected final ChallengeReward reward;
+    protected final int typeId;
 
-    public Challenge(String name, String description, ChallengeReward reward, LocalDate startDate, LocalDate deadline, UserStatsSystem userStatsSystem) {
+    /**
+     * TypeId is the type of the challenge (not the id itself)
+     */
+    public Challenge(int typeId, String name, String description, ChallengeReward reward, LocalDate startDate, LocalDate deadline, UserStatsSystem userStatsSystem) {
+        this.typeId = typeId;
         this.name = name;
         this.description = description;
         this.reward = reward;
         this.startDate = startDate;
         this.deadline = deadline;
         this.userStatsSystem = userStatsSystem;
+    }
+
+    public int getTypeId() {
+        return typeId;
     }
 
     public String getName() {

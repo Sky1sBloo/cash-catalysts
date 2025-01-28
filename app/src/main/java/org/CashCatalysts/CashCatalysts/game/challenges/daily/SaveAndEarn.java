@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class SaveAndEarn extends Challenge {
     public SaveAndEarn(LocalDate startDate, UserStatsSystem userStatsSystem) {
-        super("Save & Earn", "Save 50 today to earn 1 Ruby",
+        super(2, "Save & Earn", "Save 50 today to earn 1 Ruby",
                 new ChallengeReward(5, 0, 0, 0, 0, 0), startDate, startDate.plusDays(1), userStatsSystem);
     }
 

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public class WaterSaver extends Challenge {
     public WaterSaver(LocalDate startDate, UserStatsSystem userStatsSystem) {
-        super("Water Saver", "Use exactly 12 drops of water without exceeding the limit to earn 3 stars",
+        super(3, "Water Saver", "Use exactly 12 drops of water without exceeding the limit to earn 3 stars",
                 new ChallengeReward(0, 3, 0, 0, 0, 0), startDate, startDate.plusDays(1), userStatsSystem);
     }
 

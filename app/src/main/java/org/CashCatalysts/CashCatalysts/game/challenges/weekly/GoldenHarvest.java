@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class GoldenHarvest extends Challenge {
     public GoldenHarvest(LocalDate startDate, UserStatsSystem userStatsSystem) {
-        super("Golden Harvest", "Grow and sell crops worth 200 gold coins within 3 days to earn 5 stars",
+        super(5, "Golden Harvest", "Grow and sell crops worth 200 gold coins within 3 days to earn 5 stars",
                 new ChallengeReward(0, 5, 0, 0, 0,  0), startDate, startDate.plusDays(3), userStatsSystem);
     }
 

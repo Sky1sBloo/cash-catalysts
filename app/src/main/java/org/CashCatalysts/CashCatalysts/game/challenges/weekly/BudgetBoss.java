@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class BudgetBoss extends Challenge {
     public BudgetBoss(LocalDate startDate, UserStatsSystem userStatsSystem) {
-        super("Budget boss", "Stay within your budget for 1 week to receive 1 rare chest",
+        super(4, "Budget boss", "Stay within your budget for 1 week to receive 1 rare chest",
                 new ChallengeReward(0, 0, 0, 0, 1, 0), startDate, startDate.plusWeeks(3), userStatsSystem);
     }
 
