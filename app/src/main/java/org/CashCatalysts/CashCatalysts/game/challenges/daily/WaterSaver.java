@@ -8,10 +8,10 @@ import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeReward;
 
 import java.time.LocalDate;
 
-public class SaveAndEarn extends Challenge {
-    public SaveAndEarn(LocalDate startDate, UserStatsSystem userStatsSystem) {
-        super("Save & Earn", "Save 50 today to earn 1 Ruby",
-                new ChallengeReward(5, 0, 0, 0, 0, 0), startDate, startDate.plusDays(1), userStatsSystem);
+public class WaterSaver extends Challenge {
+    public WaterSaver(LocalDate startDate, UserStatsSystem userStatsSystem) {
+        super("Water Saver", "Use exactly 12 drops of water without exceeding the limit to earn 3 stars",
+                new ChallengeReward(0, 3, 0, 0, 0, 0), startDate, startDate.plusDays(1), userStatsSystem);
     }
 
     @Override

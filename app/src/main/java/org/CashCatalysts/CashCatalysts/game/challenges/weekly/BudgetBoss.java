@@ -6,10 +6,10 @@ import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeReward;
 
 import java.time.LocalDate;
 
-public class GoldenHarvest extends Challenge {
-    public GoldenHarvest(LocalDate startDate, UserStatsSystem userStatsSystem) {
-        super("Golden Harvest", "Grow and sell crops worth 200 gold coins within 3 days to earn 5 stars",
-                new ChallengeReward(0, 5, 0, 0, 0,  0), startDate, startDate.plusDays(3), userStatsSystem);
+public class BudgetBoss extends Challenge {
+    public BudgetBoss(LocalDate startDate, UserStatsSystem userStatsSystem) {
+        super("Budget boss", "Stay within your budget for 1 week to receive 1 rare chest",
+                new ChallengeReward(0, 0, 0, 0, 1, 0), startDate, startDate.plusWeeks(3), userStatsSystem);
     }
 
     @Override
