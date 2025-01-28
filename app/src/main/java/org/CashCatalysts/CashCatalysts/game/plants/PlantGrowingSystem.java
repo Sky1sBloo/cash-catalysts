@@ -23,11 +23,11 @@ public class PlantGrowingSystem {
     /**
      * Initializes the system with handlers for plants, cooldowns, land, and user stats.
      */
-    public PlantGrowingSystem(int userID, DatabaseHandler databaseHandler){
-        this.plantsHandler = new PlantsHandler(userID, databaseHandler);
-        this.cooldownHandler = new CooldownHandler(databaseHandler);
-        this.landHandler = new LandHandler(userID, databaseHandler);
-        this.userGameStats = new UserGameStats(userID);
+    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStats userGameStats){
+        this.plantsHandler = plantsHandler;
+        this.cooldownHandler = cooldownHandler;
+        this.landHandler = landHandler;
+        this.userGameStats = userGameStats;
     }
 
     /**
