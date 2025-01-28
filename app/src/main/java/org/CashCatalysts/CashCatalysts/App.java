@@ -13,6 +13,7 @@ import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.controllers.MainWindowController;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
+import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
@@ -30,21 +31,29 @@ public class App extends Application {
         DatabaseHandler databaseHandler = new DatabaseHandler(":memory:");
         TransactionHandler transactionHandler = new TransactionHandler(databaseHandler);
         UsersHandler usersHandler = new UsersHandler(databaseHandler);
-        if (usersHandler.getUser(0) == null) {
-            usersHandler.registerUser(UsersHandler.createUser("user"));
+        int userId = 0;
+        if (usersHandler.getUser(userId) == null) {
+            userId = usersHandler.registerUser(UsersHandler.createUser("user"));
         }
+        UserGameStatsHandler userGameStatsHandler = new UserGameStatsHandler(userId, databaseHandler);
         BudgetHandler budgetHandler = new BudgetHandler(databaseHandler);
         GoalsHandler goalsHandler = new GoalsHandler(databaseHandler);
         UserStatsSystem userStatsSystem = new UserStatsSystem(transactionHandler, budgetHandler);
         SubscriptionsHandler subscriptionsHandler = new SubscriptionsHandler(databaseHandler, transactionHandler);
 
-        GameActionHandler gameActionHandler = new GameActionHandler(databaseHandler, 0);
+        GameActionHandler gameActionHandler = new GameActionHandler(databaseHandler, userId);
         ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler, userStatsSystem, gameActionHandler);
-        LandHandler landHandler = new LandHandler(0, databaseHandler);
-        PlantsHandler plantsHandler = new PlantsHandler(0, databaseHandler);
+        LandHandler landHandler = new LandHandler(userId, databaseHandler);
+        PlantsHandler plantsHandler = new PlantsHandler(userId, databaseHandler);
 
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
-        MainWindowController controller = new MainWindowController(transactionHandler, budgetHandler, goalsHandler, userStatsSystem, subscriptionsHandler, challengeHandler);
+        MainWindowController controller = new MainWindowController(transactionHandler,
+                budgetHandler,
+                goalsHandler,
+                userStatsSystem,
+                subscriptionsHandler,
+                challengeHandler,
+                userGameStatsHandler);
         loader.setController(controller);
 
         Parent root = loader.load();

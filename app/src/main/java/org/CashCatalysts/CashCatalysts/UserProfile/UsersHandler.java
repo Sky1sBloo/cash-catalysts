@@ -11,7 +11,6 @@ import java.sql.SQLException;
  */
 public class UsersHandler {
     private final UsersTable usersTable;
-    private UserGameStats userGameStats;
     private User currentUser;
 
     /**
@@ -22,13 +21,6 @@ public class UsersHandler {
     public UsersHandler(DatabaseHandler dbHandler)
     {
         this.usersTable = dbHandler.getUsersTable();
-        try {
-            if (currentUser != null) {
-                this.userGameStats = dbHandler.getGameInventoryTable().getGameInventory(currentUser.id());
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     /**
@@ -132,9 +124,5 @@ public class UsersHandler {
 
     public void login(User user) {
         this.currentUser = user;
-    }
-
-    public UserGameStats getCurrentUserGameInventory() {
-        return userGameStats;
     }
 }

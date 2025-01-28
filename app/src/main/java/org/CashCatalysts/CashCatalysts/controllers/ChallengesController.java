@@ -15,7 +15,6 @@ import java.util.List;
 
 public class ChallengesController {
     private final ChallengeHandler challengeHandler;
-    private final PlantsHandler plantsHandler;
     private final UserGameStatsHandler userGameStatsHandler;
 
     @FXML
@@ -24,9 +23,8 @@ public class ChallengesController {
     private VBox weekly_challenge_list;
 
 
-    public ChallengesController(ChallengeHandler challengeHandler, PlantsHandler plantsHandler, UserGameStatsHandler userGameStatsHandler) {
+    public ChallengesController(ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler) {
         this.challengeHandler = challengeHandler;
-        this.plantsHandler = plantsHandler;
         this.userGameStatsHandler = userGameStatsHandler;
     }
 
@@ -98,5 +96,6 @@ public class ChallengesController {
             userGameStatsHandler.getUserGameStats().getEpicChests().add(reward.epicChest());
         }
         userGameStatsHandler.updateUserGameStats();
+        refresh();
     }
 }

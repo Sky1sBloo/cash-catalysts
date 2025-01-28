@@ -12,6 +12,10 @@ public class UserGameStatsHandler {
     public UserGameStatsHandler(int userId, DatabaseHandler databaseHandler) {
         this.userGameStatsTable = databaseHandler.getUserGameStatsTable();
         try {
+            UserGameStats stats = userGameStatsTable.getGameInventory(userId);
+            if (stats == null) {
+                userGameStatsTable.addGameInventory(userId);
+            }
             userGameStats = userGameStatsTable.getGameInventory(userId);
         } catch (SQLException e) {
             throw new RuntimeException(e);

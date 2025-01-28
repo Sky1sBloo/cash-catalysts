@@ -24,6 +24,8 @@ public class ChallengesCardController {
     private Label challenge_rewards;
     @FXML
     private Button claim_challenge_btn;
+    @FXML
+    private Button cheat_complete_btn;
 
     public ChallengesCardController(Challenge challenge, Consumer<Challenge> claimChallengeRewards) {
         this.challenge = challenge;
@@ -33,6 +35,7 @@ public class ChallengesCardController {
     public void initialize() {
         claim_challenge_btn.setDisable(challenge.isCompleted());
         claim_challenge_btn.setOnAction(e -> claimChallengeRewards.accept(challenge));
+        cheat_complete_btn.setOnAction(e -> claimChallengeRewards.accept(challenge));
         challenge_title.setText(challenge.name());
         challenge_description.setText(challenge.description());
         challenge_deadline.setText(challenge.endDate().toString());

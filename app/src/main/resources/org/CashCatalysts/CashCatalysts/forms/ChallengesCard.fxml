@@ -39,6 +39,7 @@
                 <Label fx:id="challenge_is_completed" text="Not Yet Completed" />
                 <Label fx:id="challenge_rewards" text="Rewards List" />
                 <Button fx:id="claim_challenge_btn" disable="true" mnemonicParsing="false" text="Claim" />
+            <Button fx:id="cheat_complete_btn" mnemonicParsing="false" text="Cheat Complete" />
             </children>
         </VBox>
     </children>

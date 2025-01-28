@@ -8,6 +8,7 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class MainWindowController {
     private final UserStatsSystem userStatsSystem;
     private final SubscriptionsHandler subscriptionsHandler;
     private final ChallengeHandler challengeHandler;
+    private final UserGameStatsHandler userGameStatsHandler;
 
     @FXML
     private Pane main_root;
@@ -31,13 +33,14 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
         this.userStatsSystem = userStatsSystem;
         this.subscriptionsHandler = subscriptionsHandler;
         this.challengeHandler = challengeHandler;
+        this.userGameStatsHandler = userGameStatsHandler;
     }
 
     @SuppressWarnings("unused")
@@ -98,6 +101,6 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onChallengesClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler));
+        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler, userGameStatsHandler));
     }
 }
