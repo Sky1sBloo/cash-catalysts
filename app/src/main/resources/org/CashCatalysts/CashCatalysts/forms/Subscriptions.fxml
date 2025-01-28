@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="subscriptions_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Subscriptions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="subscriptions_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" styleClass="subscription_background" stylesheets="@Subscriptions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="100.0" prefWidth="1163.0">
          <children>
@@ -21,9 +21,9 @@
                </HBox.margin></Button>
          </children>
       </HBox>
-      <VBox fx:id="subscriptions_pane" prefHeight="522.0" prefWidth="1128.0">
+      <VBox fx:id="subscriptions_pane" prefHeight="522.0" prefWidth="1128.0" styleClass="viewport">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1175.0" style="-fx-background-color: rgba(16, 55, 92, 0.5);">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1175.0" visible="false">
                <content>
                   <VBox fx:id="subscriptions_list" prefHeight="132.0" prefWidth="1161.0" spacing="10.0" />
                </content>
@@ -39,6 +39,9 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin></Button>
          </children>
+         <VBox.margin>
+            <Insets bottom="50.0" left="50.0" right="50.0" />
+         </VBox.margin>
       </VBox>
    </children>
 </VBox>

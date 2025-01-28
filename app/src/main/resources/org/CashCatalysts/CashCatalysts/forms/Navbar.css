@@ -1,5 +1,5 @@
 #navbar {
-    -fx-background-color: rgba(235, 131, 23, 0.8);
+    -fx-background-color: rgba(235, 131, 23, 0.7);
     -fx-border-color: black;
     -fx-border-width: 2;
 }
@@ -50,3 +50,6 @@
     -fx-background-color: rgba(0, 255, 115, 0.5);
 }
 
+#inner_box{
+     -fx-background-color: rgba(243, 198, 35, 0.08);
+}

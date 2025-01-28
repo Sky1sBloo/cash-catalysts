@@ -55,7 +55,7 @@
                   </VBox>
                </children>
             </GridPane>
-            <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0" style="-fx-background-color: #10375C;">
+            <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0" styleClass="nav_tab">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -74,10 +74,10 @@
                         </ImageView>
                         <VBox fx:id="profile_details" prefHeight="184.0" prefWidth="235.0">
                            <children>
-                              <Label text="Username" />
-                              <Label text="Title" />
-                              <Label text="Level" />
-                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="0.0" />
+                              <Label styleClass="text_font" text="Username" />
+                              <Label styleClass="text_font" text="Title" />
+                              <Label styleClass="text_font" text="Level" />
+                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="0.51" styleClass="bar" />
                            </children>
                         </VBox>
                         <Button mnemonicParsing="false" text="Edit" />
@@ -99,43 +99,43 @@
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onDashboardClick" text="Button" />
-                              <Label text="Home" />
+                              <Label styleClass="text_font" text="Home" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onTransactionsClick" text="Button" />
-                              <Label text="Transactions" />
+                              <Label styleClass="text_font" text="Transactions" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onSubscriptionsClick" text="Button" />
-                              <Label text="Subscriptions" />
+                              <Label styleClass="text_font" text="Subscriptions" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onGoalsClick" text="Button" />
-                              <Label text="Goals" />
+                              <Label styleClass="text_font" text="Goals" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" text="Button" />
-                              <Label text="Challenges" />
+                              <Label styleClass="text_font" text="Challenges" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onAccountsClick" text="Button" />
-                              <Label text="Accounts" />
+                              <Label styleClass="text_font" text="Accounts" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onAnalyticsClick" text="Button" />
-                              <Label text="Analytics" />
+                              <Label styleClass="text_font" text="Analytics" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -145,12 +145,12 @@
                   </GridPane>
                   <VBox fx:id="daily_challenges_details" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <Label text="Daily Challenges">
+                        <Label styleClass="text_font" text="Daily Challenges">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="inner_box" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
