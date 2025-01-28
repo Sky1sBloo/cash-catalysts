@@ -2,7 +2,9 @@ package org.CashCatalysts.CashCatalysts.game.challenges;
 
 import org.CashCatalysts.CashCatalysts.Database.ChallengesTable;
 import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
+import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.datatypes.ApplicationRandom;
+import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -11,9 +13,11 @@ import java.util.List;
 
 public class ChallengeHandler {
     private final ChallengesTable challengesTable;
+    private final UserStatsSystem userStatsSystem;
 
-    public ChallengeHandler(DatabaseHandler databaseHandler) {
+    public ChallengeHandler(DatabaseHandler databaseHandler, UserStatsSystem userStatsSystem) {
         this.challengesTable = databaseHandler.getChallengesTable();
+        this.userStatsSystem = userStatsSystem;
     }
 
     /**
@@ -112,6 +116,25 @@ public class ChallengeHandler {
     }
 
     private boolean isChallengeCompleted(Challenge challenge) {
+        switch (challenge.condition()) {
+            case ChallengeCondition.SAVE_AND_EARN -> {
+                return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() >= 50;
+            }
+            case ChallengeCondition.DAILY_HARVESTER -> {
+            }
+            case ChallengeCondition.WATER_SAVER -> {
+            }
+            case ChallengeCondition.CROP_SELLER -> {
+            }
+            case ChallengeCondition.BUDGET_BOSS -> {
+                return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() > 0;
+            }
+            case ChallengeCondition.SAVINGS_STREAK -> {
+                return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() > 500;
+            }
+            case ChallengeCondition.GOLDEN_HARVEST -> {
+            }
+        }
         // Check if the challenge is completed
         return false;
     }
