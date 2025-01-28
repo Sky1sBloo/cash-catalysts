@@ -13,7 +13,6 @@ import java.util.List;
 
 public class ChallengesController {
     private final ChallengeHandler challengeHandler;
-    private final UserGameStatsHandler userGameStatsHandler;
 
     @FXML
     private VBox daily_challenge_list;
@@ -21,9 +20,8 @@ public class ChallengesController {
     private VBox weekly_challenge_list;
 
 
-    public ChallengesController(ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler) {
+    public ChallengesController(ChallengeHandler challengeHandler) {
         this.challengeHandler = challengeHandler;
-        this.userGameStatsHandler = userGameStatsHandler;
     }
 
 
