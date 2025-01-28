@@ -38,4 +38,12 @@ public class GameActionHandler {
             throw new RuntimeException(e);
         }
     }
+
+    public List<GameAction> getGameActionsWithActionTypeBetween(GameActionType type, LocalDate startDate, LocalDate endDate) {
+        try {
+            return gameActionTable.getGameActionsWithActionTypeBetween(userId, type, startDate, endDate);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

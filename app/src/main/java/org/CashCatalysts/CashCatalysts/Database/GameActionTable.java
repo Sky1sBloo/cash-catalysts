@@ -78,4 +78,26 @@ public class GameActionTable extends DbTable {
         }
         return gameActions;
     }
+
+    public List<GameAction> getGameActionsWithActionTypeBetween(int userId, GameActionType type, LocalDate startDate, LocalDate endDate) throws SQLException {
+        List<GameAction> gameActions = new ArrayList<>();
+        String sql = "SELECT * FROM game_actions WHERE user_id = ? AND type = ? AND action_date BETWEEN ? AND ?";
+        PreparedStatement getActionsStatement = connection.prepareStatement(sql);
+        getActionsStatement.setInt(1, userId);
+        getActionsStatement.setString(2, type.name());
+        getActionsStatement.setDate(3, Date.valueOf(startDate));
+        getActionsStatement.setDate(4, Date.valueOf(endDate));
+        ResultSet rs = getActionsStatement.executeQuery();
+
+        while (rs.next()) {
+            gameActions.add(new GameAction(
+                    rs.getInt("id"),
+                    rs.getInt("user_id"),
+                    GameActionType.valueOf(rs.getString("type")),
+                    rs.getInt("action_id"),
+                    rs.getDate("action_date").toLocalDate()
+            ));
+        }
+        return gameActions;
+    }
 }
