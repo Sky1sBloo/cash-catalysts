@@ -1,0 +1,21 @@
+#challenge_container {
+    -fx-background-color: #10375C;
+    -fx-background-insets: 100;
+    -fx-border-color: black;
+    -fx-border-insets: 100;
+    -fx-border-width: 2;
+    -fx-padding: 0 0 10 0;
+}
+
+#challenge_container *.tab {
+    -fx-background-color: #286B8C;
+    -fx-background-radius: 0;
+}
+
+#challenge_container *.tab:selected {
+    -fx-background-color: #30869E;
+}
+
+#challenge_container *.tab-header-background {
+    -fx-background-color: #286B8C;
+}
