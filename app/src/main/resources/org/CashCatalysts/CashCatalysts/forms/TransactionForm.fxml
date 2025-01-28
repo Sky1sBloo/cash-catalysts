@@ -10,24 +10,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane fx:id="Transaction_Frame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" stylesheets="@TransactionForm.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <content>
         <VBox>
-            <Label text="Add New Transaction">
+            <Label styleClass="text_font" text="Add New Transaction">
                 <font>
                     <Font name="System Bold" size="25.0" />
                 </font>
             </Label>
-            <Label text="Transaction Name" />
-            <TextField fx:id="name_txtbx" />
-            <Label text="Category" />
+            <Label styleClass="text_font" text="Transaction Name">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+            <TextField fx:id="name_txtbx" styleClass="text_font">
+            <font>
+               <Font size="14.0" />
+            </font></TextField>
+            <Label styleClass="text_font" text="Category">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
             <ChoiceBox fx:id="type_selector" prefHeight="24.0" prefWidth="241.0" />
-            <Label text="Amount" />
-            <TextField fx:id="amount_txtbx" promptText="Amount" />
-            <Label text="Description" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Description" />
-            <Label text="Date" />
-            <DatePicker fx:id="date_selector" />
+            <Label styleClass="text_font" text="Amount">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+            <TextField fx:id="amount_txtbx" promptText="Amount" styleClass="text_font">
+            <font>
+               <Font size="14.0" />
+            </font></TextField>
+            <Label styleClass="text_font" text="Description">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+            <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Description" styleClass="text_font">
+            <font>
+               <Font size="14.0" />
+            </font></TextArea>
+            <Label styleClass="text_font" text="Date">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+            <DatePicker fx:id="date_selector" prefHeight="22.0" prefWidth="244.0" styleClass="text_font" />
         </VBox>
     </content>
     <ButtonType fx:constant="CANCEL" />

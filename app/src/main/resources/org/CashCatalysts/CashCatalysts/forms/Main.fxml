@@ -77,7 +77,7 @@
                               <Label styleClass="text_font" text="Username" />
                               <Label styleClass="text_font" text="Title" />
                               <Label styleClass="text_font" text="Level" />
-                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="0.51" styleClass="bar" />
+                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="1.0" styleClass="bar" />
                            </children>
                         </VBox>
                         <Button mnemonicParsing="false" text="Edit" />

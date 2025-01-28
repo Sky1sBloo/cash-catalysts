@@ -1,5 +1,9 @@
+.transaction_background{
+    -fx-background-image: url('../backgrounds/transaction_background.png');
+}
+
 #status_bar {
-    -fx-background-color: #F5F1E3;
+    -fx-background-color: rgba(16, 55, 92, 0.6);
     -fx-background-radius: 10px;
     -fx-background-insets: 5px;
     -fx-min-height: 100px;
@@ -11,15 +15,11 @@
     -fx-alignment: center;
 }
 #daily_budget_border {
-    -fx-background-color: #E26262;
+    -fx-background-color: rgba(16, 55, 92, 0.6);
     -fx-background-radius: 10px;
     -fx-background-insets: 5px;
     -fx-padding: 10;
     -fx-alignment: center;
-}
-
-#daily_budget_border Label {
-    -fx-text-fill: white;
 }
 
 #daily_budget_border ListView {
@@ -40,4 +40,30 @@
 #transactions_bar {
     -fx-background-color: #D9D9D9;
     -fx-alignment: center;
+}
+
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+.list-cell {
+    -fx-background-color: rgba(244, 246, 255, 0.6);
+}
+
+.list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
+    -fx-background-radius: 10px;
+}
+
+#transaction_label{
+    -fx-text-fill: rgba(255, 255, 255);
+}
+
+.scroll-pane .viewport{
+    -fx-background-color: rgba(244, 246, 255, 0.6);
+}
+
+.scroll-pane{
+    -fx-background-color: rgba(244, 246, 255, 0.6);
 }

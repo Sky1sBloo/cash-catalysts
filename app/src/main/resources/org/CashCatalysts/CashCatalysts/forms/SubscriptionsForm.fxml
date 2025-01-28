@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,31 +10,64 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="323.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane fx:id="Subscription_Frame" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="354.0" stylesheets="@SubscriptionsForm.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <buttonTypes>
       <ButtonType fx:constant="OK" />
       <ButtonType fx:constant="CANCEL" />
    </buttonTypes>
    <content>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox prefHeight="353.0" prefWidth="354.0">
          <children>
-            <Label text="Add New Subscription">
+            <Label styleClass="text_font" text="Add New Subscription">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label text="Subscription Name" />
-            <TextField fx:id="name_txtbx" />
-            <Label text="Category" />
-            <ComboBox fx:id="type_selector" prefWidth="150.0" />
-            <Label text="Frequency" />
-            <ComboBox fx:id="frequency_selector" prefWidth="150.0" />
-            <Label text="Amount" />
-            <TextField fx:id="amount_txtbx" />
-            <Label text="Start Date" />
-            <DatePicker fx:id="start_date_selector" />
-            <Label text="End Date" />
-            <DatePicker fx:id="end_date_selector" />
+            <Label styleClass="text_font" text="Subscription Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Label>
+            <TextField fx:id="name_txtbx" prefHeight="22.0" prefWidth="352.0" styleClass="text_font" />
+            <Label styleClass="text_font" text="Category">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin></Label>
+            <ComboBox fx:id="type_selector" prefHeight="22.0" prefWidth="172.0" styleClass="text_font" />
+            <Label styleClass="text_font" text="Frequency">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ComboBox fx:id="frequency_selector" prefHeight="22.0" prefWidth="171.0" styleClass="text_font" />
+            <Label styleClass="text_font" text="Amount">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TextField fx:id="amount_txtbx" styleClass="text_font" />
+            <Label styleClass="text_font" text="Start Date">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <DatePicker fx:id="start_date_selector" prefHeight="22.0" prefWidth="171.0" styleClass="text_font" />
+            <Label styleClass="text_font" text="End Date">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <DatePicker fx:id="end_date_selector" prefHeight="22.0" prefWidth="172.0" styleClass="text_font" />
          </children></VBox>
    </content>
 </DialogPane>

@@ -1,0 +1,9 @@
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+#Subscription_Frame{
+    -fx-background-color: rgba(243, 198, 35, 0.7);
+}
+

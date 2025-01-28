@@ -1,5 +1,5 @@
 .subscription_card {
-    -fx-background-color: #2BAD0B;
+    -fx-background-color: rgba(43, 173, 11, 0.7);
     -fx-background-radius: 10;
     -fx-background-insets: 10;
 }
@@ -10,4 +10,9 @@
 
 .subscription_card .options {
     -fx-padding: 30;
+}
+
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
 }

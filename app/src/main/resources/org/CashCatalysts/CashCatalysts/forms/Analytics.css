@@ -1,5 +1,9 @@
+.transaction_background{
+    -fx-background-image: url('../backgrounds/analytics_background.png');
+}
+
 .analytics_box {
-    -fx-background-color: #F5F1E3;
+    -fx-background-color:rgba(244, 246, 255, 0.6);
     -fx-background-insets: 10;
     -fx-background-radius: 20;
     -fx-border-width: 1;
@@ -9,3 +13,12 @@
     -fx-padding: 20;
     -fx-alignment: center;
 }
+
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+
+
+

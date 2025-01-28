@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox fx:id="subscriptions_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" styleClass="subscription_background" stylesheets="@Subscriptions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -23,9 +24,9 @@
       </HBox>
       <VBox fx:id="subscriptions_pane" prefHeight="522.0" prefWidth="1128.0" styleClass="viewport">
          <children>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1175.0" visible="false">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="447.0" prefWidth="1054.0">
                <content>
-                  <VBox fx:id="subscriptions_list" prefHeight="132.0" prefWidth="1161.0" spacing="10.0" />
+                  <VBox fx:id="subscriptions_list" prefHeight="132.0" prefWidth="1052.0" spacing="10.0" />
                </content>
                <opaqueInsets>
                   <Insets />
@@ -37,7 +38,10 @@
             <Button fx:id="add_subscription_btn" mnemonicParsing="false" prefHeight="26.0" prefWidth="1178.0" text="Add Subscription">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </VBox.margin></Button>
+               </VBox.margin>
+               <font>
+                  <Font name="Consolas Bold" size="14.0" />
+               </font></Button>
          </children>
          <VBox.margin>
             <Insets bottom="50.0" left="50.0" right="50.0" />

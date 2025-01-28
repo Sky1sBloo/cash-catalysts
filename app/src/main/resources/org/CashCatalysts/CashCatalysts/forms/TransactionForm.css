@@ -1,0 +1,8 @@
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+#Transaction_Frame{
+    -fx-background-color: rgba(243, 198, 35, 0.7);
+}
