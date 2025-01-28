@@ -107,4 +107,12 @@ public class LandHandler {
             throw new RuntimeException(e);
         }
     }
+
+
+    /**
+     * Getter for LandsTable
+     */
+    public LandsTable getLandsTable(){
+        return landsTable;
+    }
 }
