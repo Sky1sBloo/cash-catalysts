@@ -11,6 +11,7 @@ import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.controllers.MainWindowController;
+import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 
 import java.util.Objects;
@@ -28,8 +29,9 @@ public class App extends Application {
         GoalsHandler goalsHandler = new GoalsHandler(databaseHandler);
         UserStatsSystem userStatsSystem = new UserStatsSystem(transactionHandler, budgetHandler);
         SubscriptionsHandler subscriptionsHandler = new SubscriptionsHandler(databaseHandler, transactionHandler);
+        ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler);
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
-        MainWindowController controller = new MainWindowController(transactionHandler, budgetHandler, goalsHandler, userStatsSystem, subscriptionsHandler);
+        MainWindowController controller = new MainWindowController(transactionHandler, budgetHandler, goalsHandler, userStatsSystem, subscriptionsHandler, challengeHandler);
         loader.setController(controller);
 
         Parent root = loader.load();

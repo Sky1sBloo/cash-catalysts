@@ -78,17 +78,17 @@ public class ChallengeHandler {
         }
     }
 
-    public List<Challenge> getAllDailyChallenges() {
+    public List<Challenge> getDailyChallengesOnDate(LocalDate date) {
         try {
-            return challengesTable.getAllDailyChallenges();
+            return challengesTable.getDailyChallengesOnDate(date);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public List<Challenge> getAllWeeklyChallenges() {
+    public List<Challenge> getWeeklyChallengesOnDate(LocalDate date) {
         try {
-            return challengesTable.getAllWeeklyChallenges();
+            return challengesTable.getWeeklyChallengesOnDate(date);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

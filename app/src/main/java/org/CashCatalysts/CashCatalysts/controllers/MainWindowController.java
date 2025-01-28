@@ -8,8 +8,8 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
-
 import java.io.IOException;
 
 public class MainWindowController {
@@ -18,6 +18,7 @@ public class MainWindowController {
     private final GoalsHandler goalsHandler;
     private final UserStatsSystem userStatsSystem;
     private final SubscriptionsHandler subscriptionsHandler;
+    private final ChallengeHandler challengeHandler;
 
     @FXML
     private Pane main_root;
@@ -30,12 +31,13 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
         this.userStatsSystem = userStatsSystem;
         this.subscriptionsHandler = subscriptionsHandler;
+        this.challengeHandler = challengeHandler;
     }
 
     @SuppressWarnings("unused")
@@ -92,5 +94,10 @@ public class MainWindowController {
     @SuppressWarnings("unused")
     public void onGoalsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler, transactionHandler, budgetHandler));
+    }
+
+    @SuppressWarnings("unused")
+    public void onChallengesClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler));
     }
 }

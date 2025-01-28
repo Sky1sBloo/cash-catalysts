@@ -84,11 +84,12 @@ public class ChallengesTable extends DbTable {
         return challenges;
     }
 
-    public List<Challenge> getAllDailyChallenges() throws SQLException {
-        String sql = "SELECT * FROM challenges WHERE type = 'DAILY'";
+    public List<Challenge> getDailyChallengesOnDate(LocalDate date) throws SQLException {
+        String sql = "SELECT * FROM challenges WHERE type = 'DAILY' AND start_date = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
+        statement.setDate(1, Date.valueOf(date));
 
+        ResultSet resultSet = statement.executeQuery();
         List<Challenge> challenges = new ArrayList<>();
         while (resultSet.next()) {
             challenges.add(new Challenge(
@@ -111,11 +112,13 @@ public class ChallengesTable extends DbTable {
         return challenges;
     }
 
-    public List<Challenge> getAllWeeklyChallenges() throws SQLException {
-        String sql = "SELECT * FROM challenges WHERE type = 'WEEKLY'";
+    public List<Challenge> getWeeklyChallengesOnDate(LocalDate date) throws SQLException {
+        String sql = "SELECT * FROM challenges WHERE type = 'WEEKLY' AND start_date <= ? AND end_date >= ?";
         PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
+        statement.setDate(1, Date.valueOf(date));
+        statement.setDate(2, Date.valueOf(date));
 
+        ResultSet resultSet = statement.executeQuery();
         List<Challenge> challenges = new ArrayList<>();
         while (resultSet.next()) {
             challenges.add(new Challenge(

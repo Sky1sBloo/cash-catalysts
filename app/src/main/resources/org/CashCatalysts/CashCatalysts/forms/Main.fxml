@@ -122,7 +122,7 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#onChallengesClick" text="Button" />
                               <Label text="Challenges" />
                            </children>
                         </VBox>
