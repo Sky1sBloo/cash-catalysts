@@ -49,15 +49,22 @@ public class ChestRewardsHandler {
 
     public List<ChestDrop> getRewards() {
         List<ChestDrop> rewards = new ArrayList<>();
+        int amount = switch (rarity) {
+            case NORMAL -> 3;
+            case RARE -> 5;
+            case EPIC -> 7;
+        };
+
         ChestRewardRarity[] rewardsArray = switch (rarity) {
             case NORMAL -> normalRewards;
             case RARE -> rareRewards;
             case EPIC -> epicRewards;
         };
+
         Random random = new Random();
         for (ChestRewardRarity reward : rewardsArray) {
             if (random.nextInt(100) < reward.rarity()) {
-                rewards.add(new ChestDrop(reward.plant(), 1));
+                rewards.add(new ChestDrop(reward.plant(), amount));
             }
         }
         return rewards;
