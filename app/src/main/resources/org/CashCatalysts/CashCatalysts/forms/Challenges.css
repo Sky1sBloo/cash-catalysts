@@ -1,6 +1,9 @@
 #challenges_page {
     -fx-background-image: url("../backgrounds/challenges_background.png");
 }
+
+
+
 #challenge_container {
     -fx-background-color: rgba(16, 55, 92, 0.75);
     -fx-background-insets: 100;

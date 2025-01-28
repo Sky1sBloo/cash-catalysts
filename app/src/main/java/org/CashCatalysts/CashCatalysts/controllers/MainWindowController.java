@@ -101,6 +101,6 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onChallengesClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler));
+        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler, userGameStatsHandler));
     }
 }
