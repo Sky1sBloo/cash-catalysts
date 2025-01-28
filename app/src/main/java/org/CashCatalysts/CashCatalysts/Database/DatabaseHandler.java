@@ -97,7 +97,7 @@ public class DatabaseHandler {
     /**
      * Returns GameInventory table functions
      */
-    public UserGameStatsTable getGameInventoryTable() {
+    public UserGameStatsTable getUserGameStatsTable() {
         return userGameStatsTable;
     }
 

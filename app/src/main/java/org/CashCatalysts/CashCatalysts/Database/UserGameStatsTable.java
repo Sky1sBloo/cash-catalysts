@@ -42,12 +42,15 @@ public class UserGameStatsTable extends DbTable {
     }
 
     public void updateGameInventory(UserGameStats userGameStats) throws SQLException {
-        String sql = "UPDATE game_inventory SET gold = ?, star = ?, water = ? WHERE userId = ?;";
+        String sql = "UPDATE game_inventory SET gold = ?, star = ?, water = ?, normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ? WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userGameStats.getGold().getAmount());
         preparedStatement.setInt(2, userGameStats.getStar().getAmount());
         preparedStatement.setInt(3, userGameStats.getWater().getAmount());
         preparedStatement.setInt(4, userGameStats.getUserId());
+        preparedStatement.setInt(5, userGameStats.getNormalChests().getAmount());
+        preparedStatement.setInt(6, userGameStats.getRareChests().getAmount());
+        preparedStatement.setInt(7, userGameStats.getEpicChests().getAmount());
 
         preparedStatement.executeUpdate();
     }
@@ -65,7 +68,10 @@ public class UserGameStatsTable extends DbTable {
                 userId,
                 resultSet.getInt("gold"),
                 resultSet.getInt("star"),
-                resultSet.getInt("water")
+                resultSet.getInt("water"),
+                resultSet.getInt("normal_chests_amount"),
+                resultSet.getInt("rare_chests_amount"),
+                resultSet.getInt("epic_chests_amount")
         );
     }
 }
