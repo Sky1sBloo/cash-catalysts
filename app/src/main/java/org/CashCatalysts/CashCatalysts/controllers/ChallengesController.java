@@ -35,6 +35,7 @@ public class ChallengesController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        challengeHandler.checkChallengeCompletion(LocalDate.now());
     }
 
     /**

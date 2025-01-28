@@ -29,7 +29,7 @@ public class App extends Application {
         GoalsHandler goalsHandler = new GoalsHandler(databaseHandler);
         UserStatsSystem userStatsSystem = new UserStatsSystem(transactionHandler, budgetHandler);
         SubscriptionsHandler subscriptionsHandler = new SubscriptionsHandler(databaseHandler, transactionHandler);
-        ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler);
+        ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler, userStatsSystem);
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
         MainWindowController controller = new MainWindowController(transactionHandler, budgetHandler, goalsHandler, userStatsSystem, subscriptionsHandler, challengeHandler);
         loader.setController(controller);
