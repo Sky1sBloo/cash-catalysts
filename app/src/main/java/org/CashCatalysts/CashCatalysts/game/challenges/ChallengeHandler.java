@@ -70,7 +70,7 @@ public class ChallengeHandler {
         try {
             for (Challenge challenge : challengesTable.getAllChallengesAfterDate(date)) {
                 if (isChallengeCompleted(challenge)) {
-                    deleteChallenge(challenge.id());
+                    challengesTable.makeChallengeCompleted(challenge.id());
                 }
             }
         } catch (SQLException e) {
