@@ -21,6 +21,7 @@ public class DatabaseHandler {
     private final ChestsInventoryTable chestsInventoryTable;
     private final SeedsInventoryTable seedsInventoryTable;
     private final ChallengesTable challengesTable;
+    private final GameActionTable gameActionTable;
 
     /**
      * Path to database file
@@ -41,6 +42,7 @@ public class DatabaseHandler {
         this.chestsInventoryTable = new ChestsInventoryTable(connection);
         this.seedsInventoryTable = new SeedsInventoryTable(connection);
         this.challengesTable = new ChallengesTable(connection);
+        this.gameActionTable = new GameActionTable(connection);
     }
 
     /**
@@ -132,5 +134,12 @@ public class DatabaseHandler {
      */
     public ChallengesTable getChallengesTable() {
         return challengesTable;
+    }
+
+    /**
+     * Returns GameAction table functions
+     */
+    public GameActionTable getGameActionTable() {
+        return gameActionTable;
     }
 }
