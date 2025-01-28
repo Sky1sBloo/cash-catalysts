@@ -20,6 +20,7 @@ public class DatabaseHandler {
     private final PlantsInventoryTable plantsInventoryTable;
     private final ChestsInventoryTable chestsInventoryTable;
     private final SeedsInventoryTable seedsInventoryTable;
+    private final ChallengesTable challengesTable;
 
     /**
      * Path to database file
@@ -39,6 +40,7 @@ public class DatabaseHandler {
         this.plantsInventoryTable = new PlantsInventoryTable(connection);
         this.chestsInventoryTable = new ChestsInventoryTable(connection);
         this.seedsInventoryTable = new SeedsInventoryTable(connection);
+        this.challengesTable = new ChallengesTable(connection);
     }
 
     /**
@@ -123,5 +125,12 @@ public class DatabaseHandler {
      */
     public SeedsInventoryTable getSeedsInventoryTable() {
         return seedsInventoryTable;
+    }
+
+    /**
+     * Returns Challenges table functions
+     */
+    public ChallengesTable getChallengesTable() {
+        return challengesTable;
     }
 }

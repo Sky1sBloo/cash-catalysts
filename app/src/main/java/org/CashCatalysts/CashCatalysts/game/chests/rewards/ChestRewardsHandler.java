@@ -6,7 +6,6 @@ import org.CashCatalysts.CashCatalysts.game.chests.ChestRarity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ChestRewardsHandler {
     private static final ChestRewardRarity[] normalRewards = {
