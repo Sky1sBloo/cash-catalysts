@@ -10,6 +10,13 @@ public class GameActionHandler {
     private final GameActionTable gameActionTable;
     private final int userId;
 
+    /**
+     * Creates a new Game action generally used for adding new actions
+     */
+    public GameAction createGameAction(GameActionType type, Integer actionId, LocalDate date) {
+        return new GameAction(null, userId, type, actionId, date);
+    }
+
     public GameActionHandler(DatabaseHandler databaseHandler, int userId) {
         this.gameActionTable = databaseHandler.getGameActionTable();
         this.userId = userId;
