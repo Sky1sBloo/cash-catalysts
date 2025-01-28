@@ -1,7 +1,6 @@
 package org.CashCatalysts.CashCatalysts.game.challenges;
 
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
-import org.CashCatalysts.CashCatalysts.game.currency.GameCurrency;
 
 import java.time.LocalDate;
 
