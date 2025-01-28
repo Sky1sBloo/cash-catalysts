@@ -3,6 +3,7 @@ package org.CashCatalysts.CashCatalysts.Database;
 import org.CashCatalysts.CashCatalysts.game.challenges.Challenge;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeReward;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeCondition;
+import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeType;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class ChallengesTable extends DbTable {
         DbField[] fields = {
                 new DbField("id", "INTEGER", "PRIMARY KEY AUTOINCREMENT"),
                 new DbField("condition", "INTEGER", "NOT NULL"),
+                new DbField("type", "VARCHAR(32)", "NOT NULL DEFAULT 0"),
                 new DbField("name", "VARCHAR(128)", "NOT NULL"),
                 new DbField("description", "VARCHAR(255)", "NOT NULL"),
                 new DbField("start_date", "DATE", "NOT NULL"),
@@ -33,20 +35,21 @@ public class ChallengesTable extends DbTable {
     }
 
     public int addChallenge(Challenge challenge) throws SQLException {
-        String sql = "INSERT INTO challenges (condition, name, description, start_date, end_date, " +
-                "gold_reward, star_reward, xp_reward, normal_chest_reward, rare_chest_reward, epic_chest_reward) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO challenges (condition, type,  name, description, start_date, end_date, " +
+                "gold_reward, star_reward, xp_reward, normal_chest_reward, rare_chest_reward, epic_chest_reward) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, challenge.condition().toInt());
-        statement.setString(2, challenge.name());
-        statement.setString(3, challenge.description());
-        statement.setDate(4, Date.valueOf(challenge.startDate()));
-        statement.setDate(5, Date.valueOf(challenge.endDate()));
-        statement.setInt(6, challenge.reward().gold());
-        statement.setInt(7, challenge.reward().star());
-        statement.setInt(8, challenge.reward().xp());
-        statement.setInt(9, challenge.reward().normalChest());
-        statement.setInt(10, challenge.reward().rareChest());
-        statement.setInt(11, challenge.reward().epicChest());
+        statement.setString(2, challenge.type().toString());
+        statement.setString(3, challenge.name());
+        statement.setString(4, challenge.description());
+        statement.setDate(5, Date.valueOf(challenge.startDate()));
+        statement.setDate(6, Date.valueOf(challenge.endDate()));
+        statement.setInt(7, challenge.reward().gold());
+        statement.setInt(8, challenge.reward().star());
+        statement.setInt(9, challenge.reward().xp());
+        statement.setInt(10, challenge.reward().normalChest());
+        statement.setInt(11, challenge.reward().rareChest());
+        statement.setInt(12, challenge.reward().epicChest());
 
         statement.executeUpdate();
 
@@ -64,6 +67,61 @@ public class ChallengesTable extends DbTable {
             challenges.add(new Challenge(
                     resultSet.getInt("id"),
                     ChallengeCondition.fromInt(resultSet.getInt("condition")),
+                    ChallengeType.fromString(resultSet.getString("type")),
+                    resultSet.getString("name"),
+                    resultSet.getString("description"),
+                    resultSet.getDate("start_date").toLocalDate(),
+                    resultSet.getDate("end_date").toLocalDate(),
+                    new ChallengeReward(resultSet.getInt("gold_reward"),
+                            resultSet.getInt("star_reward"),
+                            resultSet.getInt("xp_reward"),
+                            resultSet.getInt("normal_chest_reward"),
+                            resultSet.getInt("rare_chest_reward"),
+                            resultSet.getInt("epic_chest_reward")),
+                    resultSet.getBoolean("is_completed")
+            ));
+        }
+        return challenges;
+    }
+
+    public List<Challenge> getAllDailyChallenges() throws SQLException {
+        String sql = "SELECT * FROM challenges WHERE type = 'DAILY'";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+
+        List<Challenge> challenges = new ArrayList<>();
+        while (resultSet.next()) {
+            challenges.add(new Challenge(
+                    resultSet.getInt("id"),
+                    ChallengeCondition.fromInt(resultSet.getInt("condition")),
+                    ChallengeType.fromString(resultSet.getString("type")),
+                    resultSet.getString("name"),
+                    resultSet.getString("description"),
+                    resultSet.getDate("start_date").toLocalDate(),
+                    resultSet.getDate("end_date").toLocalDate(),
+                    new ChallengeReward(resultSet.getInt("gold_reward"),
+                            resultSet.getInt("star_reward"),
+                            resultSet.getInt("xp_reward"),
+                            resultSet.getInt("normal_chest_reward"),
+                            resultSet.getInt("rare_chest_reward"),
+                            resultSet.getInt("epic_chest_reward")),
+                    resultSet.getBoolean("is_completed")
+            ));
+        }
+        return challenges;
+    }
+
+    public List<Challenge> getAllWeeklyChallenges() throws SQLException {
+        String sql = "SELECT * FROM challenges WHERE type = 'WEEKLY'";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
+
+        List<Challenge> challenges = new ArrayList<>();
+        while (resultSet.next()) {
+            challenges.add(new Challenge(
+                    resultSet.getInt("id"),
+                    ChallengeCondition.fromInt(resultSet.getInt("condition")),
+                    ChallengeType.fromString(resultSet.getString("type")),
                     resultSet.getString("name"),
                     resultSet.getString("description"),
                     resultSet.getDate("start_date").toLocalDate(),

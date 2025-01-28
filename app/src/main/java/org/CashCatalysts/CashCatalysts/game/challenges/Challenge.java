@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public record Challenge(Integer id,
                         ChallengeCondition condition,
+                        ChallengeType type,
                         String name,
                         String description,
                         LocalDate startDate,

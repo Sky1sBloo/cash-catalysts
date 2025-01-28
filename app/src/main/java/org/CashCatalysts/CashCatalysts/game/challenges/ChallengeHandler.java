@@ -78,6 +78,22 @@ public class ChallengeHandler {
         }
     }
 
+    public List<Challenge> getAllDailyChallenges() {
+        try {
+            return challengesTable.getAllDailyChallenges();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Challenge> getAllWeeklyChallenges() {
+        try {
+            return challengesTable.getAllWeeklyChallenges();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private int addChallenge(Challenge challenge) {
         try {
@@ -129,6 +145,7 @@ public class ChallengeHandler {
             case ChallengeCondition.SAVE_AND_EARN -> {
                 return new Challenge(null,
                         ChallengeCondition.SAVE_AND_EARN,
+                        ChallengeType.DAILY,
                         "Save and Earn",
                         "Save 50 today",
                         startDate,
@@ -139,6 +156,7 @@ public class ChallengeHandler {
             case ChallengeCondition.DAILY_HARVESTER -> {
                 return new Challenge(null,
                         ChallengeCondition.DAILY_HARVESTER,
+                        ChallengeType.DAILY,
                         "Daily Harvester",
                         "Harvest 5 crops today",
                         startDate,
@@ -149,6 +167,7 @@ public class ChallengeHandler {
             case ChallengeCondition.WATER_SAVER -> {
                 return new Challenge(null,
                         ChallengeCondition.WATER_SAVER,
+                        ChallengeType.DAILY,
                         "Water Saver",
                         "Use at least 12 water today",
                         startDate,
@@ -159,6 +178,7 @@ public class ChallengeHandler {
             case ChallengeCondition.CROP_SELLER -> {
                 return new Challenge(null,
                         ChallengeCondition.CROP_SELLER,
+                        ChallengeType.DAILY,
                         "Crop Seller",
                         "Sell 6 crops today",
                         startDate,
@@ -169,6 +189,7 @@ public class ChallengeHandler {
             case ChallengeCondition.BUDGET_BOSS -> {
                 return new Challenge(null,
                         ChallengeCondition.BUDGET_BOSS,
+                        ChallengeType.WEEKLY,
                         "Budget Boss",
                         "Stay within weekly budget at the end of the week",
                         startDate,
@@ -179,6 +200,7 @@ public class ChallengeHandler {
             case ChallengeCondition.SAVINGS_STREAK -> {
                 return new Challenge(null,
                         ChallengeCondition.SAVINGS_STREAK,
+                        ChallengeType.WEEKLY,
                         "Savings Streak",
                         "Save 500 in a week",
                         startDate,
@@ -189,6 +211,7 @@ public class ChallengeHandler {
             case ChallengeCondition.GOLDEN_HARVEST -> {
                 return new Challenge(null,
                         ChallengeCondition.GOLDEN_HARVEST,
+                        ChallengeType.WEEKLY,
                         "Golden Harvest",
                         "Harvest 50 crops in a week",
                         startDate,
