@@ -5,6 +5,8 @@ import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.datatypes.ApplicationRandom;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionType;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -14,10 +16,12 @@ import java.util.List;
 public class ChallengeHandler {
     private final ChallengesTable challengesTable;
     private final UserStatsSystem userStatsSystem;
+    private final GameActionHandler gameActionHandler;
 
-    public ChallengeHandler(DatabaseHandler databaseHandler, UserStatsSystem userStatsSystem) {
+    public ChallengeHandler(DatabaseHandler databaseHandler, UserStatsSystem userStatsSystem, GameActionHandler gameActionHandler) {
         this.challengesTable = databaseHandler.getChallengesTable();
         this.userStatsSystem = userStatsSystem;
+        this.gameActionHandler = gameActionHandler;
     }
 
     /**
@@ -121,10 +125,13 @@ public class ChallengeHandler {
                 return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() >= 50;
             }
             case ChallengeCondition.DAILY_HARVESTER -> {
+                return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.HARVEST_PLANT, challenge.startDate(), challenge.endDate()).size() >= 5;
             }
             case ChallengeCondition.WATER_SAVER -> {
+                return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.USE_WATER, challenge.startDate(), challenge.endDate()).size() >= 12;
             }
             case ChallengeCondition.CROP_SELLER -> {
+                return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.SELL_PLANT, challenge.startDate(), challenge.endDate()).size() >= 12;
             }
             case ChallengeCondition.BUDGET_BOSS -> {
                 return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() > 0;
@@ -133,6 +140,7 @@ public class ChallengeHandler {
                 return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() > 500;
             }
             case ChallengeCondition.GOLDEN_HARVEST -> {
+                return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.HARVEST_PLANT, challenge.startDate(), challenge.endDate()).size() >= 25;
             }
         }
         // Check if the challenge is completed
@@ -236,7 +244,7 @@ public class ChallengeHandler {
                         ChallengeCondition.GOLDEN_HARVEST,
                         ChallengeType.WEEKLY,
                         "Golden Harvest",
-                        "Harvest 50 crops in a week",
+                        "Harvest 25 crops in a week",
                         startDate,
                         startDate.plusDays(7),
                         generateWeeklyChallengeReward(),

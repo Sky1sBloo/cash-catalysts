@@ -39,7 +39,7 @@ public class App extends Application {
         SubscriptionsHandler subscriptionsHandler = new SubscriptionsHandler(databaseHandler, transactionHandler);
 
         GameActionHandler gameActionHandler = new GameActionHandler(databaseHandler, 0);
-        ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler, userStatsSystem);
+        ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler, userStatsSystem, gameActionHandler);
         LandHandler landHandler = new LandHandler(0, databaseHandler);
         PlantsHandler plantsHandler = new PlantsHandler(0, databaseHandler);
 
