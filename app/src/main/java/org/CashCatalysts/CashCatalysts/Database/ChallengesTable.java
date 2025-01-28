@@ -20,6 +20,7 @@ public class ChallengesTable extends DbTable {
                 new DbField("description", "VARCHAR(255)", "NOT NULL"),
                 new DbField("start_date", "DATE", "NOT NULL"),
                 new DbField("end_date", "DATE", "NOT NULL"),
+                new DbField("is_completed", "BOOLEAN", "NOT NULL DEFAULT 0"),
                 new DbField("gold_reward", "INTEGER", "NOT NULL"),
                 new DbField("star_reward", "INTEGER", "NOT NULL"),
                 new DbField("xp_reward", "INTEGER", "NOT NULL"),
@@ -72,10 +73,18 @@ public class ChallengesTable extends DbTable {
                             resultSet.getInt("xp_reward"),
                             resultSet.getInt("normal_chest_reward"),
                             resultSet.getInt("rare_chest_reward"),
-                            resultSet.getInt("epic_chest_reward"))
+                            resultSet.getInt("epic_chest_reward")),
+                    resultSet.getBoolean("is_completed")
             ));
         }
         return challenges;
+    }
+
+    public void makeChallengeCompleted(int id) throws SQLException {
+        String sql = "UPDATE challenges SET is_completed = 1 WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.executeUpdate();
     }
 
     public void deleteChallenge(int id) throws SQLException {

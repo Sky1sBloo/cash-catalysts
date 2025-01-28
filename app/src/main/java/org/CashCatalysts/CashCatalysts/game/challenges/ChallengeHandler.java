@@ -133,7 +133,8 @@ public class ChallengeHandler {
                         "Save 50 today",
                         startDate,
                         startDate.plusDays(1),
-                        generateDailyChallengeReward());
+                        generateDailyChallengeReward(),
+                        false);
             }
             case ChallengeCondition.DAILY_HARVESTER -> {
                 return new Challenge(null,
@@ -142,7 +143,8 @@ public class ChallengeHandler {
                         "Harvest 5 crops today",
                         startDate,
                         startDate.plusDays(1),
-                        generateDailyChallengeReward());
+                        generateDailyChallengeReward(),
+                        false);
             }
             case ChallengeCondition.WATER_SAVER -> {
                 return new Challenge(null,
@@ -151,7 +153,8 @@ public class ChallengeHandler {
                         "Use at least 12 water today",
                         startDate,
                         startDate.plusDays(1),
-                        generateDailyChallengeReward());
+                        generateDailyChallengeReward(),
+                        false);
             }
             case ChallengeCondition.CROP_SELLER -> {
                 return new Challenge(null,
@@ -160,7 +163,8 @@ public class ChallengeHandler {
                         "Sell 6 crops today",
                         startDate,
                         startDate.plusDays(1),
-                        generateDailyChallengeReward());
+                        generateDailyChallengeReward(),
+                        false);
             }
             case ChallengeCondition.BUDGET_BOSS -> {
                 return new Challenge(null,
@@ -169,7 +173,8 @@ public class ChallengeHandler {
                         "Stay within weekly budget at the end of the week",
                         startDate,
                         startDate.plusWeeks(1),
-                        generateWeeklyChallengeReward());
+                        generateWeeklyChallengeReward(),
+                        false);
             }
             case ChallengeCondition.SAVINGS_STREAK -> {
                 return new Challenge(null,
@@ -178,7 +183,8 @@ public class ChallengeHandler {
                         "Save 500 in a week",
                         startDate,
                         startDate.plusDays(7),
-                        generateWeeklyChallengeReward());
+                        generateWeeklyChallengeReward(),
+                        false);
             }
             case ChallengeCondition.GOLDEN_HARVEST -> {
                 return new Challenge(null,
@@ -187,7 +193,8 @@ public class ChallengeHandler {
                         "Harvest 50 crops in a week",
                         startDate,
                         startDate.plusDays(7),
-                        generateWeeklyChallengeReward());
+                        generateWeeklyChallengeReward(),
+                        false);
             }
             default -> throw new IllegalArgumentException("Invalid challenge condition");
         }

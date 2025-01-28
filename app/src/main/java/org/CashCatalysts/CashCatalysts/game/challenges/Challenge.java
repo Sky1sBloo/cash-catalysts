@@ -8,5 +8,6 @@ public record Challenge(Integer id,
                         String description,
                         LocalDate startDate,
                         LocalDate endDate,
-                        ChallengeReward reward) {
+                        ChallengeReward reward,
+                        boolean isCompleted) {
 }
