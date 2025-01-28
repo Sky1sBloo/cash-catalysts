@@ -55,7 +55,7 @@
           <RowConstraints maxHeight="320.0" minHeight="10.0" prefHeight="232.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox fx:id="profile_navbar" prefHeight="218.0" prefWidth="385.0">
+            <HBox fx:id="profile_navbar" prefHeight="218.0" prefWidth="385.0" style="-fx-background-color: rgba(244, 246, 255, 0.9);">
                <children>
                   <ImageView fitHeight="92.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -64,13 +64,13 @@
                   </ImageView>
                   <VBox fx:id="profile_details" prefHeight="184.0" prefWidth="235.0">
                      <children>
-                        <Label text="Username" />
-                        <Label text="Title" />
-                        <Label text="Level" />
-                        <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="0.0" />
+                        <Label styleClass="text_font" text="Username" />
+                        <Label styleClass="text_font" text="Title" />
+                        <Label styleClass="text_font" text="Level" />
+                        <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="0.74" />
                      </children>
                   </VBox>
-                  <Button mnemonicParsing="false" text="Edit" />
+                  <Button mnemonicParsing="false" styleClass="text_font" text="Edit" />
                </children>
             </HBox>
             <GridPane prefHeight="364.0" prefWidth="385.0" GridPane.rowIndex="1">
@@ -89,63 +89,63 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Skins" />
+                        <Label styleClass="text_font" text="Skins" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Challenges" />
+                        <Label styleClass="text_font" text="Challenges" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Inventory" />
+                        <Label styleClass="text_font" text="Inventory" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Achievements" />
+                        <Label styleClass="text_font" text="Achievements" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="1">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Craft" />
+                        <Label styleClass="text_font" text="Craft" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Transactions" />
+                        <Label styleClass="text_font" text="Transactions" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Subscription" />
+                        <Label styleClass="text_font" text="Subscription" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Analytics" />
+                        <Label styleClass="text_font" text="Analytics" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Inbox" />
+                        <Label styleClass="text_font" text="Inbox" />
                      </children></VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Button mnemonicParsing="false" text="Button" />
-                        <Label text="Share" />
+                        <Label styleClass="text_font" text="Share" />
                      </children></VBox>
                </children>
             </GridPane>
             <VBox fx:id="daily_challenges_details" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                <children>
-                  <Label text="Daily Challenges">
+                  <Label styleClass="text_font" text="Daily Challenges">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="Consolas Bold" size="20.0" />
                      </font>
                   </Label>
-                  <ListView prefHeight="200.0" prefWidth="200.0" />
+                  <ListView prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(243, 198, 35, 0.08);" />
                </children>
             </VBox>
          </children>

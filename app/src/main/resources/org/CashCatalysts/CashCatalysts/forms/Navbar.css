@@ -1,5 +1,5 @@
 #navbar {
-    -fx-background-color: #1B1919CC;
+    -fx-background-color: rgba(235, 131, 23, 0.8);
     -fx-border-color: black;
     -fx-border-width: 2;
 }
@@ -14,12 +14,14 @@
 
 .nav_tab {
     -fx-alignment: center;
+
 }
 
 #nav_menu {
-    -fx-background-color: #9f79b8;
-    -fx-border-color: black;
-    -fx-border-width: 2 2 2 0;
+   -fx-border-color: black;
+   -fx-background-color: rgba(16, 55, 92, 0.5);
+   -fx-border-width: 2 2 2 0;
+
 }
 
 #profile_navbar {
@@ -34,7 +36,17 @@
 }
 
 #daily_challenges_details {
-    -fx-background-color: #370E7259;
     -fx-background-insets: 10;
     -fx-padding: 20;
+    -fx-background-color: rgba(243, 198, 35, 0.5);
 }
+
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+.progress-bar .bar {
+    -fx-background-color: rgba(0, 255, 115, 0.5);
+}
+

@@ -1,5 +1,11 @@
+#subscriptions_root{
+    -fx-background-image: url("cash-catalysts/app/src/main/resources/org/CashCatalysts/CashCatalysts/backgrounds/subscription_background.png");
+     -fx-background-size: cover;
+}
+
+
 #subscriptions_pane {
-    -fx-background-color: #12080E80;
+    -fx-background-color: rgba(16, 55, 92, 0.5);
     -fx-background-insets: 10;
     -fx-padding: 20;
     -fx-alignment: center;

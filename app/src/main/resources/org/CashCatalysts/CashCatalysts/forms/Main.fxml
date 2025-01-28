@@ -55,7 +55,7 @@
                   </VBox>
                </children>
             </GridPane>
-            <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0">
+            <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0" style="-fx-background-color: #10375C;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -67,7 +67,7 @@
                <children>
                   <HBox fx:id="profile_navbar" prefHeight="218.0" prefWidth="385.0">
                      <children>
-                        <ImageView fitHeight="92.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="92.0" fitWidth="95.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/profile_demo.png" />
                            </image>
