@@ -10,5 +10,6 @@ public record Challenge(Integer id,
                         LocalDate startDate,
                         LocalDate endDate,
                         ChallengeReward reward,
-                        boolean isCompleted) {
+                        boolean isCompleted,
+                        boolean isClaimed) {
 }

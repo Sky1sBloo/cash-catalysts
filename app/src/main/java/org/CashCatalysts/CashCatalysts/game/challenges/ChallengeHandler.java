@@ -5,6 +5,7 @@ import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.datatypes.ApplicationRandom;
 import org.CashCatalysts.CashCatalysts.datatypes.DateRange;
+import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
 import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionType;
 
@@ -17,11 +18,13 @@ public class ChallengeHandler {
     private final ChallengesTable challengesTable;
     private final UserStatsSystem userStatsSystem;
     private final GameActionHandler gameActionHandler;
+    private final UserGameStatsHandler userGameStatsHandler;
 
-    public ChallengeHandler(DatabaseHandler databaseHandler, UserStatsSystem userStatsSystem, GameActionHandler gameActionHandler) {
+    public ChallengeHandler(DatabaseHandler databaseHandler, UserStatsSystem userStatsSystem, GameActionHandler gameActionHandler, UserGameStatsHandler userGameStatsHandler) {
         this.challengesTable = databaseHandler.getChallengesTable();
         this.userStatsSystem = userStatsSystem;
         this.gameActionHandler = gameActionHandler;
+        this.userGameStatsHandler = userGameStatsHandler;
     }
 
     /**
@@ -78,6 +81,42 @@ public class ChallengeHandler {
         }
     }
 
+    public void forceChallengeCompletion(Challenge challenge) {
+        try {
+            challengesTable.makeChallengeCompleted(challenge.id());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void claimChallengeRewards(Challenge challenge) {
+        ChallengeReward reward = challenge.reward();
+        if (reward.gold() > 0) {
+            userGameStatsHandler.getUserGameStats().getGold().add(reward.gold());
+        }
+        if (reward.star() > 0) {
+            userGameStatsHandler.getUserGameStats().getStar().add(reward.star());
+        }
+        if (reward.xp() > 0) {
+            // TODO: Add this
+        }
+        if (reward.normalChest() > 0) {
+            userGameStatsHandler.getUserGameStats().getNormalChests().add(reward.normalChest());
+        }
+        if (reward.rareChest() > 0) {
+            userGameStatsHandler.getUserGameStats().getRareChests().add(reward.rareChest());
+        }
+        if (reward.epicChest() > 0) {
+            userGameStatsHandler.getUserGameStats().getEpicChests().add(reward.epicChest());
+        }
+        userGameStatsHandler.updateUserGameStats();
+        try {
+            challengesTable.makeChallengeClaimed(challenge.id());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public List<Challenge> getUpcomingChallenges(LocalDate date) {
         try {
             return challengesTable.getAllChallengesAfterDate(date);
@@ -118,6 +157,8 @@ public class ChallengeHandler {
             throw new RuntimeException(e);
         }
     }
+
+
 
     private boolean isChallengeCompleted(Challenge challenge) {
         switch (challenge.condition()) {
@@ -182,6 +223,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusDays(1),
                         generateDailyChallengeReward(),
+                        false,
                         false);
             }
             case ChallengeCondition.DAILY_HARVESTER -> {
@@ -193,6 +235,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusDays(1),
                         generateDailyChallengeReward(),
+                        false,
                         false);
             }
             case ChallengeCondition.WATER_SAVER -> {
@@ -204,6 +247,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusDays(1),
                         generateDailyChallengeReward(),
+                        false,
                         false);
             }
             case ChallengeCondition.CROP_SELLER -> {
@@ -215,6 +259,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusDays(1),
                         generateDailyChallengeReward(),
+                        false,
                         false);
             }
             case ChallengeCondition.BUDGET_BOSS -> {
@@ -226,6 +271,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusWeeks(1),
                         generateWeeklyChallengeReward(),
+                        false,
                         false);
             }
             case ChallengeCondition.SAVINGS_STREAK -> {
@@ -237,6 +283,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusDays(7),
                         generateWeeklyChallengeReward(),
+                        false,
                         false);
             }
             case ChallengeCondition.GOLDEN_HARVEST -> {
@@ -248,6 +295,7 @@ public class ChallengeHandler {
                         startDate,
                         startDate.plusDays(7),
                         generateWeeklyChallengeReward(),
+                        false,
                         false);
             }
             default -> throw new IllegalArgumentException("Invalid challenge condition");
