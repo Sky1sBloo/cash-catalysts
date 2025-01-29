@@ -11,6 +11,7 @@
     -fx-spacing: 5;
     -fx-alignment: center;
 }
+
 #info_tab {
     -fx-alignment: center;
 }
@@ -60,10 +61,17 @@
     -fx-text-fill: rgba(255, 255, 255);
 }
 
+.transactions_container {
+}
+
 .scroll-pane .viewport{
     -fx-background-color: rgba(244, 246, 255, 0.6);
 }
 
 .scroll-pane{
     -fx-background-color: rgba(244, 246, 255, 0.6);
+}
+
+.transaction_btn {
+    -fx-background-color: #fff7bd;
 }

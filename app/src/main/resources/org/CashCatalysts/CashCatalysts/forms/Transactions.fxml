@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -87,10 +88,14 @@
                <children>
                   <AnchorPane prefHeight="186.0" prefWidth="617.0">
                      <children>
-                        <Label contentDisplay="CENTER" layoutX="50.0" layoutY="55.0" prefHeight="94.0" prefWidth="546.0" style="-fx-background-color: rgba(16, 55, 92, 0.6); -fx-background-radius: 10;" styleClass="text_font" text=" Total # of Transactions" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                        <Label contentDisplay="CENTER" layoutX="50.0" layoutY="55.0" prefHeight="94.0" prefWidth="546.0" style="-fx-background-color: rgba(16, 55, 92, 0.6); -fx-background-radius: 10;" text=" Total # of Transactions" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="32.0" />
-                           </font></Label>
+                           </font>
+                           <styleClass>
+                              <String fx:value="text_font" />
+                              <String fx:value="blue_bg_container" />
+                           </styleClass></Label>
                         <Label fx:id="number_of_transactions" layoutX="499.0" layoutY="70.0" prefHeight="65.0" prefWidth="83.0" text="0" textFill="WHITE">
                            <font>
                               <Font size="32.0" />
@@ -100,7 +105,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </AnchorPane>
-                  <VBox fx:id="daily_budget_border" prefHeight="186.0" prefWidth="454.0">
+                  <VBox fx:id="daily_budget_border" prefHeight="186.0" prefWidth="454.0" style="-fx-border-insets: 5;" styleClass="blue_bg_container">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
@@ -111,7 +116,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="add_budget_btn" layoutX="319.0" layoutY="1.0" mnemonicParsing="false" text="+" />
+                                    <Button fx:id="add_budget_btn" layoutX="319.0" layoutY="1.0" mnemonicParsing="false" styleClass="transaction_btn" text="+" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -133,29 +138,25 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </HBox>
-            <VBox prefHeight="621.0" prefWidth="946.0">
+            <VBox prefHeight="588.0" prefWidth="946.0">
                <children>
                   <VBox prefHeight="505.0" prefWidth="946.0" styleClass="text_font">
                      <children>
-                        <HBox fx:id="transactions_bar" prefHeight="27.0" prefWidth="434.0" style="-fx-background-color: rgba(243, 198, 35, 0.8); -fx-background-radius: 3;">
+                        <HBox fx:id="transactions_bar" prefHeight="27.0" prefWidth="434.0" style="-fx-background-color: rgba(243, 198, 35, 0.8);" styleClass="transactions_container">
                            <children>
                               <Label fx:id="transaction_label" prefHeight="28.0" prefWidth="786.0" styleClass="text_font" text="Recent Transactions" textFill="WHITE">
                                  <font>
                                     <Font size="24.0" />
                                  </font></Label>
-                              <Pane prefHeight="24.0" prefWidth="40.0">
-                                 <children>
-                                    <ComboBox fx:id="filter_selection" layoutX="-35.0" layoutY="3.0" prefWidth="150.0" promptText="Filter" styleClass="text_font" />
-                                 </children></Pane>
-                              <Pane prefHeight="47.0" prefWidth="38.0" />
-                              <Pane prefHeight="24.0" prefWidth="42.0" />
-                              <Button fx:id="add_transaction_btn" mnemonicParsing="false" text="+" />
+                              <ComboBox fx:id="filter_selection" prefWidth="150.0" promptText="Filter" styleClass="text_font" />
+                              <Pane prefHeight="24.0" prefWidth="40.0" />
+                              <Button fx:id="add_transaction_btn" mnemonicParsing="false" styleClass="transaction_btn" text="+" />
                            </children>
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="557.0" prefWidth="1049.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="557.0" prefWidth="1049.0" styleClass="transactions_container">
                            <content>
                               <VBox fx:id="transaction_cards" prefHeight="559.0" prefWidth="1036.0" />
                            </content>

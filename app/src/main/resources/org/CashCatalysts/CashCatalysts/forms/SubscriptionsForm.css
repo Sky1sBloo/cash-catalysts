@@ -16,6 +16,14 @@
     -fx-border-color: white;
     -fx-border-radius: 20;
 }
+
+.transaction_txtbx {
+    -fx-background-color: #fffbde;
+    -fx-background-radius: 20;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+}
+
 #Subscription_Frame{
     -fx-background-color: rgba(243, 198, 35, 0.7);
 }
