@@ -43,7 +43,7 @@ public class LandsTableTests {
         land.setPlantType(Plant.APPLE);
         land.setHasPot(false);
         landsTable.updateLand(land);
-        Land retrievedLandById = landsTable.getLand(id);
+        Land retrievedLandById = landsTable.getLandByID(id);
         Land retrievedLand = landsTable.getLand(userId, landsTable.getHighestLandId(userId));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
@@ -84,7 +84,7 @@ public class LandsTableTests {
 
     @Test
     public void testNullOnNonexistentLandById() throws SQLException {
-        Land retrievedLand = landsTable.getLand(0);
+        Land retrievedLand = landsTable.getLandByID(1);
         Assertions.assertNull(retrievedLand);
     }
 

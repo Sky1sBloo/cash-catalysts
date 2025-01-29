@@ -148,6 +148,7 @@ public class GardenController {
 
     private void cheatWater() {
         userGameStatsHandler.getUserGameStats().getWater().set(24);
+        userGameStatsHandler.updateUserGameStats();
         loadInventoryContents();
     }
 }

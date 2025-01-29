@@ -16,10 +16,11 @@ public class LandHandler {
         this.landsTable = databaseHandler.getLandsTable();
 
         try {
-            if (landsTable.getLands(userId).isEmpty()) {
+            if (landsTable.getLandByUser(userId).isEmpty()) {
                 for (int i = 0; i < 12; i++) {
                     addLand();
                 }
+                System.out.println(userId);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
