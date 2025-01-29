@@ -34,7 +34,7 @@ public class UserGameStatsTableTests {
     @Test
     public void testUpdateGameInventory() throws SQLException {
         userGameStatsTable.addGameInventory(userId);
-        UserGameStats userGameStats = new UserGameStats(userId, 100, 200, 300, 0, 0, 0, 0);
+        UserGameStats userGameStats = new UserGameStats(userId, 100, 200, 300, 0, 0, 0, 0, null);
         userGameStatsTable.updateGameInventory(userGameStats);
         UserGameStats updatedUserGameStats = userGameStatsTable.getGameInventory(userId);
         Assertions.assertEquals(100, updatedUserGameStats.getGold().getAmount());
@@ -52,9 +52,9 @@ public class UserGameStatsTableTests {
     public void testMultipleGameInventory() throws SQLException {
         int userId2 = usersTable.registerUser(UsersHandler.createUser("testUser2"));
         userGameStatsTable.addGameInventory(userId);
-        userGameStatsTable.updateGameInventory(new UserGameStats(userId, 100, 200, 300, 0, 0, 0, 0));
+        userGameStatsTable.updateGameInventory(new UserGameStats(userId, 100, 200, 300, 0, 0, 0, 0, null));
         userGameStatsTable.addGameInventory(userId2);
-        userGameStatsTable.updateGameInventory(new UserGameStats(userId2, 205, 300, 500, 0, 0, 0, 0));
+        userGameStatsTable.updateGameInventory(new UserGameStats(userId2, 205, 300, 500, 0, 0, 0, 0, null));
         UserGameStats userGameStats = userGameStatsTable.getGameInventory(userId);
         Assertions.assertEquals(100, userGameStats.getGold().getAmount());
         Assertions.assertEquals(200, userGameStats.getStar().getAmount());

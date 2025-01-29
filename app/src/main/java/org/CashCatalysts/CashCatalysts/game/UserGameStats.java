@@ -2,6 +2,8 @@ package org.CashCatalysts.CashCatalysts.game;
 
 import org.CashCatalysts.CashCatalysts.game.currency.GameCurrency;
 
+import java.time.LocalDateTime;
+
 /**
  * Class that represents the inventory of a user in the game.
  * Doesn't include chests
@@ -15,6 +17,7 @@ public class UserGameStats {
     private final GameCurrency rareChests;
     private final GameCurrency epicChests;
     private final GameCurrency pots;
+    private Integer waterCooldownId;
 
     public UserGameStats(int userId) {
         this.userId = userId;
@@ -27,7 +30,7 @@ public class UserGameStats {
         pots = new GameCurrency();
     }
 
-    public UserGameStats(int userId, int gold, int star, int water, int normalChests, int rareChests, int epicChests, int pots) {
+    public UserGameStats(int userId, int gold, int star, int water, int normalChests, int rareChests, int epicChests, int pots, Integer waterCooldownId) {
         this.userId = userId;
         this.gold = new GameCurrency(gold);
         this.star = new GameCurrency(star);
@@ -36,6 +39,7 @@ public class UserGameStats {
         this.rareChests = new GameCurrency(rareChests);
         this.epicChests = new GameCurrency(epicChests);
         this.pots = new GameCurrency(pots);
+        this.waterCooldownId = waterCooldownId;
     }
 
     public int getUserId() {
@@ -68,5 +72,13 @@ public class UserGameStats {
 
     public GameCurrency getPots() {
         return pots;
+    }
+
+    public Integer getWaterCooldownId() {
+        return waterCooldownId;
+    }
+
+    public void setWaterCooldownId(int waterCooldownId) {
+        this.waterCooldownId = waterCooldownId;
     }
 }
