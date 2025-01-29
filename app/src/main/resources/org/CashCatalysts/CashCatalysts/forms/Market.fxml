@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
@@ -26,6 +25,7 @@
                      <children>
                         <Label text="Banana" />
                         <Button mnemonicParsing="false" text="Sell" />
+                        <Label text="5 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
@@ -38,6 +38,7 @@
                      <children>
                         <Label text="Pineapple" />
                         <Button mnemonicParsing="false" text="Sell" />
+                        <Label text="10 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
@@ -50,6 +51,7 @@
                      <children>
                         <Label text="Strawberry" />
                         <Button mnemonicParsing="false" text="Sell" />
+                        <Label text="15 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
@@ -62,6 +64,7 @@
                      <children>
                         <Label text="Apple" />
                         <Button mnemonicParsing="false" text="Sell" />
+                        <Label text="20 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
@@ -174,13 +177,13 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <Label text="Epic Chest" />
+                              <Label text="Pot" />
                               <Button mnemonicParsing="false" text="Buy" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Land" />
+                              <Label text="Buy Pots" />
                            </children>
                         </VBox>
                      </children>
