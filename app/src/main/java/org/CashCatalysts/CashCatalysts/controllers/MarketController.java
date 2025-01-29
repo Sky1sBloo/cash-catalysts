@@ -1,5 +1,6 @@
 package org.CashCatalysts.CashCatalysts.controllers;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -133,8 +134,13 @@ public class MarketController {
     }
 
     private void buyPot() {
+        if (!isPotTradeable()) {
+            return;
+        }
         userGameStatsHandler.getUserGameStats().getPots().add(1);
+        userGameStatsHandler.getUserGameStats().getStar().exchange(50);
         userGameStatsHandler.updateUserGameStats();
+        refresh();
     }
 
     private void sellPlant(Plant plant) {
@@ -149,6 +155,7 @@ public class MarketController {
 
         userGameStatsHandler.getUserGameStats().getGold().add(sellPrice);
         userGameStatsHandler.updateUserGameStats();
+        userGameStatsHandler.updateUserGameStats();
         plantsHandler.updatePlantsInventory();
         refresh();
     }
@@ -156,6 +163,7 @@ public class MarketController {
     private void cheatStats() {
         userGameStatsHandler.getUserGameStats().getGold().set(999);
         userGameStatsHandler.getUserGameStats().getStar().set(999);
+        userGameStatsHandler.updateUserGameStats();
         refresh();
     }
 
@@ -214,6 +222,7 @@ public class MarketController {
             case NORMAL -> {
                 if (isChestTradeable(ChestRarity.NORMAL) == BuyableWith.GOLD) {
                     userGameStatsHandler.getUserGameStats().getGold().exchange(50);
+                    userGameStatsHandler.updateUserGameStats();
                 } else if (isChestTradeable(ChestRarity.NORMAL) == BuyableWith.FLOWERS) {
                     for (int i = 0; i < 3; i++) {
                         plantsHandler.removePlant(Plant.SAMPAGUITA);
@@ -226,6 +235,7 @@ public class MarketController {
             case RARE -> {
                 if (isChestTradeable(ChestRarity.RARE) == BuyableWith.GOLD) {
                     userGameStatsHandler.getUserGameStats().getGold().exchange(75);
+                    userGameStatsHandler.updateUserGameStats();
                 } else if (isChestTradeable(ChestRarity.RARE) == BuyableWith.FLOWERS) {
                     for (int i = 0; i < 2; i++) {
                         plantsHandler.removePlant(Plant.ORCHIDS);
@@ -240,6 +250,7 @@ public class MarketController {
             case EPIC -> {
                 if (isChestTradeable(ChestRarity.EPIC) == BuyableWith.GOLD) {
                     userGameStatsHandler.getUserGameStats().getGold().exchange(150);
+                    userGameStatsHandler.updateUserGameStats();
                 } else if (isChestTradeable(ChestRarity.EPIC) == BuyableWith.FLOWERS) {
                     for (int i = 0; i < 3; i++) {
                         plantsHandler.removePlant(Plant.SAMPAGUITA);
@@ -259,6 +270,6 @@ public class MarketController {
     }
 
     private boolean isPotTradeable() {
-        return userGameStatsHandler.getUserGameStats().getStar().getAmount() >= 10;
+        return userGameStatsHandler.getUserGameStats().getStar().getAmount() >= 50;
     }
 }
