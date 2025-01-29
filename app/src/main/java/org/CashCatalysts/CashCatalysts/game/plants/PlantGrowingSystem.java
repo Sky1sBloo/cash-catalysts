@@ -53,7 +53,7 @@ public class PlantGrowingSystem {
      * Harvests the plant from the specified land, if it is ready (cooldown completed).
      * Updates the plant inventory and the user's stars.
      */
-    public void harvestPlant(int landPosition) throws SQLException {
+    public void harvestPlant(int landPosition) {
         Land land = landHandler.getLand(landPosition);
 
         Cooldown cooldown = cooldownHandler.getCooldown(landPosition);
@@ -66,7 +66,11 @@ public class PlantGrowingSystem {
         userGameStats.getStar().add(10);
 
         land.setPlantType(Plant.NONE);
-        landHandler.getLandsTable().updateLand(land);
+        try {
+            landHandler.getLandsTable().updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         cooldownHandler.deleteCooldown(cooldown.id());
         gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.HARVEST_PLANT, landPosition, LocalDate.now()));
@@ -75,7 +79,7 @@ public class PlantGrowingSystem {
     /**
      * Plants a seed of the specified type in the given land.
      */
-    public void plantSeed(int landPosition, Plant plantType) throws SQLException {
+    public void plantSeed(int landPosition, Plant plantType) {
         if(plantType == Plant.NONE){
             throw new IllegalArgumentException(("Cannot have plant NONE type."));
         }
@@ -88,7 +92,11 @@ public class PlantGrowingSystem {
         plantsHandler.removeSeed(plantType);
         plantsHandler.updateSeedsInventory();
         land.setPlantType(plantType);
-        landHandler.getLandsTable().updateLand(land);
+        try {
+            landHandler.getLandsTable().updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.PLANT_SEED, landPosition, LocalDate.now()));
     }
 }

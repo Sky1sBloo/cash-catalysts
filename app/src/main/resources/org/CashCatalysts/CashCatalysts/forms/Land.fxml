@@ -17,7 +17,12 @@
                       <Button fx:id="plant_btn" mnemonicParsing="false" text="Plant" />
                   </children>
               </HBox>
-              <Button mnemonicParsing="false" text="Harvest" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                    <Button fx:id="harvest_btn" mnemonicParsing="false" text="Harvest" />
+                  <Button fx:id="harvest_btn1" mnemonicParsing="false" text="Water" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <VBox fx:id="pot_pane" alignment="TOP_CENTER" prefHeight="46.0" prefWidth="246.0">

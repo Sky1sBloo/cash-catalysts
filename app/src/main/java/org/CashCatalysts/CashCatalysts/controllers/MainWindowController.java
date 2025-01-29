@@ -15,6 +15,7 @@ import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
+import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class MainWindowController {
     private final ChallengeHandler challengeHandler;
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
+    private final PlantGrowingSystem plantGrowingSystem;
     private final ChestHandler chestHandler;
     private final LandHandler landHandler;
 
@@ -45,7 +47,7 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, ChestHandler chestHandler, LandHandler landHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, ChestHandler chestHandler, LandHandler landHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
@@ -54,6 +56,7 @@ public class MainWindowController {
         this.challengeHandler = challengeHandler;
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
+        this.plantGrowingSystem = plantGrowingSystem;
         this.chestHandler = chestHandler;
         this.landHandler = landHandler;
     }
@@ -61,7 +64,7 @@ public class MainWindowController {
     @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
-        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, landHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler));
     }
 
     private void refresh() {
@@ -102,7 +105,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, landHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler));
         //loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
     }
 

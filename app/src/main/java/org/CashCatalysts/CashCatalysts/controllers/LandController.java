@@ -9,12 +9,14 @@ import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.Plant;
+import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
 public class LandController {
     private final LandHandler landHandler;
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
+    private final PlantGrowingSystem plantGrowingSystem;
     private final int landPosition;
     //
     private final Runnable reloadStatsCallback;
@@ -31,11 +33,14 @@ public class LandController {
     private Button add_pot_btn;
     @FXML
     private Button plant_btn;
+    @FXML
+    private Button harvest_btn;
 
-    public LandController(LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, int landPosition, Runnable reloadStatsCallback) {
+    public LandController(LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, int landPosition, Runnable reloadStatsCallback) {
         this.landHandler = landHandler;
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
+        this.plantGrowingSystem = plantGrowingSystem;
         this.landPosition = landPosition;
         this.reloadStatsCallback = reloadStatsCallback;
     }
@@ -59,6 +64,7 @@ public class LandController {
             plant_type.setText(land.getPlantType().toString());
             pot_pane.setVisible(false);
             plant_pane.setVisible(true);
+            harvest_btn.setDisable(!land.getHarvestable());
         } else {
             pot_pane.setVisible(true);
             plant_pane.setVisible(false);
@@ -83,13 +89,16 @@ public class LandController {
             // Todo: How added seed
         }
         try {
-            plantsHandler.removeSeed(seed);
+            plantGrowingSystem.plantSeed(landPosition, seed);
+            //plantsHandler.removeSeed(seed);
         } catch (IllegalArgumentException ignore) {
             // Todo: how error that no more seeds
             return;
         }
+
         plantsHandler.updateSeedsInventory();
-        landHandler.plant(landPosition, seed);
+        /*
+        landHandler.plant(landPosition, seed); */
         refresh();
         reloadStatsCallback.run();
     }

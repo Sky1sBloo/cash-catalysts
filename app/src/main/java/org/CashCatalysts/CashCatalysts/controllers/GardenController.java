@@ -7,6 +7,7 @@ import javafx.scene.layout.GridPane;
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.List;
 public class GardenController {
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
+    private final PlantGrowingSystem plantGrowingSystem;
     private final LandHandler landHandler;
 
     @FXML
@@ -60,9 +62,10 @@ public class GardenController {
     @FXML
     private Label rose_seed_lbl;
 
-    public GardenController(UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, LandHandler landHandler) {
+    public GardenController(UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, LandHandler landHandler) {
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
+        this.plantGrowingSystem = plantGrowingSystem;
         this.landHandler = landHandler;
     }
 
@@ -76,7 +79,12 @@ public class GardenController {
         for (int i = 0; i < lands.size(); i++) {
             Land land = lands.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Land.fxml"));
-            LandController landController = new LandController(landHandler, userGameStatsHandler, plantsHandler, land.getPosition(), this::loadInventoryContents);
+            LandController landController = new LandController(landHandler,
+                    userGameStatsHandler,
+                    plantsHandler,
+                    plantGrowingSystem,
+                    land.getPosition(),
+                    this::loadInventoryContents);
             loader.setController(landController);
             try {
                 land_pane.add(loader.load(), i % 4, i / 4);
