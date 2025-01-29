@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -116,13 +117,17 @@
                               </AnchorPane>
                            </children>
                         </HBox>
-                        <ListView fx:id="budget_list" prefHeight="200.0" prefWidth="316.0" styleClass="list-cell">
+                        <ListView fx:id="budget_list" prefHeight="200.0" prefWidth="316.0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                            <opaqueInsets>
                               <Insets />
-                           </opaqueInsets></ListView>
+                           </opaqueInsets>
+                           <styleClass>
+                              <String fx:value="list-cell" />
+                              <String fx:value="text_font" />
+                           </styleClass></ListView>
                      </children>
                      <HBox.margin>
                         <Insets right="40.0" />
@@ -155,9 +160,9 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </HBox>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="557.0" prefWidth="1049.0">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="557.0" prefWidth="1049.0" styleClass="text_font">
                            <content>
-                              <VBox fx:id="transaction_cards" prefHeight="559.0" prefWidth="1036.0" />
+                              <VBox fx:id="transaction_cards" prefHeight="559.0" prefWidth="1036.0" styleClass="text_font" />
                            </content>
                         </ScrollPane>
                      </children>

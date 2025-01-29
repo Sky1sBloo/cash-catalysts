@@ -98,44 +98,56 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onDashboardClick" text="Button" />
-                              <Label styleClass="text_font" text="Home" />
+                              <Button fx:id="home_button" mnemonicParsing="false" onAction="#onDashboardClick" prefHeight="42.0" prefWidth="42.0">
+                                 <VBox.margin>
+                                    <Insets bottom="7.0" />
+                                 </VBox.margin></Button>
+                              <Label styleClass="text_font" text="Home" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onTransactionsClick" text="Button" />
-                              <Label styleClass="text_font" text="Transactions" />
+                              <Button fx:id="transaction_button" mnemonicParsing="false" onAction="#onTransactionsClick" prefHeight="50.0" prefWidth="58.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></Button>
+                              <Label styleClass="text_font" text="Transactions" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onSubscriptionsClick" text="Button" />
-                              <Label styleClass="text_font" text="Subscriptions" />
+                              <Button fx:id="subscription_button" mnemonicParsing="false" onAction="#onSubscriptionsClick" prefHeight="48.0" prefWidth="58.0">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" />
+                                 </VBox.margin></Button>
+                              <Label styleClass="text_font" text="Subscriptions" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onGoalsClick" text="Button" />
-                              <Label styleClass="text_font" text="Goals" />
+                              <Button fx:id="button_goals" mnemonicParsing="false" onAction="#onGoalsClick" prefHeight="48.0" prefWidth="48.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin></Button>
+                              <Label styleClass="text_font" text="Goals" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Label styleClass="text_font" text="Challenges" />
+                              <Button fx:id="challenge_button" mnemonicParsing="false" prefHeight="42.0" prefWidth="62.0" />
+                              <Label styleClass="text_font" text="Challenges" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onAccountsClick" text="Button" />
-                              <Label styleClass="text_font" text="Accounts" />
+                              <Button fx:id="accounts_button" mnemonicParsing="false" onAction="#onAccountsClick" prefHeight="43.0" prefWidth="46.0" textFill="WHITE" />
+                              <Label styleClass="text_font" text="Accounts" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onAnalyticsClick" text="Button" />
-                              <Label styleClass="text_font" text="Analytics" />
+                              <Button fx:id="analytics_button" mnemonicParsing="false" onAction="#onAnalyticsClick" prefHeight="45.0" prefWidth="44.0" />
+                              <Label styleClass="text_font" text="Analytics" textFill="WHITE" />
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1" />

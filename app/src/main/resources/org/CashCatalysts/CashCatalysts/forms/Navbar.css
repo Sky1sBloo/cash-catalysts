@@ -54,3 +54,59 @@
      -fx-background-color: rgba(243, 198, 35, 0.08);
 }
 
+#home_button{
+    -fx-background-image: url('../icons/home_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#transaction_button{
+    -fx-background-image: url('../icons/transaction_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#transaction_button{
+    -fx-background-image: url('../icons/transaction_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#button_goals{
+    -fx-background-image: url('../icons/goals_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#analytics_button{
+    -fx-background-image: url('../icons/analytics_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#accounts_button{
+    -fx-background-image: url('../icons/accounts_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#subscription_button{
+    -fx-background-image: url('../icons/subscription_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+#challenge_button{
+    -fx-background-image: url('../icons/challenge_button.png');
+    -fx-background-size: cover;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
