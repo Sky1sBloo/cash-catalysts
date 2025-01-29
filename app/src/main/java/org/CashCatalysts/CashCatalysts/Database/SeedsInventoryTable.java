@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SeedsInventoryTable extends DbTable {
-    public SeedsInventoryTable(Connection connection) {
+    public SeedsInventoryTable(Connection connection) throws SQLException {
         super(connection);
 
         DbField[] fields = {
@@ -22,17 +22,19 @@ public class SeedsInventoryTable extends DbTable {
                 new DbField("sunflower", "INTEGER"),
                 new DbField("rose", "INTEGER"),
         };
+
+        super.createTable("seeds_inventory", fields);
     }
 
     public void addSeedsInventory(int userId) throws SQLException {
-        String sql = "INSERT INTO plants_inventory (userId, banana, pineapple, strawberry, apple, sampaguita, orchids, sunflower, rose) VALUES(?, 0, 0, 0, 0, 0, 0, 0, 0);";
+        String sql = "INSERT INTO seeds_inventory (userId, banana, pineapple, strawberry, apple, sampaguita, orchids, sunflower, rose) VALUES(?, 0, 0, 0, 0, 0, 0, 0, 0);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
         preparedStatement.executeUpdate();
     }
 
     public void updateSeedsInventory(UserPlantsInventory userPlantsInventory) throws SQLException {
-        String sql = "UPDATE plants_inventory SET banana = ?, pineapple = ?, strawberry = ?, apple = ?, sampaguita = ?, orchids = ?, sunflower = ?, rose = ? WHERE userId = ?";
+        String sql = "UPDATE seeds_inventory SET banana = ?, pineapple = ?, strawberry = ?, apple = ?, sampaguita = ?, orchids = ?, sunflower = ?, rose = ? WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userPlantsInventory.banana());
         preparedStatement.setInt(2, userPlantsInventory.pineapple());
@@ -48,7 +50,7 @@ public class SeedsInventoryTable extends DbTable {
     }
 
     public UserPlantsInventory getSeedsInventory(int userId) throws SQLException {
-        String sql = "SELECT * FROM plants_inventory WHERE userId = ?";
+        String sql = "SELECT * FROM seeds_inventory WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
 

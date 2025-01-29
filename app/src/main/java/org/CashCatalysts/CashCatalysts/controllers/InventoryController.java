@@ -60,6 +60,8 @@ public class InventoryController {
     }
 
     private void loadInventoryContents() {
+        plantsHandler.updatePlantsInventory();
+        plantsHandler.updateSeedsInventory();
         gold_lbl.setText(String.valueOf(userGameStats.getGold().getAmount()));
         star_lbl.setText(String.valueOf(userGameStats.getStar().getAmount()));
         banana_lbl.setText(String.valueOf(plantsHandler.getPlantsInventory().banana()));

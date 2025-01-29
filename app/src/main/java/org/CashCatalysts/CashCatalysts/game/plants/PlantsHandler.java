@@ -59,6 +59,17 @@ public class PlantsHandler {
             orchids = userPlantsInventory.orchids();
             sunflower = userPlantsInventory.sunflower();
             rose = userPlantsInventory.rose();
+
+            UserPlantsInventory userSeedsInventory = seedsInventoryTable.getSeedsInventory(userId);
+            bananaSeed = userSeedsInventory.banana();
+            pineappleSeed = userSeedsInventory.pineapple();
+            strawberrySeed = userSeedsInventory.strawberry();
+            appleSeed = userSeedsInventory.apple();
+            sampaguitaSeed = userSeedsInventory.sampaguita();
+            orchidsSeed = userSeedsInventory.orchids();
+            sunflowerSeed = userSeedsInventory.sunflower();
+            roseSeed = userSeedsInventory.rose();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
