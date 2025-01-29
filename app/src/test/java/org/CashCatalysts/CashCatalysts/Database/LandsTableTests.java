@@ -31,7 +31,7 @@ public class LandsTableTests {
         Land retrievedLand = landsTable.getLand(userId, landsTable.getHighestLandId(userId));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLand.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLand.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLand.getPosition());
         Assertions.assertEquals(land.getPosition(), landsTable.getHighestLandId(userId));
     }
@@ -47,12 +47,12 @@ public class LandsTableTests {
         Land retrievedLand = landsTable.getLand(userId, landsTable.getHighestLandId(userId));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLand.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLand.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLand.getPosition());
 
         Assertions.assertEquals(land.getUserId(), retrievedLandById.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLandById.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLandById.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLandById.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLandById.getPosition());
     }
 
@@ -67,12 +67,12 @@ public class LandsTableTests {
         Land retrievedLand2 = landsTable.getLand(userId + 1, landsTable.getHighestLandId(userId2));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLand.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLand.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLand.getPosition());
 
         Assertions.assertEquals(land2.getUserId(), retrievedLand2.getUserId());
         Assertions.assertEquals(land2.getPlantType(), retrievedLand2.getPlantType());
-        Assertions.assertEquals(land2.isHasPot(), retrievedLand2.isHasPot());
+        Assertions.assertEquals(land2.hasPot(), retrievedLand2.hasPot());
         Assertions.assertEquals(land2.getPosition(), retrievedLand2.getPosition());
     }
 

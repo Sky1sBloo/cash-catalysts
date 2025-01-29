@@ -85,7 +85,7 @@ public class LandHandler {
     public void plant(int position, Plant plant) {
         try {
             Land land = landsTable.getLand(userId, position);
-            if (!land.isHasPot()) {
+            if (!land.hasPot()) {
                 return;
             }
             land.setPlantType(plant);

@@ -32,7 +32,7 @@ public class LandHandlerTests {
     public void testAddPot() {
         landHandler.addLand();
         landHandler.addPot(1);
-        Assertions.assertTrue(landHandler.getLand(1).isHasPot());
+        Assertions.assertTrue(landHandler.getLand(1).hasPot());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class LandHandlerTests {
         landHandler.addLand();
         landHandler.addPot(1);
         landHandler.removePot(1);
-        Assertions.assertFalse(landHandler.getLand(1).isHasPot());
+        Assertions.assertFalse(landHandler.getLand(1).hasPot());
     }
 
     @Test

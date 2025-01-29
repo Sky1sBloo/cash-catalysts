@@ -39,7 +39,7 @@ public class PlantGrowingSystem {
      */
     public void waterPlant(int landPosition, int growthTime){
         Land land = landHandler.getLand(landPosition);
-        if(!land.isHasPot() || land.getPlantType() == Plant.NONE){
+        if(!land.hasPot() || land.getPlantType() == Plant.NONE){
             throw new IllegalArgumentException("Land must have a pot and a planted seed.");
         }
         LocalDateTime cooldownEnd = LocalDateTime.now().plusMinutes(growthTime);
@@ -81,7 +81,7 @@ public class PlantGrowingSystem {
         }
 
         Land land = landHandler.getLand(landPosition);
-        if(!land.isHasPot()){
+        if(!land.hasPot()){
             throw new IllegalArgumentException("Land must have a pot to plant a seed.");
         }
 

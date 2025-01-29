@@ -58,7 +58,7 @@ public class MainWindowController {
     @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
-        loadPage("../forms/Dashboard.fxml");
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler));
     }
 
     private void refresh() {
@@ -99,7 +99,8 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler));
+        //loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
     }
 
     @SuppressWarnings("unused")

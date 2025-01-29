@@ -24,7 +24,7 @@ public class Land {
         this.plantType = plantType;
     }
 
-    public boolean isHasPot() {
+    public boolean hasPot() {
         return hasPot;
     }
 

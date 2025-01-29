@@ -33,7 +33,7 @@ public class LandsTable extends DbTable {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, land.getUserId());
         preparedStatement.setString(2, land.getPlantType().toString());
-        preparedStatement.setInt(3, land.isHasPot() ? 1 : 0);
+        preparedStatement.setInt(3, land.hasPot() ? 1 : 0);
         preparedStatement.setInt(4, land.getPosition());
 
         preparedStatement.executeUpdate();
@@ -97,7 +97,7 @@ public class LandsTable extends DbTable {
         String sql = "UPDATE lands SET plantType = ?, hasPot = ? WHERE userId = ? AND position = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, land.getPlantType().toString());
-        preparedStatement.setInt(2, land.isHasPot() ? 1 : 0);
+        preparedStatement.setInt(2, land.hasPot() ? 1 : 0);
         preparedStatement.setInt(3, land.getUserId());
         preparedStatement.setInt(4, land.getPosition());
 
