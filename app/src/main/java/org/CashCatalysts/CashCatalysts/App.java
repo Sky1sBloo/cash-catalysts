@@ -49,7 +49,7 @@ public class App extends Application {
         ChallengeHandler challengeHandler = new ChallengeHandler(databaseHandler, userStatsSystem, gameActionHandler, userGameStatsHandler);
         LandHandler landHandler = new LandHandler(userId, databaseHandler);
         PlantsHandler plantsHandler = new PlantsHandler(userId, databaseHandler);
-        ChestHandler chestHandler = new ChestHandler(userId, databaseHandler, plantsHandler);
+        ChestHandler chestHandler = new ChestHandler(userGameStatsHandler, plantsHandler);
         CooldownHandler cooldownHandler = new CooldownHandler(databaseHandler);
         WaterAutoFillListener waterAutoFillListener = new WaterAutoFillListener(userGameStatsHandler, cooldownHandler);
         PlantGrowingSystem plantGrowingSystem = new PlantGrowingSystem(plantsHandler, cooldownHandler, landHandler, userGameStatsHandler, gameActionHandler, waterAutoFillListener);

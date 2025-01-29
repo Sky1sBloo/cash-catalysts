@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.Challenge;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
+import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ import java.util.List;
 public class ChallengesController {
     private final ChallengeHandler challengeHandler;
     private final UserGameStatsHandler userGameStatsHandler;
+    private final ChestHandler chestHandler;
 
     @FXML
     private BorderPane challenges_page;
@@ -24,9 +26,10 @@ public class ChallengesController {
     private VBox weekly_challenge_list;
 
 
-    public ChallengesController(ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler) {
+    public ChallengesController(ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, ChestHandler chestHandler) {
         this.challengeHandler = challengeHandler;
         this.userGameStatsHandler = userGameStatsHandler;
+        this.chestHandler = chestHandler;
     }
 
 
@@ -36,7 +39,7 @@ public class ChallengesController {
 
     private void refresh() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/StatsBar.fxml"));
-        loader.setController(new StatsBarController(userGameStatsHandler));
+        loader.setController(new StatsBarController(userGameStatsHandler, chestHandler));
         try {
             challenges_page.setTop(loader.load());
             loadDailyChallenges();

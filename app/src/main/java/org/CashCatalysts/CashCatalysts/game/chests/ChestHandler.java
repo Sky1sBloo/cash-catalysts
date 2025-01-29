@@ -1,34 +1,19 @@
 package org.CashCatalysts.CashCatalysts.game.chests;
 
-import org.CashCatalysts.CashCatalysts.Database.ChestsInventoryTable;
-import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
+import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.rewards.ChestDrop;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChestHandler {
-    private final ChestsInventoryTable chestsInventoryTable;
+    private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
-    private int normalChestsAmount;
-    private int rareChestsAmount;
-    private int epicChestsAmount;
-    private final int userId;
 
-    public ChestHandler(int userId, DatabaseHandler databaseHandler, PlantsHandler plantsHandler) {
-        this.userId = userId;
-        this.chestsInventoryTable = databaseHandler.getChestsInventoryTable();
+    public ChestHandler(UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler) {
+        this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
-    }
-
-    public void addChestsInventory() {
-        try {
-            chestsInventoryTable.addChestsInventory(userId);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public List<ChestDrop> expendChest(ChestRarity rarity) {
@@ -36,24 +21,24 @@ public class ChestHandler {
         Chest chest = null;
         switch (rarity) {
             case NORMAL -> {
-                if (normalChestsAmount <= 0) {
+                if (userGameStatsHandler.getUserGameStats().getNormalChests().getAmount() <= 0) {
                     return chestDrops;
                 }
-                normalChestsAmount--;
+                userGameStatsHandler.getUserGameStats().getNormalChests().exchange(1);
                 chest = new Chest(ChestRarity.NORMAL);
             }
             case RARE -> {
-                if (rareChestsAmount <= 0) {
+                if (userGameStatsHandler.getUserGameStats().getRareChests().getAmount() <= 0) {
                     return chestDrops;
                 }
-                rareChestsAmount--;
+                userGameStatsHandler.getUserGameStats().getRareChests().exchange(1);
                 chest = new Chest(ChestRarity.RARE);
             }
             case EPIC -> {
-                if (epicChestsAmount <= 0) {
+                if (userGameStatsHandler.getUserGameStats().getEpicChests().getAmount() <= 0) {
                     return chestDrops;
                 }
-                epicChestsAmount--;
+                userGameStatsHandler.getUserGameStats().getEpicChests().exchange(1);
                 chest = new Chest(ChestRarity.EPIC);
             }
         }
@@ -71,9 +56,9 @@ public class ChestHandler {
     public void addChest(List<Chest> chests) {
         for (Chest chest : chests) {
             switch (chest.getRarity()) {
-                case NORMAL -> normalChestsAmount++;
-                case RARE -> rareChestsAmount++;
-                case EPIC -> epicChestsAmount++;
+                case NORMAL -> userGameStatsHandler.getUserGameStats().getNormalChests().add(1);
+                case RARE -> userGameStatsHandler.getUserGameStats().getRareChests().add(1);
+                case EPIC -> userGameStatsHandler.getUserGameStats().getEpicChests().add(1);
             }
         }
         updateChestsAmount();
@@ -81,18 +66,20 @@ public class ChestHandler {
 
     public void addChest(Chest chest) {
         switch (chest.getRarity()) {
-            case NORMAL -> normalChestsAmount++;
-            case RARE -> rareChestsAmount++;
-            case EPIC -> epicChestsAmount++;
+            case NORMAL -> userGameStatsHandler.getUserGameStats().getNormalChests().add(1);
+            case RARE -> userGameStatsHandler.getUserGameStats().getRareChests().add(1);
+            case EPIC -> userGameStatsHandler.getUserGameStats().getEpicChests().add(1);
         }
         updateChestsAmount();
     }
 
     private void updateChestsAmount() {
+        userGameStatsHandler.updateUserGameStats();
+        /*
         try {
             chestsInventoryTable.updateChestsAmount(new UserChestsInventory(userId, normalChestsAmount, rareChestsAmount, epicChestsAmount));
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        } */
     }
 }

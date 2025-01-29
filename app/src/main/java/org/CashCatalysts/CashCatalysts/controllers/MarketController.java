@@ -99,7 +99,7 @@ public class MarketController {
     private void loadStats() {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/StatsBar.fxml"));
-        loader.setController(new StatsBarController(userGameStatsHandler));
+        loader.setController(new StatsBarController(userGameStatsHandler, chestHandler));
         try {
             market_pane.setTop(loader.load());
         } catch (IOException e) {
