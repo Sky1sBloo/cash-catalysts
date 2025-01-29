@@ -1,2 +1,32 @@
 #land_pane {
 }
+
+#land_pane .button {
+    -fx-background-color: #FFC800;
+    -fx-background-radius: 0;
+    -fx-background-insets: 5;
+    -fx-border-color: #DA8B30;
+    -fx-border-insets: 5;
+    -fx-border-width: 2;
+}
+
+#land_pane .button:hover {
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-background-color: #fffbde;
+}
+
+#seed_selection {
+    -fx-background-color: #fffbde;
+}
+
+.land_txt {
+    -fx-text-fill: #FFC800;
+    -fx-font-size: 13;
+    -fx-background-color: rgba(0, 0, 0, 0.75);
+    -fx-padding: 0 5 0 5;
+}
+
+#seed_selection .list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
+}
