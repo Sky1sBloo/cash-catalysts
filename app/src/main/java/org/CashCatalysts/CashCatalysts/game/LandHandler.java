@@ -31,7 +31,7 @@ public class LandHandler {
      */
     public void addLand() {
         try {
-            Land newLand = new Land(userId, Plant.NONE, false, landsTable.getHighestLandId(userId) + 1);
+            Land newLand = new Land(userId, Plant.NONE, false, false, landsTable.getHighestLandId(userId) + 1);
             landsTable.addLand(newLand);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -118,6 +118,35 @@ public class LandHandler {
         }
     }
 
+    public void makeLandHarvestable(int position) {
+        try {
+            Land land = landsTable.getLand(userId, position);
+            land.setHarvestable(true);
+            landsTable.updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean isLandHarvestable(int position) {
+        try {
+            Land land = landsTable.getLand(userId, position);
+            return land.getHarvestable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void harvestLand(int position) {
+        try {
+            Land land = landsTable.getLand(userId, position);
+            land.setPlantType(Plant.NONE);
+            land.setHarvestable(false);
+            landsTable.updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Getter for LandsTable

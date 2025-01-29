@@ -15,14 +15,15 @@ public class LandsTable extends DbTable {
         super(connection);
 
         DbField[] fields = {
-            new DbField("landId", "INTEGER", "PRIMARY KEY NOT NULL"),
-            new DbField("userId", "INTEGER", "NOT NULL"),
-            new DbField("plantType", "VARCHAR(24)", "NOT NULL"),
-            new DbField("hasPot", "INTEGER"),
-            new DbField("position", "INTEGER")
+                new DbField("landId", "INTEGER", "PRIMARY KEY NOT NULL"),
+                new DbField("userId", "INTEGER", "NOT NULL"),
+                new DbField("plantType", "VARCHAR(24)", "NOT NULL"),
+                new DbField("hasPot", "INTEGER"),
+                new DbField("harvestable", "INTEGER"),
+                new DbField("position", "INTEGER")
         };
         String[] constraints = {
-            "FOREIGN KEY (userId) REFERENCES users(user_id)"
+                "FOREIGN KEY (userId) REFERENCES users(user_id)"
         };
 
         super.createTable("lands", fields, constraints);
@@ -51,10 +52,11 @@ public class LandsTable extends DbTable {
             return null;
         }
         return new Land(
-            resultSet.getInt("userId"),
-            Plant.valueOf(resultSet.getString("plantType")),
-            resultSet.getInt("hasPot") == 1,
-            resultSet.getInt("position")
+                resultSet.getInt("userId"),
+                Plant.valueOf(resultSet.getString("plantType")),
+                resultSet.getInt("hasPot") == 1,
+                resultSet.getInt("harvestable") == 1,
+                resultSet.getInt("position")
         );
     }
 
@@ -68,10 +70,11 @@ public class LandsTable extends DbTable {
             return null;
         }
         return new Land(
-            resultSet.getInt("userId"),
-            Plant.valueOf(resultSet.getString("plantType")),
-            resultSet.getInt("hasPot") == 1,
-            resultSet.getInt("position")
+                resultSet.getInt("userId"),
+                Plant.valueOf(resultSet.getString("plantType")),
+                resultSet.getInt("hasPot") == 1,
+                resultSet.getInt("harvestable") == 1,
+                resultSet.getInt("position")
         );
     }
 
@@ -84,10 +87,11 @@ public class LandsTable extends DbTable {
         List<Land> lands = new ArrayList<>();
         while (resultSet.next()) {
             lands.add(new Land(
-                resultSet.getInt("userId"),
-                Plant.valueOf(resultSet.getString("plantType")),
-                resultSet.getInt("hasPot") == 1,
-                resultSet.getInt("position")
+                    resultSet.getInt("userId"),
+                    Plant.valueOf(resultSet.getString("plantType")),
+                    resultSet.getInt("hasPot") == 1,
+                    resultSet.getInt("harvestable") == 1,
+                    resultSet.getInt("position")
             ));
         }
         return lands;
