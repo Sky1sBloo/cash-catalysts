@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -26,22 +27,38 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="goal_name" styleClass="text_font" />
+            <TextField fx:id="goal_name">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_txtbx" />
+               </styleClass></TextField>
             <Label styleClass="text_font" text="Category">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <ComboBox fx:id="type_selection" prefWidth="150.0" styleClass="text_font" />
+            <ComboBox fx:id="type_selection" prefWidth="150.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_selection" />
+               </styleClass></ComboBox>
             <Label styleClass="text_font" text="Target Amount">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="target_amount" styleClass="text_font" />
+            <TextField fx:id="target_amount">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_txtbx" />
+               </styleClass></TextField>
             <Label styleClass="text_font" text="Deadline">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <DatePicker fx:id="deadline" prefHeight="22.0" prefWidth="148.0" styleClass="text_font" />
+            <DatePicker fx:id="deadline" prefHeight="22.0" prefWidth="148.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_selection" />
+               </styleClass></DatePicker>
          </children>
       </VBox>
    </content>

@@ -54,3 +54,10 @@
     -fx-background-color: rgba(16, 228, 98, 0.7);
 }
 
+.goals_btn {
+    -fx-background-color: #fff7bd;
+}
+
+.goals_btn:hover {
+    -fx-background-color: #f0f0f0;
+}

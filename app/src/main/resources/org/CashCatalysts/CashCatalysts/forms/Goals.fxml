@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -23,7 +24,7 @@
    <right>
       <VBox maxHeight="300.0" prefHeight="272.0" prefWidth="454.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="28.0" prefWidth="261.0" style="-fx-background-color: rgba(235, 131, 23, 0.7); -fx-background-radius: 10;" styleClass="text_font" text="Upcoming Deadlines" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="30.0" prefWidth="339.0" style="-fx-background-color: rgba(235, 131, 23, 0.7); -fx-background-radius: 10;" styleClass="text_font" text="Upcoming Deadlines" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -45,9 +46,21 @@
          <children>
             <HBox layoutX="980.0" layoutY="55.0" prefHeight="26.0" prefWidth="156.0" spacing="10.0">
                <children>
-                  <Button fx:id="add_goal_btn" mnemonicParsing="false" styleClass="text_font" text="Add" />
-                  <Button fx:id="edit_goal_btn" mnemonicParsing="false" styleClass="text_font" text="Edit" />
-                  <Button fx:id="delete_goal_btn" mnemonicParsing="false" styleClass="text_font" text="Delete" />
+                  <Button fx:id="add_goal_btn" mnemonicParsing="false" text="+">
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="goals_btn" />
+                     </styleClass></Button>
+                  <Button fx:id="delete_goal_btn" mnemonicParsing="false" text="-">
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="goals_btn" />
+                     </styleClass></Button>
+                  <Button fx:id="edit_goal_btn" mnemonicParsing="false" text="edit">
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="goals_btn" />
+                     </styleClass></Button>
                </children>
             </HBox>
             <ListView fx:id="goals_list" layoutX="101.0" layoutY="86.0" prefHeight="178.0" prefWidth="1036.0" style="-fx-border-color: black; -fx-border-image-width: 2;" styleClass="text_font" />
@@ -55,7 +68,7 @@
                <children>
                   <Pane layoutX="21.0" layoutY="6.0" prefHeight="101.0" prefWidth="1038.0" style="-fx-background-color: rgba(243, 198, 35, 0.9); -fx-background-radius: 10;">
                      <children>
-                        <Label fx:id="month_label" layoutX="65.0" layoutY="37.0" prefHeight="28.0" prefWidth="166.0" styleClass="text_font" text="January 2025" textFill="WHITE">
+                        <Label fx:id="month_label" layoutX="65.0" layoutY="37.0" prefHeight="30.0" prefWidth="206.0" styleClass="text_font" text="January 2025" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -219,7 +232,7 @@
    <center>
       <AnchorPane maxHeight="310.0" maxWidth="700.0" minHeight="40.0" prefHeight="244.0" prefWidth="715.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="53.0" layoutY="-5.0" prefHeight="38.0" prefWidth="218.0" style="-fx-background-color: rgba(16, 228, 98, 0.8); -fx-background-radius: 10;" styleClass="text_font" text="Budget Overview" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="53.0" layoutY="-5.0" prefHeight="38.0" prefWidth="285.0" style="-fx-background-color: rgba(16, 228, 98, 0.8); -fx-background-radius: 10;" styleClass="text_font" text="Budget Overview" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
