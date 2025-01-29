@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
@@ -48,6 +49,8 @@ public class LandController {
     private Button cheat_btn;
     @FXML
     private Label time_lbl;
+    @FXML
+    private ImageView plant_image;
 
     private Image landImage;
     private Image landPotImage;
@@ -80,6 +83,25 @@ public class LandController {
         refresh();
     }
 
+    private void loadPlantImage(Plant plant) {
+        String plantPath;
+        switch (plant) {
+            case BANANA -> plantPath = "../icons2/Banana.png";
+            case PINEAPPLE -> plantPath = "../icons2/Pineapple.png";
+            case STRAWBERRY -> plantPath = "../icons2/Strawberry.png";
+            case APPLE -> plantPath = "../icons2/Apple.png";
+            case SAMPAGUITA -> plantPath = "../icons2/Sampaguita.png";
+            case ORCHIDS -> plantPath = "../icons2/Orchids.png";
+            case SUNFLOWER -> plantPath = "../icons2/Sunflower.png";
+            case ROSE -> plantPath = "../icons2/Rose.png";
+            default -> {
+                plant_image.setImage(null);
+                return;
+            }
+        }
+        plant_image.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(plantPath))));
+    }
+
 
     private void refresh() {
         loadPlantContents();
@@ -101,6 +123,7 @@ public class LandController {
             land_pane.setBackground(new Background(landPotBgImage));
             boolean isHarvestable = plantGrowingSystem.isPlantHarvestable(landPosition);
             plant_type.setText(land.getPlantType().toString());
+            loadPlantImage(land.getPlantType());
             pot_pane.setVisible(false);
             plant_pane.setVisible(true);
             harvest_btn.setDisable(!isHarvestable);

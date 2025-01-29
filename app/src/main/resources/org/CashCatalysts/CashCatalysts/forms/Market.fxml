@@ -27,7 +27,7 @@
                      <children>
                         <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons2/banana-export.png" />
+                              <Image url="@../icons2/Banana.png" />
                            </image>
                         </ImageView>
                         <Label text="Banana" />

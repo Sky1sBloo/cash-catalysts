@@ -17,7 +17,7 @@
 }
 
 #seed_selection {
-    -fx-background-color: #fffbde;
+    -fx-background-color: rgba(255, 251, 222, 0.5);
 }
 
 .land_txt {

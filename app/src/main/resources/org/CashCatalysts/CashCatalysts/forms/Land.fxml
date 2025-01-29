@@ -19,7 +19,7 @@
                </font>
             </Label>
             <Label fx:id="time_lbl" styleClass="land_txt" />
-            <ImageView fitHeight="59.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="plant_image" fitHeight="59.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons2/Apple.png" />
                </image>
