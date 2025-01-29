@@ -129,14 +129,14 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onInventoryClick(ActionEvent ignore) throws IOException {
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Inventory.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Inventory.fxml"));
         InventoryController controller = new InventoryController(userGameStatsHandler, plantsHandler);
         loader.setController(controller);
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.getDialogPane().setContent(loader.load());
+        dialog.setDialogPane(loader.load());
         dialog.setOnCloseRequest(e -> dialog.close());
-        dialog.showAndWait(); */
-        loadPage("../forms/Inventory.fxml", new InventoryController(userGameStatsHandler, plantsHandler));
+        dialog.showAndWait();
+        /*loadPage("../forms/Inventory.fxml", new InventoryController(userGameStatsHandler, plantsHandler)); */
     }
 
     @SuppressWarnings("unused")
