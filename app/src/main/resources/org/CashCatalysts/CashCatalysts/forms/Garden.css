@@ -22,7 +22,9 @@
     -fx-padding: 5 15 5 15;
     -fx-border-width: 2;
 }
-
+.land_pane .grid-cell {
+    -fx-background-insets: 20;
+}
 #garden_stats_bar .button:hover {
     -fx-background-color: #FFC800;
     -fx-background-radius: 0;

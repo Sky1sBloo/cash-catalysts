@@ -6,13 +6,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
+
+import java.util.Objects;
 
 public class LandController {
     private final LandHandler landHandler;
@@ -23,6 +26,8 @@ public class LandController {
     //
     private final Runnable reloadStatsCallback;
 
+    @FXML
+    private Pane land_pane;
     @FXML
     private ComboBox<Plant> seed_selection;
     @FXML
@@ -44,6 +49,9 @@ public class LandController {
     @FXML
     private Label time_lbl;
 
+    private Image landImage;
+    private Image landPotImage;
+
     public LandController(LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, int landPosition, Runnable reloadStatsCallback) {
         this.landHandler = landHandler;
         this.userGameStatsHandler = userGameStatsHandler;
@@ -54,6 +62,9 @@ public class LandController {
     }
 
     public void initialize() {
+        landImage = new Image(getClass().getResourceAsStream("../icons2/Land.png"));
+        landPotImage = new Image(getClass().getResourceAsStream("../icons2/LandPot.png"));
+
         seed_selection.getItems().addAll(Plant.values());
         seed_selection.getSelectionModel().selectLast();
         add_pot_btn.setOnAction(ignore -> addPot());
@@ -75,8 +86,19 @@ public class LandController {
     }
 
     private void loadPlantContents() {
+        BackgroundImage landBgImage = new BackgroundImage(landImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER, null);
+        BackgroundImage landPotBgImage = new BackgroundImage(landPotImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                null);
         Land land = landHandler.getLand(landPosition);
+
         if (land.hasPot()) {
+            land_pane.setBackground(new Background(landPotBgImage));
             boolean isHarvestable = plantGrowingSystem.isPlantHarvestable(landPosition);
             plant_type.setText(land.getPlantType().toString());
             pot_pane.setVisible(false);
@@ -90,6 +112,7 @@ public class LandController {
             seed_selection.setDisable(isWatered);
             time_lbl.setText(plantGrowingSystem.getPlantTimeRemaining(landPosition));
         } else {
+            land_pane.setBackground(new Background(landBgImage));
             pot_pane.setVisible(true);
             plant_pane.setVisible(false);
         }

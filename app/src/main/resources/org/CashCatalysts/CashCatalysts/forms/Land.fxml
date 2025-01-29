@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="200.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="land_pane" alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="287.0" stylesheets="@Land.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <VBox fx:id="plant_pane" alignment="TOP_CENTER" prefHeight="61.0" prefWidth="246.0">
          <children>
