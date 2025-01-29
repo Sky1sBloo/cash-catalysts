@@ -24,6 +24,8 @@ public class MarketController {
     private Button trade_rare_chest_btn;
     @FXML
     private Button trade_epic_chest_btn;
+    @FXML
+    private Button buy_pot;
 
     public MarketController(ChestHandler chestHandler, UserGameStatsHandler userGameStatsHandler) {
         this.chestHandler = chestHandler;
@@ -34,6 +36,7 @@ public class MarketController {
         trade_normal_chest_btn.setOnAction(ignore -> tradeChest(ChestRarity.NORMAL));
         trade_rare_chest_btn.setOnAction(ignore -> tradeChest(ChestRarity.RARE));
         trade_epic_chest_btn.setOnAction(ignore -> tradeChest(ChestRarity.EPIC));
+        buy_pot.setOnAction(ignore -> buyPot());
     }
 
     private void tradeChest(ChestRarity rarity) {
@@ -52,5 +55,10 @@ public class MarketController {
 
         dialog.initStyle(StageStyle.UTILITY);
         dialog.showAndWait();
+    }
+
+    private void buyPot() {
+        userGameStatsHandler.getUserGameStats().getPots().add(1);
+        userGameStatsHandler.updateUserGameStats();
     }
 }

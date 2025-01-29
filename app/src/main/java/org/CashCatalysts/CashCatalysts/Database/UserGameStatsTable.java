@@ -21,7 +21,8 @@ public class UserGameStatsTable extends DbTable {
                 new DbField("water", "INTEGER"),
                 new DbField("normal_chests_amount", "INTEGER"),
                 new DbField("rare_chests_amount", "INTEGER"),
-                new DbField("epic_chests_amount", "INTEGER")
+                new DbField("epic_chests_amount", "INTEGER"),
+                new DbField("pots", "INTEGER")
         };
 
         String[] constraints = {
@@ -34,7 +35,7 @@ public class UserGameStatsTable extends DbTable {
         if (usersTable.getUser(userId) == null) {
             throw new SQLException("User does not exist");
         }
-        String sql = "INSERT INTO game_inventory (userId, gold, star, water, normal_chests_amount, rare_chests_amount, epic_chests_amount) VALUES(?, 0, 0, 0, 0, 0, 0);";
+        String sql = "INSERT INTO game_inventory (userId, gold, star, water, normal_chests_amount, rare_chests_amount, epic_chests_amount, pots) VALUES(?, 0, 0, 0, 0, 0, 0, 0);";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
@@ -42,7 +43,7 @@ public class UserGameStatsTable extends DbTable {
     }
 
     public void updateGameInventory(UserGameStats userGameStats) throws SQLException {
-        String sql = "UPDATE game_inventory SET gold = ?, star = ?, water = ?, normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ? WHERE userId = ?";
+        String sql = "UPDATE game_inventory SET gold = ?, star = ?, water = ?, normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ?, pots = ? WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userGameStats.getGold().getAmount());
         preparedStatement.setInt(2, userGameStats.getStar().getAmount());
@@ -50,7 +51,8 @@ public class UserGameStatsTable extends DbTable {
         preparedStatement.setInt(4, userGameStats.getNormalChests().getAmount());
         preparedStatement.setInt(5, userGameStats.getRareChests().getAmount());
         preparedStatement.setInt(6, userGameStats.getEpicChests().getAmount());
-        preparedStatement.setInt(7, userGameStats.getUserId());
+        preparedStatement.setInt(7, userGameStats.getPots().getAmount());
+        preparedStatement.setInt(8, userGameStats.getUserId());
 
         preparedStatement.executeUpdate();
     }
@@ -71,7 +73,8 @@ public class UserGameStatsTable extends DbTable {
                 resultSet.getInt("water"),
                 resultSet.getInt("normal_chests_amount"),
                 resultSet.getInt("rare_chests_amount"),
-                resultSet.getInt("epic_chests_amount")
+                resultSet.getInt("epic_chests_amount"),
+                resultSet.getInt("pots")
         );
     }
 }

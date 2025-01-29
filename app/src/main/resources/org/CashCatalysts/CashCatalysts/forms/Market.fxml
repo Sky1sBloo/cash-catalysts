@@ -178,7 +178,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Pot" />
-                              <Button mnemonicParsing="false" text="Buy" />
+                              <Button fx:id="buy_pot" mnemonicParsing="false" text="Buy" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">

@@ -80,5 +80,6 @@ public class InventoryController {
         orchids_seed_lbl.setText(String.valueOf(plantsHandler.getSeedsInventory().orchids()));
         sunflower_seed_lbl.setText(String.valueOf(plantsHandler.getSeedsInventory().sunflower()));
         rose_seed_lbl.setText(String.valueOf(plantsHandler.getSeedsInventory().rose()));
+        pot_lbl.setText(String.valueOf(userGameStats.getPots().getAmount()));
     }
 }

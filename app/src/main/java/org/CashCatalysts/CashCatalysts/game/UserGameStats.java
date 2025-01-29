@@ -14,6 +14,7 @@ public class UserGameStats {
     private final GameCurrency normalChests;
     private final GameCurrency rareChests;
     private final GameCurrency epicChests;
+    private final GameCurrency pots;
 
     public UserGameStats(int userId) {
         this.userId = userId;
@@ -23,9 +24,10 @@ public class UserGameStats {
         normalChests = new GameCurrency();
         rareChests = new GameCurrency();
         epicChests = new GameCurrency();
+        pots = new GameCurrency();
     }
 
-    public UserGameStats(int userId, int gold, int star, int water, int normalChests, int rareChests, int epicChests) {
+    public UserGameStats(int userId, int gold, int star, int water, int normalChests, int rareChests, int epicChests, int pots) {
         this.userId = userId;
         this.gold = new GameCurrency(gold);
         this.star = new GameCurrency(star);
@@ -33,6 +35,7 @@ public class UserGameStats {
         this.normalChests = new GameCurrency(normalChests);
         this.rareChests = new GameCurrency(rareChests);
         this.epicChests = new GameCurrency(epicChests);
+        this.pots = new GameCurrency(pots);
     }
 
     public int getUserId() {
@@ -61,5 +64,9 @@ public class UserGameStats {
 
     public GameCurrency getEpicChests() {
         return epicChests;
+    }
+
+    public GameCurrency getPots() {
+        return pots;
     }
 }
