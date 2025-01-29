@@ -1,270 +1,333 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="goals_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Goals.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <right>
-      <VBox prefHeight="720.0" prefWidth="547.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="300.0" prefHeight="272.0" prefWidth="454.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="January 2025">
+            <Label alignment="CENTER" contentDisplay="BOTTOM" prefHeight="30.0" prefWidth="339.0" style="-fx-background-color: rgba(235, 131, 23, 0.7); -fx-background-radius: 10;" styleClass="text_font" text="Upcoming Deadlines" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
             </Label>
-            <GridPane alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Sun">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                     <children>
-                        <Label text="Mon">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                     <children>
-                        <Label text="Tues">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
-                     <children>
-                        <Label text="Wed">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
-                     <children>
-                        <Label text="Thurs">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
-                     <children>
-                        <Label text="Fri">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6">
-                     <children>
-                        <Label text="Sat">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="sun_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="mon_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="tues_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="wed_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="thurs_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="fri_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="sat_lbl" text="0">
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-               </children>
-            </GridPane>
-            <Label text="Upcoming Deadlines">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <ListView fx:id="goals_upcoming" prefHeight="200.0" prefWidth="200.0" />
-         </children></VBox>
+            <ListView fx:id="goals_upcoming" prefHeight="229.0" prefWidth="384.0" style="-fx-background-color: rgba(243, 198, 35, 0.9); -fx-background-radius: 10;" styleClass="text_font">
+               <VBox.margin>
+                  <Insets right="70.0" />
+               </VBox.margin></ListView>
+         </children>
+         <BorderPane.margin>
+            <Insets right="10.0" top="10.0" />
+         </BorderPane.margin></VBox>
    </right>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+   <top>
+      <AnchorPane prefHeight="272.0" prefWidth="1215.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="My Goals">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
-            <HBox prefWidth="200.0">
+            <HBox layoutX="980.0" layoutY="55.0" prefHeight="26.0" prefWidth="156.0" spacing="10.0">
                <children>
-                  <Button fx:id="add_goal_btn" mnemonicParsing="false" text="Add" />
-                  <Button fx:id="edit_goal_btn" mnemonicParsing="false" text="Edit" />
-                  <Button fx:id="delete_goal_btn" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="add_goal_btn" mnemonicParsing="false" text="+">
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="goals_btn" />
+                     </styleClass></Button>
+                  <Button fx:id="delete_goal_btn" mnemonicParsing="false" text="-">
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="goals_btn" />
+                     </styleClass></Button>
+                  <Button fx:id="edit_goal_btn" mnemonicParsing="false" text="edit">
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="goals_btn" />
+                     </styleClass></Button>
                </children>
             </HBox>
-            <ListView fx:id="goals_list" prefHeight="251.0" prefWidth="668.0" />
-            <Label text="Budget Overview">
+            <ListView fx:id="goals_list" layoutX="101.0" layoutY="86.0" prefHeight="178.0" prefWidth="1036.0" style="-fx-border-color: black; -fx-border-image-width: 2;" styleClass="text_font" />
+            <AnchorPane layoutX="79.0" layoutY="265.0" maxHeight="70.0" minHeight="20.0" minWidth="-Infinity" prefHeight="70.0" prefWidth="1058.0" snapToPixel="false">
+               <children>
+                  <Pane layoutX="21.0" layoutY="6.0" prefHeight="101.0" prefWidth="1038.0" style="-fx-background-color: rgba(243, 198, 35, 0.9); -fx-background-radius: 10;">
+                     <children>
+                        <Label fx:id="month_label" layoutX="65.0" layoutY="37.0" prefHeight="30.0" prefWidth="206.0" styleClass="text_font" text="January 2025" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <GridPane alignment="CENTER" layoutX="358.0" layoutY="10.0" styleClass="text_font">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Label styleClass="text_font" text="Sun" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label styleClass="text_font" text="Mon" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                           <children>
+                              <Label styleClass="text_font" text="Tues" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="3.0" prefWidth="100.0" GridPane.columnIndex="3">
+                           <children>
+                              <Label styleClass="text_font" text="Wed" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
+                           <children>
+                              <Label styleClass="text_font" text="Thurs" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
+                           <children>
+                              <Label styleClass="text_font" text="Fri" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6">
+                           <children>
+                              <Label styleClass="text_font" text="Sat" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="sun_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="mon_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="tues_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="wed_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="thurs_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="fri_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                           <children>
+                              <Label fx:id="sat_lbl" styleClass="text_font" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <Label fx:id="goals_label" alignment="CENTER" layoutX="101.0" layoutY="37.0" prefHeight="35.0" prefWidth="144.0" style="-fx-background-radius: 10;" styleClass="text_font" text="My Goals" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <GridPane prefHeight="84.0" prefWidth="733.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane maxHeight="310.0" maxWidth="700.0" minHeight="40.0" prefHeight="244.0" prefWidth="715.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="53.0" layoutY="-5.0" prefHeight="38.0" prefWidth="285.0" style="-fx-background-color: rgba(16, 228, 98, 0.8); -fx-background-radius: 10;" styleClass="text_font" text="Budget Overview" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <HBox fx:id="month_income_card" layoutX="367.0" layoutY="57.0" prefHeight="130.0" prefWidth="308.0" styleClass="budget_card">
                <children>
-                  <HBox fx:id="month_expense_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card">
+                  <VBox prefHeight="61.0" prefWidth="194.0">
                      <children>
-                        <VBox prefHeight="61.0" prefWidth="194.0">
-                           <children>
-                              <Label text="Spent" />
-                              <Label fx:id="month_expense_lbl" text="Php 0">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label text="This Month's Expense">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/spent.png" />
-                           </image>
-                        </ImageView>
+                        <Label styleClass="text_font" text="Earned">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="month_budget_lbl" styleClass="text_font" text="Php 0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="text_font" text="This Month's Budget">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </HBox>
-                  <HBox fx:id="month_income_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card" GridPane.columnIndex="1">
-                     <children>
-                        <VBox prefHeight="61.0" prefWidth="194.0">
-                           <children>
-                              <Label text="Earned" />
-                              <Label fx:id="month_budget_lbl" text="Php 0">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label text="This Month's Budget">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/spent.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </HBox>
+                  </VBox>
+                  <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/spent.png" />
+                     </image>
+                  </ImageView>
                </children>
-            </GridPane>
-            <HBox fx:id="budget_so_far_card" prefHeight="100.0" prefWidth="244.0" styleClass="budget_card">
+            </HBox>
+            <HBox fx:id="month_expense_card" layoutX="41.0" layoutY="57.0" prefHeight="130.0" prefWidth="316.0" styleClass="budget_card">
                <children>
-                  <Label text="Budget So Far:" />
-                  <HBox prefHeight="60.0" prefWidth="12.0" />
-                  <Label fx:id="budget_remaining_lbl" text="Php 0">
+                  <VBox prefHeight="90.0" prefWidth="195.0">
+                     <children>
+                        <Label styleClass="text_font" text="Spent">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="month_expense_lbl" styleClass="text_font" text="Php 0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="text_font" text="This Month's Expense">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <ImageView fitHeight="68.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/spent.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox fx:id="budget_so_far_card" layoutX="41.0" layoutY="196.0" prefHeight="84.0" prefWidth="634.0" style="-fx-background-color: rgba(16, 55, 92, 0.5);" styleClass="budget_card">
+               <children>
+                  <Label style="-fx-text-fill: white;" styleClass="text_font" text="Budget So Far:">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font size="24.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <HBox prefHeight="60.0" prefWidth="12.0" />
+                  <Label fx:id="budget_remaining_lbl" style="-fx-text-fill: white;" styleClass="text_font" text="Php 0" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
          </children>
-      </VBox>
+         <BorderPane.margin>
+            <Insets bottom="50.0" left="50.0" top="70.0" />
+         </BorderPane.margin>
+      </AnchorPane>
    </center>
 </BorderPane>

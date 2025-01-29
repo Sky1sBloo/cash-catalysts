@@ -20,30 +20,42 @@
     <children>
         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="532.0" styleClass="info">
             <children>
-                <Label fx:id="name_lbl" text="Subscription Name">
+                <Label fx:id="name_lbl" styleClass="text_font" text="Subscription Name">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="type_lbl" text="Type" />
-                <Label fx:id="frequency_lbl" text="Frequency" />
-                <Label fx:id="amount_lbl" text="\$0.00" />
+                <Label fx:id="type_lbl" styleClass="text_font" text="Type">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+                <Label fx:id="frequency_lbl" styleClass="text_font" text="Frequency">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+                <Label fx:id="amount_lbl" styleClass="text_font" text="\$0.00">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             </children>
         </VBox>
         <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" styleClass="options" GridPane.columnIndex="1">
             <children>
-                <Button fx:id="edit_btn" mnemonicParsing="false" text="Edit" />
-            <Button fx:id="delete_btn" mnemonicParsing="false" text="Delete" />
+                <Button fx:id="edit_btn" mnemonicParsing="false" styleClass="text_font" text="Edit" />
+            <Button fx:id="delete_btn" mnemonicParsing="false" styleClass="text_font" text="Delete" />
                 <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                     <children>
-                        <Label fx:id="start_date_lbl" text="Start Date">
+                        <Label fx:id="start_date_lbl" styleClass="text_font" text="Start Date">
                      <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font></Label>
-                        <Label text="  to  " />
-                        <Label fx:id="end_date_lbl" text="End Date">
+                        <Label styleClass="text_font" text="  to  ">
                      <font>
-                        <Font name="System Bold" size="13.0" />
+                        <Font size="15.0" />
+                     </font></Label>
+                        <Label fx:id="end_date_lbl" styleClass="text_font" text="End Date">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
                      </font></Label>
                     </children>
                 </HBox>

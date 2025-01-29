@@ -1,5 +1,5 @@
 #goals_root {
-    -fx-background-color: #D2D2D2;
+    -fx-background-image: url('../backgrounds/goals_background.png');
 }
 
 .budget_card {
@@ -18,19 +18,46 @@
     -fx-text-fill: white;
 }
 
-#budget_so_far_card {
-    -fx-background-color: #ffffff;
-    -fx-text-fill: black;
-}
-
-#budget_so_far_card Label {
-    -fx-text-fill: black;
-}
-
 #month_expense_card {
-    -fx-background-color: #30437A;
+    -fx-background-color: rgba(243, 14, 14, 0.7);
 }
 
 #month_income_card {
-    -fx-background-color: #4DC9A9;
+   -fx-background-color: rgba(16, 228, 98, 0.7);
+}
+
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+#goals_label{
+    -fx-background-color: rgba(243, 198, 35, 0.8);
+}
+
+#goals_list{
+    -fx-background-color: rgba(244, 246, 255, 0.8);
+    -fx-font-size: 16;
+
+}
+
+.list-cell {
+    -fx-background-color: rgba(244, 246, 255, 0.6);
+    -fx-text-fill: black;
+}
+
+.list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
+}
+
+.list-cell:selected {
+    -fx-background-color: rgba(16, 228, 98, 0.7);
+}
+
+.goals_btn {
+    -fx-background-color: #fff7bd;
+}
+
+.goals_btn:hover {
+    -fx-background-color: #f0f0f0;
 }

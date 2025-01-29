@@ -1,0 +1,19 @@
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+.goal_selection {
+    -fx-background-color: #fffbde;
+}
+
+.goal_selection .list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
+}
+
+.goal_txtbx {
+    -fx-background-color: #fffbde;
+    -fx-background-radius: 20;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+}

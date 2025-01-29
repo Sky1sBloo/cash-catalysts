@@ -55,7 +55,7 @@
                   </VBox>
                </children>
             </GridPane>
-            <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0">
+            <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0" styleClass="nav_tab">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -67,17 +67,17 @@
                <children>
                   <HBox fx:id="profile_navbar" prefHeight="218.0" prefWidth="385.0">
                      <children>
-                        <ImageView fitHeight="92.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="92.0" fitWidth="95.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/profile_demo.png" />
                            </image>
                         </ImageView>
                         <VBox fx:id="profile_details" prefHeight="184.0" prefWidth="235.0">
                            <children>
-                              <Label text="Username" />
-                              <Label text="Title" />
-                              <Label text="Level" />
-                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="0.0" />
+                              <Label styleClass="text_font" text="Username" />
+                              <Label styleClass="text_font" text="Title" />
+                              <Label styleClass="text_font" text="Level" />
+                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="1.0" styleClass="bar" />
                            </children>
                         </VBox>
                         <Button mnemonicParsing="false" text="Edit" />
@@ -98,44 +98,107 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onDashboardClick" text="Button" />
-                              <Label text="Home" />
+                              <Button mnemonicParsing="false" onAction="#onDashboardClick" styleClass="nav_button" text="Button" />
+                              <Label styleClass="text_font" text="Home" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onTransactionsClick" text="Button" />
-                              <Label text="Transactions" />
+                              <Button mnemonicParsing="false" onAction="#onTransactionsClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/transactions_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label styleClass="text_font" text="Transactions" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onSubscriptionsClick" text="Button" />
-                              <Label text="Subscriptions" />
+                              <Button mnemonicParsing="false" onAction="#onSubscriptionsClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/subscription_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label styleClass="text_font" text="Subscriptions" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onGoalsClick" text="Button" />
-                              <Label text="Goals" />
+                              <Button mnemonicParsing="false" onAction="#onGoalsClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/subscription_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label styleClass="text_font" text="Goals" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" text="Button" />
-                              <Label text="Challenges" />
+                              <Button mnemonicParsing="false" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/challenges_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label styleClass="text_font" text="Challenges" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onAccountsClick" text="Button" />
-                              <Label text="Accounts" />
+                              <Button mnemonicParsing="false" onAction="#onAccountsClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/accounts_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label styleClass="text_font" text="Accounts" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onAnalyticsClick" text="Button" />
-                              <Label text="Analytics" />
+                              <Button mnemonicParsing="false" onAction="#onAnalyticsClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/analytics_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label styleClass="text_font" text="Analytics" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font></Label>
                            </children>
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -145,12 +208,12 @@
                   </GridPane>
                   <VBox fx:id="daily_challenges_details" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                      <children>
-                        <Label text="Daily Challenges">
+                        <Label styleClass="text_font" text="Daily Challenges">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="inner_box" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
