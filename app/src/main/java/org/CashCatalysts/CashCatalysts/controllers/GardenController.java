@@ -76,7 +76,7 @@ public class GardenController {
         for (int i = 0; i < lands.size(); i++) {
             Land land = lands.get(i);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Land.fxml"));
-            LandsController landController = new LandsController(landHandler, userGameStatsHandler, land.getPosition(), this::loadInventoryContents);
+            LandController landController = new LandController(landHandler, userGameStatsHandler, plantsHandler, land.getPosition(), this::loadInventoryContents);
             loader.setController(landController);
             try {
                 land_pane.add(loader.load(), i % 4, i / 4);

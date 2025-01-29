@@ -9,12 +9,12 @@ import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.Plant;
+import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
-import java.util.function.Consumer;
-
-public class LandsController {
+public class LandController {
     private final LandHandler landHandler;
     private final UserGameStatsHandler userGameStatsHandler;
+    private final PlantsHandler plantsHandler;
     private final int landPosition;
     //
     private final Runnable reloadStatsCallback;
@@ -29,17 +29,22 @@ public class LandsController {
     private Pane plant_pane;
     @FXML
     private Button add_pot_btn;
+    @FXML
+    private Button plant_btn;
 
-    public LandsController(LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, int landPosition, Runnable reloadStatsCallback) {
+    public LandController(LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, int landPosition, Runnable reloadStatsCallback) {
         this.landHandler = landHandler;
         this.userGameStatsHandler = userGameStatsHandler;
+        this.plantsHandler = plantsHandler;
         this.landPosition = landPosition;
         this.reloadStatsCallback = reloadStatsCallback;
     }
 
     public void initialize() {
         seed_selection.getItems().addAll(Plant.values());
+        seed_selection.getSelectionModel().selectLast();
         add_pot_btn.setOnAction(ignore -> addPot());
+        plant_btn.setOnAction(ignore -> plantSeed());
 
         refresh();
     }
@@ -68,6 +73,23 @@ public class LandsController {
         userGameStatsHandler.updateUserGameStats();
         Land land = landHandler.getLand(landPosition);
         landHandler.addPot(land.getPosition());
+        refresh();
+        reloadStatsCallback.run();
+    }
+
+    private void plantSeed() {
+        Plant seed = seed_selection.getValue();
+        if (seed == Plant.NONE) {
+            // Todo: How added seed
+        }
+        try {
+            plantsHandler.removeSeed(seed);
+        } catch (IllegalArgumentException ignore) {
+            // Todo: how error that no more seeds
+            return;
+        }
+        plantsHandler.updateSeedsInventory();
+        landHandler.plant(landPosition, seed);
         refresh();
         reloadStatsCallback.run();
     }

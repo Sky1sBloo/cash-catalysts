@@ -14,7 +14,7 @@
               <HBox alignment="CENTER" prefHeight="33.0" prefWidth="304.0">
                   <children>
                       <ComboBox fx:id="seed_selection" prefWidth="150.0" />
-                      <Button mnemonicParsing="false" text="Plant" />
+                      <Button fx:id="plant_btn" mnemonicParsing="false" text="Plant" />
                   </children>
               </HBox>
               <Button mnemonicParsing="false" text="Harvest" />
