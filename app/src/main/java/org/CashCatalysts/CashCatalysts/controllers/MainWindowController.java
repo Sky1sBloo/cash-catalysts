@@ -148,6 +148,6 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onMarketClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Market.fxml", new MarketController(chestHandler, userGameStatsHandler));
+        loadPage("../forms/Market.fxml", new MarketController(chestHandler, userGameStatsHandler, plantsHandler));
     }
 }

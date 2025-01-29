@@ -24,12 +24,12 @@
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
                      <children>
                         <Label text="Banana" />
-                        <Button mnemonicParsing="false" text="Sell" />
+                        <Button fx:id="sell_banana_btn" mnemonicParsing="false" text="Sell" />
                         <Label text="5 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label text="0" />
+                              <Label fx:id="banana_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -37,12 +37,12 @@
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
                      <children>
                         <Label text="Pineapple" />
-                        <Button mnemonicParsing="false" text="Sell" />
+                        <Button fx:id="sell_pineapple_btn" mnemonicParsing="false" text="Sell" />
                         <Label text="10 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label text="0" />
+                              <Label fx:id="pineapple_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -50,12 +50,12 @@
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
                      <children>
                         <Label text="Strawberry" />
-                        <Button mnemonicParsing="false" text="Sell" />
+                        <Button fx:id="sell_strawberry_btn" mnemonicParsing="false" text="Sell" />
                         <Label text="15 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label text="0" />
+                              <Label fx:id="strawberry_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -63,12 +63,12 @@
                   <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
                      <children>
                         <Label text="Apple" />
-                        <Button mnemonicParsing="false" text="Sell" />
+                        <Button fx:id="sell_apple_btn" mnemonicParsing="false" text="Sell" />
                         <Label text="20 Gold" />
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label text="0" />
+                              <Label fx:id="apple_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
