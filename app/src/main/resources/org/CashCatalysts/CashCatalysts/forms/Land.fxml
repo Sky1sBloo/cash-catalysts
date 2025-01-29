@@ -11,6 +11,7 @@
       <VBox fx:id="plant_pane" alignment="TOP_CENTER" prefHeight="61.0" prefWidth="246.0">
          <children>
               <Label fx:id="plant_type" text="Plant" />
+            <Label fx:id="time_lbl" />
               <HBox alignment="CENTER" prefHeight="33.0" prefWidth="304.0">
                   <children>
                       <ComboBox fx:id="seed_selection" prefWidth="150.0" />
@@ -20,7 +21,8 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                     <Button fx:id="harvest_btn" mnemonicParsing="false" text="Harvest" />
-                  <Button fx:id="harvest_btn1" mnemonicParsing="false" text="Water" />
+                  <Button fx:id="water_btn" mnemonicParsing="false" text="Water" />
+                  <Button fx:id="cheat_btn" mnemonicParsing="false" text="Cheat" />
                </children>
             </HBox>
          </children>
