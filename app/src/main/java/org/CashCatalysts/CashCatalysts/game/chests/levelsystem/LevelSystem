@@ -1,0 +1,131 @@
+package org.CashCatalysts.CashCatalysts.LevelSystem;
+
+import org.CashCatalysts.CashCatalysts.Database.LevelSystemHandler;
+import org.CashCatalysts.CashCatalysts.UserProfile.User;
+import org.CashCatalysts.CashCatalysts.UserProfile.UsersHandler;
+
+import java.sql.SQLException;
+
+// XPHandler class to manage XP
+public class XPHandler {
+    private int xp;
+
+    public XPHandler(int startingXP) {
+        this.xp = startingXP;
+    }
+
+    // Add XP to the current total
+    public void addXP(int xpToAdd) {
+        this.xp += xpToAdd;
+    }
+
+    // Get the current XP
+    public int getXP() {
+        return this.xp;
+    }
+
+    // Set XP to a specific value
+    public void setXP(int xpToSet) {
+        this.xp = xpToSet;
+    }
+}
+
+// LevelSystem class to handle the logic
+public class LevelSystem {
+    private final UsersHandler usersHandler;
+    private final LevelSystemHandler levelSystemHandler; // Integrate LevelSystemHandler
+
+    public LevelSystem(UsersHandler usersHandler, LevelSystemHandler levelSystemHandler) {
+        this.usersHandler = usersHandler;
+        this.levelSystemHandler = levelSystemHandler;
+    }
+
+    /**
+     * Add XP to a user and update their level if necessary.
+     */
+    public void addXP(int userId, int xpToAdd) throws SQLException {
+        User user = usersHandler.getUser(userId);
+        if (user != null) {
+            XPHandler xpHandler = new XPHandler(user.getXp());
+            xpHandler.addXP(xpToAdd);
+
+            // Calculate the new level using LevelSystemHandler
+            int newLevel = levelSystemHandler.calculateLevel(xpHandler.getXP());
+
+            // Unlock title if the user reaches a new level
+            unlockTitleForLevel(newLevel);
+
+            // Update user XP and level
+            user.setXp(xpHandler.getXP());
+            user.setLevel(newLevel);
+
+            // Update the user's profile in the database
+            usersHandler.updateUser(userId, user);
+        }
+    }
+
+    /**
+     * Unlock the title based on the current level.
+     */
+    private void unlockTitleForLevel(int level) {
+        // Assuming titles are assigned sequentially by level number
+        switch (level) {
+            case 1:
+                levelSystemHandler.unlockTitle("Novice Grower");
+                break;
+            case 2:
+                levelSystemHandler.unlockTitle("Seedling Cultivator");
+                break;
+            case 3:
+                levelSystemHandler.unlockTitle("Blooming Botanist");
+                break;
+            case 4:
+                levelSystemHandler.unlockTitle("Sprout Specialist");
+                break;
+            case 5:
+                levelSystemHandler.unlockTitle("Rare Crop Harvester");
+                break;
+            case 6:
+                levelSystemHandler.unlockTitle("Flower Expert");
+                break;
+            case 7:
+                levelSystemHandler.unlockTitle("Experienced Gardener");
+                break;
+            case 8:
+                levelSystemHandler.unlockTitle("Epic Farmer");
+                break;
+            case 9:
+                levelSystemHandler.unlockTitle("Fruit Hoarder");
+                break;
+            case 10:
+                levelSystemHandler.unlockTitle("Legendary Harvester");
+                break;
+            case 11:
+                levelSystemHandler.unlockTitle("Thrifty Player");
+                break;
+            case 12:
+                levelSystemHandler.unlockTitle("Wise Investor");
+                break;
+            case 13:
+                levelSystemHandler.unlockTitle("Frugal Master");
+                break;
+            case 14:
+                levelSystemHandler.unlockTitle("Gold Miner");
+                break;
+            case 15:
+                levelSystemHandler.unlockTitle("Master Agronomist");
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid level: " + level);
+        }
+    }
+
+    /**
+     * Get the current level's title based on XP.
+     * @param xp The current XP.
+     * @return The title of the current level.
+     */
+    public String getLevelTitle(int xp) {
+        return levelSystemHandler.calculateLevel(xp) == 0 ? "No Level" : "Level " + levelSystemHandler.calculateLevel(xp);
+    }
+}
