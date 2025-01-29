@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="market_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="market_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Market.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="market_content" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Fruits">
+            <Label styleClass="header_lbl" text="Fruits">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -29,7 +29,7 @@
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label fx:id="banana_lbl" text="0" />
+                              <Label fx:id="banana_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -42,7 +42,7 @@
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label fx:id="pineapple_lbl" text="0" />
+                              <Label fx:id="pineapple_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -55,7 +55,7 @@
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label fx:id="strawberry_lbl" text="0" />
+                              <Label fx:id="strawberry_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -68,14 +68,14 @@
                         <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
                            <children>
                               <Label text="Remaining: " />
-                              <Label fx:id="apple_lbl" text="0" />
+                              <Label fx:id="apple_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <Label text="Trade Chests">
+            <Label styleClass="header_lbl" text="Trade Chests">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -108,7 +108,7 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Drops: ">
+                              <Label styleClass="header_lbl" text="Drops: ">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -117,7 +117,7 @@
                               <Label text=" - Uncommon seeds 30%" />
                               <Label text=" - Rare Seeds 10%" />
                               <Label text=" - Epic Seeds 1%" />
-                              <Label text="Cost:">
+                              <Label styleClass="header_lbl" text="Cost:">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -145,7 +145,7 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Drops: ">
+                              <Label styleClass="header_lbl" text="Drops: ">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -154,7 +154,7 @@
                               <Label text=" - Uncommon seeds 85%" />
                               <Label text=" - Rare Seeds 50%" />
                               <Label text=" - Epic Seeds 1%" />
-                              <Label text="Cost:">
+                              <Label styleClass="header_lbl" text="Cost:">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -184,7 +184,7 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Drops: ">
+                              <Label styleClass="header_lbl" text="Drops: ">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -193,7 +193,7 @@
                               <Label text=" - Uncommon seeds 100%" />
                               <Label text=" - Rare Seeds 70%" />
                               <Label text=" - Epic Seeds 15%" />
-                              <Label text="Cost:">
+                              <Label styleClass="header_lbl" text="Cost:">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -225,7 +225,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
                               <Label text="Pots let you plant on land" />
-                              <Label text="Cost:">
+                              <Label styleClass="header_lbl" text="Cost:">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -240,14 +240,18 @@
          </children>
       </VBox>
    </center>
-   <top>
-      <Label text="MARKET" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-   </top>
    <bottom>
       <Button fx:id="cheat_btn" mnemonicParsing="false" text="Cheat" BorderPane.alignment="CENTER" />
    </bottom>
+   <top>
+      <VBox fx:id="market_header" alignment="CENTER" prefHeight="64.0" prefWidth="1215.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="header_lbl" text="MARKET">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </top>
 </BorderPane>

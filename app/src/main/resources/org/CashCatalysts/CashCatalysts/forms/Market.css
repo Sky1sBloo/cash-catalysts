@@ -1,0 +1,40 @@
+#market_pane {
+    -fx-background-image: url("../backgrounds/market_background.png");
+}
+
+#market_content {
+    -fx-background-color: rgba(69, 19, 3, 0.8);
+    -fx-background-insets: 20;
+    -fx-border-color: #FFC800;
+    -fx-border-width: 2;
+    -fx-border-insets: 20;
+}
+
+#market_pane .label {
+    -fx-text-fill: white;
+}
+
+#market_pane .header_lbl {
+    -fx-text-fill: #FFC800;
+}
+
+#market_header {
+    -fx-background-color: rgba(69, 19, 3, 0.8);
+    -fx-padding: 10;
+}
+
+#market_pane .button {
+    -fx-background-color: #B68E00;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}
+
+#market_pane .button:hover {
+    -fx-background-color: #FFC800;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}
