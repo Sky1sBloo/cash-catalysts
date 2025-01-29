@@ -9,14 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <header>
-      <Label text="Inventory">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-   </header>
+<DialogPane fx:id="inventory_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="480.0" stylesheets="@Inventory.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <GridPane alignment="CENTER">
         <columnConstraints>
@@ -69,97 +62,97 @@
             <Label text="Plant Pot" GridPane.rowIndex="11" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="gold_lbl" text="0" />
+                  <Label fx:id="gold_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="star_lbl" text="0" />
+                  <Label fx:id="star_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="banana_lbl" text="0" />
+                  <Label fx:id="banana_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="banana_seed_lbl" text="0" />
+                  <Label fx:id="banana_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="pineapple_lbl" text="0" />
+                  <Label fx:id="pineapple_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="pineapple_seed_lbl" text="0" />
+                  <Label fx:id="pineapple_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Label fx:id="strawberry_lbl" text="0" />
+                  <Label fx:id="strawberry_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <children>
-                  <Label fx:id="strawberry_seed_lbl" text="0" />
+                  <Label fx:id="strawberry_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <Label fx:id="apple_lbl" text="0" />
+                  <Label fx:id="apple_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <children>
-                  <Label fx:id="apple_seed_lbl" text="0" />
+                  <Label fx:id="apple_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="sampaguita_lbl" text="0" />
+                  <Label fx:id="sampaguita_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <children>
-                  <Label fx:id="sampaguita_seed_lbl" text="0" />
+                  <Label fx:id="sampaguita_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <children>
-                  <Label fx:id="orchids_lbl" text="0" />
+                  <Label fx:id="orchids_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
                <children>
-                  <Label fx:id="orchids_seed_lbl" text="0" />
+                  <Label fx:id="orchids_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <children>
-                  <Label fx:id="sunflower_lbl" text="0" />
+                  <Label fx:id="sunflower_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <children>
-                  <Label fx:id="sunflower_seed_lbl" text="0" />
+                  <Label fx:id="sunflower_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <children>
-                  <Label fx:id="rose_lbl" text="0" />
+                  <Label fx:id="rose_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                <children>
-                  <Label fx:id="rose_seed_lbl" text="0" />
+                  <Label fx:id="rose_seed_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <children>
-                  <Label fx:id="pot_lbl" text="0" />
+                  <Label fx:id="pot_lbl" styleClass="qty_lbl" text="0" />
                </children>
             </VBox>
             <Label text="Rose" GridPane.rowIndex="10" />
@@ -170,4 +163,15 @@
    <buttonTypes>
       <ButtonType fx:constant="OK" />
    </buttonTypes>
+   <header>
+      <VBox alignment="CENTER" prefHeight="45.0" prefWidth="480.0">
+         <children>
+            <Label text="Inventory">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </header>
 </DialogPane>

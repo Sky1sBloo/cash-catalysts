@@ -1,0 +1,17 @@
+#inventory_pane {
+    -fx-background-color: rgba(69, 19, 3);
+    -fx-border-color: #FFC800;
+    -fx-border-width: 2;
+}
+
+#inventory_pane:header {
+    -padding: 10;
+}
+
+#inventory_pane .label {
+    -fx-text-fill: white;
+}
+
+#inventory_pane .qty_lbl {
+    -fx-text-fill: #FFC800;
+}
