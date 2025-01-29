@@ -98,7 +98,14 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onDashboardClick" styleClass="nav_button" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#onDashboardClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="55.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons2/Garden.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                               <Label styleClass="text_font" text="Home" textFill="WHITE">
                                  <font>
                                     <Font size="12.0" />
@@ -111,7 +118,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/transactions_btn.png" />
+                                          <Image url="@../icons2/Transaction.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -127,7 +134,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/subscription_btn.png" />
+                                          <Image url="@../icons2/Credit%20Card.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -143,7 +150,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/subscription_btn.png" />
+                                          <Image url="@../icons2/Goals.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -159,7 +166,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/challenges_btn.png" />
+                                          <Image url="@../icons2/Challenges.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -207,7 +214,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/analytics_btn.png" />
+                                          <Image url="@../icons2/Normal%20Chest.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -222,9 +229,9 @@
                            <children>
                               <Button mnemonicParsing="false" onAction="#onMarketClick" styleClass="nav_button">
                                  <graphic>
-                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/analytics_btn.png" />
+                                          <Image url="@../icons/gold%20coin.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
