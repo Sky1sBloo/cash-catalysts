@@ -1,0 +1,13 @@
+#chest_reward_pane {
+    -fx-background-color: rgba(69, 19, 3, 0.8);
+    -fx-border-color: #FFC800;
+    -fx-border-width: 2;
+}
+
+#chest_reward_pane .label {
+    -fx-text-fill: white;
+}
+
+#chest_reward_pane .header_lbl {
+    -fx-text-fill: #FFC800;
+}
