@@ -18,7 +18,7 @@
             <Insets left="5.0" />
          </HBox.margin>
       </ImageView>
-      <Label fx:id="type" prefHeight="18.0" prefWidth="151.0" styleClass="text_font" text="Type">
+      <Label fx:id="type" prefHeight="18.0" prefWidth="151.0" styleClass="card_text_font" text="Type">
          <font>
             <Font size="16.0" />
          </font></Label>
@@ -27,7 +27,7 @@
             <Image url="@../icons/card.png" />
          </image>
       </ImageView>
-      <Label fx:id="name" prefHeight="18.0" prefWidth="162.0" styleClass="text_font" text="Name">
+      <Label fx:id="name" prefHeight="18.0" prefWidth="162.0" styleClass="card_text_font" text="Name">
          <font>
             <Font size="16.0" />
          </font>
@@ -37,7 +37,7 @@
             <Image url="@../icons/date.png" />
          </image>
       </ImageView>
-      <Label fx:id="date" prefHeight="18.0" prefWidth="159.0" styleClass="text_font" text="Date">
+      <Label fx:id="date" prefHeight="18.0" prefWidth="159.0" styleClass="card_text_font" text="Date">
          <font>
             <Font size="16.0" />
          </font>
@@ -50,7 +50,7 @@
             <Insets />
          </HBox.margin>
       </ImageView>
-      <Label fx:id="amount" prefHeight="18.0" prefWidth="181.0" styleClass="text_font" text="Amount">
+      <Label fx:id="amount" prefHeight="18.0" prefWidth="181.0" styleClass="card_text_font" text="Amount">
          <font>
             <Font size="16.0" />
          </font>
