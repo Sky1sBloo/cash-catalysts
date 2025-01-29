@@ -62,7 +62,8 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
-                        <ProgressBar prefWidth="200.0" progress="0.0" />
+                        <ProgressBar fx:id="water_bar" prefWidth="200.0" progress="0.0" />
+                        <Label fx:id="next_fill_lbl" text="Label" />
                      </children>
                   </HBox>
                </children>

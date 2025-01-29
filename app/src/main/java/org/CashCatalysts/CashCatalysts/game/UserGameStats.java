@@ -81,4 +81,8 @@ public class UserGameStats {
     public void setWaterCooldownId(int waterCooldownId) {
         this.waterCooldownId = waterCooldownId;
     }
+
+    public void clearWaterCooldown() {
+        this.waterCooldownId = null;
+    }
 }

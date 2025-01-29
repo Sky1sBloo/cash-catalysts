@@ -1,16 +1,20 @@
 package org.CashCatalysts.CashCatalysts.controllers;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.WaterAutoFillListener;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class GardenController {
@@ -18,9 +22,17 @@ public class GardenController {
     private final PlantsHandler plantsHandler;
     private final PlantGrowingSystem plantGrowingSystem;
     private final LandHandler landHandler;
+    private final WaterAutoFillListener waterAutoFillListener;
+
+
 
     @FXML
     private GridPane land_pane;
+
+    @FXML
+    private Label next_fill_lbl;
+    @FXML
+    private ProgressBar water_bar;
 
     @FXML
     private Label gold_lbl;
@@ -62,16 +74,25 @@ public class GardenController {
     @FXML
     private Label rose_seed_lbl;
 
-    public GardenController(UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, LandHandler landHandler) {
+    public GardenController(UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, LandHandler landHandler, WaterAutoFillListener waterAutoFillListener) {
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
         this.plantGrowingSystem = plantGrowingSystem;
         this.landHandler = landHandler;
+        this.waterAutoFillListener = waterAutoFillListener;
     }
 
     public void initialize() {
         loadInventoryContents();
         loadLandContents();
+
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(new javafx.animation.KeyFrame(javafx.util.Duration.seconds(1), event -> {
+            waterAutoFillListener.calculatedAutoFill(java.time.LocalDateTime.now());
+            loadInventoryContents();
+        }));
+        timeline.play();
     }
 
     private void loadLandContents() {
@@ -95,6 +116,9 @@ public class GardenController {
     }
 
     private void loadInventoryContents() {
+        water_bar.setProgress((double) userGameStatsHandler.getUserGameStats().getWater().getAmount() / waterAutoFillListener.getMaxWaterFill());
+        next_fill_lbl.setText(waterAutoFillListener.getTimeRemainingInMinutesSeconds(LocalDateTime.now()));
+
         plantsHandler.updatePlantsInventory();
         plantsHandler.updateSeedsInventory();
         gold_lbl.setText(String.valueOf(userGameStatsHandler.getUserGameStats().getGold().getAmount()));

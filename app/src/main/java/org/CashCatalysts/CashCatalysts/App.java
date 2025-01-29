@@ -14,6 +14,7 @@ import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.controllers.MainWindowController;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.WaterAutoFillListener;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
 import org.CashCatalysts.CashCatalysts.game.cooldown.CooldownHandler;
@@ -51,6 +52,7 @@ public class App extends Application {
         ChestHandler chestHandler = new ChestHandler(userId, databaseHandler, plantsHandler);
         CooldownHandler cooldownHandler = new CooldownHandler(databaseHandler);
         PlantGrowingSystem plantGrowingSystem = new PlantGrowingSystem(plantsHandler, cooldownHandler, landHandler, userGameStatsHandler.getUserGameStats(), gameActionHandler);
+        WaterAutoFillListener waterAutoFillListener = new WaterAutoFillListener(userGameStatsHandler, cooldownHandler);
 
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
         MainWindowController controller = new MainWindowController(transactionHandler,
@@ -63,7 +65,8 @@ public class App extends Application {
                 plantsHandler,
                 plantGrowingSystem,
                 chestHandler,
-                landHandler);
+                landHandler,
+                waterAutoFillListener);
         loader.setController(controller);
 
         Parent root = loader.load();

@@ -13,6 +13,7 @@ import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.WaterAutoFillListener;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
@@ -33,6 +34,7 @@ public class MainWindowController {
     private final PlantGrowingSystem plantGrowingSystem;
     private final ChestHandler chestHandler;
     private final LandHandler landHandler;
+    private final WaterAutoFillListener waterAutoFillListener;
 
     @FXML
     private Pane main_root;
@@ -47,7 +49,7 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, ChestHandler chestHandler, LandHandler landHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, ChestHandler chestHandler, LandHandler landHandler, WaterAutoFillListener waterAutoFillListener) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
@@ -59,12 +61,13 @@ public class MainWindowController {
         this.plantGrowingSystem = plantGrowingSystem;
         this.chestHandler = chestHandler;
         this.landHandler = landHandler;
+        this.waterAutoFillListener = waterAutoFillListener;
     }
 
     @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
-        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler, waterAutoFillListener));
     }
 
     private void refresh() {
@@ -105,7 +108,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler, waterAutoFillListener));
         //loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
     }
 
