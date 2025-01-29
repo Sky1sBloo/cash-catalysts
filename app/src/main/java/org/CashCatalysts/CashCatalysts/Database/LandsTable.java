@@ -88,7 +88,7 @@ public class LandsTable extends DbTable {
         return lands;
     }
 
-    public Land getLandID(int landId) throws SQLException {
+    public Land getLandByID(int landId) throws SQLException {
         String sql = "SELECT * FROM lands WHERE landId = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, landId);
