@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.ComboBox?>
@@ -30,12 +31,20 @@
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></Label>
-            <TextField fx:id="name_txtbx" prefHeight="22.0" prefWidth="352.0" styleClass="text_font" />
+            <TextField fx:id="name_txtbx" prefHeight="22.0" prefWidth="352.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="subscription_txtbx" />
+               </styleClass></TextField>
             <Label styleClass="text_font" text="Category">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></Label>
-            <ComboBox fx:id="type_selector" prefHeight="22.0" prefWidth="172.0" styleClass="text_font" />
+            <ComboBox fx:id="type_selector" prefHeight="22.0" prefWidth="172.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="subscription_selection" />
+               </styleClass></ComboBox>
             <Label styleClass="text_font" text="Frequency">
                <VBox.margin>
                   <Insets top="5.0" />
@@ -43,7 +52,11 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <ComboBox fx:id="frequency_selector" prefHeight="22.0" prefWidth="171.0" styleClass="text_font" />
+            <ComboBox fx:id="frequency_selector" prefHeight="22.0" prefWidth="171.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="subscription_selection" />
+               </styleClass></ComboBox>
             <Label styleClass="text_font" text="Amount">
                <VBox.margin>
                   <Insets top="5.0" />
@@ -51,7 +64,11 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextField fx:id="amount_txtbx" styleClass="text_font" />
+            <TextField fx:id="amount_txtbx">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="subscription_txtbx" />
+               </styleClass></TextField>
             <Label styleClass="text_font" text="Start Date">
                <VBox.margin>
                   <Insets top="5.0" />
@@ -59,7 +76,11 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <DatePicker fx:id="start_date_selector" prefHeight="22.0" prefWidth="171.0" styleClass="text_font" />
+            <DatePicker fx:id="start_date_selector" prefHeight="22.0" prefWidth="171.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="subscription_selection" />
+               </styleClass></DatePicker>
             <Label styleClass="text_font" text="End Date">
                <VBox.margin>
                   <Insets top="5.0" />
@@ -67,7 +88,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <DatePicker fx:id="end_date_selector" prefHeight="22.0" prefWidth="172.0" styleClass="text_font" />
+            <DatePicker fx:id="end_date_selector" prefHeight="22.0" prefWidth="172.0" styleClass="subscription_selection" />
          </children></VBox>
    </content>
 </DialogPane>
