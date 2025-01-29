@@ -47,10 +47,10 @@ public class UserGameStatsTable extends DbTable {
         preparedStatement.setInt(1, userGameStats.getGold().getAmount());
         preparedStatement.setInt(2, userGameStats.getStar().getAmount());
         preparedStatement.setInt(3, userGameStats.getWater().getAmount());
-        preparedStatement.setInt(4, userGameStats.getUserId());
-        preparedStatement.setInt(5, userGameStats.getNormalChests().getAmount());
-        preparedStatement.setInt(6, userGameStats.getRareChests().getAmount());
-        preparedStatement.setInt(7, userGameStats.getEpicChests().getAmount());
+        preparedStatement.setInt(4, userGameStats.getNormalChests().getAmount());
+        preparedStatement.setInt(5, userGameStats.getRareChests().getAmount());
+        preparedStatement.setInt(6, userGameStats.getEpicChests().getAmount());
+        preparedStatement.setInt(7, userGameStats.getUserId());
 
         preparedStatement.executeUpdate();
     }
