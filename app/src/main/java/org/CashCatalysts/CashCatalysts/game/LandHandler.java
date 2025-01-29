@@ -14,6 +14,16 @@ public class LandHandler {
     public LandHandler(int userId, DatabaseHandler databaseHandler) {
         this.userId = userId;
         this.landsTable = databaseHandler.getLandsTable();
+
+        try {
+            if (landsTable.getLands(userId).isEmpty()) {
+                for (int i = 0; i < 12; i++) {
+                    addLand();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -112,7 +122,7 @@ public class LandHandler {
     /**
      * Getter for LandsTable
      */
-    public LandsTable getLandsTable(){
+    public LandsTable getLandsTable() {
         return landsTable;
     }
 }
