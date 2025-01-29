@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="market_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Market.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox fx:id="market_content" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="header_lbl" text="Fruits">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons2/Banana.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Banana" />
+                        <Button fx:id="sell_banana_btn" mnemonicParsing="false" text="Sell" />
+                        <Label text="5 Gold" />
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Remaining: " />
+                              <Label fx:id="banana_lbl" styleClass="header_lbl" text="0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons2/Pineapple.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Pineapple" />
+                        <Button fx:id="sell_pineapple_btn" mnemonicParsing="false" text="Sell" />
+                        <Label text="10 Gold" />
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Remaining: " />
+                              <Label fx:id="pineapple_lbl" styleClass="header_lbl" text="0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons2/Strawberry.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Strawberry" />
+                        <Button fx:id="sell_strawberry_btn" mnemonicParsing="false" text="Sell" />
+                        <Label text="15 Gold" />
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Remaining: " />
+                              <Label fx:id="strawberry_lbl" styleClass="header_lbl" text="0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="180.0" styleClass="fruit_card">
+                     <children>
+                        <ImageView fitHeight="67.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons2/Apple.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Apple" />
+                        <Button fx:id="sell_apple_btn" mnemonicParsing="false" text="Sell" />
+                        <Label text="20 Gold" />
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="100.0">
+                           <children>
+                              <Label text="Remaining: " />
+                              <Label fx:id="apple_lbl" styleClass="header_lbl" text="0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label styleClass="header_lbl" text="Trade Chests">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <GridPane prefHeight="406.0" prefWidth="1171.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane styleClass="chest_card">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="164.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="241.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons2/Normal%20Chest.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Normal Chest" />
+                              <Button fx:id="trade_normal_chest_btn" mnemonicParsing="false" text="Trade" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label styleClass="header_lbl" text="Drops: ">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="reward_lbl" text=" - Common seeds 90%" />
+                              <Label styleClass="reward_lbl" text=" - Uncommon seeds 30%" />
+                              <Label styleClass="reward_lbl" text=" - Rare Seeds 10%" />
+                              <Label styleClass="reward_lbl" text=" - Epic Seeds 1%" />
+                              <Label styleClass="header_lbl" text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 3x Sampaguita" />
+                              <Label text=" - Alternative: 50 gold" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane styleClass="chest_card" GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="164.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="241.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons2/Rare%20Chest.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Rare Chest" />
+                              <Button fx:id="trade_rare_chest_btn" mnemonicParsing="false" text="Trade" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label styleClass="header_lbl" text="Drops: ">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="reward_lbl" text=" - Common seeds 100%" />
+                              <Label styleClass="reward_lbl" text=" - Uncommon seeds 85%" />
+                              <Label styleClass="reward_lbl" text=" - Rare Seeds 50%" />
+                              <Label styleClass="reward_lbl" text=" - Epic Seeds 1%" />
+                              <Label styleClass="header_lbl" text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 1x Sampaguita" />
+                              <Label text=" - 1x Sunflower" />
+                              <Label text=" - 2x Orchids" />
+                              <Label text=" - Alternative: 75 gold" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane styleClass="chest_card" GridPane.columnIndex="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="164.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="241.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons2/Epic%20Chest.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Epic Chest" />
+                              <Button fx:id="trade_epic_chest_btn" mnemonicParsing="false" text="Trade" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label styleClass="header_lbl" text="Drops: ">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="reward_lbl" text=" - Common seeds 100%" />
+                              <Label styleClass="reward_lbl" text=" - Uncommon seeds 100%" />
+                              <Label styleClass="reward_lbl" text=" - Rare Seeds 70%" />
+                              <Label styleClass="reward_lbl" text=" - Epic Seeds 15%" />
+                              <Label styleClass="header_lbl" text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label styleClass="reward_lbl" text=" - 3x Sampaguita" />
+                              <Label styleClass="reward_lbl" text=" - 2x Orchids" />
+                              <Label styleClass="reward_lbl" text=" - 1x Sunflower" />
+                              <Label styleClass="reward_lbl" text=" - 1x Rose" />
+                              <Label text=" - Alternative: 150 gold" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  <GridPane styleClass="chest_card" GridPane.rowIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="164.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="252.0" minWidth="10.0" prefWidth="241.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fitHeight="120.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons2/Pot.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Pot" />
+                              <Button fx:id="buy_pot" mnemonicParsing="false" text="Buy" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label text="Pots let you plant on land" />
+                              <Label styleClass="header_lbl" text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 50 stars" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <Button fx:id="cheat_btn" mnemonicParsing="false" text="Cheat" BorderPane.alignment="CENTER" />
+   </bottom>
+   <top>
+      <VBox fx:id="market_header" alignment="CENTER" prefHeight="64.0" prefWidth="1215.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="header_lbl" text="MARKET">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

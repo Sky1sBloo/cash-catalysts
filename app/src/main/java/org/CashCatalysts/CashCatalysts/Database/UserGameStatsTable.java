@@ -16,12 +16,14 @@ public class UserGameStatsTable extends DbTable {
 
         DbField[] fields = {
                 new DbField("userId", "INTEGER"),
-                new DbField("gold", "INTEGER"),
-                new DbField("star", "INTEGER"),
-                new DbField("water", "INTEGER"),
-                new DbField("normal_chests_amount", "INTEGER"),
-                new DbField("rare_chests_amount", "INTEGER"),
-                new DbField("epic_chests_amount", "INTEGER")
+                new DbField("gold", "INTEGER", "NOT NULL"),
+                new DbField("star", "INTEGER", "NOT NULL"),
+                new DbField("water", "INTEGER", "NOT NULL"),
+                new DbField("normal_chests_amount", "INTEGER", "NOT NULL"),
+                new DbField("rare_chests_amount", "INTEGER", "NOT NULL"),
+                new DbField("epic_chests_amount", "INTEGER", "NOT NULL"),
+                new DbField("pots", "INTEGER", "NOT NULL"),
+                new DbField("water_cooldown_id", "INTEGER")
         };
 
         String[] constraints = {
@@ -34,7 +36,7 @@ public class UserGameStatsTable extends DbTable {
         if (usersTable.getUser(userId) == null) {
             throw new SQLException("User does not exist");
         }
-        String sql = "INSERT INTO game_inventory (userId, gold, star, water, normal_chests_amount, rare_chests_amount, epic_chests_amount) VALUES(?, 0, 0, 0, 0, 0, 0);";
+        String sql = "INSERT INTO game_inventory (userId, gold, star, water, normal_chests_amount, rare_chests_amount, epic_chests_amount, pots, water_cooldown_id) VALUES(?, 300, 0, 1, 2, 0, 0, 2, null);";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
@@ -42,7 +44,7 @@ public class UserGameStatsTable extends DbTable {
     }
 
     public void updateGameInventory(UserGameStats userGameStats) throws SQLException {
-        String sql = "UPDATE game_inventory SET gold = ?, star = ?, water = ?, normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ? WHERE userId = ?";
+        String sql = "UPDATE game_inventory SET gold = ?, star = ?, water = ?, normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ?, pots = ?, water_cooldown_id = ? WHERE userId = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userGameStats.getGold().getAmount());
         preparedStatement.setInt(2, userGameStats.getStar().getAmount());
@@ -50,7 +52,13 @@ public class UserGameStatsTable extends DbTable {
         preparedStatement.setInt(4, userGameStats.getNormalChests().getAmount());
         preparedStatement.setInt(5, userGameStats.getRareChests().getAmount());
         preparedStatement.setInt(6, userGameStats.getEpicChests().getAmount());
-        preparedStatement.setInt(7, userGameStats.getUserId());
+        preparedStatement.setInt(7, userGameStats.getPots().getAmount());
+        if (userGameStats.getWaterCooldownId() == null) {
+            preparedStatement.setNull(8, java.sql.Types.INTEGER);
+        } else {
+            preparedStatement.setInt(8, userGameStats.getWaterCooldownId());
+        }
+        preparedStatement.setInt(9, userGameStats.getUserId());
 
         preparedStatement.executeUpdate();
     }
@@ -64,6 +72,10 @@ public class UserGameStatsTable extends DbTable {
         if (!resultSet.next()) {
             return null;
         }
+        Integer waterCooldownId = resultSet.getInt("water_cooldown_id");
+        if (resultSet.wasNull()) {
+            waterCooldownId = null;
+        }
         return new UserGameStats(
                 userId,
                 resultSet.getInt("gold"),
@@ -71,7 +83,9 @@ public class UserGameStatsTable extends DbTable {
                 resultSet.getInt("water"),
                 resultSet.getInt("normal_chests_amount"),
                 resultSet.getInt("rare_chests_amount"),
-                resultSet.getInt("epic_chests_amount")
+                resultSet.getInt("epic_chests_amount"),
+                resultSet.getInt("pots"),
+                waterCooldownId
         );
     }
 }

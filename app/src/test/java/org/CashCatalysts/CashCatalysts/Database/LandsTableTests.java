@@ -26,19 +26,19 @@ public class LandsTableTests {
 
     @Test
     public void testAddLand() throws SQLException {
-        Land land = new Land(userId, Plant.STRAWBERRY, true, 1);
+        Land land = new Land(userId, Plant.STRAWBERRY, false, 1);
         landsTable.addLand(land);
         Land retrievedLand = landsTable.getLand(userId, landsTable.getHighestLandId(userId));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLand.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLand.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLand.getPosition());
         Assertions.assertEquals(land.getPosition(), landsTable.getHighestLandId(userId));
     }
 
     @Test
     public void testUpdateLand() throws SQLException {
-        Land land = new Land(userId, Plant.STRAWBERRY, true, landsTable.getHighestLandId(userId));
+        Land land = new Land(userId, Plant.STRAWBERRY, false, landsTable.getHighestLandId(userId));
         int id = landsTable.addLand(land);
         land.setPlantType(Plant.APPLE);
         land.setHasPot(false);
@@ -47,19 +47,19 @@ public class LandsTableTests {
         Land retrievedLand = landsTable.getLand(userId, landsTable.getHighestLandId(userId));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLand.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLand.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLand.getPosition());
 
         Assertions.assertEquals(land.getUserId(), retrievedLandById.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLandById.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLandById.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLandById.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLandById.getPosition());
     }
 
     @Test
     public void testMultipleUsersLand() throws SQLException {
         int userId2 = usersTable.registerUser(UsersHandler.createUser("testUser2"));
-        Land land = new Land(userId, Plant.STRAWBERRY, true, landsTable.getHighestLandId(userId));
+        Land land = new Land(userId, Plant.STRAWBERRY, false, landsTable.getHighestLandId(userId));
         landsTable.addLand(land);
         Land land2 = new Land(userId2, Plant.APPLE, false, landsTable.getHighestLandId(userId2));
         landsTable.addLand(land2);
@@ -67,12 +67,12 @@ public class LandsTableTests {
         Land retrievedLand2 = landsTable.getLand(userId + 1, landsTable.getHighestLandId(userId2));
         Assertions.assertEquals(land.getUserId(), retrievedLand.getUserId());
         Assertions.assertEquals(land.getPlantType(), retrievedLand.getPlantType());
-        Assertions.assertEquals(land.isHasPot(), retrievedLand.isHasPot());
+        Assertions.assertEquals(land.hasPot(), retrievedLand.hasPot());
         Assertions.assertEquals(land.getPosition(), retrievedLand.getPosition());
 
         Assertions.assertEquals(land2.getUserId(), retrievedLand2.getUserId());
         Assertions.assertEquals(land2.getPlantType(), retrievedLand2.getPlantType());
-        Assertions.assertEquals(land2.isHasPot(), retrievedLand2.isHasPot());
+        Assertions.assertEquals(land2.hasPot(), retrievedLand2.hasPot());
         Assertions.assertEquals(land2.getPosition(), retrievedLand2.getPosition());
     }
 
@@ -90,7 +90,7 @@ public class LandsTableTests {
 
     @Test
     public void testNullOnNonexistentLandByUser() throws SQLException {
-        Land land = new Land(userId, Plant.STRAWBERRY, true, landsTable.getHighestLandId(userId));
+        Land land = new Land(userId, Plant.STRAWBERRY, false, landsTable.getHighestLandId(userId));
         landsTable.addLand(land);
         Land retrievedLand = landsTable.getLand(userId + 1, landsTable.getHighestLandId(userId));
         Assertions.assertNull(retrievedLand);

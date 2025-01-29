@@ -1,3 +1,19 @@
 #stats_bar {
     -fx-background-color: #1B1919CC;
 }
+
+#claim_chest_btn {
+    -fx-background-color: #B68E00;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}
+
+#claim_chest_btn:hover {
+    -fx-background-color: #FFC800;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}

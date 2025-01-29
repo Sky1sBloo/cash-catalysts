@@ -25,14 +25,14 @@ public class LandHandlerTests {
     public void testAddLand() {
         landHandler.addLand();
         landHandler.addLand();
-        Assertions.assertEquals(2, landHandler.getLands().size());
+        Assertions.assertEquals(14, landHandler.getLands().size());
     }
 
     @Test
     public void testAddPot() {
         landHandler.addLand();
         landHandler.addPot(1);
-        Assertions.assertTrue(landHandler.getLand(1).isHasPot());
+        Assertions.assertTrue(landHandler.getLand(1).hasPot());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class LandHandlerTests {
         landHandler.addLand();
         landHandler.addPot(1);
         landHandler.removePot(1);
-        Assertions.assertFalse(landHandler.getLand(1).isHasPot());
+        Assertions.assertFalse(landHandler.getLand(1).hasPot());
     }
 
     @Test

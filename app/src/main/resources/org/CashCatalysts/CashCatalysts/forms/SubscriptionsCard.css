@@ -16,3 +16,19 @@
     -fx-font-family: "Consolas";
     -fx-font-weight: bold;
 }
+
+.subscription_card .button {
+    -fx-background-color: #FFC800;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}
+
+.subscription_card .button:hover {
+    -fx-background-color: #FFC800;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}

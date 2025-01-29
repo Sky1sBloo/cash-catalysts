@@ -3,14 +3,22 @@ package org.CashCatalysts.CashCatalysts.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.WaterAutoFillListener;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
+import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
+import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
+import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -23,6 +31,11 @@ public class MainWindowController {
     private final SubscriptionsHandler subscriptionsHandler;
     private final ChallengeHandler challengeHandler;
     private final UserGameStatsHandler userGameStatsHandler;
+    private final PlantsHandler plantsHandler;
+    private final PlantGrowingSystem plantGrowingSystem;
+    private final ChestHandler chestHandler;
+    private final LandHandler landHandler;
+    private final WaterAutoFillListener waterAutoFillListener;
 
     @FXML
     private Pane main_root;
@@ -32,12 +45,14 @@ public class MainWindowController {
     private Pane nav_menu;
     @FXML
     private ListView<String> challenge_list;
+    @FXML
+    private Label today_lbl;
 
     public MainWindowController(TransactionHandler transactionHandler,
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, ChestHandler chestHandler, LandHandler landHandler, WaterAutoFillListener waterAutoFillListener) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
@@ -45,15 +60,21 @@ public class MainWindowController {
         this.subscriptionsHandler = subscriptionsHandler;
         this.challengeHandler = challengeHandler;
         this.userGameStatsHandler = userGameStatsHandler;
+        this.plantsHandler = plantsHandler;
+        this.plantGrowingSystem = plantGrowingSystem;
+        this.chestHandler = chestHandler;
+        this.landHandler = landHandler;
+        this.waterAutoFillListener = waterAutoFillListener;
     }
 
     @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
-        loadPage("../forms/Dashboard.fxml");
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler, waterAutoFillListener));
     }
 
     private void refresh() {
+        today_lbl.setText(LocalDate.now().toString());
         loadDailyChallenges();
     }
 
@@ -91,7 +112,8 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, plantGrowingSystem, landHandler, waterAutoFillListener));
+        //loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
     }
 
     @SuppressWarnings("unused")
@@ -116,6 +138,23 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onChallengesClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler, userGameStatsHandler));
+        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler, userGameStatsHandler, chestHandler));
+    }
+
+    @SuppressWarnings("unused")
+    public void onInventoryClick(ActionEvent ignore) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/Inventory.fxml"));
+        InventoryController controller = new InventoryController(userGameStatsHandler, plantsHandler);
+        loader.setController(controller);
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(loader.load());
+        dialog.setOnCloseRequest(e -> dialog.close());
+        dialog.showAndWait();
+        /*loadPage("../forms/Inventory.fxml", new InventoryController(userGameStatsHandler, plantsHandler)); */
+    }
+
+    @SuppressWarnings("unused")
+    public void onMarketClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Market.fxml", new MarketController(chestHandler, userGameStatsHandler, plantsHandler));
     }
 }

@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -18,7 +17,7 @@
 
 <StackPane fx:id="main_root" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="main_pane" prefHeight="200.0" prefWidth="200.0">
+      <Pane fx:id="main_pane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
          <StackPane.margin>
             <Insets left="65.0" />
          </StackPane.margin>
@@ -36,23 +35,18 @@
                <children>
                   <VBox fx:id="top_navbar" prefHeight="720.0" prefWidth="62.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#toggleMenu" prefHeight="36.0" prefWidth="45.0">
+                        <Button fx:id="menu_toggle_btn" mnemonicParsing="false" onAction="#toggleMenu" prefHeight="36.0" prefWidth="45.0">
                            <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="43.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/back.png" />
+                                    <Image url="@../icons/Logo.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
                      </children>
                   </VBox>
-                  <VBox fx:id="bottom_navbar" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                     <children>
-                        <Button mnemonicParsing="false" text="Set" />
-                        <Button mnemonicParsing="false" text="Prof" />
-                     </children>
-                  </VBox>
+                  <VBox fx:id="bottom_navbar" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane fx:id="nav_menu" minWidth="-Infinity" prefHeight="722.0" prefWidth="385.0" styleClass="nav_tab">
@@ -74,13 +68,19 @@
                         </ImageView>
                         <VBox fx:id="profile_details" prefHeight="184.0" prefWidth="235.0">
                            <children>
-                              <Label styleClass="text_font" text="Username" />
-                              <Label styleClass="text_font" text="Title" />
-                              <Label styleClass="text_font" text="Level" />
-                              <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="1.0" styleClass="bar" />
+                              <Label styleClass="text_font" text="Welcome!">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <Label styleClass="text_font" text="Today is: " />
+                              <Label fx:id="today_lbl" styleClass="text_font" text="Date today" />
                            </children>
                         </VBox>
-                        <Button mnemonicParsing="false" text="Edit" />
+                        <ImageView fitHeight="43.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons2/Sampaguita.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </HBox>
                   <GridPane prefHeight="364.0" prefWidth="385.0" GridPane.rowIndex="1">
@@ -98,7 +98,14 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#onDashboardClick" styleClass="nav_button" text="Button" />
+                              <Button mnemonicParsing="false" onAction="#onDashboardClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="55.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons2/Garden.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                               <Label styleClass="text_font" text="Home" textFill="WHITE">
                                  <font>
                                     <Font size="12.0" />
@@ -111,7 +118,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/transactions_btn.png" />
+                                          <Image url="@../icons2/Transaction.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -127,7 +134,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/subscription_btn.png" />
+                                          <Image url="@../icons2/Credit%20Card.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -143,7 +150,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/subscription_btn.png" />
+                                          <Image url="@../icons2/Goals.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -159,7 +166,7 @@
                                  <graphic>
                                     <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../icons/challenges_btn.png" />
+                                          <Image url="@../icons2/Challenges.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
@@ -169,7 +176,7 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" visible="false" GridPane.rowIndex="2">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onAccountsClick" styleClass="nav_button">
                                  <graphic>
@@ -185,7 +192,7 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onAnalyticsClick" styleClass="nav_button">
                                  <graphic>
@@ -201,9 +208,40 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2" />
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#onInventoryClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons2/Normal%20Chest.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label styleClass="text_font" text="Inventory" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children></VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#onMarketClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/gold%20coin.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label styleClass="text_font" text="Market" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children></VBox>
                      </children>
                   </GridPane>
                   <VBox fx:id="daily_challenges_details" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">

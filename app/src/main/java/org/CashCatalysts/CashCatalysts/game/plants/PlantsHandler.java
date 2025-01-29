@@ -17,6 +17,7 @@ public class PlantsHandler {
     // For normal plants
     private int banana;
     private int pineapple;
+    private int strawberry;
     private int apple;
     private int sampaguita;
     private int orchids;
@@ -26,6 +27,7 @@ public class PlantsHandler {
     // For seeds
     private int bananaSeed;
     private int pineappleSeed;
+    private int strawberrySeed;
     private int appleSeed;
     private int sampaguitaSeed;
     private int orchidsSeed;
@@ -51,11 +53,23 @@ public class PlantsHandler {
             UserPlantsInventory userPlantsInventory = plantsInventoryTable.getPlantsInventory(userId);
             banana = userPlantsInventory.banana();
             pineapple = userPlantsInventory.pineapple();
+            strawberry = userPlantsInventory.strawberry();
             apple = userPlantsInventory.apple();
             sampaguita = userPlantsInventory.sampaguita();
             orchids = userPlantsInventory.orchids();
             sunflower = userPlantsInventory.sunflower();
             rose = userPlantsInventory.rose();
+
+            UserPlantsInventory userSeedsInventory = seedsInventoryTable.getSeedsInventory(userId);
+            bananaSeed = userSeedsInventory.banana();
+            pineappleSeed = userSeedsInventory.pineapple();
+            strawberrySeed = userSeedsInventory.strawberry();
+            appleSeed = userSeedsInventory.apple();
+            sampaguitaSeed = userSeedsInventory.sampaguita();
+            orchidsSeed = userSeedsInventory.orchids();
+            sunflowerSeed = userSeedsInventory.sunflower();
+            roseSeed = userSeedsInventory.rose();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -65,6 +79,7 @@ public class PlantsHandler {
         switch (plant) {
             case BANANA -> banana++;
             case PINEAPPLE -> pineapple++;
+            case STRAWBERRY -> strawberry++;
             case APPLE -> apple++;
             case SAMPAGUITA -> sampaguita++;
             case ORCHIDS -> orchids++;
@@ -87,6 +102,12 @@ public class PlantsHandler {
                     throw new IllegalArgumentException("Cannot remove a pineapple plant when there are no pineapple plants");
                 }
                 pineapple--;
+            }
+            case STRAWBERRY -> {
+                if (strawberry == 0) {
+                    throw new IllegalArgumentException("Cannot remove a strawberry plant when there are no strawberry plants");
+                }
+                strawberry--;
             }
             case APPLE -> {
                 if (apple == 0) {
@@ -128,7 +149,7 @@ public class PlantsHandler {
      */
     public void updatePlantsInventory() {
         try {
-            plantsInventoryTable.updatePlantsInventory(new UserPlantsInventory(userId, banana, pineapple, apple, sampaguita, orchids, sunflower, rose));
+            plantsInventoryTable.updatePlantsInventory(new UserPlantsInventory(userId, banana, pineapple, strawberry, apple, sampaguita, orchids, sunflower, rose));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -150,6 +171,7 @@ public class PlantsHandler {
         switch (seed) {
             case BANANA -> bananaSeed++;
             case PINEAPPLE -> pineappleSeed++;
+            case STRAWBERRY -> strawberrySeed++;
             case APPLE -> appleSeed++;
             case SAMPAGUITA -> sampaguitaSeed++;
             case ORCHIDS -> orchidsSeed++;
@@ -172,6 +194,12 @@ public class PlantsHandler {
                     throw new IllegalArgumentException("Cannot remove a pineapple seed when there are no pineapple seeds");
                 }
                 pineappleSeed--;
+            }
+            case STRAWBERRY -> {
+                if (strawberrySeed == 0) {
+                    throw new IllegalArgumentException("Cannot remove a strawberry seed when there are no strawberry seeds");
+                }
+                strawberrySeed--;
             }
             case APPLE -> {
                 if (appleSeed == 0) {
@@ -212,7 +240,7 @@ public class PlantsHandler {
      */
     public void updateSeedsInventory() {
         try {
-            seedsInventoryTable.updateSeedsInventory(new UserPlantsInventory(userId, bananaSeed, pineappleSeed, appleSeed, sampaguitaSeed, orchidsSeed, sunflowerSeed, roseSeed));
+            seedsInventoryTable.updateSeedsInventory(new UserPlantsInventory(userId, bananaSeed, pineappleSeed, strawberrySeed, appleSeed, sampaguitaSeed, orchidsSeed, sunflowerSeed, roseSeed));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

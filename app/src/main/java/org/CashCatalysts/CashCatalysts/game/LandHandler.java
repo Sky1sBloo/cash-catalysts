@@ -14,6 +14,16 @@ public class LandHandler {
     public LandHandler(int userId, DatabaseHandler databaseHandler) {
         this.userId = userId;
         this.landsTable = databaseHandler.getLandsTable();
+
+        try {
+            if (landsTable.getLands(userId).isEmpty()) {
+                for (int i = 0; i < 12; i++) {
+                    addLand();
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -63,6 +73,14 @@ public class LandHandler {
         }
     }
 
+    public void updateLand(Land land) {
+        try {
+            landsTable.updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Remove a pot from a land
      * Removes any plant on the land
@@ -85,7 +103,7 @@ public class LandHandler {
     public void plant(int position, Plant plant) {
         try {
             Land land = landsTable.getLand(userId, position);
-            if (!land.isHasPot()) {
+            if (!land.hasPot()) {
                 return;
             }
             land.setPlantType(plant);
@@ -108,11 +126,20 @@ public class LandHandler {
         }
     }
 
+    public void cheatDuration(int position) {
+        try {
+            Land land = landsTable.getLand(userId, position);
+            land.setCooldownId(null);
+            landsTable.updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Getter for LandsTable
      */
-    public LandsTable getLandsTable(){
+    public LandsTable getLandsTable() {
         return landsTable;
     }
 }

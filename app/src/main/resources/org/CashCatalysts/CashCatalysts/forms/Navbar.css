@@ -1,5 +1,5 @@
 #navbar {
-    -fx-background-color: rgba(235, 131, 23, 0.7);
+    -fx-background-color: rgba(69, 19, 3, 0.8);
     -fx-border-color: black;
     -fx-border-width: 2;
 }
@@ -15,6 +15,14 @@
 .nav_tab {
     -fx-alignment: center;
 
+}
+
+#menu_toggle_btn {
+    -fx-background-color: #785030;
+}
+
+#menu_toggle_btn:hover {
+    -fx-background-color: #9e784f;
 }
 
 .nav_button {

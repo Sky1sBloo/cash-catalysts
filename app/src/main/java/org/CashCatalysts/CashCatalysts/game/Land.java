@@ -7,6 +7,7 @@ public class Land {
     private boolean hasPot;
     private final int userId;
     private final Integer position;  // To retain the position of the land in the grid
+    private Integer cooldownId;
 
 
     public Land(int userId, Plant plantType, boolean hasPot, int position) {
@@ -14,6 +15,15 @@ public class Land {
         this.plantType = plantType;
         this.hasPot = hasPot;
         this.position = position;
+        cooldownId = null;
+    }
+
+    public Land(int userId, Plant plantType, boolean hasPot, int position, Integer cooldownId) {
+        this.userId = userId;
+        this.plantType = plantType;
+        this.hasPot = hasPot;
+        this.position = position;
+        this.cooldownId = cooldownId;
     }
 
     public Plant getPlantType() {
@@ -24,12 +34,20 @@ public class Land {
         this.plantType = plantType;
     }
 
-    public boolean isHasPot() {
+    public boolean hasPot() {
         return hasPot;
     }
 
     public void setHasPot(boolean hasPot) {
         this.hasPot = hasPot;
+    }
+
+    public Integer getCooldownId() {
+        return cooldownId;
+    }
+
+    public void setCooldownId(Integer cooldownId) {
+        this.cooldownId = cooldownId;
     }
 
     public int getPosition() {

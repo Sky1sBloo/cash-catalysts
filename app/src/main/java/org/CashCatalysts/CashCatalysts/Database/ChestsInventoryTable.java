@@ -17,18 +17,18 @@ public class ChestsInventoryTable extends DbTable {
                 new DbField("epic_chests_amount", "INTEGER")
         };
 
-        super.createTable("game_inventory", fields);
+        super.createTable("chests_inventory", fields);
     }
 
     public void addChestsInventory(int userId) throws SQLException {
-        String sql = "INSERT INTO game_inventory (userId, normal_chests_amount, rare_chests_amount, epic_chests_amount) VALUES(?, 0, 0, 0);";
+        String sql = "INSERT INTO chests_inventory (userId, normal_chests_amount, rare_chests_amount, epic_chests_amount) VALUES(?, 2, 0, 0);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
         preparedStatement.executeUpdate();
     }
 
     public UserChestsInventory getChestsAmount(int userId) throws SQLException {
-        String sql = "SELECT normal_chests_amount, rare_chests_amount, epic_chests_amount WHERE userId = ?";
+        String sql = "SELECT normal_chests_amount, rare_chests_amount, epic_chests_amount FROM chests_inventory WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
         preparedStatement.setInt(1, userId);
@@ -46,7 +46,7 @@ public class ChestsInventoryTable extends DbTable {
     }
 
     public void updateChestsAmount(UserChestsInventory userChestsInventory) throws SQLException {
-        String sql = "UPDATE game_inventory SET normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ? WHERE userId = ?";
+        String sql = "UPDATE chests_inventory SET normal_chests_amount = ?, rare_chests_amount = ?, epic_chests_amount = ? WHERE userId = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userChestsInventory.normalChestsAmount());
         preparedStatement.setInt(2, userChestsInventory.rareChestsAmount());
