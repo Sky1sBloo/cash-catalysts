@@ -77,14 +77,15 @@ public class LandController {
     private void loadPlantContents() {
         Land land = landHandler.getLand(landPosition);
         if (land.hasPot()) {
+            boolean isHarvestable = plantGrowingSystem.isPlantHarvestable(landPosition);
             plant_type.setText(land.getPlantType().toString());
             pot_pane.setVisible(false);
             plant_pane.setVisible(true);
-            harvest_btn.setDisable(!plantGrowingSystem.isPlantHarvestable(landPosition));
+            harvest_btn.setDisable(!isHarvestable);
 
             boolean isWatered = plantGrowingSystem.getPlantTimeRemainingDuration(landPosition).getSeconds() > 0;
-            water_btn.setDisable(isWatered || land.getPlantType() == Plant.NONE);
-            cheat_btn.setDisable(isWatered || land.getPlantType() == Plant.NONE);
+            water_btn.setDisable(isWatered || land.getPlantType() == Plant.NONE || isHarvestable);
+            cheat_btn.setDisable(!isWatered || land.getPlantType() == Plant.NONE || isHarvestable);
             plant_btn.setDisable(isWatered);
             seed_selection.setDisable(isWatered);
             time_lbl.setText(plantGrowingSystem.getPlantTimeRemaining(landPosition));
