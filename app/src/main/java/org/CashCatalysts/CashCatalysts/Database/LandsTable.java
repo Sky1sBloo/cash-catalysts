@@ -111,7 +111,7 @@ public class LandsTable extends DbTable {
 
         ResultSet resultSet = preparedStatement.executeQuery();
         if (!resultSet.next()) {
-            return 0;
+            return -1;
         }
         return resultSet.getInt(1);
     }

@@ -57,7 +57,8 @@ public class App extends Application {
                 challengeHandler,
                 userGameStatsHandler,
                 plantsHandler,
-                chestHandler);
+                chestHandler,
+                landHandler);
         loader.setController(controller);
 
         Parent root = loader.load();

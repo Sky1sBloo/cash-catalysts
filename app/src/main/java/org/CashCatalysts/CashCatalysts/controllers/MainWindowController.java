@@ -11,6 +11,7 @@ import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
@@ -29,6 +30,7 @@ public class MainWindowController {
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
     private final ChestHandler chestHandler;
+    private final LandHandler landHandler;
 
     @FXML
     private Pane main_root;
@@ -43,7 +45,7 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, ChestHandler chestHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, ChestHandler chestHandler, LandHandler landHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
@@ -53,12 +55,13 @@ public class MainWindowController {
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
         this.chestHandler = chestHandler;
+        this.landHandler = landHandler;
     }
 
     @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
-        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, landHandler));
     }
 
     private void refresh() {
@@ -99,7 +102,7 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onDashboardClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler));
+        loadPage("../forms/Garden.fxml", new GardenController(userGameStatsHandler, plantsHandler, landHandler));
         //loadPage("../forms/Dashboard.fxml", new DashboardController(transactionHandler));
     }
 

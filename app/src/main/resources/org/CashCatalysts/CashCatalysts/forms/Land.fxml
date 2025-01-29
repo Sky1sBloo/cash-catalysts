@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <VBox fx:id="plant_pane" alignment="TOP_CENTER" prefHeight="61.0" prefWidth="246.0">
+         <children>
+              <Label fx:id="plant_type" text="Plant" />
+              <HBox alignment="CENTER" prefHeight="33.0" prefWidth="304.0">
+                  <children>
+                      <ComboBox fx:id="seed_selection" prefWidth="150.0" />
+                      <Button mnemonicParsing="false" text="Plant" />
+                  </children>
+              </HBox>
+              <Button mnemonicParsing="false" text="Harvest" />
+         </children>
+      </VBox>
+      <VBox fx:id="pot_pane" alignment="TOP_CENTER" prefHeight="46.0" prefWidth="246.0">
+         <children>
+            <Button fx:id="add_pot_btn" mnemonicParsing="false" text="Add Pot" />
+         </children>
+      </VBox>
+    </children>
+</VBox>
