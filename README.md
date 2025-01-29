@@ -1,10 +1,6 @@
 # Cash Catalysts
 Cash Catalysts is a gamified Finance App designed to motivate users to save money through gamified elements.
-## Table of Contents
-1. [Features](##Features)
-2. [Gameplay](##Gameplay)
-3. [Setup and Installation](##Setup-and-Installation)
-4. [Testing](##Testing)
+
 ## Screenshots
 ![image](https://github.com/user-attachments/assets/aadd679e-3c0d-4e4f-9c97-a53f29d138a1)
 
@@ -26,6 +22,12 @@ Cash Catalysts is a gamified Finance App designed to motivate users to save mone
 - Setting Up subscriptions
 - Earn rewards for completing challenges
 - Use these rewards to expand your garden
+
+## How to use
+- Use the navbar to navigate the application
+- Save transactions in the transactions page
+- Subscriptions automatically add transactions
+- Deleting/altering subscriptions will delete/alter transactions after the current date
 
 ## Gameplay
 - Unlock chests to get seeds
