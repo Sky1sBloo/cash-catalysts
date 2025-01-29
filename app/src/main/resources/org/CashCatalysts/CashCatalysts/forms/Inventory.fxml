@@ -61,113 +61,113 @@
             <Label text="Gold" GridPane.rowIndex="1" />
             <Label text="Star" GridPane.rowIndex="2" />
             <Label text="Banana" GridPane.rowIndex="3" />
-            <Label text="Sampaguita" GridPane.rowIndex="4" />
-            <Label text="Pineapple" GridPane.rowIndex="5" />
-            <Label text="Orchids" GridPane.rowIndex="6" />
-            <Label text="Strawberry" GridPane.rowIndex="7" />
-            <Label text="Sunflower" GridPane.rowIndex="8" />
-            <Label text="Apple" GridPane.rowIndex="9" />
-            <Label text="Rose" GridPane.rowIndex="10" />
+            <Label text="Sampaguita" GridPane.rowIndex="7" />
+            <Label text="Pineapple" GridPane.rowIndex="4" />
+            <Label text="Orchids" GridPane.rowIndex="8" />
+            <Label text="Strawberry" GridPane.rowIndex="5" />
+            <Label text="Apple" GridPane.rowIndex="6" />
             <Label text="Plant Pot" GridPane.rowIndex="11" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="gold_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="star_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="banana_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="banana_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="pineapple_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="pineapple_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="strawberry_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="strawberry_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="apple_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="apple_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="sampaguita_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="sampaguita_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="orchids_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="orchids_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="sunflower_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="sunflower_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="rose_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="10">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="rose_seed_lbl" text="0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <children>
-                  <Label text="0" />
+                  <Label fx:id="pot_lbl" text="0" />
                </children>
             </VBox>
+            <Label text="Rose" GridPane.rowIndex="10" />
+            <Label text="Sunflower" GridPane.rowIndex="9" />
          </children>
       </GridPane>
    </content>
    <buttonTypes>
-      <ButtonType fx:constant="FINISH" />
+      <ButtonType fx:constant="OK" />
    </buttonTypes>
 </DialogPane>

@@ -53,7 +53,8 @@ public class App extends Application {
                 userStatsSystem,
                 subscriptionsHandler,
                 challengeHandler,
-                userGameStatsHandler);
+                userGameStatsHandler,
+                plantsHandler);
         loader.setController(controller);
 
         Parent root = loader.load();

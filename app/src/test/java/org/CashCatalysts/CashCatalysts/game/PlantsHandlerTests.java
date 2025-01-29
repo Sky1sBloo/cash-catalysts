@@ -34,7 +34,7 @@ public class PlantsHandlerTests {
         plantsHandler.addPlant(Plant.ROSE);
         plantsHandler.updatePlantsInventory();
         UserPlantsInventory userPlantsInventory = plantsHandler.getPlantsInventory();
-        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 2, 1, 1, 1, 1, 1, 1);
+        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 2, 1, 0,  1, 1, 1, 1, 1);
         Assertions.assertEquals(expectedUserPlantsInventory, userPlantsInventory);
     }
 
@@ -57,7 +57,7 @@ public class PlantsHandlerTests {
         plantsHandler.removePlant(Plant.ROSE);
         plantsHandler.updatePlantsInventory();
         UserPlantsInventory userPlantsInventory = plantsHandler.getPlantsInventory();
-        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 1, 0, 0, 0, 0, 0, 0);
+        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 1, 0, 0, 0, 0, 0, 0, 0);
         Assertions.assertEquals(expectedUserPlantsInventory, userPlantsInventory);
     }
 
@@ -83,7 +83,7 @@ public class PlantsHandlerTests {
         plantsHandler.addSeed(Plant.ROSE);
         plantsHandler.updateSeedsInventory();
         UserPlantsInventory userPlantsInventory = plantsHandler.getSeedsInventory();
-        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 2, 1, 1, 1, 1, 1, 1);
+        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 2, 1, 0, 1, 1, 1, 1, 1);
         Assertions.assertEquals(expectedUserPlantsInventory, userPlantsInventory);
     }
 
@@ -111,7 +111,7 @@ public class PlantsHandlerTests {
         plantsHandler.removeSeed(Plant.ROSE);
         plantsHandler.updateSeedsInventory();
         UserPlantsInventory userPlantsInventory = plantsHandler.getSeedsInventory();
-        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 1, 0, 0, 0, 0, 0, 0);
+        UserPlantsInventory expectedUserPlantsInventory = new UserPlantsInventory(userId, 1, 0, 0, 0, 0, 0, 0, 0);
         Assertions.assertEquals(expectedUserPlantsInventory, userPlantsInventory);
     }
 }
