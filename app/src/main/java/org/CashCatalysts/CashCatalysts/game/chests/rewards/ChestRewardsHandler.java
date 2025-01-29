@@ -50,9 +50,9 @@ public class ChestRewardsHandler {
     public List<ChestDrop> getRewards() {
         List<ChestDrop> rewards = new ArrayList<>();
         int amount = switch (rarity) {
-            case NORMAL -> 3;
-            case RARE -> 5;
-            case EPIC -> 7;
+            case NORMAL -> 1;
+            case RARE -> 3;
+            case EPIC -> 5;
         };
 
         ChestRewardRarity[] rewardsArray = switch (rarity) {

@@ -50,7 +50,7 @@ public class ChestHandler {
                 chest = new Chest(ChestRarity.RARE);
             }
             case EPIC -> {
-                if (rareChestsAmount <= 0) {
+                if (epicChestsAmount <= 0) {
                     return chestDrops;
                 }
                 epicChestsAmount--;
