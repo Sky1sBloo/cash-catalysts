@@ -46,6 +46,14 @@ public class PlantGrowingSystem {
         Cooldown  cooldown = CooldownHandler.createCooldown(cooldownEnd);
         int cooldownID = cooldownHandler.addCooldown(cooldown);
         cooldownHandler.updateCooldown(cooldown.id(), cooldownEnd);
+        land.setCooldownId(cooldownID);
+
+        try {
+            landHandler.getLandsTable().updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.USE_WATER, landPosition, LocalDate.now()));
     }
 
@@ -56,16 +64,18 @@ public class PlantGrowingSystem {
     public void harvestPlant(int landPosition) {
         Land land = landHandler.getLand(landPosition);
 
-        Cooldown cooldown = cooldownHandler.getCooldown(landPosition);
+        //Cooldown cooldown = cooldownHandler.getCooldown(landPosition); // todo: make lands table store cooldown id
+        Cooldown cooldown = cooldownHandler.getCooldown(land.getCooldownId());
         if(cooldown == null || !cooldownHandler.cooldownIsFinished(cooldown.id(), LocalDateTime.now())){
             throw new IllegalStateException("Plant is not ready for harvest yet.");
         }
 
-        plantsHandler.addPlant(land.getPlantType());
+        plantsHandler.addPlant(land.getPlantType()) ;
         plantsHandler.updatePlantsInventory();
         userGameStats.getStar().add(10);
 
         land.setPlantType(Plant.NONE);
+        land.setCooldownId(null);
         try {
             landHandler.getLandsTable().updateLand(land);
         } catch (SQLException e) {

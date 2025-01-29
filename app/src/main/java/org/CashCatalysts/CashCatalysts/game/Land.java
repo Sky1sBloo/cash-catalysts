@@ -5,17 +5,25 @@ import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 public class Land {
     private Plant plantType;
     private boolean hasPot;
-    private boolean isHarvestable;
     private final int userId;
     private final Integer position;  // To retain the position of the land in the grid
+    private Integer cooldownId;
 
 
-    public Land(int userId, Plant plantType, boolean hasPot, boolean isHarvestable, int position) {
+    public Land(int userId, Plant plantType, boolean hasPot, int position) {
         this.userId = userId;
         this.plantType = plantType;
         this.hasPot = hasPot;
-        this.isHarvestable = isHarvestable;
         this.position = position;
+        cooldownId = null;
+    }
+
+    public Land(int userId, Plant plantType, boolean hasPot, int position, Integer cooldownId) {
+        this.userId = userId;
+        this.plantType = plantType;
+        this.hasPot = hasPot;
+        this.position = position;
+        this.cooldownId = cooldownId;
     }
 
     public Plant getPlantType() {
@@ -34,12 +42,12 @@ public class Land {
         this.hasPot = hasPot;
     }
 
-    public boolean getHarvestable() {
-        return isHarvestable;
+    public Integer getCooldownId() {
+        return cooldownId;
     }
 
-    public void setHarvestable(boolean harvestable) {
-        isHarvestable = true;
+    public void setCooldownId(Integer cooldownId) {
+        this.cooldownId = cooldownId;
     }
 
     public int getPosition() {

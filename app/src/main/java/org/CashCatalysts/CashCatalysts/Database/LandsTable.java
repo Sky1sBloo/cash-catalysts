@@ -19,11 +19,12 @@ public class LandsTable extends DbTable {
                 new DbField("userId", "INTEGER", "NOT NULL"),
                 new DbField("plantType", "VARCHAR(24)", "NOT NULL"),
                 new DbField("hasPot", "INTEGER"),
-                new DbField("harvestable", "INTEGER"),
-                new DbField("position", "INTEGER")
+                new DbField("position", "INTEGER"),
+                new DbField("cooldownId", "INTEGER")
         };
         String[] constraints = {
-                "FOREIGN KEY (userId) REFERENCES users(user_id)"
+                "FOREIGN KEY (userId) REFERENCES users(user_id)",
+                "FOREIGN KEY (cooldownId) REFERENCES cooldowns(id)"
         };
 
         super.createTable("lands", fields, constraints);
@@ -51,12 +52,16 @@ public class LandsTable extends DbTable {
         if (!resultSet.next()) {
             return null;
         }
+        Integer cooldownId = resultSet.getInt("cooldownId");
+        if (resultSet.wasNull()) {
+            cooldownId = null;
+        }
         return new Land(
                 resultSet.getInt("userId"),
                 Plant.valueOf(resultSet.getString("plantType")),
                 resultSet.getInt("hasPot") == 1,
-                resultSet.getInt("harvestable") == 1,
-                resultSet.getInt("position")
+                resultSet.getInt("position"),
+                cooldownId
         );
     }
 
@@ -69,12 +74,17 @@ public class LandsTable extends DbTable {
         if (!resultSet.next()) {
             return null;
         }
+
+        Integer cooldownId = resultSet.getInt("cooldownId");
+        if (resultSet.wasNull()) {
+            cooldownId = null;
+        }
         return new Land(
                 resultSet.getInt("userId"),
                 Plant.valueOf(resultSet.getString("plantType")),
                 resultSet.getInt("hasPot") == 1,
-                resultSet.getInt("harvestable") == 1,
-                resultSet.getInt("position")
+                resultSet.getInt("position"),
+                cooldownId
         );
     }
 
@@ -90,20 +100,25 @@ public class LandsTable extends DbTable {
                     resultSet.getInt("userId"),
                     Plant.valueOf(resultSet.getString("plantType")),
                     resultSet.getInt("hasPot") == 1,
-                    resultSet.getInt("harvestable") == 1,
-                    resultSet.getInt("position")
+                    resultSet.getInt("position"),
+                    resultSet.getInt("cooldownId")
             ));
         }
         return lands;
     }
 
     public void updateLand(Land land) throws SQLException {
-        String sql = "UPDATE lands SET plantType = ?, hasPot = ? WHERE userId = ? AND position = ?;";
+        String sql = "UPDATE lands SET plantType = ?, hasPot = ?, cooldownId = ? WHERE userId = ? AND position = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, land.getPlantType().toString());
         preparedStatement.setInt(2, land.hasPot() ? 1 : 0);
-        preparedStatement.setInt(3, land.getUserId());
-        preparedStatement.setInt(4, land.getPosition());
+        if (land.getCooldownId() == null) {
+            preparedStatement.setNull(3, java.sql.Types.INTEGER);
+        } else {
+            preparedStatement.setInt(3, land.getCooldownId());
+        }
+        preparedStatement.setInt(4, land.getUserId());
+        preparedStatement.setInt(5, land.getPosition());
 
         preparedStatement.executeUpdate();
     }

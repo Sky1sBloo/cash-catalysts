@@ -64,7 +64,7 @@ public class LandController {
             plant_type.setText(land.getPlantType().toString());
             pot_pane.setVisible(false);
             plant_pane.setVisible(true);
-            harvest_btn.setDisable(!land.getHarvestable());
+            //harvest_btn.setDisable(!land.getHarvestable());
         } else {
             pot_pane.setVisible(true);
             plant_pane.setVisible(false);
