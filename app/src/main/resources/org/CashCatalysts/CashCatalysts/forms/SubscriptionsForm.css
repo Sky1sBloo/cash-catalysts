@@ -1,0 +1,27 @@
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+.subscription_selection {
+    -fx-background-color: #fffbde;
+}
+
+.subscription_selection .list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
+}
+
+.subscription_txtbx {
+    -fx-background-color: #fffbde;
+    -fx-background-radius: 20;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+}
+
+#Subscription_Frame{
+    -fx-background-color: rgba(243, 198, 35, 0.7);
+}
+
+.ButtonType {
+    -fx-background-color: #D9D9D9;
+}

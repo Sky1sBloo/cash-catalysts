@@ -1,0 +1,16 @@
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
+
+#Transaction_Frame{
+    -fx-background-color: rgba(243, 198, 35, 0.7);
+}
+
+.transaction_selection {
+    -fx-background-color: #fffbde;
+}
+
+.transaction_selection .list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
+}

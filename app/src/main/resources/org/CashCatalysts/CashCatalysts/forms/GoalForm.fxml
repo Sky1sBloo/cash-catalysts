@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -9,27 +10,55 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="480.0" style="-fx-background-color: rgba(243, 198, 35, 0.8);" stylesheets="@GoalForm.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <buttonTypes>
       <ButtonType fx:constant="OK" />
       <ButtonType fx:constant="CANCEL" />
    </buttonTypes>
    <content>
-      <VBox prefHeight="200.0" prefWidth="100.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
          <children>
-            <Label text="Add New Goal">
+            <Label styleClass="text_font" text="Add New Goal">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label text="Goal Name" />
-            <TextField fx:id="goal_name" />
-            <Label text="Category" />
-            <ComboBox fx:id="type_selection" prefWidth="150.0" />
-            <Label text="Target Amount" />
-            <TextField fx:id="target_amount" />
-            <Label text="Deadline" />
-            <DatePicker fx:id="deadline" />
+            <Label styleClass="text_font" text="Goal Name">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TextField fx:id="goal_name">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_txtbx" />
+               </styleClass></TextField>
+            <Label styleClass="text_font" text="Category">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ComboBox fx:id="type_selection" prefWidth="150.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_selection" />
+               </styleClass></ComboBox>
+            <Label styleClass="text_font" text="Target Amount">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TextField fx:id="target_amount">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_txtbx" />
+               </styleClass></TextField>
+            <Label styleClass="text_font" text="Deadline">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <DatePicker fx:id="deadline" prefHeight="22.0" prefWidth="148.0">
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="goal_selection" />
+               </styleClass></DatePicker>
          </children>
       </VBox>
    </content>

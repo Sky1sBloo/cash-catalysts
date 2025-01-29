@@ -5,3 +5,8 @@
 .transaction_card Label {
     -fx-padding: 0 0 0 10;
 }
+
+.text_font{
+    -fx-font-family: "Consolas";
+    -fx-font-weight: bold;
+}
