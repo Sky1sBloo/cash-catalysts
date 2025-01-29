@@ -48,12 +48,7 @@ public class PlantGrowingSystem {
         int cooldownID = cooldownHandler.addCooldown(cooldown);
         //cooldownHandler.updateCooldown(cooldown.id(), cooldownEnd);
         land.setCooldownId(cooldownID);
-
-        try {
-            landHandler.getLandsTable().updateLand(land);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        landHandler.updateLand(land);
 
         userGameStatsHandler.getUserGameStats().getWater().exchange(1);
         gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.USE_WATER, landPosition, LocalDate.now()));
@@ -64,19 +59,11 @@ public class PlantGrowingSystem {
         if(!land.hasPot() || land.getPlantType() == Plant.NONE){
             throw new IllegalArgumentException("Land must have a pot and a planted seed.");
         }
-        LocalDateTime cooldownEnd = LocalDateTime.now();
+        LocalDateTime cooldownEnd = LocalDateTime.now().plusSeconds(5);
         Cooldown  cooldown = CooldownHandler.createCooldown(cooldownEnd);
         int cooldownID = cooldownHandler.addCooldown(cooldown);
-        //cooldownHandler.updateCooldown(cooldown.id(), cooldownEnd);
         land.setCooldownId(cooldownID);
-
-        try {
-            landHandler.getLandsTable().updateLand(land);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.USE_WATER, landPosition, LocalDate.now()));
+        landHandler.updateLand(land);
     }
 
     /**
@@ -92,6 +79,7 @@ public class PlantGrowingSystem {
             throw new IllegalStateException("Plant is not ready for harvest yet.");
         }
 
+        System.out.println(landPosition);
         plantsHandler.addPlant(land.getPlantType());
         plantsHandler.updatePlantsInventory();
         userGameStatsHandler.getUserGameStats().getStar().add(10);

@@ -108,10 +108,22 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
+                              <Label text="Drops: ">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
                               <Label text=" - Common seeds 90%" />
                               <Label text=" - Uncommon seeds 30%" />
                               <Label text=" - Rare Seeds 10%" />
                               <Label text=" - Epic Seeds 1%" />
+                              <Label text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 3x Sampaguita" />
+                              <Label text=" - Alternative: 50 gold" />
                            </children>
                         </VBox>
                      </children>
@@ -133,10 +145,24 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
+                              <Label text="Drops: ">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
                               <Label text=" - Common seeds 100%" />
                               <Label text=" - Uncommon seeds 85%" />
                               <Label text=" - Rare Seeds 50%" />
                               <Label text=" - Epic Seeds 1%" />
+                              <Label text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 1x Sampaguita" />
+                              <Label text=" - 1x Sunflower" />
+                              <Label text=" - 2x Orchids" />
+                              <Label text=" - Alternative: 75 gold" />
                            </children>
                         </VBox>
                      </children>
@@ -158,10 +184,25 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
+                              <Label text="Drops: ">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
                               <Label text=" - Common seeds 100%" />
                               <Label text=" - Uncommon seeds 100%" />
                               <Label text=" - Rare Seeds 70%" />
                               <Label text=" - Epic Seeds 15%" />
+                              <Label text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 3x Sampaguita" />
+                              <Label text=" - 2x Orchids" />
+                              <Label text=" - 1x Sunflower" />
+                              <Label text=" - 1x Rose" />
+                              <Label text=" - Alternative: 150 gold" />
                            </children>
                         </VBox>
                      </children>
@@ -183,7 +224,13 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <Label text="Buy Pots" />
+                              <Label text="Pots let you plant on land" />
+                              <Label text="Cost:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text=" - 50 stars" />
                            </children>
                         </VBox>
                      </children>

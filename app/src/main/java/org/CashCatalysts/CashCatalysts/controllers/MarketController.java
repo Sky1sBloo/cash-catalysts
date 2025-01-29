@@ -23,6 +23,12 @@ public class MarketController {
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
 
+    enum BuyableWith {
+        GOLD,
+        FLOWERS,
+        FALSE
+    }
+
     @FXML
     private BorderPane market_pane;
 
@@ -83,6 +89,10 @@ public class MarketController {
         sell_pineapple_btn.setDisable(plantsHandler.getPlantsInventory().pineapple() == 0);
         sell_strawberry_btn.setDisable(plantsHandler.getPlantsInventory().strawberry() == 0);
         sell_apple_btn.setDisable(plantsHandler.getPlantsInventory().apple() == 0);
+        trade_epic_chest_btn.setDisable(isChestTradeable(ChestRarity.EPIC) == BuyableWith.FALSE);
+        trade_rare_chest_btn.setDisable(isChestTradeable(ChestRarity.RARE) == BuyableWith.FALSE);
+        trade_normal_chest_btn.setDisable(isChestTradeable(ChestRarity.NORMAL) == BuyableWith.FALSE);
+        buy_pot.setDisable(!isPotTradeable());
     }
 
     private void loadStats() {
@@ -101,6 +111,9 @@ public class MarketController {
     }
 
     private void tradeChest(ChestRarity rarity) {
+        if (!exchangeChest(rarity)) {
+            return;
+        }
         chestHandler.addChest(new Chest(rarity));
         List<ChestDrop> drops = chestHandler.expendChest(rarity);
 
@@ -116,6 +129,7 @@ public class MarketController {
 
         dialog.initStyle(StageStyle.UTILITY);
         dialog.showAndWait();
+        refresh();
     }
 
     private void buyPot() {
@@ -143,5 +157,108 @@ public class MarketController {
         userGameStatsHandler.getUserGameStats().getGold().set(999);
         userGameStatsHandler.getUserGameStats().getStar().set(999);
         refresh();
+    }
+
+
+    /**
+     * Check if the chest is tradeable with flowers or gold
+     * only check and not exchange
+     * Todo: This should be separated in the future
+     */
+    private BuyableWith isChestTradeable(ChestRarity rarity) {
+        switch (rarity) {
+            case NORMAL -> {
+                if (plantsHandler.getPlantsInventory().sampaguita() >= 3) {
+                    return BuyableWith.FLOWERS;
+                }
+                if (userGameStatsHandler.getUserGameStats().getGold().getAmount() >= 50) {
+                    return BuyableWith.GOLD;
+                }
+                return BuyableWith.FALSE;
+            }
+            case RARE -> {
+                if (plantsHandler.getPlantsInventory().sampaguita() >= 1 &&
+                        plantsHandler.getPlantsInventory().sunflower() >= 1 &&
+                        plantsHandler.getPlantsInventory().orchids() >= 2) {
+                    return BuyableWith.FLOWERS;
+                }
+                if (userGameStatsHandler.getUserGameStats().getGold().getAmount() >= 75) {
+                    return BuyableWith.GOLD;
+                }
+                return BuyableWith.FALSE;
+            }
+            case EPIC -> {
+                if (plantsHandler.getPlantsInventory().sampaguita() >= 3 &&
+                        plantsHandler.getPlantsInventory().sunflower() >= 1 &&
+                        plantsHandler.getPlantsInventory().orchids() >= 2 &&
+                        plantsHandler.getPlantsInventory().rose() >= 1) {
+                    return BuyableWith.FLOWERS;
+                }
+                if (userGameStatsHandler.getUserGameStats().getGold().getAmount() >= 150) {
+                    return BuyableWith.GOLD;
+                }
+                return BuyableWith.FALSE;
+            }
+        }
+        return BuyableWith.FALSE;
+    }
+
+
+    /**
+     * Exchange the chest with flowers or gold
+     * @return true if exchange is successful, false otherwise
+     * Todo: This should be separated in the future
+     */
+    private boolean exchangeChest(ChestRarity rarity) {
+        switch (rarity) {
+            case NORMAL -> {
+                if (isChestTradeable(ChestRarity.NORMAL) == BuyableWith.GOLD) {
+                    userGameStatsHandler.getUserGameStats().getGold().exchange(50);
+                } else if (isChestTradeable(ChestRarity.NORMAL) == BuyableWith.FLOWERS) {
+                    for (int i = 0; i < 3; i++) {
+                        plantsHandler.removePlant(Plant.SAMPAGUITA);
+                    }
+                    plantsHandler.updatePlantsInventory();
+                } else {
+                    return false;
+                }
+            }
+            case RARE -> {
+                if (isChestTradeable(ChestRarity.RARE) == BuyableWith.GOLD) {
+                    userGameStatsHandler.getUserGameStats().getGold().exchange(75);
+                } else if (isChestTradeable(ChestRarity.RARE) == BuyableWith.FLOWERS) {
+                    for (int i = 0; i < 2; i++) {
+                        plantsHandler.removePlant(Plant.ORCHIDS);
+                    }
+                    plantsHandler.removePlant(Plant.SAMPAGUITA);
+                    plantsHandler.removePlant(Plant.SUNFLOWER);
+                    plantsHandler.updatePlantsInventory();
+                } else {
+                    return false;
+                }
+            }
+            case EPIC -> {
+                if (isChestTradeable(ChestRarity.EPIC) == BuyableWith.GOLD) {
+                    userGameStatsHandler.getUserGameStats().getGold().exchange(150);
+                } else if (isChestTradeable(ChestRarity.EPIC) == BuyableWith.FLOWERS) {
+                    for (int i = 0; i < 3; i++) {
+                        plantsHandler.removePlant(Plant.SAMPAGUITA);
+                    }
+                    plantsHandler.removePlant(Plant.SUNFLOWER);
+                    for (int i = 0; i < 2; i++) {
+                        plantsHandler.removePlant(Plant.ORCHIDS);
+                    }
+                    plantsHandler.removePlant(Plant.ROSE);
+                    plantsHandler.updatePlantsInventory();
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isPotTradeable() {
+        return userGameStatsHandler.getUserGameStats().getStar().getAmount() >= 10;
     }
 }

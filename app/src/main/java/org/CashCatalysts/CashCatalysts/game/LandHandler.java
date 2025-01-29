@@ -73,6 +73,14 @@ public class LandHandler {
         }
     }
 
+    public void updateLand(Land land) {
+        try {
+            landsTable.updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     /**
      * Remove a pot from a land
      * Removes any plant on the land
@@ -112,6 +120,16 @@ public class LandHandler {
         try {
             Land land = landsTable.getLand(userId, position);
             land.setPlantType(Plant.NONE);
+            landsTable.updateLand(land);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void cheatDuration(int position) {
+        try {
+            Land land = landsTable.getLand(userId, position);
+            land.setCooldownId(null);
             landsTable.updateLand(land);
         } catch (SQLException e) {
             throw new RuntimeException(e);
