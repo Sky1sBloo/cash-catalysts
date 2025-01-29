@@ -13,6 +13,7 @@ import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
+import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class MainWindowController {
     private final ChallengeHandler challengeHandler;
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
+    private final ChestHandler chestHandler;
 
     @FXML
     private Pane main_root;
@@ -41,7 +43,7 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, ChestHandler chestHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
@@ -50,6 +52,7 @@ public class MainWindowController {
         this.challengeHandler = challengeHandler;
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
+        this.chestHandler = chestHandler;
     }
 
     @SuppressWarnings("unused")
@@ -134,5 +137,10 @@ public class MainWindowController {
         dialog.setOnCloseRequest(e -> dialog.close());
         dialog.showAndWait(); */
         loadPage("../forms/Inventory.fxml", new InventoryController(userGameStatsHandler, plantsHandler));
+    }
+
+    @SuppressWarnings("unused")
+    public void onMarketClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Market.fxml", new MarketController(chestHandler, userGameStatsHandler));
     }
 }

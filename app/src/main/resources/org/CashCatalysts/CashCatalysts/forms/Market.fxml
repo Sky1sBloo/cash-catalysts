@@ -103,7 +103,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Normal Chest" />
-                              <Button mnemonicParsing="false" text="Trade" />
+                              <Button fx:id="trade_normal_chest_btn" mnemonicParsing="false" text="Trade" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
@@ -128,7 +128,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Rare Chest" />
-                              <Button mnemonicParsing="false" text="Trade" />
+                              <Button fx:id="trade_rare_chest_btn" mnemonicParsing="false" text="Trade" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
@@ -153,7 +153,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
                               <Label text="Epic Chest" />
-                              <Button mnemonicParsing="false" text="Trade" />
+                              <Button fx:id="trade_epic_chest_btn" mnemonicParsing="false" text="Trade" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">

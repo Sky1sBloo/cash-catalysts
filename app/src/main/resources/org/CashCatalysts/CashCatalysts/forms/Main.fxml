@@ -218,7 +218,23 @@
                                  </font>
                               </Label>
                            </children></VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2" />
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#onMarketClick" styleClass="nav_button">
+                                 <graphic>
+                                    <ImageView fitHeight="57.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/analytics_btn.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Label styleClass="text_font" text="Market" textFill="WHITE">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children></VBox>
                         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>

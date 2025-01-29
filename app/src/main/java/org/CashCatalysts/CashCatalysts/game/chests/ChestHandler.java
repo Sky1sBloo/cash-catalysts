@@ -1,10 +1,12 @@
 package org.CashCatalysts.CashCatalysts.game.chests;
 
 import org.CashCatalysts.CashCatalysts.Database.ChestsInventoryTable;
+import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.rewards.ChestDrop;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChestHandler {
@@ -15,9 +17,9 @@ public class ChestHandler {
     private int epicChestsAmount;
     private final int userId;
 
-    public ChestHandler(int userId, ChestsInventoryTable chestsInventoryTable, PlantsHandler plantsHandler) {
+    public ChestHandler(int userId, DatabaseHandler databaseHandler, PlantsHandler plantsHandler) {
         this.userId = userId;
-        this.chestsInventoryTable = chestsInventoryTable;
+        this.chestsInventoryTable = databaseHandler.getChestsInventoryTable();
         this.plantsHandler = plantsHandler;
     }
 
@@ -29,26 +31,27 @@ public class ChestHandler {
         }
     }
 
-    public void expendChest(ChestRarity rarity) {
+    public List<ChestDrop> expendChest(ChestRarity rarity) {
+        List<ChestDrop> chestDrops = new ArrayList<>();
         Chest chest = null;
         switch (rarity) {
             case NORMAL -> {
                 if (normalChestsAmount <= 0) {
-                    return;
+                    return chestDrops;
                 }
                 normalChestsAmount--;
                 chest = new Chest(ChestRarity.NORMAL);
             }
             case RARE -> {
                 if (rareChestsAmount <= 0) {
-                    return;
+                    return chestDrops;
                 }
                 rareChestsAmount--;
                 chest = new Chest(ChestRarity.RARE);
             }
             case EPIC -> {
                 if (rareChestsAmount <= 0) {
-                    return;
+                    return chestDrops;
                 }
                 epicChestsAmount--;
                 chest = new Chest(ChestRarity.EPIC);
@@ -58,9 +61,11 @@ public class ChestHandler {
             for (int i = 0; i < reward.amount(); i++) {
                 plantsHandler.addSeed(reward.plant());
             }
+            chestDrops.add(reward);
         }
         plantsHandler.updateSeedsInventory();
         updateChestsAmount();
+        return chestDrops;
     }
 
     public void addChest(List<Chest> chests) {
@@ -70,6 +75,15 @@ public class ChestHandler {
                 case RARE -> rareChestsAmount++;
                 case EPIC -> epicChestsAmount++;
             }
+        }
+        updateChestsAmount();
+    }
+
+    public void addChest(Chest chest) {
+        switch (chest.getRarity()) {
+            case NORMAL -> normalChestsAmount++;
+            case RARE -> rareChestsAmount++;
+            case EPIC -> epicChestsAmount++;
         }
         updateChestsAmount();
     }
