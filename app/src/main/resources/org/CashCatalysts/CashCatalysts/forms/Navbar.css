@@ -18,11 +18,11 @@
 }
 
 .nav_button {
-    -fx-background-color: #3e494f;
+    -fx-background-color: #4881a3;
 }
 
 .nav_button:hover {
-    -fx-background-color: #4881a3;
+    -fx-background-color: #96c0d9;
 }
 
 #nav_menu {
