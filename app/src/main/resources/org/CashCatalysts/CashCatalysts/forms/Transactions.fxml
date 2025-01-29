@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/bank.png" />
+                  <Image url="@../icons2/Normal%20Chest.png" />
                </image>
                <VBox.margin>
                   <Insets />
@@ -36,9 +36,9 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <ImageView fitHeight="61.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="76.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/coin.png" />
+                  <Image url="@../icons2/DailyBudget.png" />
                </image>
             </ImageView>
             <Label styleClass="text_font" text="Daily Budget" textFill="WHITE">
@@ -51,7 +51,7 @@
                </font></Label>
             <ImageView fitHeight="76.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/money.png" />
+                  <Image url="@../icons2/MonthlyBudget.png" />
                </image>
             </ImageView>
             <Label styleClass="text_font" text="Monthly Budget" textFill="WHITE">
@@ -62,9 +62,9 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <ImageView fitHeight="91.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="73.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../icons/moneymany.png" />
+                  <Image url="@../icons2/Credit%20Card.png" />
                </image>
             </ImageView>
             <Label styleClass="text_font" text="Yearly Budget" textFill="WHITE">

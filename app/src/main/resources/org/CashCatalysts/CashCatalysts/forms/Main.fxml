@@ -63,7 +63,7 @@
                      <children>
                         <ImageView fitHeight="92.0" fitWidth="95.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../icons/profile_demo.png" />
+                              <Image url="@../icons2/Sunflower.png" />
                            </image>
                         </ImageView>
                         <VBox fx:id="profile_details" prefHeight="184.0" prefWidth="235.0">
