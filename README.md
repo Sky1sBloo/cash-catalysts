@@ -1,14 +1,42 @@
 # Cash Catalysts
-Cash Catalysts is a gamified Finance App designed to motivate users to save money through rewards and achievements.
+Cash Catalysts is a gamified Finance App designed to motivate users to save money through gamified elements.
+## Table of Contents
+1. [Features](##Features)
+2. [Gameplay](##Gameplay)
+3. [Setup and Installation](##Setup-and-Installation)
+4. [Testing](##Testing)
+## Screenshots
+![image](https://github.com/user-attachments/assets/aadd679e-3c0d-4e4f-9c97-a53f29d138a1)
 
-## Planned Features
+![image](https://github.com/user-attachments/assets/336a0c6c-1dcd-4481-8fd7-d61172936802)
+
+![image](https://github.com/user-attachments/assets/bbe4a32c-0cb5-48fe-aec5-56d6c06ba2bf)
+
+![image](https://github.com/user-attachments/assets/326a8d8b-44b7-449b-aa95-009d3961e65a)
+
+![image](https://github.com/user-attachments/assets/29c33476-63c4-47be-9969-c0ffe05f8f6f)
+
+![image](https://github.com/user-attachments/assets/fabecba2-f639-4a6c-8356-bd980be690c3)
+
+
+## Features
 - Viewing and setting up transactions
-- Tracking savings via interactive graphs
+- Tracking savings via graphs
 - Setting up goals
-- Earn rewards for completing challenges and goal savings
+- Setting Up subscriptions
+- Earn rewards for completing challenges
+- Use these rewards to expand your garden
+
+## Gameplay
+- Unlock chests to get seeds
+- Plant seeds and water them to earn rewards
+- Accomplish challenges earn rewards
+
+### Note
+- All cooldowns and earning are decreased to a maximum of a minute for demonstration purposes.
   
 ## Requirements
-- Java 21 or higher
+- Java 23 or higher
 - Gradle
 - SQLite
 - JUnit Jupiter
@@ -23,106 +51,17 @@ git clone https://github.com/Sky1sBloo/cash-catalysts.git
 ./gradlew run
 ```
 
-## Contributing
-### Code Style Guidelines
- - The project uses [IntelliJ Idea's default format](https://pastebin.com/FnDCEDz7). The link is an Eclipse XML profile. 
- - camelCase for member functions and variables, PascalCase for class, record and interface names
- - Avoid systems hungarian
-
-### Project Structure
- - All fxml files must be in their respective Resources/packagelink/forms
- - Non-essential files such as build files or ide settings must be kept out of the repository
-
-### Branching Strategy
- - `main`: for development branch to simplify branching strategy and since it will only be released once
- - feature branches: must be named `feature/<feature name>`
- - hotfix branches: must be named `hotfix/<hotfix name>`
- - documentation branches: must be named `docs/<docs changes>`
- - Create new branch for every issue
- - Branches must be specific to that feature and only that feature (avoid side effects and major API changes as much as possible)
-
-### Commit Messages
- - Maintain clear and understandable commit messages
- - Suggested format (Required on squash merge):
-```
-<type>: <subject>
-``` 
-- Type: `feat`, `fix`, `docs`, `test`, `refactor`, `chore`
-- Type Descriptions:
-  - `feat`: new features, functions, or classes
-  - `fix`: bug fixes, small changes to existing code
-  - `docs`: documentation updates
-  - `test`: adding or updating tests
-  - `refactor`: restructuring code without changing behavior
-  - `chore`: non-functional tasks (e.g., configuration changes, version bumps)
-- Example:
-```
-fix: database insertUser not returning the id
-
-docs: added method descriptions on database handler
-```
- - Detailed descriptions must be included in body
-
-### Pull Request Guidelines
-- Pull Request Format:
-```
-Title: <type>:<short summary of changes>
-Body:
- - Summary
- - Related issues
-   - Closes #13
-   - Resolves #2
- - List of changes
- - Testing instructions
- - Additional notes
-```
-
-```
-ex. 
-Title: feat: Added reward system from accomplishing goals
-Body:
-This PR implements the reward system taken from accomplishing goals
-Closes #13
-
-Changes:
- - Added rewards class
- - Made rewards class as dependency on goals handler
- - Goals handler will call rewards on update() function
- - Added unit test on goals handler to test the reward function call
-
-Testing instructions:
- - All Unit tests are in the `rewards` directory
- - Goals Handler tests are also modified in the `goalshandler` directory.
- - ./gradlew test
-
-Additional Notes:
- - Feature is barebones and needs refinement
- - Other classes that uses goals handler may need to add the rewards dependency.
-```
-- All branches should be rebased from the `main` branch before submitting a pull request
-- Pull request title must be clear and summary of changes must be included in the body.
-- Major API changes and side effects must be mentioned in the pull request
-- Ensure CI tools pass all checks before merging.
-
-### Testing
-- New features or components must be unit tested if applicable
-- Avoid unit testing library/framework methods or functions with no logic
-
-### Documentation
-- Include Javadoc comments for:
-  - All public classes or methods
-  - Complex logic
-### Code Reviews
-
-- Reviewers must:
-   - Check code quality if it follows standards
-   - Run the branch locally to check its functionality
-   - Ensure there are no breaking changes
-- Use constructive feedback
-
-### Security
-- For JDBC, use prepared statement when retrieving user data rather than concatenating strings (to avoid sql injection)
-- Passwords (if needed) must be hashed before storing them on the database.
+## Contributors
+ - [Sky1sBloo](https://github.com/Sky1sBloo)
+ - [ArwenMatinong](https://github.com/ArwenMatinong)
+ - [biendelapax2](https://github.com/biendelapaz02)
+ - [Chrisma](https://github.com/chrismacharis)
+ - [neya213](https://github.com/neya213)
+ - [raycel-maratas](https://github.com/raycel-maratas)
+ - [RDYAP](https://github.com/RDYAP)
 
 ## Testing
-Unit Tests uses the JUnit Jupiter Framework. Unit tests are in the `app/src/test` directory.
+Unit Tests uses the JUnit Jupiter Framework. Unit tests are in the `app/src/test` directory. Run with:
+```
+./gradlew test
+```
