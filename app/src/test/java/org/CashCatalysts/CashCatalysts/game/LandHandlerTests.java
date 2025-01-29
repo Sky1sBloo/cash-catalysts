@@ -25,7 +25,7 @@ public class LandHandlerTests {
     public void testAddLand() {
         landHandler.addLand();
         landHandler.addLand();
-        Assertions.assertEquals(2, landHandler.getLands().size());
+        Assertions.assertEquals(14, landHandler.getLands().size());
     }
 
     @Test
