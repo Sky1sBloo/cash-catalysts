@@ -79,6 +79,7 @@ public class PlantsHandler {
         switch (plant) {
             case BANANA -> banana++;
             case PINEAPPLE -> pineapple++;
+            case STRAWBERRY -> strawberry++;
             case APPLE -> apple++;
             case SAMPAGUITA -> sampaguita++;
             case ORCHIDS -> orchids++;
