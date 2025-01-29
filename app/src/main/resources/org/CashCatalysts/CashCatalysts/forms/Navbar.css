@@ -17,9 +17,17 @@
 
 }
 
+.nav_button {
+    -fx-background-color: #3e494f;
+}
+
+.nav_button:hover {
+    -fx-background-color: #4881a3;
+}
+
 #nav_menu {
    -fx-border-color: black;
-   -fx-background-color: rgba(16, 55, 92, 0.5);
+   -fx-background-color: rgba(16, 55, 92, 0.7);
    -fx-border-width: 2 2 2 0;
 
 }
