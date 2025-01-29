@@ -25,6 +25,10 @@ public class MarketController {
 
     @FXML
     private BorderPane market_pane;
+
+    @FXML
+    private Button cheat_btn;
+
     @FXML
     private Button trade_normal_chest_btn;
     @FXML
@@ -68,6 +72,8 @@ public class MarketController {
         sell_pineapple_btn.setOnAction(ignore -> sellPlant(Plant.PINEAPPLE));
         sell_strawberry_btn.setOnAction(ignore -> sellPlant(Plant.STRAWBERRY));
         sell_apple_btn.setOnAction(ignore -> sellPlant(Plant.APPLE));
+
+        cheat_btn.setOnAction(ignore -> cheatStats());
         refresh();
     }
 
@@ -130,6 +136,12 @@ public class MarketController {
         userGameStatsHandler.getUserGameStats().getGold().add(sellPrice);
         userGameStatsHandler.updateUserGameStats();
         plantsHandler.updatePlantsInventory();
+        refresh();
+    }
+
+    private void cheatStats() {
+        userGameStatsHandler.getUserGameStats().getGold().set(999);
+        userGameStatsHandler.getUserGameStats().getStar().set(999);
         refresh();
     }
 }

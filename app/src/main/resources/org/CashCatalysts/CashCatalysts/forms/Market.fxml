@@ -200,4 +200,7 @@
          </font>
       </Label>
    </top>
+   <bottom>
+      <Button fx:id="cheat_btn" mnemonicParsing="false" text="Cheat" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>
