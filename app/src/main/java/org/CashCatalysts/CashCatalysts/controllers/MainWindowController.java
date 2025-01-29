@@ -3,6 +3,7 @@ package org.CashCatalysts.CashCatalysts.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
@@ -12,6 +13,7 @@ import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class MainWindowController {
     private final TransactionHandler transactionHandler;
@@ -28,6 +30,8 @@ public class MainWindowController {
     private Pane main_pane;
     @FXML
     private Pane nav_menu;
+    @FXML
+    private ListView<String> challenge_list;
 
     public MainWindowController(TransactionHandler transactionHandler,
                                 BudgetHandler budgetHandler,
@@ -49,6 +53,10 @@ public class MainWindowController {
         loadPage("../forms/Dashboard.fxml");
     }
 
+    private void refresh() {
+        loadDailyChallenges();
+    }
+
     @SuppressWarnings("unused")
     public void toggleMenu(ActionEvent ignore) {
         nav_menu.setVisible(!nav_menu.isVisible());
@@ -59,6 +67,7 @@ public class MainWindowController {
         main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         main_pane.getChildren().add(loader.load());
+        refresh();
     }
 
     private void loadPage(String path, Object controller) throws IOException {
@@ -67,6 +76,12 @@ public class MainWindowController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         loader.setController(controller);
         main_pane.getChildren().add(loader.load());
+        refresh();
+    }
+
+    private void loadDailyChallenges() {
+        challenge_list.getItems().clear();
+        challengeHandler.getDailyChallengesOnDate(LocalDate.now()).forEach(challenge -> challenge_list.getItems().add(challenge.name()));
     }
 
     @SuppressWarnings("unused")

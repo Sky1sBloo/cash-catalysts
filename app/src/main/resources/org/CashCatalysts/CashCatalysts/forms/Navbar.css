@@ -58,7 +58,15 @@
     -fx-background-color: rgba(0, 255, 115, 0.5);
 }
 
-#inner_box{
+#challenge_list {
      -fx-background-color: rgba(243, 198, 35, 0.08);
+}
+
+.list-cell {
+    -fx-background-color: rgba(244, 246, 255, 0.6);
+}
+
+.list-cell:even {
+    -fx-background-color: rgba(211, 211, 211, 0.6);
 }
 
