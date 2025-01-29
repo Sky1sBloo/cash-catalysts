@@ -36,7 +36,7 @@ public class UserGameStatsTable extends DbTable {
         if (usersTable.getUser(userId) == null) {
             throw new SQLException("User does not exist");
         }
-        String sql = "INSERT INTO game_inventory (userId, gold, star, water, normal_chests_amount, rare_chests_amount, epic_chests_amount, pots, water_cooldown_id) VALUES(?, 0, 0, 0, 0, 0, 0, 0, null);";
+        String sql = "INSERT INTO game_inventory (userId, gold, star, water, normal_chests_amount, rare_chests_amount, epic_chests_amount, pots, water_cooldown_id) VALUES(?, 300, 0, 1, 2, 0, 0, 2, null);";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, userId);
