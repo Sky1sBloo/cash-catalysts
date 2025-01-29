@@ -16,13 +16,13 @@ public class UserGameStatsTable extends DbTable {
 
         DbField[] fields = {
                 new DbField("userId", "INTEGER"),
-                new DbField("gold", "INTEGER"),
-                new DbField("star", "INTEGER"),
-                new DbField("water", "INTEGER"),
-                new DbField("normal_chests_amount", "INTEGER"),
-                new DbField("rare_chests_amount", "INTEGER"),
-                new DbField("epic_chests_amount", "INTEGER"),
-                new DbField("pots", "INTEGER")
+                new DbField("gold", "INTEGER", "NOT NULL"),
+                new DbField("star", "INTEGER", "NOT NULL"),
+                new DbField("water", "INTEGER", "NOT NULL"),
+                new DbField("normal_chests_amount", "INTEGER", "NOT NULL"),
+                new DbField("rare_chests_amount", "INTEGER", "NOT NULL"),
+                new DbField("epic_chests_amount", "INTEGER", "NOT NULL"),
+                new DbField("pots", "INTEGER", "NOT NULL") ,
         };
 
         String[] constraints = {
