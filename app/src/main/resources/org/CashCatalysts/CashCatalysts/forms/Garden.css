@@ -1,0 +1,32 @@
+#garden_pane {
+    -fx-background-image: url("../backgrounds/garden_background.png");
+}
+
+#garden_stats_bar {
+    -fx-background-color: rgba(69, 19, 3, 0.8);
+    -fx-padding: 20;
+}
+
+#garden_stats_bar .label {
+    -fx-text-fill: white;
+}
+
+#garden_stats_bar .header_lbl {
+    -fx-text-fill: #FFC800;
+}
+
+#garden_stats_bar .button {
+    -fx-background-color: #B68E00;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}
+
+#garden_stats_bar .button:hover {
+    -fx-background-color: #FFC800;
+    -fx-background-radius: 0;
+    -fx-border-color: #DA8B30;
+    -fx-padding: 5 15 5 15;
+    -fx-border-width: 2;
+}

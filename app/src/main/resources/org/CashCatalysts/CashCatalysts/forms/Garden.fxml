@@ -7,13 +7,14 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="garden_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Garden.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <VBox prefHeight="172.0" prefWidth="1215.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="garden_stats_bar" prefHeight="172.0" prefWidth="1215.0" BorderPane.alignment="CENTER">
          <children>
             <GridPane prefHeight="76.0" prefWidth="1215.0">
               <columnConstraints>
@@ -32,7 +33,7 @@
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label fx:id="gold_lbl" text="0" />
+                              <Label fx:id="gold_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
@@ -41,7 +42,7 @@
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font></Label>
-                              <Label fx:id="star_lbl" text="0" />
+                              <Label fx:id="star_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
@@ -51,20 +52,22 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="pot_lbl" text="0" />
+                              <Label fx:id="pot_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label text="Water: ">
+                        <Label styleClass="header_lbl" text="Water: ">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Label>
                         <ProgressBar fx:id="water_bar" prefWidth="200.0" progress="0.0" />
-                        <Label fx:id="next_fill_lbl" text="Label" />
+                        <Label text="  Next Refil: " />
+                        <Label fx:id="next_fill_lbl" styleClass="header_lbl" text="Label" />
+                        <Pane prefHeight="37.0" prefWidth="38.0" />
                         <Button fx:id="cheat_water" mnemonicParsing="false" text="Cheat Water" />
                      </children>
                   </HBox>
@@ -92,7 +95,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Plants">
+                        <Label styleClass="header_lbl" text="Plants">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -100,38 +103,38 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Label text="Banana: " />
-                              <Label fx:id="banana_lbl" text="0" />
+                              <Label fx:id="banana_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label text="Orchids: " />
-                              <Label fx:id="orchids_lbl" text="0" />
+                              <Label fx:id="orchids_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Label text="Pineapple: " />
-                              <Label fx:id="pineapple_lbl" text="0" />
+                              <Label fx:id="pineapple_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <Label text="Sunflower:  " />
-                              <Label fx:id="sunflower_lbl" text="0" />
+                              <Label fx:id="sunflower_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
                               <Label text="Strawberry: " />
-                              <Label fx:id="strawberry_lbl" text="0" />
+                              <Label fx:id="strawberry_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Label text="Sampaguita: " />
-                              <Label fx:id="sampaguita_lbl" text="0" />
+                              <Label fx:id="sampaguita_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -139,14 +142,14 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Rose: " />
-                                    <Label fx:id="rose_lbl" text="0" />
+                                    <Label fx:id="rose_lbl" styleClass="header_lbl" text="0" />
                                  </children>
                               </HBox>
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
                               <Label text="Apple: " />
-                              <Label fx:id="apple_lbl" text="0" />
+                              <Label fx:id="apple_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
@@ -164,7 +167,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Seeds">
+                        <Label styleClass="header_lbl" text="Seeds">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -172,38 +175,38 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Label text="Banana: " />
-                              <Label fx:id="banana_seed_lbl" text="0" />
+                              <Label fx:id="banana_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" />
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label text="Orchids: " />
-                              <Label fx:id="orchids_seed_lbl" text="0" />
+                              <Label fx:id="orchids_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                            <children>
                               <Label text="Pineapple: " />
-                              <Label fx:id="pineapple_seed_lbl" text="0" />
+                              <Label fx:id="pineapple_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <Label text="Sunflower:  " />
-                              <Label fx:id="sunflower_seed_lbl" text="0" />
+                              <Label fx:id="sunflower_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                            <children>
                               <Label text="Strawberry: " />
-                              <Label fx:id="strawberry_seed_lbl" text="0" />
+                              <Label fx:id="strawberry_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Label text="Sampaguita: " />
-                              <Label fx:id="sampaguita_seed_lbl" text="0" />
+                              <Label fx:id="sampaguita_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -211,14 +214,14 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Label text="Rose: " />
-                                    <Label fx:id="rose_seed_lbl" text="0" />
+                                    <Label fx:id="rose_seed_lbl" styleClass="header_lbl" text="0" />
                                  </children>
                               </HBox>
                            </children></HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                            <children>
                               <Label text="Apple: " />
-                              <Label fx:id="apple_seed_lbl" text="0" />
+                              <Label fx:id="apple_seed_lbl" styleClass="header_lbl" text="0" />
                            </children>
                         </HBox>
                      </children>
