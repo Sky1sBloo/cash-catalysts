@@ -43,7 +43,10 @@ public class CooldownHandler {
      * @param id The id of the cooldown
      * @return The cooldown with the specified id
      */
-    public Cooldown getCooldown(int id) {
+    public Cooldown getCooldown(Integer id) {
+        if (id == null) {
+            return null;
+        }
         try {
             return cooldownsTable.getCooldown(id);
         } catch (SQLException e) {

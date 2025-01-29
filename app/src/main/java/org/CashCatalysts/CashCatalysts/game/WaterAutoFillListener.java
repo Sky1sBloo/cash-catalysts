@@ -57,6 +57,9 @@ public class WaterAutoFillListener {
             return;
         }
         Cooldown cooldown = cooldownHandler.getCooldown(userGameStatsHandler.getUserGameStats().getWaterCooldownId());
+        if (cooldown == null) {
+            return;
+        }
         Duration duration = Duration.between(currentTime, cooldown.cooldownEnd());
         if (!duration.isNegative()) {
             return;
