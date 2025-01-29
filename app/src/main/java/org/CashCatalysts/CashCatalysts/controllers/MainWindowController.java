@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
@@ -44,6 +45,8 @@ public class MainWindowController {
     private Pane nav_menu;
     @FXML
     private ListView<String> challenge_list;
+    @FXML
+    private Label today_lbl;
 
     public MainWindowController(TransactionHandler transactionHandler,
                                 BudgetHandler budgetHandler,
@@ -71,6 +74,7 @@ public class MainWindowController {
     }
 
     private void refresh() {
+        today_lbl.setText(LocalDate.now().toString());
         loadDailyChallenges();
     }
 

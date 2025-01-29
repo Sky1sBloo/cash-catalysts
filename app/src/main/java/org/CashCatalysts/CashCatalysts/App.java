@@ -51,8 +51,8 @@ public class App extends Application {
         PlantsHandler plantsHandler = new PlantsHandler(userId, databaseHandler);
         ChestHandler chestHandler = new ChestHandler(userId, databaseHandler, plantsHandler);
         CooldownHandler cooldownHandler = new CooldownHandler(databaseHandler);
-        PlantGrowingSystem plantGrowingSystem = new PlantGrowingSystem(plantsHandler, cooldownHandler, landHandler, userGameStatsHandler, gameActionHandler);
         WaterAutoFillListener waterAutoFillListener = new WaterAutoFillListener(userGameStatsHandler, cooldownHandler);
+        PlantGrowingSystem plantGrowingSystem = new PlantGrowingSystem(plantsHandler, cooldownHandler, landHandler, userGameStatsHandler, gameActionHandler, waterAutoFillListener);
 
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("forms/Main.fxml")));
         MainWindowController controller = new MainWindowController(transactionHandler,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -25,21 +26,29 @@
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
          <children>
-            <PieChart fx:id="yearly_expense_breakdown_pie" />
-            <Label styleClass="text_font" text="Yearly Expense Breakdown">
+            <PieChart fx:id="yearly_expense_breakdown_pie" styleClass="header_font" />
+            <Label text="Yearly Expense Breakdown">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="header_font" />
+               </styleClass>
             </Label>
          </children>
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="1">
          <children>
             <PieChart fx:id="monthly_expense_breakdown_pie" />
-            <Label styleClass="text_font" text="Monthly Expense Breakdown">
+            <Label text="Monthly Expense Breakdown">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="header_font" />
+               </styleClass>
             </Label>
          </children>
       </VBox>
@@ -57,12 +66,16 @@
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
                      <children>
-                        <Label styleClass="text_font" text="Savings">
+                        <Label text="Savings">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="text_font" />
+                              <String fx:value="header_font" />
+                           </styleClass>
                         </Label>
-                        <LineChart fx:id="savings_linechart" prefHeight="150.0" prefWidth="185.0">
+                        <LineChart fx:id="savings_linechart" prefHeight="150.0" prefWidth="185.0" styleClass="activity_chart">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -74,12 +87,16 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.columnIndex="1">
                      <children>
-                        <Label styleClass="text_font" text="Income vs Expenses">
+                        <Label text="Income vs Expenses">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="text_font" />
+                              <String fx:value="header_font" />
+                           </styleClass>
                         </Label>
-                        <LineChart fx:id="income_and_expenses_linechart" prefHeight="150.0" prefWidth="185.0">
+                        <LineChart fx:id="income_and_expenses_linechart" prefHeight="150.0" prefWidth="185.0" styleClass="activity_chart">
                            <xAxis>
                               <CategoryAxis side="BOTTOM" />
                            </xAxis>
@@ -91,10 +108,14 @@
                   </VBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" styleClass="analytics_box" GridPane.columnSpan="2" GridPane.rowIndex="1">
                      <children>
-                        <Label styleClass="text_font" text="Total Yearly Expense:">
+                        <Label text="Total Yearly Expense:">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
+                           <styleClass>
+                              <String fx:value="text_font" />
+                              <String fx:value="header_font" />
+                           </styleClass>
                         </Label>
                         <Label fx:id="total_yearly_expense_lbl" styleClass="text_font" text="0">
                            <font>
@@ -108,7 +129,7 @@
       </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <children>
-            <LineChart fx:id="yearly_activity_linechart">
+            <LineChart fx:id="yearly_activity_linechart" styleClass="activity_chart">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -116,10 +137,14 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Label styleClass="text_font" text="Yearly Activity (Total Monthly Expenses)">
+            <Label text="Yearly Activity (Total Monthly Expenses)">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
+               <styleClass>
+                  <String fx:value="text_font" />
+                  <String fx:value="header_font" />
+               </styleClass>
             </Label>
          </children>
       </VBox>
@@ -135,15 +160,23 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
                <children>
-                  <Label styleClass="text_font" text="Highest Expense Category">
+                  <Label text="Highest Expense Category">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
-                  <Label styleClass="text_font" text="Yearly">
+                  <Label text="Yearly">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="highest_category_yearly_lbl" styleClass="text_font" text="None">
                      <font>
@@ -153,15 +186,23 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="1">
                <children>
-                  <Label styleClass="text_font" text="Highest Expense Category">
+                  <Label text="Highest Expense Category">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
-                  <Label styleClass="text_font" text="Monthly">
+                  <Label text="Monthly">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="highest_category_monthly_lbl" styleClass="text_font" text="None">
                      <font>
@@ -171,10 +212,14 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="2">
                <children>
-                  <Label styleClass="text_font" text="Highest Expense this Month">
+                  <Label text="Highest Expense this Month">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="highest_transaction_lbl" styleClass="text_font" text="None">
                      <font>
@@ -196,10 +241,14 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box">
                <children>
-                  <Label styleClass="text_font" text="Average Monthly Expenses">
+                  <Label text="Average Monthly Expenses">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="avg_monthly_expenses_lbl" styleClass="text_font" text="0">
                      <font>
@@ -214,10 +263,14 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="1">
                <children>
-                  <Label styleClass="text_font" text="Recurrring Expenses">
+                  <Label text="Recurrring Expenses">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="recurring_expenses_lbl" styleClass="text_font" text="None">
                      <font>
@@ -227,10 +280,14 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="analytics_box" GridPane.rowIndex="2">
                <children>
-                  <Label styleClass="text_font" text="Comparison to Last Month">
+                  <Label text="Comparison to Last Month">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <styleClass>
+                        <String fx:value="text_font" />
+                        <String fx:value="header_font" />
+                     </styleClass>
                   </Label>
                   <Label fx:id="comparison_to_last_month_lbl" styleClass="text_font" text="0">
                      <font>

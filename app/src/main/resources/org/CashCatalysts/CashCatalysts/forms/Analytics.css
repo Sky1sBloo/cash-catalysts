@@ -4,6 +4,7 @@
 
 .analytics_box {
     -fx-background-color:rgba(244, 246, 255, 0.6);
+    -fx-background-color: rgba(69, 19, 3, 0.8);
     -fx-background-insets: 10;
     -fx-background-radius: 20;
     -fx-border-width: 1;
@@ -14,11 +15,39 @@
     -fx-alignment: center;
 }
 
-.text_font{
+.text_font {
     -fx-font-family: "Consolas";
+    -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
+.header_font {
+    -fx-text-fill: #FFC800;
+}
+
+.chart-legend-item {
+}
+
+.chart-pie-label-line {
+    -fx-stroke: #FFC800;
+    -fx-fill: #FFC800;
+    -fx-text-fill: #FFC800;
+}
+
+.chart-pie-label {
+    -fx-fill: #FFC800;
+}
+
+.chart-title {
+    -fx-text-fill: #FFC800;
+}
+
+.axis-label {
+    -fx-text-fill: #FFC800;
+    -fx-fill: #FFC800;
+}
 
 
-
+.activity_chart .axis {
+    -fx-tick-label-fill: #FFC800;
+}

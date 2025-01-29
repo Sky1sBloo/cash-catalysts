@@ -175,6 +175,7 @@ public class LandController {
 
     private void waterPlant() {
         plantGrowingSystem.waterPlant(landPosition, 1);
+
         refresh();
         reloadStatsCallback.run();
     }

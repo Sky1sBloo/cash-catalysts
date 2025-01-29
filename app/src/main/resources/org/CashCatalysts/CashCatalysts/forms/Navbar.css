@@ -17,6 +17,14 @@
 
 }
 
+#menu_toggle_btn {
+    -fx-background-color: #785030;
+}
+
+#menu_toggle_btn:hover {
+    -fx-background-color: #9e784f;
+}
+
 .nav_button {
     -fx-background-color: #4881a3;
 }

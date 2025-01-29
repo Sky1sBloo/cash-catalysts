@@ -3,6 +3,7 @@ package org.CashCatalysts.CashCatalysts.game.plants;
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.WaterAutoFillListener;
 import org.CashCatalysts.CashCatalysts.game.cooldown.Cooldown;
 import org.CashCatalysts.CashCatalysts.game.cooldown.CooldownHandler;
 import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
@@ -23,16 +24,18 @@ public class PlantGrowingSystem {
     private final LandHandler landHandler;
     private final UserGameStatsHandler userGameStatsHandler;
     private final GameActionHandler gameActionHandler;
+    private final WaterAutoFillListener waterAutoFillListener;
 
     /**
      * Initializes the system with handlers for plants, cooldowns, land, and user stats.
      */
-    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, GameActionHandler gameActionHandler){
+    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, GameActionHandler gameActionHandler, WaterAutoFillListener waterAutoFillListener){
         this.plantsHandler = plantsHandler;
         this.cooldownHandler = cooldownHandler;
         this.landHandler = landHandler;
         this.userGameStatsHandler = userGameStatsHandler;
         this.gameActionHandler = gameActionHandler;
+        this.waterAutoFillListener = waterAutoFillListener;
     }
 
     /**
@@ -50,6 +53,7 @@ public class PlantGrowingSystem {
         land.setCooldownId(cooldownID);
         landHandler.updateLand(land);
 
+        waterAutoFillListener.startAutoFill();
         userGameStatsHandler.getUserGameStats().getWater().exchange(1);
         gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.USE_WATER, landPosition, LocalDate.now()));
     }
