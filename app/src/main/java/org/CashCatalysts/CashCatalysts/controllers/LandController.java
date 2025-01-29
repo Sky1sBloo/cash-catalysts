@@ -84,7 +84,7 @@ public class LandController {
             harvest_btn.setDisable(!isHarvestable);
 
             boolean isWatered = plantGrowingSystem.getPlantTimeRemainingDuration(landPosition).getSeconds() > 0;
-            water_btn.setDisable(isWatered || land.getPlantType() == Plant.NONE || isHarvestable);
+            water_btn.setDisable(isWatered || land.getPlantType() == Plant.NONE || isHarvestable || userGameStatsHandler.getUserGameStats().getWater().getAmount() <= 0);
             cheat_btn.setDisable(!isWatered || land.getPlantType() == Plant.NONE || isHarvestable);
             plant_btn.setDisable(isWatered);
             seed_selection.setDisable(isWatered);

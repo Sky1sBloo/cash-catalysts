@@ -2,9 +2,9 @@ package org.CashCatalysts.CashCatalysts.game.plants;
 
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
+import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.cooldown.Cooldown;
 import org.CashCatalysts.CashCatalysts.game.cooldown.CooldownHandler;
-import org.CashCatalysts.CashCatalysts.game.UserGameStats;
 import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
 import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionType;
 
@@ -15,23 +15,23 @@ import java.time.LocalDateTime;
 
 /**
  * Handles plant lifecycle actions: watering, harvesting, and planting seeds.
- * Manages cooldowns, plant inventory, and land state.
+ * Manages cooldowns, plant inventory, water, and land state.
  */
 public class PlantGrowingSystem {
     private final PlantsHandler plantsHandler;
     private final CooldownHandler cooldownHandler;
     private final LandHandler landHandler;
-    private final UserGameStats userGameStats;
+    private final UserGameStatsHandler userGameStatsHandler;
     private final GameActionHandler gameActionHandler;
 
     /**
      * Initializes the system with handlers for plants, cooldowns, land, and user stats.
      */
-    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStats userGameStats, GameActionHandler gameActionHandler){
+    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStatsHandler userGameStatsHandler, GameActionHandler gameActionHandler){
         this.plantsHandler = plantsHandler;
         this.cooldownHandler = cooldownHandler;
         this.landHandler = landHandler;
-        this.userGameStats = userGameStats;
+        this.userGameStatsHandler = userGameStatsHandler;
         this.gameActionHandler = gameActionHandler;
     }
 
@@ -55,6 +55,7 @@ public class PlantGrowingSystem {
             throw new RuntimeException(e);
         }
 
+        userGameStatsHandler.getUserGameStats().getWater().exchange(1);
         gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.USE_WATER, landPosition, LocalDate.now()));
     }
 
@@ -91,9 +92,9 @@ public class PlantGrowingSystem {
             throw new IllegalStateException("Plant is not ready for harvest yet.");
         }
 
-        plantsHandler.addPlant(land.getPlantType()) ;
+        plantsHandler.addPlant(land.getPlantType());
         plantsHandler.updatePlantsInventory();
-        userGameStats.getStar().add(10);
+        userGameStatsHandler.getUserGameStats().getStar().add(10);
 
         land.setPlantType(Plant.NONE);
         land.setCooldownId(null);

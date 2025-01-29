@@ -3,6 +3,7 @@ package org.CashCatalysts.CashCatalysts.controllers;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
@@ -33,6 +34,8 @@ public class GardenController {
     private Label next_fill_lbl;
     @FXML
     private ProgressBar water_bar;
+    @FXML
+    private Button cheat_water;
 
     @FXML
     private Label gold_lbl;
@@ -83,6 +86,7 @@ public class GardenController {
     }
 
     public void initialize() {
+        cheat_water.setOnAction(ignore -> cheatWater());
         loadInventoryContents();
         loadLandContents();
 
@@ -140,5 +144,10 @@ public class GardenController {
         sunflower_seed_lbl.setText(String.valueOf(plantsHandler.getSeedsInventory().sunflower()));
         rose_seed_lbl.setText(String.valueOf(plantsHandler.getSeedsInventory().rose()));
         pot_lbl.setText(String.valueOf(userGameStatsHandler.getUserGameStats().getPots().getAmount()));
+    }
+
+    private void cheatWater() {
+        userGameStatsHandler.getUserGameStats().getWater().set(24);
+        loadInventoryContents();
     }
 }

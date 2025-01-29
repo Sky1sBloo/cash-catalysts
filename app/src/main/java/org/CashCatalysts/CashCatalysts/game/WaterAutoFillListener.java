@@ -31,7 +31,10 @@ public class WaterAutoFillListener {
     }
 
     public void stopAutoFill() {
-        int cooldownId = userGameStatsHandler.getUserGameStats().getWaterCooldownId();
+        Integer cooldownId = userGameStatsHandler.getUserGameStats().getWaterCooldownId();
+        if (cooldownId == null) {
+            return;
+        }
         userGameStatsHandler.getUserGameStats().clearWaterCooldown();
         cooldownHandler.deleteCooldown(cooldownId);
     }
@@ -50,6 +53,7 @@ public class WaterAutoFillListener {
     public void calculatedAutoFill(LocalDateTime currentTime) {
         // Calculate the time since water fill rate is completed and add water per minute
         if (userGameStatsHandler.getUserGameStats().getWater().getAmount() >= MAX_WATER) {
+            stopAutoFill();
             return;
         }
         Cooldown cooldown = cooldownHandler.getCooldown(userGameStatsHandler.getUserGameStats().getWaterCooldownId());

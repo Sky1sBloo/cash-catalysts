@@ -11,6 +11,10 @@ public class GameCurrency {
         this.amount = amount;
     }
 
+    public void set(int amount) {
+        this.amount = amount;
+    }
+
     public void add(int amount) {
         this.amount += amount;
     }
