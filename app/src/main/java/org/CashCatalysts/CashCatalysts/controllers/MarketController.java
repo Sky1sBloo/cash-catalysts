@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.StageStyle;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.Chest;
@@ -22,6 +23,8 @@ public class MarketController {
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
 
+    @FXML
+    private BorderPane market_pane;
     @FXML
     private Button trade_normal_chest_btn;
     @FXML
@@ -77,6 +80,14 @@ public class MarketController {
     }
 
     private void loadStats() {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/StatsBar.fxml"));
+        loader.setController(new StatsBarController(userGameStatsHandler));
+        try {
+            market_pane.setTop(loader.load());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         banana_lbl.setText(String.valueOf(plantsHandler.getPlantsInventory().banana()));
         pineapple_lbl.setText(String.valueOf(plantsHandler.getPlantsInventory().pineapple()));
         strawberry_lbl.setText(String.valueOf(plantsHandler.getPlantsInventory().strawberry()));
