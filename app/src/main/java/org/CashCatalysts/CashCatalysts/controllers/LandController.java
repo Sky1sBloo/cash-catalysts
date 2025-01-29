@@ -156,7 +156,7 @@ public class LandController {
     private void plantSeed() {
         Plant seed = seed_selection.getValue();
         if (seed == Plant.NONE) {
-            // Todo: show added seed is none
+            // Todo: show added seed is none:
         }
         try {
             plantGrowingSystem.plantSeed(landPosition, seed);

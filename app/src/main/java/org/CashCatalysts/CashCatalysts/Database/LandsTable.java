@@ -65,7 +65,30 @@ public class LandsTable extends DbTable {
         );
     }
 
-    public Land getLand(int landId) throws SQLException {
+    public List<Land> getLandByUser(int userId) throws SQLException {
+        String sql = "SELECT * FROM lands WHERE userId = ?;";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setInt(1, userId);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Land> lands = new ArrayList<>();
+        while (resultSet.next()) {
+            Integer cooldownId = resultSet.getInt("cooldownId");
+            if (resultSet.wasNull()) {
+                cooldownId = null;
+            }
+            lands.add(new Land(
+                    resultSet.getInt("userId"),
+                    Plant.valueOf(resultSet.getString("plantType")),
+                    resultSet.getInt("hasPot") == 1,
+                    resultSet.getInt("position"),
+                    cooldownId
+            ));
+        }
+        return lands;
+    }
+
+    public Land getLandID(int landId) throws SQLException {
         String sql = "SELECT * FROM lands WHERE landId = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, landId);

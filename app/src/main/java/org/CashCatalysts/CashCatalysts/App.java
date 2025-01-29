@@ -32,10 +32,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        DatabaseHandler databaseHandler = new DatabaseHandler(":memory:");
+        DatabaseHandler databaseHandler = new DatabaseHandler("cashcatalysts.db");
         TransactionHandler transactionHandler = new TransactionHandler(databaseHandler);
         UsersHandler usersHandler = new UsersHandler(databaseHandler);
-        int userId = 0;
+        int userId = 1;
         if (usersHandler.getUser(userId) == null) {
             userId = usersHandler.registerUser(UsersHandler.createUser("user"));
         }

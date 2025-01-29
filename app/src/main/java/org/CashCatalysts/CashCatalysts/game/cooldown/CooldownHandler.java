@@ -59,6 +59,9 @@ public class CooldownHandler {
      */
     public boolean cooldownIsFinished(int id, LocalDateTime dateTime) {
         Cooldown cooldown = getCooldown(id);
+        if (cooldown == null) {
+            return true;
+        }
         return dateTime.isAfter(cooldown.cooldownEnd());
     }
 
