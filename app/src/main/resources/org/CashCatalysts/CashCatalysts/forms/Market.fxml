@@ -255,6 +255,11 @@
                      <children>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                            <children>
+                              <ImageView fitHeight="120.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons2/Pot.png" />
+                                 </image>
+                              </ImageView>
                               <Label text="Pot" />
                               <Button fx:id="buy_pot" mnemonicParsing="false" text="Buy" />
                            </children>
