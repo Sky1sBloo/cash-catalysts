@@ -3,7 +3,6 @@ package org.CashCatalysts.CashCatalysts.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.stage.StageStyle;
 import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
@@ -32,9 +31,9 @@ public class MarketController {
     }
 
     public void initialize() {
-        trade_normal_chest_btn.setOnAction(e -> tradeChest(ChestRarity.NORMAL));
-        trade_rare_chest_btn.setOnAction(e -> tradeChest(ChestRarity.RARE));
-        trade_epic_chest_btn.setOnAction(e -> tradeChest(ChestRarity.EPIC));
+        trade_normal_chest_btn.setOnAction(ignore -> tradeChest(ChestRarity.NORMAL));
+        trade_rare_chest_btn.setOnAction(ignore -> tradeChest(ChestRarity.RARE));
+        trade_epic_chest_btn.setOnAction(ignore -> tradeChest(ChestRarity.EPIC));
     }
 
     private void tradeChest(ChestRarity rarity) {
@@ -44,7 +43,7 @@ public class MarketController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../forms/ChestRewardForm.fxml"));
         ChestRewardFormController controller = new ChestRewardFormController(drops);
         loader.setController(controller);
-        Dialog<ButtonType> dialog = new Dialog<>();
+        Dialog<Void> dialog = new Dialog<>();
         try {
             dialog.setDialogPane(loader.load());
         } catch (IOException e) {
