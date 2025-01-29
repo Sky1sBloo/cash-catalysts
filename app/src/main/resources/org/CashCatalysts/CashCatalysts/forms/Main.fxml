@@ -75,8 +75,7 @@
                         <VBox fx:id="profile_details" prefHeight="184.0" prefWidth="235.0">
                            <children>
                               <Label styleClass="text_font" text="Username" />
-                              <Label styleClass="text_font" text="Title" />
-                              <Label styleClass="text_font" text="Level" />
+                              <Label styleClass="text_font" text="Water" />
                               <ProgressBar prefHeight="20.0" prefWidth="234.0" progress="1.0" styleClass="bar" />
                            </children>
                         </VBox>
@@ -176,7 +175,7 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" visible="false" GridPane.rowIndex="2">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onAccountsClick" styleClass="nav_button">
                                  <graphic>
@@ -192,7 +191,7 @@
                                  </font></Label>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onAnalyticsClick" styleClass="nav_button">
                                  <graphic>
@@ -225,7 +224,7 @@
                                  </font>
                               </Label>
                            </children></VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.rowIndex="2">
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onMarketClick" styleClass="nav_button">
                                  <graphic>
@@ -242,7 +241,6 @@
                                  </font>
                               </Label>
                            </children></VBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="nav_tab" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <VBox fx:id="daily_challenges_details" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
