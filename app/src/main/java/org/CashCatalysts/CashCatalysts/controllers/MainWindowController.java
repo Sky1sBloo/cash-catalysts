@@ -3,14 +3,17 @@ package org.CashCatalysts.CashCatalysts.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import org.CashCatalysts.CashCatalysts.GoalsSavings.GoalsHandler;
 import org.CashCatalysts.CashCatalysts.Transactions.TransactionHandler;
 import org.CashCatalysts.CashCatalysts.UserStats.UserStatsSystem;
 import org.CashCatalysts.CashCatalysts.budgets.BudgetHandler;
+import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
+import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
-
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class MainWindowController {
     private final TransactionHandler transactionHandler;
@@ -18,6 +21,8 @@ public class MainWindowController {
     private final GoalsHandler goalsHandler;
     private final UserStatsSystem userStatsSystem;
     private final SubscriptionsHandler subscriptionsHandler;
+    private final ChallengeHandler challengeHandler;
+    private final UserGameStatsHandler userGameStatsHandler;
 
     @FXML
     private Pane main_root;
@@ -25,23 +30,31 @@ public class MainWindowController {
     private Pane main_pane;
     @FXML
     private Pane nav_menu;
+    @FXML
+    private ListView<String> challenge_list;
 
     public MainWindowController(TransactionHandler transactionHandler,
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
         this.userStatsSystem = userStatsSystem;
         this.subscriptionsHandler = subscriptionsHandler;
+        this.challengeHandler = challengeHandler;
+        this.userGameStatsHandler = userGameStatsHandler;
     }
 
     @SuppressWarnings("unused")
     public void initialize() throws IOException {
         nav_menu.setVisible(false);
         loadPage("../forms/Dashboard.fxml");
+    }
+
+    private void refresh() {
+        loadDailyChallenges();
     }
 
     @SuppressWarnings("unused")
@@ -54,6 +67,7 @@ public class MainWindowController {
         main_pane.getChildren().clear();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         main_pane.getChildren().add(loader.load());
+        refresh();
     }
 
     private void loadPage(String path, Object controller) throws IOException {
@@ -62,6 +76,12 @@ public class MainWindowController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         loader.setController(controller);
         main_pane.getChildren().add(loader.load());
+        refresh();
+    }
+
+    private void loadDailyChallenges() {
+        challenge_list.getItems().clear();
+        challengeHandler.getDailyChallengesOnDate(LocalDate.now()).forEach(challenge -> challenge_list.getItems().add(challenge.name()));
     }
 
     @SuppressWarnings("unused")
@@ -92,5 +112,10 @@ public class MainWindowController {
     @SuppressWarnings("unused")
     public void onGoalsClick(ActionEvent ignore) throws IOException {
         loadPage("../forms/Goals.fxml", new GoalsController(goalsHandler, transactionHandler, budgetHandler));
+    }
+
+    @SuppressWarnings("unused")
+    public void onChallengesClick(ActionEvent ignore) throws IOException {
+        loadPage("../forms/Challenges.fxml", new ChallengesController(challengeHandler, userGameStatsHandler));
     }
 }

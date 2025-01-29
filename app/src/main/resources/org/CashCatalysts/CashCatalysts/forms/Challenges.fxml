@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="challenges_page" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1215.0" stylesheets="@Challenges.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <TabPane fx:id="challenge_container" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Daily">
+                    <content>
+                        <VBox fx:id="daily_challenge_list" prefHeight="200.0" prefWidth="100.0" />
+                    </content>
+                </Tab>
+                <Tab text="Weekly">
+                    <content>
+                        <VBox fx:id="weekly_challenge_list" prefHeight="200.0" prefWidth="100.0" />
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+   <top>
+
+   </top>
+</BorderPane>

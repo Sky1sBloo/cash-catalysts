@@ -1,0 +1,27 @@
+#challenges_page {
+    -fx-background-image: url("../backgrounds/challenges_background.png");
+}
+
+#challenge_container {
+    -fx-background-color: rgba(16, 55, 92, 0.75);
+    -fx-background-insets: 100;
+    -fx-border-color: black;
+    -fx-border-insets: 100;
+    -fx-border-width: 2;
+    -fx-padding: 0 0 10 0;
+}
+
+#challenge_container *.tab {
+    -fx-background-color: rgb(43, 113, 143);
+    -fx-background-radius: 0;
+    -fx-text-base-color: white;
+    -fx-padding: 10;
+}
+
+#challenge_container *.tab:selected {
+    -fx-background-color: #30869E;
+}
+
+#challenge_container *.tab-header-background {
+    -fx-background-color: rgba(40, 107, 140, 0.75);
+}

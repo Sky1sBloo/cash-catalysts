@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:id="challenges_card" prefHeight="174.0" prefWidth="1215.0" stylesheets="@ChallengesCard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="918.0" minWidth="10.0" prefWidth="918.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="599.0" minWidth="10.0" prefWidth="297.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox alignment="CENTER_LEFT" prefHeight="139.0" prefWidth="630.0">
+            <children>
+                <Label fx:id="challenge_title" text="Challenge Title">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Label>
+                <Label fx:id="challenge_description" text="Description" />
+                <HBox prefHeight="28.0" prefWidth="608.0">
+                    <children>
+                        <Label text="Deadline: " />
+                        <Label fx:id="challenge_deadline" text="0/0/0" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+            <children>
+                <Label fx:id="challenge_is_completed" text="Not Yet Completed" />
+                <Label fx:id="challenge_rewards" text="Rewards List" />
+                <Button fx:id="claim_challenge_btn" disable="true" mnemonicParsing="false" text="Claim" />
+            <Button fx:id="cheat_complete_btn" mnemonicParsing="false" text="Cheat Complete" />
+            </children>
+        </VBox>
+    </children>
+</GridPane>

@@ -1,11 +1,11 @@
 package org.CashCatalysts.CashCatalysts.game.chests.rewards;
 
+import org.CashCatalysts.CashCatalysts.datatypes.ApplicationRandom;
 import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestRarity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class ChestRewardsHandler {
     private static final ChestRewardRarity[] normalRewards = {
@@ -61,10 +61,9 @@ public class ChestRewardsHandler {
             case EPIC -> epicRewards;
         };
 
-        Random random = new Random();
         for (ChestRewardRarity reward : rewardsArray) {
-            if (random.nextInt(100) < reward.rarity()) {
-                rewards.add(new ChestDrop(reward.plant(), amount));
+            if (ApplicationRandom.randomInt(0, 100) < reward.rarity()) {
+                rewards.add(new ChestDrop(reward.plant(), 1));
             }
         }
         return rewards;

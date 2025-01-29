@@ -1,13 +1,15 @@
 package org.CashCatalysts.CashCatalysts.game.plants;
 
-import org.CashCatalysts.CashCatalysts.Database.DatabaseHandler;
 import org.CashCatalysts.CashCatalysts.game.Land;
 import org.CashCatalysts.CashCatalysts.game.LandHandler;
 import org.CashCatalysts.CashCatalysts.game.cooldown.Cooldown;
 import org.CashCatalysts.CashCatalysts.game.cooldown.CooldownHandler;
 import org.CashCatalysts.CashCatalysts.game.UserGameStats;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionType;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -19,15 +21,17 @@ public class PlantGrowingSystem {
     private final CooldownHandler cooldownHandler;
     private final LandHandler landHandler;
     private final UserGameStats userGameStats;
+    private final GameActionHandler gameActionHandler;
 
     /**
      * Initializes the system with handlers for plants, cooldowns, land, and user stats.
      */
-    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStats userGameStats){
+    public PlantGrowingSystem(PlantsHandler plantsHandler, CooldownHandler cooldownHandler, LandHandler landHandler, UserGameStats userGameStats, GameActionHandler gameActionHandler){
         this.plantsHandler = plantsHandler;
         this.cooldownHandler = cooldownHandler;
         this.landHandler = landHandler;
         this.userGameStats = userGameStats;
+        this.gameActionHandler = gameActionHandler;
     }
 
     /**
@@ -42,6 +46,7 @@ public class PlantGrowingSystem {
         Cooldown  cooldown = CooldownHandler.createCooldown(cooldownEnd);
         int cooldownID = cooldownHandler.addCooldown(cooldown);
         cooldownHandler.updateCooldown(cooldown.id(), cooldownEnd);
+        gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.USE_WATER, landPosition, LocalDate.now()));
     }
 
     /**
@@ -64,6 +69,7 @@ public class PlantGrowingSystem {
         landHandler.getLandsTable().updateLand(land);
 
         cooldownHandler.deleteCooldown(cooldown.id());
+        gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.HARVEST_PLANT, landPosition, LocalDate.now()));
     }
 
     /**
@@ -83,5 +89,6 @@ public class PlantGrowingSystem {
         plantsHandler.updateSeedsInventory();
         land.setPlantType(plantType);
         landHandler.getLandsTable().updateLand(land);
+        gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.PLANT_SEED, landPosition, LocalDate.now()));
     }
 }
