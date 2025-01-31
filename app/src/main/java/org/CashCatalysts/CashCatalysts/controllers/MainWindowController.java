@@ -17,6 +17,7 @@ import org.CashCatalysts.CashCatalysts.game.UserGameStatsHandler;
 import org.CashCatalysts.CashCatalysts.game.WaterAutoFillListener;
 import org.CashCatalysts.CashCatalysts.game.challenges.ChallengeHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantGrowingSystem;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 import org.CashCatalysts.CashCatalysts.subscriptions.SubscriptionsHandler;
@@ -36,6 +37,7 @@ public class MainWindowController {
     private final ChestHandler chestHandler;
     private final LandHandler landHandler;
     private final WaterAutoFillListener waterAutoFillListener;
+    private final GameActionHandler gameActionHandler;
 
     @FXML
     private Pane main_root;
@@ -52,7 +54,7 @@ public class MainWindowController {
                                 BudgetHandler budgetHandler,
                                 GoalsHandler goalsHandler,
                                 UserStatsSystem userStatsSystem,
-                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, ChestHandler chestHandler, LandHandler landHandler, WaterAutoFillListener waterAutoFillListener) {
+                                SubscriptionsHandler subscriptionsHandler, ChallengeHandler challengeHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, PlantGrowingSystem plantGrowingSystem, ChestHandler chestHandler, LandHandler landHandler, WaterAutoFillListener waterAutoFillListener, GameActionHandler gameActionHandler) {
         this.transactionHandler = transactionHandler;
         this.budgetHandler = budgetHandler;
         this.goalsHandler = goalsHandler;
@@ -65,6 +67,7 @@ public class MainWindowController {
         this.chestHandler = chestHandler;
         this.landHandler = landHandler;
         this.waterAutoFillListener = waterAutoFillListener;
+        this.gameActionHandler = gameActionHandler;
     }
 
     @SuppressWarnings("unused")
@@ -155,6 +158,6 @@ public class MainWindowController {
 
     @SuppressWarnings("unused")
     public void onMarketClick(ActionEvent ignore) throws IOException {
-        loadPage("../forms/Market.fxml", new MarketController(chestHandler, userGameStatsHandler, plantsHandler));
+        loadPage("../forms/Market.fxml", new MarketController(chestHandler, userGameStatsHandler, plantsHandler, gameActionHandler));
     }
 }

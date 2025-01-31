@@ -13,16 +13,21 @@ import org.CashCatalysts.CashCatalysts.game.chests.Chest;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestHandler;
 import org.CashCatalysts.CashCatalysts.game.chests.ChestRarity;
 import org.CashCatalysts.CashCatalysts.game.chests.rewards.ChestDrop;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameAction;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionHandler;
+import org.CashCatalysts.CashCatalysts.game.gameaction.GameActionType;
 import org.CashCatalysts.CashCatalysts.game.plants.Plant;
 import org.CashCatalysts.CashCatalysts.game.plants.PlantsHandler;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class MarketController {
     private final ChestHandler chestHandler;
     private final UserGameStatsHandler userGameStatsHandler;
     private final PlantsHandler plantsHandler;
+    private final GameActionHandler gameActionHandler;
 
     enum BuyableWith {
         GOLD,
@@ -63,10 +68,11 @@ public class MarketController {
     @FXML
     private Button sell_apple_btn;
 
-    public MarketController(ChestHandler chestHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler) {
+    public MarketController(ChestHandler chestHandler, UserGameStatsHandler userGameStatsHandler, PlantsHandler plantsHandler, GameActionHandler gameActionHandler) {
         this.chestHandler = chestHandler;
         this.userGameStatsHandler = userGameStatsHandler;
         this.plantsHandler = plantsHandler;
+        this.gameActionHandler = gameActionHandler;
     }
 
     public void initialize() {
@@ -157,6 +163,7 @@ public class MarketController {
         userGameStatsHandler.updateUserGameStats();
         userGameStatsHandler.updateUserGameStats();
         plantsHandler.updatePlantsInventory();
+        gameActionHandler.addGameAction(gameActionHandler.createGameAction(GameActionType.SELL_PLANT, 0, LocalDate.now()));
         refresh();
     }
 

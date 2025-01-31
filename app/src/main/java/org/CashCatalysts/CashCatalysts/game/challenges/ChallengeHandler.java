@@ -172,7 +172,7 @@ public class ChallengeHandler {
                 return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.USE_WATER, challenge.startDate(), challenge.endDate()).size() >= 12;
             }
             case ChallengeCondition.CROP_SELLER -> {
-                return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.SELL_PLANT, challenge.startDate(), challenge.endDate()).size() >= 12;
+                return gameActionHandler.getGameActionsWithActionTypeBetween(GameActionType.SELL_PLANT, challenge.startDate(), challenge.endDate()).size() >= 6;
             }
             case ChallengeCondition.BUDGET_BOSS -> {
                 return userStatsSystem.getSavings(new DateRange(challenge.startDate(), challenge.endDate())).getAmount() > 0;

@@ -8,6 +8,6 @@ public record Goal(Integer id, String name, Currency amount, LocalDate deadline,
 
     @Override
     public String toString() {
-        return type + "  -  " + name + "  -  " + amount.getAmount() + "." + amount.getAmountCents() + "  -  " + deadline;
+        return type + "  -  " + name + "  -  " + amount.getAmount() + "." + amount.getCents() + "  -  " + deadline;
     }
 }
