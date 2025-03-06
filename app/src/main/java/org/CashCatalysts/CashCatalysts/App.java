@@ -66,7 +66,8 @@ public class App extends Application {
                 plantGrowingSystem,
                 chestHandler,
                 landHandler,
-                waterAutoFillListener);
+                waterAutoFillListener,
+                gameActionHandler);
         loader.setController(controller);
 
         Parent root = loader.load();
